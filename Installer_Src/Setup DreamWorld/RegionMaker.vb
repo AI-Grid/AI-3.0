@@ -2254,7 +2254,7 @@ Public Class RegionMaker
             End If
 
             If Settings.SmartStart Then
-                If INI.SetIni("Startup", "Enabled", SmartStart(uuid)) Then Return True
+                If INI.SetIni("Startup", "SmartStart", SmartStart(uuid)) Then Return True
             End If
 
             If INI.SetIni("Estates", "DefaultEstateName", gEstateName) Then Return True
