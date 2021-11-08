@@ -184,18 +184,14 @@ namespace OpenSim.Services.HypergridService
                 m_ALT_Enabled = ALTConfig.GetBoolean("Enabled", true);
                 if (m_ALT_Enabled)
                 {
-                    m_log.Info("[SmartStart]: Enabled");
-
                     // Get the http port to talk to from Const Section
                     IConfig ConstConfig = config.Configs["Const"];
                     m_DiagnosticsPort = ConstConfig.GetInt("DiagnosticsPort", 8001);    // listener port for Dreamgrid
                     m_PrivURL = ConstConfig.GetString("PrivURL", "http://localhost");    // private IP
                     m_MachineID = ConstConfig.GetString("MachineID", "");    // private IP
                 }
-                else
-                {
-                    m_log.Info("[SmartStart]: Disabled");
-                }
+
+                m_log.Info("[GateKeepService]: SmartStart " + (m_ALT_Enabled ? "Enabled" : "Disabled"));
 
                 // </Auto Load Teleport>
 

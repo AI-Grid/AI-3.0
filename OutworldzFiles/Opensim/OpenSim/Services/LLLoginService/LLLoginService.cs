@@ -43,6 +43,7 @@ using OpenSim.Services.Connectors.InstantMessage;
 using OpenSim.Services.Interfaces;
 using GridRegion = OpenSim.Services.Interfaces.GridRegion;
 using FriendInfo = OpenSim.Services.Interfaces.FriendInfo;
+using RegionFlags = OpenSim.Framework.RegionFlags;
 using OpenSim.Services.Connectors.Hypergrid;
 
 namespace OpenSim.Services.LLLoginService
@@ -94,7 +95,12 @@ namespace OpenSim.Services.LLLoginService
         protected string m_messageKey;
 
         IConfig m_LoginServerConfig;
-//        IConfig m_ClientsConfig;
+        //IConfig m_ClientsConfig;
+
+        // SmartStart
+        protected bool m_SmartStartEnabled;
+        protected string m_SmartStartUrl = string.Empty;
+        protected string m_SmartStartMachineID = string.Empty;
 
         public LLLoginService(IConfigSource config, ISimulationService simService, ILibraryService libraryService)
         {
@@ -189,6 +195,30 @@ namespace OpenSim.Services.LLLoginService
             if (!string.IsNullOrWhiteSpace(agentService))
                 m_UserAgentService = ServerUtils.LoadPlugin<IUserAgentService>(agentService, args);
 
+            // SmartStart
+            IConfig SmartStartConfig = config.Configs["SmartStart"];    // get data from
+            m_SmartStartEnabled = SmartStartConfig.GetBoolean("Enabled", m_SmartStartEnabled);
+            if (m_SmartStartEnabled)
+            {
+                m_SmartStartUrl = SmartStartConfig.GetString("URL", m_SmartStartUrl);
+                if(string.IsNullOrEmpty(m_SmartStartUrl))
+                    m_SmartStartEnabled = false;
+                else
+                {
+                    OSHHTPHost tmpSmartStartURL = new OSHHTPHost(m_SmartStartUrl, true);
+                    if (!tmpSmartStartURL.IsResolvedHost)
+                    {
+                        m_log.Error("[LLOGIN SERVICE]: Could not parse or resolve SmartStart URI");
+                        throw new Exception("LLOGIN SERVICE init error: SmartStart URI");
+                    }
+                    m_SmartStartUrl = tmpSmartStartURL.URI;
+                    m_log.Info("[LLOGIN SERVICE]: SmartStartUlr " + m_SmartStartUrl);
+
+                    m_SmartStartMachineID = SmartStartConfig.GetString("MachineID", m_SmartStartMachineID);
+                }
+            }
+            m_log.Info("[LLOGIN SERVICE]: SmartStart " + (m_SmartStartEnabled ? "Enabled" : "Disabled"));
+
             // Get the Hypergrid inventory service (exists only if Hypergrid is enabled)
             string hgInvServicePlugin = m_LoginServerConfig.GetString("HGInventoryServicePlugin", string.Empty);
             if (!string.IsNullOrWhiteSpace(hgInvServicePlugin))
@@ -232,6 +262,43 @@ namespace OpenSim.Services.LLLoginService
 
         public LLLoginService(IConfigSource config) : this(config, null, null)
         {
+        }
+
+        //DreamGrid SmartStart
+        public UUID GetALTRegion(UUID regionID, UUID agentID)
+        {
+            // !!! DreamGrid Smart Start sends requested Region UUID to Dreamgrid.
+            // If region is on line, returns same UUID. If Offline, returns UUID for Welcome, brings up the region and teleports you to it.
+            if (m_SmartStartEnabled)
+            {
+                string url = $"{m_SmartStartUrl}?alt={regionID}&agent=UUID&agentid={agentID}&password={m_SmartStartMachineID}";
+                m_log.DebugFormat("[SMARTSTART]: {0}", url);
+
+                HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(url);
+
+                webRequest.Timeout = 30000; //30 Second Timeout
+                m_log.DebugFormat("[SMARTSTART]: Sending request to {0}", url);
+
+                try
+                {
+                    HttpWebResponse webResponse = (HttpWebResponse)webRequest.GetResponse();
+                    System.IO.StreamReader reader = new System.IO.StreamReader(webResponse.GetResponseStream());
+                    string Result = String.Empty;
+                    string tempStr = reader.ReadLine();
+                    while (tempStr != null)
+                    {
+                        Result = Result + tempStr;
+                        tempStr = reader.ReadLine();
+                    }
+                    m_log.Debug("[SMARTSTART]: Destination is " + Result);
+                    regionID = UUID.Parse(Result);
+                }
+                catch (WebException ex)
+                {
+                    m_log.Warn("[SMARTSTART]: " + ex.Message);
+                }
+            }
+            return regionID;
         }
 
         public Hashtable SetLevel(string firstName, string lastName, string passwd, int level, IPEndPoint clientIP)
@@ -580,6 +647,9 @@ namespace OpenSim.Services.LLLoginService
                 {
                     processedMessage = m_WelcomeMessage;
                 }
+
+
+
                 processedMessage = processedMessage.Replace("\\n", "\n").Replace("<USERNAME>", firstName + " " + lastName);
 
                 LLLoginResponse response
@@ -603,6 +673,33 @@ namespace OpenSim.Services.LLLoginService
         }
 
         protected GridRegion FindDestination(
+            UserAccount account, UUID scopeID, GridUserInfo pinfo, UUID sessionID, string startLocation,
+            GridRegion home, out GridRegion gatekeeper,
+            out string where, out Vector3 position, out Vector3 lookAt, out TeleportFlags flags)
+        {
+            GridRegion dest = FindDestinationNormal(account, scopeID, pinfo, sessionID, startLocation, home,
+                out gatekeeper, out where, out position, out lookAt, out flags);
+
+            if(!m_SmartStartEnabled || dest == null)
+                return dest;
+
+            //RegionFlags.RegionOnline should had a major role here, but it is still unreliable
+            //Jump out if a special region that must be always up
+            // for now the smartstart wait region must have one such flags
+            if ((dest.RegionFlags & (RegionFlags.Hyperlink | RegionFlags.DefaultRegion | RegionFlags.FallbackRegion | RegionFlags.DefaultHGRegion)) != 0)
+                return dest;
+
+            UUID rid = GetALTRegion(dest.RegionID, account.PrincipalID);
+            if (rid == dest.RegionID)
+                return dest;
+
+            if (rid == UUID.Zero)
+                return null; //??
+
+            return m_GridService.GetRegionByUUID(scopeID, rid);
+        }
+
+        protected GridRegion FindDestinationNormal(
             UserAccount account, UUID scopeID, GridUserInfo pinfo, UUID sessionID, string startLocation,
             GridRegion home, out GridRegion gatekeeper,
             out string where, out Vector3 position, out Vector3 lookAt, out TeleportFlags flags)
