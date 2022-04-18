@@ -161,9 +161,8 @@ Module Disk
 
     End Function
 
-    Private Function FreezeThaw(RegionUUID As String, Arg As String) As Boolean
+    Private Sub FreezeThaw(RegionUUID As String, Arg As String)
 
-        Dim result As Boolean
         Using SuspendProcess As New Process()
             Dim pi = New ProcessStartInfo With {
                 .Arguments = Arg,
@@ -186,8 +185,6 @@ Module Disk
                 PokeRegionTimer(RegionUUID)
                 PropUpdateView = True ' make form refresh
             Catch ex As Exception
-                BreakPoint.Dump(ex)
-                result = True
             End Try
         End Using
         Sleep(100)
@@ -199,9 +196,9 @@ Module Disk
             RegionStatus(RegionUUID) = SIMSTATUSENUM.Suspended
         End If
 
-        Return result
+        Return
 
-    End Function
+    End Sub
 
 #End Region
 
