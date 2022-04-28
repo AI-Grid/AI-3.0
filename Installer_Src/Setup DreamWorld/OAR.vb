@@ -96,7 +96,7 @@ Module OAR
                         End If
 
                         If PropUserName.Length > 0 Then UserName = $" --Default-user ""{PropUserName}"" "
-                        Dim v As String = $"change region ""{thing}""{vbCrLf}load oar {UserName} {ForceMerge} {ForceTerrain} {ForceParcel} {offset} ""{thing}"""
+                        Dim v As String = $"change region ""{RegionName}""{vbCrLf}load oar {UserName} {ForceMerge} {ForceTerrain} {ForceParcel} {offset} ""{thing}"""
 
                         Dim obj As New TaskObject With {
                             .TaskName = FormSetup.TaskName.LoadOneOarTask,
@@ -162,7 +162,7 @@ Module OAR
             If m = vbNo Or m = vbCancel Then Return
         End If
 
-        Dim LoadOarCmd = $"change region ""{thing}""{vbCrLf} load oar {UserName} {ForceMerge} {ForceTerrain} {ForceParcel} {offset} ""{thing}"""
+        Dim LoadOarCmd = $"change region ""{RegionName}""{vbCrLf} load oar {UserName} {ForceMerge} {ForceTerrain} {ForceParcel} {offset} ""{thing}"""
 
         Dim obj As New TaskObject With {
             .TaskName = FormSetup.TaskName.LoadOARContent,
