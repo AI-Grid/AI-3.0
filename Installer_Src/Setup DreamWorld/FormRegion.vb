@@ -99,10 +99,6 @@ Public Class FormRegion
                 Sleep(1000)
             End While
 
-            StopRobust()
-            PropAborting = False
-            StartRobust()
-
             Boot(Region_Name(RegionUUID))
 
         End If
