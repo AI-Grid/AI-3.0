@@ -28,7 +28,7 @@
 	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
 	  <ConfigurationOverrideFile>
 	  </ConfigurationOverrideFile>
-	  <DefineConstants>TRACE;DEBUG;</DefineConstants>
+	  <DefineConstants>TRACE;DEBUG;NET48;</DefineConstants>
 	  <DocumentationFile></DocumentationFile>
 	  <DebugSymbols>True</DebugSymbols>
 	  <FileAlignment>4096</FileAlignment>
@@ -49,7 +49,7 @@
 	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
 	  <ConfigurationOverrideFile>
 	  </ConfigurationOverrideFile>
-	  <DefineConstants>TRACE;</DefineConstants>
+	  <DefineConstants>NET48;</DefineConstants>
 	  <DocumentationFile></DocumentationFile>
 	  <DebugSymbols>False</DebugSymbols>
 	  <FileAlignment>4096</FileAlignment>
@@ -179,6 +179,12 @@
 		<SubType>Code</SubType>
 	  </Compile>
 	  <Compile Include="FetchInventory\FetchInventory2ServerConnector.cs">
+		<SubType>Code</SubType>
+	  </Compile>
+	  <Compile Include="FetchInventory\FetchLib2Handler.cs">
+		<SubType>Code</SubType>
+	  </Compile>
+	  <Compile Include="FetchInventory\FetchLibDescHandler.cs">
 		<SubType>Code</SubType>
 	  </Compile>
 	  <Compile Include="GetAssets\GetAssetsHandler.cs">

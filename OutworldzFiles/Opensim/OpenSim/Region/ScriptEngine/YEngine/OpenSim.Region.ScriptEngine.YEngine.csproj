@@ -28,7 +28,7 @@
 	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
 	  <ConfigurationOverrideFile>
 	  </ConfigurationOverrideFile>
-	  <DefineConstants>TRACE;DEBUG;</DefineConstants>
+	  <DefineConstants>TRACE;DEBUG;NET48;</DefineConstants>
 	  <DocumentationFile></DocumentationFile>
 	  <DebugSymbols>True</DebugSymbols>
 	  <FileAlignment>4096</FileAlignment>
@@ -49,7 +49,7 @@
 	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
 	  <ConfigurationOverrideFile>
 	  </ConfigurationOverrideFile>
-	  <DefineConstants>TRACE;</DefineConstants>
+	  <DefineConstants>NET48;</DefineConstants>
 	  <DocumentationFile></DocumentationFile>
 	  <DebugSymbols>False</DebugSymbols>
 	  <FileAlignment>4096</FileAlignment>
@@ -67,26 +67,32 @@
 	<ItemGroup>
 	  <Reference Include="log4net" >
 		  <Name>log4net</Name>
+		<HintPath>..\..\..\..\bin\log4net.dll</HintPath>
 		<Private>False</Private>
 	  </Reference>
 	  <Reference Include="Mono.Addins" >
 		  <Name>Mono.Addins</Name>
+		<HintPath>..\..\..\..\bin\Mono.Addins.dll</HintPath>
 		<Private>False</Private>
 	  </Reference>
 	  <Reference Include="Nini" >
 		  <Name>Nini</Name>
+		<HintPath>..\..\..\..\bin\Nini.dll</HintPath>
 		<Private>False</Private>
 	  </Reference>
 	  <Reference Include="OpenMetaverse" >
 		  <Name>OpenMetaverse</Name>
+		<HintPath>..\..\..\..\bin\OpenMetaverse.dll</HintPath>
 		<Private>False</Private>
 	  </Reference>
 	  <Reference Include="OpenMetaverse.StructuredData" >
 		  <Name>OpenMetaverse.StructuredData</Name>
+		<HintPath>..\..\..\..\bin\OpenMetaverse.StructuredData.dll</HintPath>
 		<Private>False</Private>
 	  </Reference>
 	  <Reference Include="OpenMetaverseTypes" >
 		  <Name>OpenMetaverseTypes</Name>
+		<HintPath>..\..\..\..\bin\OpenMetaverseTypes.dll</HintPath>
 		<Private>False</Private>
 	  </Reference>
 	  <Reference Include="System" >

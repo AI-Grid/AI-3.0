@@ -28,7 +28,7 @@
 	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
 	  <ConfigurationOverrideFile>
 	  </ConfigurationOverrideFile>
-	  <DefineConstants>TRACE;DEBUG;</DefineConstants>
+	  <DefineConstants>TRACE;DEBUG;NET48;</DefineConstants>
 	  <DocumentationFile></DocumentationFile>
 	  <DebugSymbols>True</DebugSymbols>
 	  <FileAlignment>4096</FileAlignment>
@@ -49,7 +49,7 @@
 	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
 	  <ConfigurationOverrideFile>
 	  </ConfigurationOverrideFile>
-	  <DefineConstants>TRACE;</DefineConstants>
+	  <DefineConstants>NET48;</DefineConstants>
 	  <DocumentationFile></DocumentationFile>
 	  <DebugSymbols>False</DebugSymbols>
 	  <FileAlignment>4096</FileAlignment>
@@ -83,11 +83,6 @@
 	  <Reference Include="NDesk.Options" >
 		  <Name>NDesk.Options</Name>
 		<HintPath>..\..\..\..\..\bin\NDesk.Options.dll</HintPath>
-		<Private>False</Private>
-	  </Reference>
-	  <Reference Include="Nini" >
-		  <Name>Nini</Name>
-		<HintPath>..\..\..\..\..\bin\Nini.dll</HintPath>
 		<Private>False</Private>
 	  </Reference>
 	  <Reference Include="Nini" >

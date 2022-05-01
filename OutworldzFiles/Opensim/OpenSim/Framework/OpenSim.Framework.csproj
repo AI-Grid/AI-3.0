@@ -28,7 +28,7 @@
 	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
 	  <ConfigurationOverrideFile>
 	  </ConfigurationOverrideFile>
-	  <DefineConstants>TRACE;DEBUG;</DefineConstants>
+	  <DefineConstants>TRACE;DEBUG;NET48;</DefineConstants>
 	  <DocumentationFile></DocumentationFile>
 	  <DebugSymbols>True</DebugSymbols>
 	  <FileAlignment>4096</FileAlignment>
@@ -49,7 +49,7 @@
 	  <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
 	  <ConfigurationOverrideFile>
 	  </ConfigurationOverrideFile>
-	  <DefineConstants>TRACE;</DefineConstants>
+	  <DefineConstants>NET48;</DefineConstants>
 	  <DocumentationFile></DocumentationFile>
 	  <DebugSymbols>False</DebugSymbols>
 	  <FileAlignment>4096</FileAlignment>
@@ -506,6 +506,9 @@
 		<SubType>Code</SubType>
 	  </Compile>
 	  <Compile Include="TerrainData.cs">
+		<SubType>Code</SubType>
+	  </Compile>
+	  <Compile Include="TerrainTaintsArray.cs">
 		<SubType>Code</SubType>
 	  </Compile>
 	  <Compile Include="TextureRequestArgs.cs">

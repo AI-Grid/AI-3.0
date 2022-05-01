@@ -128,10 +128,10 @@ namespace OpenSim.Region.PhysicsModules.SharedBase
 
         public void AddCollider(uint localID, ContactPoint contact)
         {
-            if (m_objCollisionList.ContainsKey(localID))
+            if (m_objCollisionList.TryGetValue(localID, out ContactPoint oldcp))
             {
-                float lastVel = m_objCollisionList[localID].RelativeSpeed;
-                if (m_objCollisionList[localID].PenetrationDepth < contact.PenetrationDepth)
+                float lastVel = oldcp.RelativeSpeed;
+                if (oldcp.PenetrationDepth < contact.PenetrationDepth)
                 {
                     if (Math.Abs(lastVel) > Math.Abs(contact.RelativeSpeed))
                         contact.RelativeSpeed = lastVel;
@@ -139,9 +139,8 @@ namespace OpenSim.Region.PhysicsModules.SharedBase
                 }
                 else if (Math.Abs(lastVel) < Math.Abs(contact.RelativeSpeed))
                 {
-                    ContactPoint tmp = m_objCollisionList[localID];
-                    tmp.RelativeSpeed = contact.RelativeSpeed;
-                    m_objCollisionList[localID] = tmp;
+                    oldcp.RelativeSpeed = contact.RelativeSpeed;
+                    m_objCollisionList[localID] = oldcp;
                 }
             }
             else
@@ -448,6 +447,7 @@ namespace OpenSim.Region.PhysicsModules.SharedBase
         public abstract float APIDDamping { set;}
 
         public abstract void AddForce(Vector3 force, bool pushforce);
+        public abstract void AvatarJump(float forceZ);
         public abstract void AddAngularForce(Vector3 force, bool pushforce);
         public abstract void SetMomentum(Vector3 momentum);
         public abstract void SubscribeEvents(int ms);
@@ -663,6 +663,7 @@ namespace OpenSim.Region.PhysicsModules.SharedBase
         public override void link(PhysicsActor obj) { }
         public override void delink() { }
         public override void LockAngularMotion(byte axislocks) { }
+        public override void AvatarJump(float forceZ) { }
         public override void AddForce(Vector3 force, bool pushforce) { }
         public override void AddAngularForce(Vector3 force, bool pushforce) { }
 

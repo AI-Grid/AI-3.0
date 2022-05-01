@@ -31,7 +31,7 @@
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
-    <DefineConstants>TRACE;DEBUG;</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NET48;</DefineConstants>
     <DocumentationFile>
     </DocumentationFile>
     <DebugSymbols>True</DebugSymbols>
@@ -54,7 +54,7 @@
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
-    <DefineConstants>TRACE;</DefineConstants>
+    <DefineConstants>NET48;</DefineConstants>
     <DocumentationFile>
     </DocumentationFile>
     <DebugSymbols>False</DebugSymbols>
@@ -231,9 +231,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
-      <DependentUpon>Resources.resx</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="cube_blue.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

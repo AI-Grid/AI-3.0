@@ -75,8 +75,9 @@ namespace Prebuild.Core.Nodes
     /// The version of the .NET framework to use (Required for VS2008)
     /// <remarks>We don't need .NET 1.1 in here, it'll default when using vs2003.</remarks>
     /// </summary>
-    public enum FrameworkVersion
+    public enum FrameworkVersion: byte
     {
+        none = 0,
         /// <summary>
         /// .NET 2.0
         /// </summary>
@@ -117,8 +118,10 @@ namespace Prebuild.Core.Nodes
         v4_8,
         netstandard2_0,
         net5_0,
-        net6_0
+        net6_0,
+        net7_0
     }
+
     /// <summary>
     /// The Node object representing /Prebuild/Solution/Project elements
     /// </summary>
@@ -138,7 +141,7 @@ namespace Prebuild.Core.Nodes
         private string m_Language = "C#";
         private ProjectType m_Type = ProjectType.Exe;
         private ClrRuntime m_Runtime = ClrRuntime.Microsoft;
-        private FrameworkVersion m_Framework = FrameworkVersion.v2_0;
+        private FrameworkVersion m_Framework = FrameworkVersion.none;
         private bool m_useFramework = true;
         private string m_StartupObject = "";
         private string m_RootNamespace;
@@ -153,8 +156,29 @@ namespace Prebuild.Core.Nodes
         private readonly List<PackageReferenceNode> m_PackageReferences = new List<PackageReferenceNode>();
         private readonly List<ReferenceNode> m_References = new List<ReferenceNode>();
         private readonly List<AuthorNode> m_Authors = new List<AuthorNode>();
-        private FilesNode m_Files;
+        private FilesNode m_Files = new FilesNode();
 
+        private readonly Dictionary<FrameworkVersion, string> m_frameworkVersionToCondionalVersion = new Dictionary<FrameworkVersion, string>()
+        {
+           {FrameworkVersion.v2_0, "NET20" },
+           {FrameworkVersion.v3_0, "NET30" },
+           {FrameworkVersion.v3_5, "NET35" },
+           {FrameworkVersion.v4_0, "NET40" },
+           {FrameworkVersion.v4_5, "NET45" },
+           {FrameworkVersion.v4_5_1, "NET451" },
+           {FrameworkVersion.v4_5_2, "NET452" },
+           {FrameworkVersion.v4_6, "NET46" },
+           {FrameworkVersion.v4_6_1, "NET461" },
+           {FrameworkVersion.v4_6_2, "NET462" },
+           {FrameworkVersion.v4_7, "NET47" },
+           {FrameworkVersion.v4_7_1, "NET471" },
+           {FrameworkVersion.v4_7_2, "NET472" },
+           {FrameworkVersion.v4_8, "NET48" },
+           {FrameworkVersion.netstandard2_0, "NETSTANDARD2_0" },
+           {FrameworkVersion.net5_0, "NET5_0" },
+           {FrameworkVersion.net6_0, "NET6_0" },
+           {FrameworkVersion.net7_0, "NET7_0" }
+        };
         #endregion
 
         #region Properties
@@ -185,6 +209,17 @@ namespace Prebuild.Core.Nodes
                 m_useFramework = false;
             }
         }
+
+        public string FrameworkVersionForConditional
+        {
+            get
+            {
+                if (m_frameworkVersionToCondionalVersion.TryGetValue(m_Framework, out string ret))
+                    return ret;
+                return string.Empty;
+            }
+        }
+
         /// <summary>
         /// Gets the path.
         /// </summary>
@@ -495,6 +530,18 @@ namespace Prebuild.Core.Nodes
                     {
                         m_Configurations[conf.NameAndPlatform] = (ConfigurationNode)conf.Clone();
                     }
+                    if(m_useFramework)
+                    {
+                        if(parent.ForceFramework != FrameworkVersion.none)
+                        {
+                            m_Framework = parent.ForceFramework;
+                            m_useFramework = false;
+                        }
+                        else if(m_Framework == FrameworkVersion.none)
+                        {
+                            m_Framework = parent.DefaultFramework != FrameworkVersion.none ? parent.DefaultFramework : FrameworkVersion.v2_0;
+                        }
+                    }
                 }
             }
         }
@@ -569,6 +616,7 @@ namespace Prebuild.Core.Nodes
             if (m_useFramework)
                 m_Framework = (FrameworkVersion)Helper.EnumAttributeValue(node, "frameworkVersion", typeof(FrameworkVersion), m_Framework);
 
+            m_Framework = (FrameworkVersion)Helper.EnumAttributeValue(node, "forceFrameworkVersion", typeof(FrameworkVersion), m_Framework);
             m_StartupObject = Helper.AttributeValue(node, "startupObject", m_StartupObject);
             m_RootNamespace = Helper.AttributeValue(node, "rootNamespace", m_RootNamespace);
 
