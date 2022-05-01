@@ -60,6 +60,7 @@ Public Class FormRegionlist
         NoError = 17
         NoEstate = 18
         icecube = 19
+        icemelted = 20
 
     End Enum
 
@@ -744,7 +745,7 @@ SetWindowOnTop_Err:
             Num = DGICON.SmartStartStopped
         ElseIf Status = SIMSTATUSENUM.Stopped And Smart_Start(RegionUUID) = "True" And Settings.Smart_Start And Not Settings.BootOrSuspend Then
             Letter = My.Resources.Frozen
-            Num = DGICON.icecube
+            Num = DGICON.icemelted
         ElseIf Status = SIMSTATUSENUM.Suspended And Smart_Start(RegionUUID) = "True" And Settings.Smart_Start And Not Settings.BootOrSuspend Then
             Letter = My.Resources.Frozen
             Num = DGICON.icecube
@@ -1201,6 +1202,7 @@ SetWindowOnTop_Err:
             ImageListSmall.Images.Add(My.Resources.ResourceManager.GetObject("redo", Globalization.CultureInfo.InvariantCulture))  '  17 - NOError
             ImageListSmall.Images.Add(My.Resources.ResourceManager.GetObject("navigate_minus", Globalization.CultureInfo.InvariantCulture))  '  17 - NoEstate
             ImageListSmall.Images.Add(My.Resources.ResourceManager.GetObject("Icecastpic", Globalization.CultureInfo.InvariantCulture))  '  18 - icecube
+            ImageListSmall.Images.Add(My.Resources.ResourceManager.GetObject("Icemelted", Globalization.CultureInfo.InvariantCulture))  '  19 - icecube
 
             If TheView1 = ViewType.Details Or TheView1 = ViewType.Icons Then
                 Timer1.Interval = 1000 ' check for Form1.PropUpdateView immediately
