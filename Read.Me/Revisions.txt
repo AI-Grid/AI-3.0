@@ -1,6 +1,17 @@
 REVISIONS FOR DREAMGRID
 This is a high-level view of major changes. For detailed commit history, checkout with git and run gitk or navigate to https://github.com/Outworldz/DreamWorld. Click to open the file whose history you want to view. In the upper-right corner of the file view, click Blame to open the blame view. To see earlier revisions of a specific line, click until you have found the changes you are interested in viewing.
 
+
+V4.996 
+Dev Master 0.9.2.2 Opensim #4f7b293c5efe69af0180f
+Clicking Teleport button in Region Pop is using hop:// syntax, which works better
+Suppress notice on Smart Start Suspend mode and speed it up by a second
+Redo Mysql innodb buffer pool to auto size from .5 to 4 GB
+Test the internal webserver at bootup
+Test Loopback at Boot
+Use Robust.HG.ini.Proto better to make it easier to add mods.
+
+
 V4.995 
 Clicking  View Console on a Smart Suspend region would resume but stop too soon. Now it stays resumed for 5 minutes.
 
