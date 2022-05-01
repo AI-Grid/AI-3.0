@@ -1472,8 +1472,11 @@ Public Class FormSetup
 
                 Dim Groupname = Group_Name(RegionUUID)
                 If GetHwnd(Groupname) = IntPtr.Zero Then
-                    If Not exitList.ContainsKey(Groupname) Then
-                        exitList.TryAdd(Groupname, "Exit")
+                    If Not CheckPort(Settings.PublicIP, GroupPort(RegionUUID)) Then
+                        If Not exitList.ContainsKey(Groupname) Then
+                            exitList.TryAdd(Groupname, "Exit")
+                            Application.DoEvents()
+                        End If
                     End If
                 End If
             End If
