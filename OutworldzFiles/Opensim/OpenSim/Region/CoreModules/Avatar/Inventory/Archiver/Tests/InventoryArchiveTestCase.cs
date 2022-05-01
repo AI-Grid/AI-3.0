@@ -161,7 +161,7 @@ namespace OpenSim.Region.CoreModules.Avatar.Inventory.Archiver.Tests
             scene.AddInventoryItem(coaItem);
 
             archiverModule.ArchiveInventory(
-                UUID.Random(), m_uaLL1.FirstName, m_uaLL1.LastName, "/*", "hampshire", archiveWriteStream);
+                UUID.Random(), m_uaLL1.FirstName, m_uaLL1.LastName, "/*",  archiveWriteStream);
 
             m_iarStreamBytes = archiveWriteStream.ToArray();
         }
