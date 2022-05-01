@@ -556,7 +556,7 @@ sub DelZips {
 }
 
 sub DelMaps {
-    while ( $_ = glob("$dir/Outworldzfiles/opensim/bin/Map-*.png") ) {
+    while ( $_ = glob("$dir/Outworldzfiles/opensim/bin/MAP-*.png") ) {
         doUnlink($_) or die("Can't remove $_: $!");
     }
 }
