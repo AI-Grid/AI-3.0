@@ -64,7 +64,7 @@ Module IAR
             ' find one that is running
             For Each RegionUUID As String In RegionUuids()
 
-                If IsBooted(RegionUUID) Then
+                If IsBooted(RegionUUID) And Not Smart_Start(RegionUUID) Then
                     UUID = RegionUUID
                     Exit For
                 End If
@@ -138,7 +138,7 @@ Module IAR
 
                     Dim Name = SaveIAR.GAvatarName
 
-                    Dim opt As String = "  "
+                    Dim opt As String = " --creators  "
                     If Settings.DNSName.Length > 0 Then
                         opt += " -h " & Settings.DNSName & " "
                     End If
