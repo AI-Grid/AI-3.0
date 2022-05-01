@@ -185,7 +185,6 @@ Module Disk
                 result = True
             End Try
         End Using
-        Sleep(100)
         If Arg.Contains("-rpid") Then
             TextPrint($"{Region_Name(RegionUUID)} Resumed")
             RegionStatus(RegionUUID) = SIMSTATUSENUM.Booted
