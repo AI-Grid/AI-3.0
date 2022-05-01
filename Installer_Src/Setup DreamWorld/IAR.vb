@@ -193,7 +193,7 @@ Module IAR
                         Return
                     End If
 
-                    Dim opt As String = "  "
+                    Dim opt As String = " --creators  "
                     If Settings.DNSName.Length > 0 Then
                         opt += " -h " & Settings.DNSName & ":" & Settings.HttpPort & " "
                     End If
@@ -237,7 +237,7 @@ Module IAR
 
     Public Sub SaveThreadIARS()
 
-        Dim opt As String = ""
+        Dim opt As String = " --creators  "
         If Settings.DNSName.Length > 0 Then
             opt += $" -h {Settings.DNSName}:{Settings.HttpPort} "    ' needs leading and trailing spaces
         End If
@@ -267,7 +267,7 @@ Module IAR
         Dim s As Long
         Dim oldsize As Long = 0
         Dim same As Integer = 0
-        While same < 30 And PropOpensimIsRunning
+        While same < 15 And PropOpensimIsRunning
             Dim fi = New System.IO.FileInfo(FolderAndFileName)
             Try
                 s = fi.Length
