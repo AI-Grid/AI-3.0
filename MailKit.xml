@@ -12946,6 +12946,40 @@
             An I/O error occurred.
             </exception>
         </member>
+        <member name="M:MailKit.Net.Imap.ImapStream.ReadToken(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Reads the next available token from the stream.
+            </summary>
+            <returns>The token.</returns>
+            <param name="specials">The special characters that are not allowed in an atom token.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <exception cref="T:System.ObjectDisposedException">
+            The stream has been disposed.
+            </exception>
+            <exception cref="T:System.OperationCanceledException">
+            The operation was canceled via the cancellation token.
+            </exception>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurred.
+            </exception>
+        </member>
+        <member name="M:MailKit.Net.Imap.ImapStream.ReadTokenAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously reads the next available token from the stream.
+            </summary>
+            <returns>The token.</returns>
+            <param name="specials">The special characters that are not allowed in an atom token.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <exception cref="T:System.ObjectDisposedException">
+            The stream has been disposed.
+            </exception>
+            <exception cref="T:System.OperationCanceledException">
+            The operation was canceled via the cancellation token.
+            </exception>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurred.
+            </exception>
+        </member>
         <member name="M:MailKit.Net.Imap.ImapStream.ReadToken(System.Threading.CancellationToken)">
             <summary>
             Reads the next available token from the stream.
@@ -12984,7 +13018,7 @@
             </summary>
             <param name="token">The token.</param>
         </member>
-        <member name="M:MailKit.Net.Imap.ImapStream.ReadLine(System.IO.Stream,System.Threading.CancellationToken)">
+        <member name="M:MailKit.Net.Imap.ImapStream.ReadLine(MailKit.ByteArrayBuilder,System.Threading.CancellationToken)">
             <summary>
             Reads a single line of input from the stream.
             </summary>
@@ -12992,7 +13026,7 @@
             This method should be called in a loop until it returns <c>true</c>.
             </remarks>
             <returns><c>true</c>, if reading the line is complete, <c>false</c> otherwise.</returns>
-            <param name="ostream">The output stream to write the line data into.</param>
+            <param name="builder">The output buffer write the line data into.</param>
             <param name="cancellationToken">The cancellation token.</param>
             <exception cref="T:System.ObjectDisposedException">
             The stream has been disposed.
@@ -13004,7 +13038,7 @@
             An I/O error occurred.
             </exception>
         </member>
-        <member name="M:MailKit.Net.Imap.ImapStream.ReadLineAsync(System.IO.Stream,System.Threading.CancellationToken)">
+        <member name="M:MailKit.Net.Imap.ImapStream.ReadLineAsync(MailKit.ByteArrayBuilder,System.Threading.CancellationToken)">
             <summary>
             Asynchronously reads a single line of input from the stream.
             </summary>
@@ -13012,7 +13046,7 @@
             This method should be called in a loop until it returns <c>true</c>.
             </remarks>
             <returns><c>true</c>, if reading the line is complete, <c>false</c> otherwise.</returns>
-            <param name="ostream">The output stream to write the line data into.</param>
+            <param name="builder">The output buffer write the line data into.</param>
             <param name="cancellationToken">The cancellation token.</param>
             <exception cref="T:System.ObjectDisposedException">
             The stream has been disposed.
@@ -13258,6 +13292,24 @@
             <param name="args">the argument list.</param>
             <param name="throwOnError">Throw an exception if there are any annotations without properties.</param>
         </member>
+        <member name="M:MailKit.Net.Imap.ImapUtils.FormatIndexSet(MailKit.Net.Imap.ImapEngine,System.Text.StringBuilder,System.Collections.Generic.IList{System.Int32})">
+            <summary>
+            Formats the array of indexes as a string suitable for use with IMAP commands.
+            </summary>
+            <param name="engine">The IMAP engine.</param>
+            <param name="builder">The string builder.</param>
+            <param name="indexes">The indexes.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <para><paramref name="engine"/> is <c>null</c>.</para>
+            <para>-or-</para>
+            <para><paramref name="builder"/> is <c>null</c>.</para>
+            <para>-or-</para>
+            <para><paramref name="indexes"/> is <c>null</c>.</para>
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            One or more of the indexes has a negative value.
+            </exception>
+        </member>
         <member name="M:MailKit.Net.Imap.ImapUtils.FormatIndexSet(MailKit.Net.Imap.ImapEngine,System.Collections.Generic.IList{System.Int32})">
             <summary>
             Formats the array of indexes as a string suitable for use with IMAP commands.
@@ -13349,6 +13401,14 @@
             <param name="engine">The IMAP engine.</param>
             <param name="doAsync">Whether or not asynchronous IO methods should be used.</param>
             <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:MailKit.Net.Imap.ImapUtils.FormatFlagsList(System.Text.StringBuilder,MailKit.MessageFlags,System.Int32)">
+            <summary>
+            Formats a flags list suitable for use with the APPEND command.
+            </summary>
+            <param name="flags">The message flags.</param>
+            <param name="builder">The string builder.</param>
+            <param name="numKeywords">The number of keywords.</param>
         </member>
         <member name="M:MailKit.Net.Imap.ImapUtils.FormatFlagsList(MailKit.MessageFlags,System.Int32)">
             <summary>
@@ -17225,7 +17285,7 @@
             An I/O error occurred.
             </exception>
         </member>
-        <member name="M:MailKit.Net.Pop3.Pop3Stream.ReadLine(System.IO.Stream,System.Threading.CancellationToken)">
+        <member name="M:MailKit.Net.Pop3.Pop3Stream.ReadLine(MailKit.ByteArrayBuilder,System.Threading.CancellationToken)">
             <summary>
             Reads a single line of input from the stream.
             </summary>
@@ -17233,7 +17293,7 @@
             This method should be called in a loop until it returns <c>true</c>.
             </remarks>
             <returns><c>true</c>, if reading the line is complete, <c>false</c> otherwise.</returns>
-            <param name="ostream">The output stream to write the line data into.</param>
+            <param name="builder">The output buffer to write the line data into.</param>
             <param name="cancellationToken">The cancellation token.</param>
             <exception cref="T:System.ObjectDisposedException">
             The stream has been disposed.
@@ -17245,7 +17305,7 @@
             An I/O error occurred.
             </exception>
         </member>
-        <member name="M:MailKit.Net.Pop3.Pop3Stream.ReadLineAsync(System.IO.Stream,System.Threading.CancellationToken)">
+        <member name="M:MailKit.Net.Pop3.Pop3Stream.ReadLineAsync(MailKit.ByteArrayBuilder,System.Threading.CancellationToken)">
             <summary>
             Asynchronously reads a single line of input from the stream.
             </summary>
@@ -17253,7 +17313,7 @@
             This method should be called in a loop until it returns <c>true</c>.
             </remarks>
             <returns><c>true</c>, if reading the line is complete, <c>false</c> otherwise.</returns>
-            <param name="ostream">The output stream to write the line data into.</param>
+            <param name="builder">The output buffer to write the line data into.</param>
             <param name="cancellationToken">The cancellation token.</param>
             <exception cref="T:System.ObjectDisposedException">
             The stream has been disposed.
