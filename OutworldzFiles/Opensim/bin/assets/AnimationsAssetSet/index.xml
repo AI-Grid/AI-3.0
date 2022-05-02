@@ -83,7 +83,6 @@
     <Key Name="assetType" Value="20" />
     <Key Name="fileName" Value="handshake_01.dat"/>
   </Section>
-
   <!-- firestorm posestand animations. Courtesy of Beq Janus and authors Miro Collas and Chaser Zaks -->
   <Section Name="PS_T_Pose">
     <Key Name="assetID" Value="d6fee4de-09af-80b2-72c9-dd5eb509f18c"/>
@@ -162,7 +161,6 @@
     <Key Name="assetType" Value="20" />
     <Key Name="fileName" Value="PS_Arms_upward_Legs_together_bento.anim"/>
   </Section>
-
   <!-- firestorm posestand updated animations. Courtesy of Beq Janus and authors Miro Collas and Chaser Zaks -->
   <Section Name="PS_T_Pose2">
     <Key Name="assetID" Value="3481ccd5-cc6c-65ca-c466-dc9df1bf3944"/>
@@ -241,7 +239,6 @@
     <Key Name="assetType" Value="20" />
     <Key Name="fileName" Value="PS_Arms_upward_Legs_together_bento2.anim"/>
   </Section>
-
   <!-- default internal animations. -->
   <Section Name = "express_afraid">
     <Key Name = "assetID" Value = "6b61c8e8-4747-0d75-12d7-e49ff207a4ca" />

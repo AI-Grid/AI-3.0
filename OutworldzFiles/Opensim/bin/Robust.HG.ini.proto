@@ -883,6 +883,12 @@ BaseDirectory="./bakes"
 LocalServiceModule="OpenSim.Services.MuteListService.dll:MuteListService"
 
 [SMTP]
+<<<<<<< HEAD
+SMTP_SERVER_HOSTNAME=smtp.gmail.com
+SMTP_SERVER_PORT=587
+SMTP_SERVER_LOGIN=
+SMTP_SERVER_PASSWORD=Gmail password
+=======
 
 ;; The SMTP server enabled the email module to send email to external
 ;; destinations.
@@ -951,6 +957,7 @@ SMTP_VerifyCertChain=True
 
 ;# {SMTP_VerifyCertNames} {[Startup]emailmodule:DefaultEmailModule enabled:true} {SMTP Verify cert chain option} {} true
 SMTP_VerifyCertNames=True
+>>>>>>> 09aa897319e7865ff1f647b1baef9ff9e87dc0f7
 
 ;; Set to True to enable Smart Start
 ;; Set by Dreamgrid
