@@ -832,6 +832,7 @@ namespace OpenSim.Region.Framework.Scenes
         //DreamGrid SmartStart
         public UUID GetSmartStartALTRegion(UUID regionID, UUID agentID)
         {
+            m_log.Info($"[Scene]: Smart Start Called");
             // !!! DreamGrid Smart Start sends requested Region UUID to Dreamgrid.
             // If region is on line, returns same UUID. If Offline, returns UUID for Welcome, brings up the region and teleports you to it.
             if (m_SmartStartEnabled)

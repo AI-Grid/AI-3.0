@@ -329,15 +329,21 @@ namespace OpenSim.Services.HypergridService
             return region;
         }
 
+        #region Smart Start
         //DreamGrid SmartStart fkb
-        public UUID GetSmartStartALTRegion(UUID regionID, UUID agentID)
+        private UUID GetSmartStartALTRegion(UUID regionID, UUID agentID)
         {
             // !!! DreamGrid Smart Start sends requested Region UUID to Dreamgrid.
             // If region is on line, returns same UUID. If Offline, returns UUID for Welcome, brings up the region and teleports you to it.
+
+            m_log.Info($"[GateKeeper]: Smart Start Called");
+            return regionID;
+
             if (m_SmartStartEnabled)
             {
+                m_log.Info($"[GateKeeper]: Smart Start enabled");
                 string url = $"{m_SmartStartUrl}?alt={regionID}&agent=UUID&agentid={agentID}&password={m_SmartStartMachineID}";
-                m_log.DebugFormat("[GateKeeperService]: Smart Start Sending request {0}", url);
+                m_log.Info("[GateKeeperService]: Smart Start Sending request" + url);
 
                 HttpWebRequest webRequest;
                 try
@@ -346,11 +352,11 @@ namespace OpenSim.Services.HypergridService
                 }
                 catch
                 {
-                    m_log.Debug("[GatekeeperService]: Smart Start failed to create url");
+                    m_log.Info("[GatekeeperService]: Smart Start failed to create url");
                     return UUID.Zero;
                 }
 
-                webRequest.Timeout = 30000; //30 Second Timeout
+                webRequest.Timeout = 3; //3 Second Timeout
                 webRequest.AllowWriteStreamBuffering = false;
 
                 try
@@ -364,17 +370,21 @@ namespace OpenSim.Services.HypergridService
 
                     if (string.IsNullOrEmpty(tempStr))
                     {
-                        m_log.Debug("[GateKeeperService]: Smart Start returned null");
+                        m_log.Info("[GateKeeperService]: Smart Start returned null");
                         return UUID.Zero;
                     }
 
-                    m_log.Debug("[GateKeeperService]: Smart Start returned " + tempStr);
+                    m_log.Info("[GateKeeperService]: Smart Start returned " + tempStr);
                     regionID = UUID.Parse(tempStr);
                 }
                 catch (Exception ex)
                 {
-                    m_log.Warn("[LLoginService]: Smart Start exception: " + ex.Message);
+                    m_log.Info("[LLoginService]: Smart Start exception: " + ex.Message);
                 }
+            }
+            else
+            {
+                m_log.Info($"[GateKeeper]: Smart Start disabled");
             }
             return regionID;
         }
@@ -568,35 +578,37 @@ namespace OpenSim.Services.HypergridService
                 return false;
             }
 
-            //fkb off
-            if (!m_SmartStartEnabled)
+            //fkb                        
+            m_log.Info("[GateKeeper]: Smart Start in use");
+            
+            UUID rid = GetSmartStartALTRegion(destination.RegionID, account.PrincipalID);
+
+            m_log.Info("[GateKeeper]: Smart Start returned");            
+
+            
+            if (rid == UUID.Zero)
             {
-                //if ((destination.RegionFlags & (RegionFlags.Hyperlink | RegionFlags.DefaultRegion | RegionFlags.FallbackRegion | RegionFlags.DefaultHGRegion)) == 0)
-                //{
-                UUID rid = GetSmartStartALTRegion(destination.RegionID, account.PrincipalID);
-                if (rid == UUID.Zero)
+                m_log.Info("[GateKeeper]: Smart Start Region redirection check fail, regionid = 0");
+                reason = "Region redirection check fail";
+                return false;
+            }
+            
+            if (rid != destination.RegionID)
+            {
+                GridRegion r = m_GridService.GetRegionByUUID(m_ScopeID, rid);
+                m_log.Info($"[GateKeeper]: Redirect to {rid}");
+                if (r == null)
                 {
-                    m_log.Debug("[GateKeeper]: Smart Start Region redirection check fail, regionid = 0");
-                    reason = "Region redirection check fail";
+                    m_log.Info("[GateKeeper]: Smart Start Redirect region not found");
+                    reason = "Redirect region not found";
                     return false;
                 }
+                //destination = r;
+            }           
+           
 
-                if (rid != destination.RegionID)
-                {
-                    GridRegion r = m_GridService.GetRegionByUUID(m_ScopeID, rid);
-                    if (r == null)
-                    {
-                        m_log.Debug("[GateKeeper]: Smart Start Redirect region not found");
-                        reason = "Redirect region not found";
-                        return false;
-                    }
-                    destination = r;
-                }
-                //}
-            }
-
-            m_log.DebugFormat(
-                "[GATEKEEPER SERVICE]: Destination {0} is ok for {1}", destination.RegionName, aCircuit.Name);
+            m_log.Info(
+                "[GATEKEEPER SERVICE]: Destination " + destination.RegionName + " is ok for " + aCircuit.Name);
 
             //
             // Adjust the visible name

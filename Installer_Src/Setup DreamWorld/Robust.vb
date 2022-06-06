@@ -88,7 +88,6 @@ Module Robust
         Else
             FormSetup.RestartRobustIcon.Image = Global.Outworldz.My.Resources.check2
         End If
-        Application.DoEvents()
 
     End Sub
 

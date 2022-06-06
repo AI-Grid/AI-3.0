@@ -1,1 +1,1 @@
-DSN=Robust:localhost:3306;UID=robustuser;PWD=robustpassword;
+DSN=lostworld:localhost:3306;UID=opensimuser;PWD=opensimpassword;
