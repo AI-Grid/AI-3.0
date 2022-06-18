@@ -53,7 +53,7 @@ namespace OpenSim.Server.Handlers.UserAccounts
         private IUserAccountService m_UserAccountService;
         private bool m_AllowCreateUser = false;
         private bool m_AllowSetAccount = false;
-        private bool m_AllowSetDisplayName = false;
+        private bool m_AllowSetDisplayName = true;
 
         public UserAccountServerPostHandler(IUserAccountService service)
             : this(service, null, null) {}
