@@ -170,7 +170,7 @@ Public Class UpdateGrid
                     Thread.Sleep(3000)
                     Dim Logname As String = MyFolder & "\Updater.log"
                     Try
-                        Dim dest As String = IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "Wordpad.exe")
+                        'Dim dest As String = IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "Wordpad.exe")
 
                         Using ApacheProcess As New Process()
                             ApacheProcess.StartInfo.FileName = "notepad.exe"
