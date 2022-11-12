@@ -32,8 +32,8 @@ Module RegionMaker
     ReadOnly Backup As New List(Of Region_data)
     Private ReadOnly RegionList As New ConcurrentDictionary(Of String, Region_data)
 
-    Private GetRegionsIsBusy As Boolean
     Dim json As New JSONresult
+    Private WriteRegionlock As New Object
 
     Public Enum SIMSTATUSENUM As Integer
 
@@ -51,6 +51,7 @@ Module RegionMaker
         ShuttingDownForGood = 10
         NoLogin = 11
         NoError = 12
+        NoShutdown = 13
 
     End Enum
 
@@ -143,6 +144,7 @@ Module RegionMaker
                 End If
 
                 BootedList.Add(uuid)
+                CheckForBootedRegions()
 
             ElseIf json.login = "shutdown" Then
                 Continue For   ' this bit below interferes with restarting multiple regions in a DOS box
@@ -160,68 +162,66 @@ Module RegionMaker
 
 #Region "Create Region"
 
-    Private CreateRegionLock As Boolean
-
-    Private WriteRegionLock As Boolean
+    Private CreateRegionLock As New Object
 
     Public Function CreateRegionStruct(name As String, Optional UUID As String = "") As String
 
-        CreateRegionLock = True
+        SyncLock CreateRegionLock
 
-        If String.IsNullOrEmpty(UUID) Then UUID = Guid.NewGuid().ToString
+            If String.IsNullOrEmpty(UUID) Then UUID = Guid.NewGuid().ToString
 
-        Debug.Print("Create Region " + name)
-        Dim r As New Region_data With {
-                ._AllowGods = "",
-                ._AvatarCount = 0,
-                ._AvatarsInRegion = 0,
-                ._Birds = "",
-                ._BootTime = 0,
-                ._ClampPrimSize = False,
-                ._Concierge = "",
-                ._CoordX = LargestX() + 8,
-                ._CoordY = LargestY() + 0,
-                ._Cores = 0,
-                ._CrashCounter = 0,
-                ._DisableGloebits = "",
-                ._FrameTime = "",
-                ._GodDefault = "",
-                ._Group = name,
-                ._GroupPort = 0,
-                ._ManagerGod = "",
-                ._MapType = "",
-                ._MaxAgents = "100",
-                ._MaxPrims = "15000",
-                ._MinTimerInterval = "",
-                ._NonPhysicalPrimMax = "1024",
-                ._PhysicalPrimMax = "64",
-                ._Priority = "",
-                ._ProcessID = 0,
-                ._RegionEnabled = True,
-                ._RegionGod = "",
-                ._RegionLandingSpot = "",
-                ._RegionName = name,
-                ._RegionPort = 0,
-                ._RegionSmartStart = "",
-                ._RegionSnapShot = "",
-                ._ScriptEngine = "",
-                ._SizeX = 256,
-                ._SizeY = 256,
-                ._SkipAutobackup = "",
-                ._Status = SIMSTATUSENUM.Stopped,
-                ._Teleport = "",
-                ._Tides = "",
-                ._Timer = Date.Now,
-                ._UUID = UUID
-            }
+            Debug.Print("Create Region " + name)
+            Dim r As New Region_data With {
+                    ._AllowGods = "",
+                    ._AvatarCount = 0,
+                    ._AvatarsInRegion = 0,
+                    ._Birds = "",
+                    ._BootTime = 0,
+                    ._ClampPrimSize = False,
+                    ._Concierge = "",
+                    ._CoordX = LargestX() + 8,
+                    ._CoordY = LargestY() + 0,
+                    ._Cores = 0,
+                    ._CrashCounter = 0,
+                    ._DisableGloebits = "",
+                    ._FrameTime = "",
+                    ._GodDefault = "",
+                    ._Group = name,
+                    ._GroupPort = 0,
+                    ._ManagerGod = "",
+                    ._MapType = "",
+                    ._MaxAgents = "100",
+                    ._MaxPrims = "15000",
+                    ._MinTimerInterval = "",
+                    ._NonPhysicalPrimMax = "1024",
+                    ._PhysicalPrimMax = "64",
+                    ._Priority = "",
+                    ._ProcessID = 0,
+                    ._RegionEnabled = True,
+                    ._RegionGod = "",
+                    ._RegionLandingSpot = "",
+                    ._RegionName = name,
+                    ._RegionPort = 0,
+                    ._RegionSmartStart = "",
+                    ._RegionSnapShot = "",
+                    ._ScriptEngine = "",
+                    ._SizeX = 256,
+                    ._SizeY = 256,
+                    ._SkipAutobackup = "",
+                    ._Status = SIMSTATUSENUM.Stopped,
+                    ._Teleport = "",
+                    ._Tides = "",
+                    ._Timer = Date.Now,
+                    ._UUID = UUID
+                }
 
-        If Not RegionList.ContainsKey(r._UUID) Then
-            RegionList.TryAdd(r._UUID, r)
-        End If
+            If Not RegionList.ContainsKey(r._UUID) Then
+                RegionList.TryAdd(r._UUID, r)
+            End If
 
-        Debug.Print("Region count is " & CStr(RegionList.Count))
+            Debug.Print("Region count is " & CStr(RegionList.Count))
 
-        CreateRegionLock = False
+        End SyncLock
         Return UUID
 
     End Function
@@ -247,39 +247,33 @@ Module RegionMaker
     ''' <param name="Verbose">Be chatty on the console</param>
     Public Sub WriteRegionObject(Group As String, RegionName As String)
 
-        Dim Retry As Integer = 15
-        While Retry > 0 AndAlso WriteRegionLock
-            Sleep(1000)
-            Retry -= 1
-        End While
-        If Retry = 0 Then BreakPoint.Print("Retry WriteRegionLock exceeded")
-        WriteRegionLock = True
+        SyncLock WriteRegionlock
 
-        Dim pathtoRegion As String = IO.Path.Combine(Settings.OpensimBinPath, $"Regions\{Group}\Region\")
-        Dim RegionUUID As String = FindRegionByName(RegionName)
-        ' file paths
-        RegionIniFilePath(RegionUUID) = IO.Path.Combine(Settings.OpensimBinPath, $"Regions\{Group}\Region\{RegionName}.ini")
-        RegionIniFolderPath(RegionUUID) = IO.Path.Combine(Settings.OpensimBinPath, $"Regions\{Group}\Region")
-        OpensimIniPath(RegionUUID) = IO.Path.Combine(Settings.OpensimBinPath, $"Regions\{Group}")
+            Dim pathtoRegion As String = IO.Path.Combine(Settings.OpensimBinPath, $"Regions\{Group}\Region\")
+            Dim RegionUUID As String = FindRegionByName(RegionName)
+            ' file paths
+            RegionIniFilePath(RegionUUID) = IO.Path.Combine(Settings.OpensimBinPath, $"Regions\{Group}\Region\{RegionName}.ini")
+            RegionIniFolderPath(RegionUUID) = IO.Path.Combine(Settings.OpensimBinPath, $"Regions\{Group}\Region")
+            OpensimIniPath(RegionUUID) = IO.Path.Combine(Settings.OpensimBinPath, $"Regions\{Group}")
 
-        CopyFileFast(IO.Path.Combine(pathtoRegion, $"{RegionName}.ini"), IO.Path.Combine(pathtoRegion, $"{RegionName}.bak"))
-        DeleteFile(IO.Path.Combine(pathtoRegion, $"{RegionName}.ini"))
-        If Not Directory.Exists(pathtoRegion) Then
-            MakeFolder(pathtoRegion)
-        End If
+            CopyFileFast(IO.Path.Combine(pathtoRegion, $"{RegionName}.ini"), IO.Path.Combine(pathtoRegion, $"{RegionName}.bak"))
+            DeleteFile(IO.Path.Combine(pathtoRegion, $"{RegionName}.ini"))
+            If Not Directory.Exists(pathtoRegion) Then
+                MakeFolder(pathtoRegion)
+            End If
 
-        ' Change estate for Endless Land, assuming its on
-        Dim out As Integer
-        If Integer.TryParse(Estate(RegionUUID), out) Then
-            ErrorLog("No Region UUID for Estate")
-        End If
+            ' Change estate for Endless Land, assuming its on
+            Dim out As Integer
+            If Integer.TryParse(Estate(RegionUUID), out) Then
+                ErrorLog("No Region UUID for Estate")
+            End If
 
-        If Settings.AutoFill AndAlso Settings.Smart_Start AndAlso Smart_Start(RegionUUID) = "True" AndAlso out = 0 Then
-            Estate(RegionUUID) = "SimSurround"
-            SetEstate(RegionUUID, 1999)
-        End If
+            If Settings.AutoFill AndAlso Settings.Smart_Start AndAlso Smart_Start(RegionUUID) AndAlso out = 0 Then
+                Estate(RegionUUID) = "SimSurround"
+                SetEstate(RegionUUID, 1999)
+            End If
 
-        Dim proto = "; * Regions configuration file; " & vbCrLf _
+            Dim proto = "; * Regions configuration file; " & vbCrLf _
         & "; Automatically changed and read by Dreamworld. Edits here are allowed and take effect on restart" & vbCrLf _
         & "; Rule1: The File name must match the RegionName in brackets exactly." & vbCrLf _
         & "; Rule2: Only one region per INI file." & vbCrLf _
@@ -311,7 +305,7 @@ Module RegionMaker
         & "ManagerGod=" & ManagerGod(RegionUUID) & vbCrLf _
         & "Birds=" & Birds(RegionUUID) & vbCrLf _
         & "Tides=" & Tides(RegionUUID) & vbCrLf _
-        & "Teleport=" & Teleport_Sign(RegionUUID) & vbCrLf _
+        & "Teleport=" & CStr(Teleport_Sign(RegionUUID)) & vbCrLf _
         & "DisableGloebits=" & DisableGloebits(RegionUUID) & vbCrLf _
         & "DisallowForeigners=" & Disallow_Foreigners(RegionUUID) & vbCrLf _
         & "DisallowResidents=" & Disallow_Residents(RegionUUID) & vbCrLf _
@@ -320,25 +314,24 @@ Module RegionMaker
         & "ScriptEngine=" & ScriptEngine(RegionUUID) & vbCrLf _
         & "Publicity=" & GDPR(RegionUUID) & vbCrLf _
         & "Concierge=" & Concierge(RegionUUID) & vbCrLf _
-        & "SmartStart=" & Smart_Start(RegionUUID) & vbCrLf _
+        & "SmartStart=" & CStr(Smart_Start(RegionUUID)) & vbCrLf _
         & "LandingSpot=" & LandingSpot(RegionUUID) & vbCrLf _
         & "Cores=" & Cores(RegionUUID) & vbCrLf _
         & "Priority=" & Priority(RegionUUID) & vbCrLf _
         & "OpenSimWorldAPIKey=" & OpensimWorldAPIKey(RegionUUID) & vbCrLf _
         & "SkipAutoBackup=" & SkipAutobackup(RegionUUID) & vbCrLf
 
-        Try
-            Using outputFile As New StreamWriter(IO.Path.Combine(pathtoRegion, $"{RegionName}.ini"), False)
-                outputFile.WriteLine(proto)
-                outputFile.Flush()
-            End Using
-        Catch ex As Exception
-            BreakPoint.Dump(ex)
-        End Try
+            Try
+                Using outputFile As New StreamWriter(IO.Path.Combine(pathtoRegion, $"{RegionName}.ini"), False)
+                    outputFile.WriteLine(proto)
+                    outputFile.Flush()
+                End Using
+            Catch ex As Exception
+                BreakPoint.Dump(ex)
+            End Try
 
-        AddToRegionMap(RegionUUID)
-
-        WriteRegionLock = False
+            AddToRegionMap(RegionUUID)
+        End SyncLock
 
     End Sub
 
@@ -346,7 +339,7 @@ Module RegionMaker
 
 #Region "Functions"
 
-    Private ReadOnly PortLock As Boolean
+    Private retry As Integer
 
     Public Sub AddToRegionMap(RegionUUID As String)
 
@@ -374,7 +367,7 @@ Module RegionMaker
         If Settings.Skirtsize = 0 Then Return False
 
         Dim NameRegion = Region_Name(RegionUUID)
-        Debug.Print("Looking for nearby to {NameRegion}")
+        'Debug.Print($"Looking for nearby to {NameRegion}")
         Dim Xloc = Coord_X(RegionUUID)
         Dim Yloc = Coord_Y(RegionUUID)
 
@@ -398,7 +391,7 @@ Module RegionMaker
                         Continue For
                     End If
 
-                    Debug.Print($"Looking in {Region_Name(DestUUID)}")
+                    ' Debug.Print($"Looking in {Region_Name(DestUUID)}")
 
                     ' skip any offline regions, no one is in there
                     If RegionStatus(DestUUID) = SIMSTATUSENUM.Stopped _
@@ -426,6 +419,9 @@ Module RegionMaker
     Public Function AvatarsIsInGroup(groupname As String) As Boolean
 
         For Each RegionUUID As String In RegionUuidListByName(groupname)
+
+            If RegionStatus(RegionUUID) <> SIMSTATUSENUM.Booted Then Return False
+
             If IsAgentInRegion(RegionUUID) Then
                 Return True
             End If
@@ -507,18 +503,8 @@ Module RegionMaker
     ''' <returns>RegionList.Count</returns>
     Public Function GetAllRegions(Verbose As Boolean) As Integer
 
-        If Not PropChangedRegionSettings Then Return RegionList.Count
-
-        Dim Retry = 10
-        While Retry > 0 AndAlso GetRegionsIsBusy
-            Sleep(1000)
-            Retry -= 1
-        End While
-        If Retry = 0 Then BreakPoint.Print("Retry GetRegionsIsBusy exceeded")
-        GetRegionsIsBusy = True
-
         Try
-            PropChangedRegionSettings = False
+
             Backup.Clear()
             Dim pair As KeyValuePair(Of String, Region_data)
 
@@ -614,7 +600,7 @@ Module RegionMaker
                                 ManagerGod(uuid) = CStr(INI.GetIni(fName, "ManagerGod", "", "String"))
                                 Birds(uuid) = CStr(INI.GetIni(fName, "Birds", "", "String"))
                                 Tides(uuid) = CStr(INI.GetIni(fName, "Tides", "", "String"))
-                                Teleport_Sign(uuid) = CStr(INI.GetIni(fName, "Teleport", "", "String"))
+                                Teleport_Sign(uuid) = CBool(INI.GetIni(fName, "Teleport", "", "Boolean"))
                                 DisableGloebits(uuid) = CStr(INI.GetIni(fName, "DisableGloebits", "", "String"))
                                 Disallow_Foreigners(uuid) = CStr(INI.GetIni(fName, "DisallowForeigners", "", "String"))
                                 Disallow_Residents(uuid) = CStr(INI.GetIni(fName, "DisallowResidents", "", "String"))
@@ -623,7 +609,7 @@ Module RegionMaker
                                 ScriptEngine(uuid) = CStr(INI.GetIni(fName, "ScriptEngine", "", "String"))
                                 GDPR(uuid) = CStr(INI.GetIni(fName, "Publicity", "", "String"))
                                 Concierge(uuid) = CStr(INI.GetIni(fName, "Concierge", "", "String"))
-                                Smart_Start(uuid) = CStr(INI.GetIni(fName, "SmartStart", "False", "String"))
+                                Smart_Start(uuid) = CBool(INI.GetIni(fName, "SmartStart", "False", "Boolean"))
                                 LandingSpot(uuid) = CStr(INI.GetIni(fName, "DefaultLanding", "", "String"))
                                 OpensimWorldAPIKey(uuid) = CStr(INI.GetIni(fName, "OpensimWorldAPIKey", "", "String"))
                                 Cores(uuid) = CInt(0 & INI.GetIni(fName, "Cores", "", "String"))
@@ -647,22 +633,20 @@ Module RegionMaker
 
                                 Dim G = Group_Name(uuid)
                                 If GetHwnd(G) = IntPtr.Zero Then
-
                                     Region_Port(uuid) = GetPort(uuid)
-
-                                    Logger("Port", $"Assign Region Port {CStr(Region_Port(uuid))}  to {fName}", "Port")
-                                    Logger("Port", $"Assign Group Port {CStr(GroupPort(uuid))} to {fName}", "Port")
+                                    Logger("Port", $"Assign Region Port {CStr(Region_Port(uuid))}  To {fName}", "Port")
+                                    Logger("Port", $"Assign Group Port {CStr(GroupPort(uuid))} To {fName}", "Port")
                                 Else
                                     Region_Port(uuid) = CInt("0" + INI.GetIni(fName, "InternalPort", "", "Integer"))
                                     If Region_Port(uuid) = 0 Then Region_Port(uuid) = LargestPort() + 1
-                                    Logger("Port", $"Assign Region Port {CStr(Region_Port(uuid))} to {fName}", "Port")
+                                    Logger("Port", $"Assign Region Port {CStr(Region_Port(uuid))} To {fName}", "Port")
                                     '
                                     GroupPort(uuid) = CInt("0" + INI.GetIni(fName, "GroupPort", "", "Integer"))
-                                    BreakPoint.Print($"Assign Group Port {CStr(GroupPort(uuid))} to {fName}")
+                                    BreakPoint.Print($"Assign Group Port {CStr(GroupPort(uuid))} To {fName}")
                                     '
                                     If GroupPort(uuid) = 0 Then
                                         GroupPort(uuid) = ThisGroup
-                                        Logger("Port", $"Re-Assign Group Port {CStr(GroupPort(uuid))} to {fName}", "Port")
+                                        Logger("Port", $"Re-Assign Group Port {CStr(GroupPort(uuid))} To {fName}", "Port")
                                     End If
 
                                 End If
@@ -679,8 +663,8 @@ Module RegionMaker
                                 End If
                             End If
 
-                            INI.SaveINI()
-                            Debug.Print($"Adding {Region_Name(uuid)} to map")
+                            INI.SaveIni()
+                            Debug.Print($"Adding {Region_Name(uuid)} To map")
                             AddToRegionMap(uuid)
 
                         Next
@@ -689,7 +673,6 @@ Module RegionMaker
                         MsgBox(My.Resources.Error_Region + fName + "  " + ex.Message, MsgBoxStyle.Information Or MsgBoxStyle.MsgBoxSetForeground, Global.Outworldz.My.Resources.Error_word)
                         ErrorLog("ErrParse file " + fName + ": " + ex.Message)
                         PropUpdateView = True ' make form refresh
-                        GetRegionsIsBusy = False
                         Return 0
                     End Try
                 Next
@@ -698,11 +681,51 @@ Module RegionMaker
             BreakPoint.Dump(ex)
         End Try
 
+        PropChangedRegionSettings = False
         PropUpdateView = True ' make form refresh
 
-        GetRegionsIsBusy = False
-
         Return RegionList.Count
+
+    End Function
+
+    Public Function GetStateString(state As Integer) As String
+
+        Dim statestring As String
+        Select Case state
+            Case -1
+                statestring = "ERROR"
+            Case 0
+                statestring = "Stopped"
+            Case 1
+                statestring = "Booting"
+            Case 2
+                statestring = "Booted"
+            Case 3
+                statestring = "RecyclingUp"
+            Case 4
+                statestring = "RecyclingDown"
+            Case 5
+                statestring = "RestartPending"
+            Case 6
+                statestring = "RetartingNow"
+            Case 7
+                statestring = "Resume"
+            Case 8
+                statestring = "Suspended"
+            Case 9
+                statestring = "RestartStage2"
+            Case 10
+                statestring = "ShuttingDownForGood"
+            Case 11
+                statestring = "NoLogin"
+            Case 12
+                statestring = "No Error"
+            Case Else
+                statestring = "**** Unknown state ****"
+                BreakPoint.Print($"**** Unknown state **** {CStr(state)}")
+        End Select
+
+        Return statestring
 
     End Function
 
@@ -740,14 +763,34 @@ Module RegionMaker
 
     End Function
 
+    Public Sub PokeGroupTimer(GroupName As String)
+
+        For Each RegionUUID In RegionUuidListByName(GroupName)
+            If Timer(RegionUUID) < Date.Now() Then
+                Timer(RegionUUID) = Date.Now()
+            End If
+        Next
+
+    End Sub
+
+    Public Sub PokeRegionTimer(RegionUUID As String)
+
+        PokeGroupTimer(Group_Name(RegionUUID))
+
+    End Sub
+
+    Public Function RobustName() As String
+
+        Return "Robust " & Settings.PublicIP
+
+    End Function
+
     Public Sub StopRegion(RegionUUID As String)
 
-        Dim hwnd As IntPtr = GetHwnd(Group_Name(RegionUUID))
-        If ShowDOSWindow(hwnd, SHOWWINDOWENUM.SWRESTORE) Then
+        Thaw(RegionUUID)
 
+        If ShowDOSWindow(RegionUUID, SHOWWINDOWENUM.SWRESTORE) Then
             SequentialPause()
-
-            TextPrint(My.Resources.Not_Running & " " & Global.Outworldz.My.Resources.Stopping_word)
             ShutDown(RegionUUID, SIMSTATUSENUM.ShuttingDownForGood)
         Else
             ' shut down all regions in the DOS box
@@ -759,6 +802,29 @@ Module RegionMaker
         PropUpdateView = True ' make form refresh
 
     End Sub
+
+    Public Function VarChooser(RegionName As String, Optional modal As Boolean = True, Optional Map As Boolean = True) As String
+
+        Dim RegionUUID As String = FindRegionByName(RegionName)
+        Dim size = SizeX(RegionUUID)
+
+#Disable Warning CA2000 ' Dispose objects before losing scope
+        Dim VarForm As New FormDisplacement ' form for choosing a region in  a var
+#Enable Warning CA2000 ' Dispose objects before losing scope
+        Dim span As Integer = CInt(Math.Ceiling(size / 256))
+        ' Show Dialog as a modal dialog
+        VarForm.Init(span, RegionUUID, Map)
+
+        If modal Then
+            VarForm.ShowDialog()
+            VarForm.Dispose()
+        Else
+            VarForm.Show()
+        End If
+
+        Return PropSelectedBox
+
+    End Function
 
 #Region "Region_data"
 
@@ -1127,7 +1193,7 @@ Module RegionMaker
         End Get
         Set(ByVal Value As Integer)
             If Debugger.IsAttached Then
-                Logger(Region_Name(RegionUUID), $"Status => {GetStateString(Value)}", "Status")
+                'Logger(Region_Name(RegionUUID), $"Status => {GetStateString(Value)}", "Status")
             End If
             RegionList(RegionUUID)._Status = Value
         End Set
@@ -1419,14 +1485,22 @@ Module RegionMaker
         End Set
     End Property
 
-    Public Property Smart_Start(uuid As String) As String
+    ''' <summary>
+    ''' Gets region Smart Start Type
+    ''' </summary>
+    ''' <param name="uuid"></param>
+    ''' <returns>True if Smart Start</returns>
+    Public Property Smart_Start(uuid As String) As Boolean
         Get
-            If RegionList.ContainsKey(uuid) Then Return RegionList(uuid)._RegionSmartStart
-            BadUUID(uuid)
-            Return ""
+            Try
+                If RegionList.ContainsKey(uuid) Then Return CBool(RegionList(uuid)._RegionSmartStart)
+                BadUUID(uuid)
+            Catch
+            End Try
+            Return False
         End Get
-        Set(ByVal Value As String)
-            RegionList(uuid)._RegionSmartStart = Value
+        Set(ByVal Value As Boolean)
+            RegionList(uuid)._RegionSmartStart = CStr(Value)
         End Set
     End Property
 
@@ -1441,14 +1515,17 @@ Module RegionMaker
         End Set
     End Property
 
-    Public Property Teleport_Sign(uuid As String) As String
+    Public Property Teleport_Sign(uuid As String) As Boolean
         Get
-            If RegionList.ContainsKey(uuid) Then Return RegionList(uuid)._Teleport
-            BadUUID(uuid)
-            Return ""
+            Try
+                If RegionList.ContainsKey(uuid) Then Return CBool(RegionList(uuid)._Teleport)
+                BadUUID(uuid)
+            Catch
+            End Try
+            Return False
         End Get
-        Set(ByVal Value As String)
-            RegionList(uuid)._Teleport = Value
+        Set(ByVal Value As Boolean)
+            RegionList(uuid)._Teleport = CStr(Value)
         End Set
     End Property
 
@@ -1480,6 +1557,18 @@ Module RegionMaker
 
     End Function
 
+    Public Function FindRegionUUIDByPID(PID As Integer) As String
+
+        Dim pair As KeyValuePair(Of String, Region_data)
+        For Each pair In RegionList
+            If PID = pair.Value._ProcessID Then               '
+                Return pair.Value._UUID
+            End If
+        Next
+        Return ""
+
+    End Function
+
     Public Function IsBooted(uuid As String) As Boolean
 
         If uuid Is Nothing Then Return False
@@ -1504,34 +1593,42 @@ Module RegionMaker
     ''' <returns>List of Region UUID's</returns>
     Public Function RegionUuidListByName(Gname As String) As List(Of String)
 
+        Dim L As New List(Of String)
         Try
-            Dim L As New List(Of String)
             Dim pair As KeyValuePair(Of String, Region_data)
             For Each pair In RegionList
-                If pair.Value._Group = Gname Then
+                If pair.Value._Group = Gname Or Gname = "*" Then
                     L.Add(pair.Value._UUID)
                 End If
             Next
-            Return L
         Catch ex As Exception
             BreakPoint.Dump(ex)
         End Try
-
-        Dim L2 As New List(Of String)
-        Return L2
+        Return L
 
     End Function
 
+    ''' <summary>
+    ''' Returns a list if region UUIDS sorted by name
+    ''' </summary>
+    ''' <returns>Alphabetized List of Region UUIDS</returns>
     Public Function RegionUuids() As List(Of String)
 
-        Dim L As New List(Of String)
+        Dim Tmp As New List(Of String)
+        Dim Out As New List(Of String)
         Dim pair As KeyValuePair(Of String, Region_data)
 
         For Each pair In RegionList
-            L.Add(pair.Value._UUID)
+            Tmp.Add(pair.Value._RegionName)
         Next
 
-        Return L
+        Tmp.Sort()
+
+        For Each name In Tmp
+            Out.Add(FindRegionByName(name))
+        Next
+
+        Return Out
 
     End Function
 
@@ -1620,48 +1717,61 @@ Module RegionMaker
     Private Function TOS(post As String) As String
         ' currently unused as is only in standalone
         Debug.Print("UUID:" + post)
-        '"POST /TOS HTTP/1.1" & vbCrLf & "Host: mach.outworldz.net:9201" & vbCrLf & "Connection: keep-alive" & vbCrLf & "Content-Length: 102" & vbCrLf & "Cache-Control: max-age=0" & vbCrLf & "Upgrade-Insecure-Requests: 1" & vbCrLf & "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36" & vbCrLf & "Origin: http://mach.outworldz.net:9201" & vbCrLf & "Content-Type: application/x-www-form-urlencoded" & vbCrLf & "DNT: 1" & vbCrLf & "Accept: text/html,application/xhtml+xml,application/xml;q=0.0909,image/webp,image/apng,*/*;q=0.8" & vbCrLf & "Referer: http://mach.outworldz.net:9200/wifi/termsofservice.html?uid=acb8fd92-c725-423f-b750-5fd971d73182&sid=40c5b80a-5377-4b97-820c-a0952782a701" & vbCrLf & "Accept-Encoding: gzip, deflate" & vbCrLf & "Accept-Language: en-US,en;q=0.0909" & vbCrLf & vbCrLf &
+        '"POST /TOS HTTP/1.1" & vbCrLf & "Host: mach.outworldz.net:8001" & vbCrLf & "Connection: keep-alive" & vbCrLf & "Content-Length: 102" & vbCrLf & "Cache-Control: max-age=0" & vbCrLf & "Upgrade-Insecure-Requests: 1" & vbCrLf & "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36" & vbCrLf & "Origin: http://mach.outworldz.net:9201" & vbCrLf & "Content-Type: application/x-www-form-urlencoded" & vbCrLf & "DNT: 1" & vbCrLf & "Accept: text/html,application/xhtml+xml,application/xml;q=0.0909,image/webp,image/apng,*/*;q=0.8" & vbCrLf & "Referer: http://mach.outworldz.net:9200/wifi/termsofservice.html?uid=acb8fd92-c725-423f-b750-5fd971d73182&sid=40c5b80a-5377-4b97-820c-a0952782a701" & vbCrLf & "Accept-Encoding: gzip, deflate" & vbCrLf & "Accept-Language: en-US,en;q=0.0909" & vbCrLf & vbCrLf &
         '"action-accept=Accept&uid=acb8fd92-c725-423f-b750-5fd971d73182&sid=40c5b80a-5377-4b97-820c-a0952782a701"
 
-        Return "<html><head></head><body>Error</html>"
-
-        Dim uid As Guid
         Dim sid As Guid
 
         Try
-            post = post.Replace("{ENTER}", "")
-            post = post.Replace("\r", "")
-
+            Dim webpage = ""
             Dim pattern = New Regex("uid=([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})")
             Dim match As Match = pattern.Match(post)
             If match.Success Then
-                uid = Guid.Parse(match.Groups(1).Value)
+
+                Dim include = tosinclude(match.Groups(1).Value)
+
+                Dim Header = IO.Path.Combine(Settings.CurrentDirectory, "termsofservice.html")
+                Using streamReader As New System.IO.FileStream(Header, FileMode.Open, FileAccess.Read, FileShare.Read)
+                    Using S = New StreamReader(streamReader)
+                        'now loop through each line and append the css to web page
+                        While S.Peek <> -1
+                            Dim line = S.ReadLine
+                            line = line.Replace("[GRIDNAME]", Settings.SimName)
+                            line = line.Replace("[TOS]", include & vbCrLf)
+                            webpage += line & vbCrLf
+                        End While
+                    End Using
+                End Using
+                webpage += "</style>"
+                webpage += "</head>"
+                Return webpage
             End If
 
+            ' detect and print a response to an ACCEPT
             Dim pattern2 = New Regex("sid=([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})")
             Dim match2 As Match = pattern2.Match(post)
             If match2.Success Then
                 sid = Guid.Parse(match2.Groups(1).Value)
             End If
 
-            If match.Success AndAlso match2.Success Then
-
-                ' Only works in Standalone, anyway. Not implemented at all in Grid mode - the Diva DLL Diva is stubbed off.
-                Dim result As Integer = 1
-
-                Dim myConnection = New MySqlConnection(Settings.RegionMySqlConnection)
-
-                Dim Query1 = "update griduser set TOS = 1 where UserID = @p1; "
-                Dim myCommand1 = New MySqlCommand(Query1) With {
-                    .Connection = myConnection
-                }
-                myConnection.Open()
-                myCommand1.Prepare()
-                myCommand1.Parameters.AddWithValue("p1", uid.ToString())
-                myCommand1.ExecuteScalar()
-                myConnection.Close()
-                myConnection.Dispose()
-                Return "<html><head></head><body>Welcome! You can close this window.</html>"
+            If match2.Success Then
+                Agree2Tos(sid)  ' detect and print a response to an ACCEPT
+                Dim include = "Welcome! You can close this window."
+                Dim Header = IO.Path.Combine(Settings.CurrentDirectory, "termsofservice.html")
+                Using streamReader As New System.IO.FileStream(Header, FileMode.Open, FileAccess.Read, FileShare.Read)
+                    Using S = New StreamReader(streamReader)
+                        'now loop through each line and append the css to web page
+                        While S.Peek <> -1
+                            Dim line = S.ReadLine
+                            line = line.Replace("[GRIDNAME]", Settings.SimName)
+                            line = line.Replace("[TOS]", include & vbCrLf)
+                            webpage += line & vbCrLf
+                        End While
+                    End Using
+                End Using
+                webpage += "</style>"
+                webpage += "</head>"
+                Return webpage
             Else
                 Return "<html><head></head><body>Test Passed</html>"
             End If
@@ -1672,6 +1782,31 @@ Module RegionMaker
 
     End Function
 
+    Private Function tosinclude(uid As String) As String
+
+        ' Print a TOS webpage to the client
+        Dim include = ""
+        Dim From = IO.Path.Combine(Settings.CurrentDirectory, "tos.html")
+        Using streamRead As New System.IO.FileStream(From, FileMode.Open, FileAccess.Read, FileShare.Read)
+            Using S = New StreamReader(streamRead)
+                'now loop through each line
+                While S.Peek <> -1
+                    Dim data = S.ReadLine
+                    data = data.Replace("[GRIDNAME]", Settings.SimName)
+                    include += data
+                End While
+            End Using
+            include += "<form>"
+            include += "<input class='button' type='Submit' name='agree' value='Agree wth TOS'>"
+            include += $"<input type='hidden' name='sid' value='{uid.ToString}'>"
+            include += "</form>"
+            include += "</body>"
+            include += "</html>"
+        End Using
+
+        Return include
+    End Function
+
 #End Region
 
 #Region "Partners"
@@ -1679,7 +1814,7 @@ Module RegionMaker
     Public Function SetPartner(post As String) As String
 
         Debug.Print("set Partner")
-        Dim PWok As Boolean = CheckPassword(post, CStr(Settings.MachineID()))
+        Dim PWok As Boolean = CheckPassword(post, CStr(Settings.MachineId()))
         If Not PWok Then Return ""
 
         Dim pattern1 = New Regex("User=(.*?)&", RegexOptions.IgnoreCase)
@@ -1733,7 +1868,7 @@ Module RegionMaker
     Private Function GetPartner(post As String) As String
 
         Debug.Print("Get Partner")
-        Dim PWok As Boolean = CheckPassword(post, Settings.MachineID())
+        Dim PWok As Boolean = CheckPassword(post, Settings.MachineId())
         If Not PWok Then Return ""
 
         Dim pattern1 = New Regex("User=(.*)", RegexOptions.IgnoreCase)
@@ -1773,7 +1908,7 @@ Module RegionMaker
             Dim INI = New LoadIni(IO.Path.Combine(OpensimPathName, "Opensim.ini"), ";", System.Text.Encoding.UTF8)
             If INI Is Nothing Then Return True
 
-            If INI.SetIni("Const", "MachineID", Settings.MachineID) Then Return True
+            If INI.SetIni("Const", "MachineID", Settings.MachineId) Then Return True
 
             If Settings.StatusInterval > 0 Then
                 If INI.SetIni("Startup", "timer_Script", "debug.txt") Then Return True
@@ -1784,7 +1919,7 @@ Module RegionMaker
             End If
 
             If INI.SetIni("RemoteAdmin", "port", CStr(GroupPort(uuid))) Then Return True
-            If INI.SetIni("RemoteAdmin", "access_password", Settings.MachineID) Then Return True
+            If INI.SetIni("RemoteAdmin", "access_password", Settings.MachineId) Then Return True
             If INI.SetIni("Const", "PrivatePort", CStr(Settings.PrivatePort)) Then Return True
             If INI.SetIni("Const", "RegionFolderName", Group_Name(uuid)) Then Return True
             If INI.SetIni("Const", "BaseHostname", Settings.BaseHostName) Then Return True
@@ -1981,23 +2116,28 @@ Module RegionMaker
             ' threads 4 = ubODE
 
             Select Case Settings.Physics
-                Case 0
+                Case 0 'Physics_Default
                     If INI.SetIni("Startup", "meshing", "ZeroMesher") Then Return True
                     If INI.SetIni("Startup", "physics", "basicphysics") Then Return True
                     If INI.SetIni("Startup", "UseSeparatePhysicsThread", "False") Then Return True
                     If INI.SetIni("ODEPhysicsSettings", "use_NINJA_physics_joints", "False") Then Return True
-                Case 2
+                Case 2 'Physics_Bullet
                     If INI.SetIni("Startup", "meshing", "Meshmerizer") Then Return True
                     If INI.SetIni("Startup", "physics", "BulletSim") Then Return True
                     If INI.SetIni("Startup", "UseSeparatePhysicsThread", "False") Then Return True
                     If INI.SetIni("ODEPhysicsSettings", "use_NINJA_physics_joints", "False") Then Return True
-                Case 3
+                Case 3 ' Physics_Separate thread
                     If INI.SetIni("Startup", "meshing", "Meshmerizer") Then Return True
                     If INI.SetIni("Startup", "physics", "BulletSim") Then Return True
                     If INI.SetIni("Startup", "UseSeparatePhysicsThread", "True") Then Return True
                     If INI.SetIni("ODEPhysicsSettings", "use_NINJA_physics_joints", "False") Then Return True
-                Case 4
+                Case 4 ' Physics_ubODE
                     If INI.SetIni("Startup", "meshing", "ubODEMeshmerizer") Then Return True
+                    If INI.SetIni("Startup", "physics", "ubODE") Then Return True
+                    If INI.SetIni("Startup", "UseSeparatePhysicsThread", "False") Then Return True
+                    If INI.SetIni("ODEPhysicsSettings", "use_NINJA_physics_joints", CStr(Settings.NinjaRagdoll)) Then Return True
+                Case 5 'Physics_Hybrid
+                    If INI.SetIni("Startup", "meshing", "Meshmerizer") Then Return True
                     If INI.SetIni("Startup", "physics", "ubODE") Then Return True
                     If INI.SetIni("Startup", "UseSeparatePhysicsThread", "False") Then Return True
                     If INI.SetIni("ODEPhysicsSettings", "use_NINJA_physics_joints", CStr(Settings.NinjaRagdoll)) Then Return True
@@ -2010,24 +2150,30 @@ Module RegionMaker
 
             'Override Physics
             Select Case RegionPhysics(uuid)
-                Case "0"
+                Case "0" 'Physics_Default
                     If INI.SetIni("Startup", "meshing", "ZeroMesher") Then Return True
                     If INI.SetIni("Startup", "physics", "basicphysics") Then Return True
                     If INI.SetIni("Startup", "UseSeparatePhysicsThread", "False") Then Return True
-
-                Case "2"
+                Case "1" ' default
                     If INI.SetIni("Startup", "meshing", "Meshmerizer") Then Return True
                     If INI.SetIni("Startup", "physics", "BulletSim") Then Return True
                     If INI.SetIni("Startup", "UseSeparatePhysicsThread", "False") Then Return True
-                Case "3"
+                Case "2"  'Physics_Bullet
+                    If INI.SetIni("Startup", "meshing", "Meshmerizer") Then Return True
+                    If INI.SetIni("Startup", "physics", "BulletSim") Then Return True
+                    If INI.SetIni("Startup", "UseSeparatePhysicsThread", "False") Then Return True
+                Case "3" ' Physics_Separate thread
                     If INI.SetIni("Startup", "meshing", "Meshmerizer") Then Return True
                     If INI.SetIni("Startup", "physics", "BulletSim") Then Return True
                     If INI.SetIni("Startup", "UseSeparatePhysicsThread", "True") Then Return True
-                Case "4"
+                Case "4" ' Physics_ubODE
                     If INI.SetIni("Startup", "meshing", "ubODEMeshmerizer") Then Return True
                     If INI.SetIni("Startup", "physics", "ubODE") Then Return True
                     If INI.SetIni("Startup", "UseSeparatePhysicsThread", "False") Then Return True
-
+                Case "5" 'Physics_Hybrid
+                    If INI.SetIni("Startup", "meshing", "Meshmerizer") Then Return True
+                    If INI.SetIni("Startup", "physics", "ubODE") Then Return True
+                    If INI.SetIni("Startup", "UseSeparatePhysicsThread", "False") Then Return True
                 Case Else
                     ' do nothing
             End Select
@@ -2113,16 +2259,16 @@ Module RegionMaker
 
             ' Gloebit
             If INI.SetIni("Gloebit", "Enabled", CStr(Settings.GloebitsEnable)) Then Return True
-            If INI.SetIni("Gloebit", "GLBShowNewSessionAuthIM", CStr(Settings.GLBShowNewSessionAuthIM)) Then Return True
-            If INI.SetIni("Gloebit", "GLBShowNewSessionPurchaseIM", CStr(Settings.GLBShowNewSessionPurchaseIM)) Then Return True
-            If INI.SetIni("Gloebit", "GLBShowWelcomeMessage", CStr(Settings.GLBShowWelcomeMessage)) Then Return True
+            If INI.SetIni("Gloebit", "GLBShowNewSessionAuthIM", CStr(Settings.GlbShowNewSessionAuthIM)) Then Return True
+            If INI.SetIni("Gloebit", "GLBShowNewSessionPurchaseIM", CStr(Settings.GlbShowNewSessionPurchaseIM)) Then Return True
+            If INI.SetIni("Gloebit", "GLBShowWelcomeMessage", CStr(Settings.GlbShowWelcomeMessage)) Then Return True
 
             If INI.SetIni("Gloebit", "GLBEnvironment", "production") Then Return True
             If INI.SetIni("Gloebit", "GLBKey", Settings.GLProdKey) Then Return True
             If INI.SetIni("Gloebit", "GLBSecret", Settings.GLProdSecret) Then Return True
 
-            If INI.SetIni("Gloebit", "GLBOwnerName", Settings.GLBOwnerName) Then Return True
-            If INI.SetIni("Gloebit", "GLBOwnerEmail", Settings.GLBOwnerEmail) Then Return True
+            If INI.SetIni("Gloebit", "GLBOwnerName", Settings.GlbOwnerName) Then Return True
+            If INI.SetIni("Gloebit", "GLBOwnerEmail", Settings.GlbOwnerEmail) Then Return True
 
             If Settings.ServerType = RobustServerName Then
                 If INI.SetIni("Gloebit", "GLBSpecificConnectionString", Settings.RobustDBConnection) Then Return True
@@ -2195,7 +2341,7 @@ Module RegionMaker
             If Settings.Smart_Start Then
                 INI.SetIni("SmartStart", "Enabled", "True")
                 INI.SetIni("SmartStart", "URL", $"http://{Settings.LANIP}:{Settings.DiagnosticPort}")
-                INI.SetIni("SmartStart", "MachineID", CStr(Settings.MachineID))
+                INI.SetIni("SmartStart", "MachineID", CStr(Settings.MachineId))
             Else
                 INI.SetIni("SmartStart", "Enabled", "False")
                 'nope
@@ -2205,7 +2351,7 @@ Module RegionMaker
 
             If INI.SetIni("Estates", "DefaultEstateName", gEstateName) Then Return True
             If INI.SetIni("Estates", "DefaultEstateOwnerName", gEstateOwner) Then Return True
-            INI.SaveINI()
+            INI.SaveIni()
 
             '============== Region.ini =====================
             ' Region.ini in Region Folder specific to this region
@@ -2309,14 +2455,14 @@ Module RegionMaker
                 If regionINI.SetIni(Name, "RegionSnapShot", RegionSnapShot(uuid)) Then Return True
                 If regionINI.SetIni(Name, "Birds", Birds(uuid)) Then Return True
                 If regionINI.SetIni(Name, "Tides", Tides(uuid)) Then Return True
-                If regionINI.SetIni(Name, "Teleport", Teleport_Sign(uuid)) Then Return True
+                If regionINI.SetIni(Name, "Teleport", CStr(Teleport_Sign(uuid))) Then Return True
                 If regionINI.SetIni(Name, "DisallowForeigners", Disallow_Foreigners(uuid)) Then Return True
                 If regionINI.SetIni(Name, "DisallowResidents", Disallow_Residents(uuid)) Then Return True
                 If regionINI.SetIni(Name, "SkipAutoBackup", SkipAutobackup(uuid)) Then Return True
                 If regionINI.SetIni(Name, "Physics", RegionPhysics(uuid)) Then Return True
                 If regionINI.SetIni(Name, "FrameTime", FrameTime(uuid)) Then Return True
 
-                regionINI.SaveINI()
+                regionINI.SaveIni()
 
             Next
 
@@ -2348,6 +2494,10 @@ Module RegionMaker
 
         ' RegionSnapShot
         INI.SetIni("DataSnapshot", "index_sims", "True")
+        If Settings.CMS = JOpensim Then
+            Settings.CMS = "Local"
+        End If
+
         If Settings.CMS = JOpensim AndAlso Settings.SearchOptions = JOpensim Then
 
             INI.SetIni("DataSnapshot", "data_services", "")
@@ -2358,7 +2508,7 @@ Module RegionMaker
             CopyFileFast(IO.Path.Combine(Settings.OpensimBinPath, "jOpensimSearch.Modules.dll.bak"),
                          IO.Path.Combine(Settings.OpensimBinPath, "jOpensimSearch.Modules.dll"))
 
-        ElseIf Settings.SearchOptions = Hyperica Then
+        ElseIf Settings.SearchOptions = Outworldz Then
 
             INI.SetIni("DataSnapshot", "data_services", PropDomain & "/Search/register.php")
             Dim SearchURL = PropDomain & "/Search/query.php"

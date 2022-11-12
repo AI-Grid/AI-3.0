@@ -7,7 +7,6 @@ Public Class ClassLoopback
 
         Dim Adapters = NetworkInterface.GetAllNetworkInterfaces()
         For Each adapter As NetworkInterface In Adapters
-            BreakPoint.Print(adapter.Name)
 
             If adapter.Name = "Loopback" Then
                 TextPrint(My.Resources.Setting_Loopback)

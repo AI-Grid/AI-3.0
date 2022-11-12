@@ -39,7 +39,7 @@ Module IAR
                 If thing.Length > 0 Then
                     thing = thing.Replace("\", "/")    ' because Opensim uses Unix-like slashes, that's why
                     If LoadIARContent(thing) Then
-                        TextPrint(My.Resources.isLoading & " " & thing)
+                        TextPrint($"{My.Resources.isLoading} {thing}")
                     End If
                 End If
             End If
@@ -62,9 +62,9 @@ Module IAR
         Dim UUID As String = ""
         Try
             ' find one that is running
-            For Each RegionUUID As String In RegionUuids()
+            For Each RegionUUID In RegionUuids()
 
-                If IsBooted(RegionUUID) And Not CBool(Smart_Start(RegionUUID)) Then
+                If IsBooted(RegionUUID) And Not Smart_Start(RegionUUID) Then
                     UUID = RegionUUID
                     Exit For
                 End If
@@ -79,7 +79,7 @@ Module IAR
             Return False
         End If
 
-        Using LoadIAR As New FormIARLoad
+        Using LoadIAR As New FormIarLoad
             LoadIAR.ShowDialog()
             Dim chosen = LoadIAR.DialogResult()
             If chosen = DialogResult.OK Then
@@ -93,7 +93,7 @@ Module IAR
                 If u.Length > 0 Then
                     ConsoleCommand(UUID, $"load iar --merge {u} ""{p}"" ""{thing}""")
                     SendMessage(UUID, "IAR content is loading")
-                    TextPrint(My.Resources.isLoading & vbCrLf & p)
+                    TextPrint($"{My.Resources.isLoading} {vbCrLf}{p}")
                 Else
                     TextPrint(My.Resources.Canceled_IAR)
                 End If
@@ -108,7 +108,7 @@ Module IAR
 
         If PropOpensimIsRunning() Then
 
-            Using SaveIAR As New FormIARSave
+            Using SaveIAR As New FormIarSave
                 SaveIAR.ShowDialog()
                 Dim chosen = SaveIAR.DialogResult()
                 If chosen = DialogResult.OK Then
@@ -140,7 +140,6 @@ Module IAR
 
                     Dim opt As String = "  "
 
-
                     Dim Perm As String = ""
                     If Not SaveIAR.GCopy Then
                         Perm += "C"
@@ -160,7 +159,11 @@ Module IAR
 
                     Dim Newpath = BackupPath().Replace("/", "\")
                     Dim RegionUUID = FindRegionByName(Settings.WelcomeRegion)
+
+                    Dim Result = New WaitForFile(RegionUUID, "Saved archive", "Save IAR")
                     ConsoleCommand(RegionUUID, "save iar " & opt & Name & " " & """" & itemName & """" & " " & """" & ToBackup & """")
+                    Result.Scan()
+
                     TextPrint(My.Resources.Saving_word & " " & Newpath & "\" & BackupName & ", Region " & Region_Name(RegionUUID))
 
                 End If
@@ -191,7 +194,6 @@ Module IAR
                         MsgBox(My.Resources.MustHaveName, MsgBoxStyle.Information Or MsgBoxStyle.MsgBoxSetForeground)
                         Return
                     End If
-
 
                     Dim Perm As String = ""
                     If Not SaveIAR.GCopy Then
@@ -235,15 +237,15 @@ Module IAR
     Public Sub SaveThreadIARS()
 
         Dim opt As String = "   "
-        If Settings.DNSName.Length > 0 Then
-            opt += $" -h {Settings.DNSName}:{Settings.HttpPort} "    ' needs leading and trailing spaces
+        If Settings.DnsName.Length > 0 Then
+            opt += $" -h {Settings.DnsName}:{Settings.HttpPort} "    ' needs leading and trailing spaces
         End If
 
         Dim p As New Params With {
-                                .RegionName = Settings.WelcomeRegion,
-                                .opt = opt,
-                                .itemName = "/"
-                            }
+                            .RegionName = Settings.WelcomeRegion,
+                            .opt = opt,
+                            .itemName = "/"
+                        }
 
 #Disable Warning BC42016 ' Implicit conversion
         Dim start As ParameterizedThreadStart = AddressOf DoIARBackground
@@ -255,37 +257,7 @@ Module IAR
 
     End Sub
 
-    ''' <summary>
-    ''' Waits until a file stops changing length so we can type again. Quits if DreamGrid  is stopped
-    ''' </summary>
-    ''' <param name="BackupName">Name of region to watch</param>
-    Public Sub WaitforComplete(RegionUUID As String, FolderAndFileName As String)
-
-        Dim ctr As Integer = 300
-        Dim s As Long
-        Dim oldsize As Long = 0
-        Dim same As Integer = 0
-        Dim fi = New System.IO.FileInfo(FolderAndFileName)
-        While same < 15 And ctr > 0 And PropOpensimIsRunning
-            PokeRegionTimer(RegionUUID)
-            Try
-                s = fi.Length
-            Catch ex As Exception
-                Debug.Print("oops")
-            End Try
-            If s = oldsize And s > 0 Then
-                same += 1
-            Else
-                same = 0
-            End If
-            ctr -= 1
-            Thread.Sleep(1000)
-            oldsize = s
-        End While
-
-    End Sub
-
-    Private Function DoIARBackground(o As Params) As Boolean
+    Private Sub DoIARBackground(o As Params)
 
         Dim RegionName As String = o.RegionName
         Dim opt As String = o.opt
@@ -295,22 +267,29 @@ Module IAR
         Dim UserList = GetAvatarList()
 
         Dim RegionUUID = FindRegionByName(RegionName)
-        If Not IsBooted(RegionUUID) Then Return False
+        If Not IsBooted(RegionUUID) Then Return
         For Each k As String In UserList
+            If BackupAbort Then Return
+            RunningBackupName.TryAdd($"{My.Resources.Backup_IAR} {k} {My.Resources.Starting_word}", "")
+
             Dim newname = k.Replace(" ", "_")
             Dim BackupName = $"{newname}_{DateTime.Now.ToString("yyyy-MM-dd_HH_mm_ss", Globalization.CultureInfo.InvariantCulture)}.iar"
-            If Not System.IO.Directory.Exists(BackupPath() & "/IAR") Then
-                MakeFolder(BackupPath() & "/IAR")
+
+            Dim f = IO.Path.Combine(BackupPath(), "AutoBackup-" & Date.Now().ToString("yyyy-MM-dd", Globalization.CultureInfo.InvariantCulture))
+            FileIO.FileSystem.CreateDirectory(f)
+
+            If Not System.IO.Directory.Exists(f & "/IAR") Then
+                MakeFolder(f & "/IAR")
             End If
 
-            ToBackup = IO.Path.Combine(BackupPath() & "/IAR", BackupName)
-            ConsoleCommand(RegionUUID, $"save iar {opt} {k} / ""{ToBackup}""")
+            ToBackup = IO.Path.Combine(f & "/IAR", BackupName)
+            RPC_Region_Command(RegionUUID, $"save iar {opt} {k} / ""{ToBackup}""")
             WaitforComplete(RegionUUID, ToBackup)
+            RunningBackupName.TryAdd($"{My.Resources.Backup_IAR} {k} {My.Resources.Ok}", "")
+
         Next
 
-        Return True
-
-    End Function
+    End Sub
 
 #End Region
 

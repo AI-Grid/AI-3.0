@@ -4,12 +4,16 @@ Imports System.Threading
 Imports MySqlConnector
 
 Module Events
+    ''' <summary>
+    ''' Delete all events from search so it can be rebuilt
+    ''' Always uses Robust DB, even on Region Servers
+    ''' </summary>
 
     Public Sub DeleteEvents()
 
         Try
-            Using osconnection = New MySqlConnection(Settings.RobustMysqlConnection())
-                osconnection.Open()
+            Dim conn = Settings.RegionMySqlConnection
+            Using osconnection = New MySqlConnection(conn)
                 Dim stm = "delete from ossearch.events"
                 Using cmd = New MySqlCommand(stm, osconnection)
                     Dim rowsdeleted = cmd.ExecuteNonQuery()
@@ -21,11 +25,11 @@ Module Events
 
     End Sub
 
+    '' start a background thread for fetching all events
     Public Sub GetEvents()
 
         If Settings.SearchOptions <> "Local" Then Return
 
-        ' start a thread to see if a region has crashed, if so, add it to an exit list
         Dim start As ParameterizedThreadStart = AddressOf Events
         Dim T = New Thread(start)
         T.SetApartmentState(ApartmentState.STA)
@@ -35,6 +39,11 @@ Module Events
         Return
     End Sub
 
+    ''' <summary>
+    ''' Delete all events from search so it can be rebuilt
+    ''' rebuilds the events db from Outworldz.com json
+    ''' Always uses Robust DB, even on Region Servers
+    ''' </summary>
     Private Sub Events()
 
         DeleteEvents()

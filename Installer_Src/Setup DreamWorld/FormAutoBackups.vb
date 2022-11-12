@@ -44,27 +44,29 @@ Public Class FormAutoBackups
 
     Private Sub Loaded(sender As Object, e As EventArgs) Handles Me.Load
 
+        ' tool tips
         AutoBackup.Text = Global.Outworldz.My.Resources.Enabled_word
+
+        BackupTypeButton.Text = Global.Outworldz.My.Resources.Backup_word
         GroupBox3.Text = Global.Outworldz.My.Resources.Auto_Backup_word
-        Label6.Text = Global.Outworldz.My.Resources.Backup_Folder
-        LabelInterval.Text = Global.Outworldz.My.Resources.Interval_word
-        LabelDays.Text = Global.Outworldz.My.Resources.Keep_for_Days_word
         Label1.Text = My.Resources.View_Folder
         Label2.Text = My.Resources.Choose_folder_for_backups
+        Label6.Text = Global.Outworldz.My.Resources.Backup_Folder
+        LabelDays.Text = Global.Outworldz.My.Resources.Keep_for_Days_word
+        LabelInterval.Text = Global.Outworldz.My.Resources.Interval_word
         MenuStrip2.Text = Global.Outworldz.My.Resources._0
         PictureBox1.BackgroundImage = Global.Outworldz.My.Resources.folder
         Text = Global.Outworldz.My.Resources.Auto_Backup_word
         ToolStripMenuItem30.Image = Global.Outworldz.My.Resources.question_and_answer
         ToolStripMenuItem30.Text = Global.Outworldz.My.Resources.Help_word
-        ' tool tips
         ToolTip1.SetToolTip(AutoBackup, Global.Outworldz.My.Resources.If_Enabled_Save_Oars)
         ToolTip1.SetToolTip(AutoBackupInterval, Global.Outworldz.My.Resources.How_Long_runs)
         ToolTip1.SetToolTip(AutoBackupKeepFilesForDays, Global.Outworldz.My.Resources.How_Long)
-        ToolTip1.SetToolTip(BaseFolder, Global.Outworldz.My.Resources.Normally_Set)
-        ToolTip1.SetToolTip(PictureBox1, Global.Outworldz.My.Resources.Click_to_change_the_folder)
         ToolTip1.SetToolTip(BackupTypeButton, Global.Outworldz.My.Resources.tt_Click_to_Set_Backup_Types)
-        ToolTip1.SetToolTip(LabelInterval, Global.Outworldz.My.Resources.How_Long_runs)
+        ToolTip1.SetToolTip(BaseFolder, Global.Outworldz.My.Resources.Normally_Set)
         ToolTip1.SetToolTip(LabelDays, Global.Outworldz.My.Resources.How_Long)
+        ToolTip1.SetToolTip(LabelInterval, Global.Outworldz.My.Resources.How_Long_runs)
+        ToolTip1.SetToolTip(PictureBox1, Global.Outworldz.My.Resources.Click_to_change_the_folder)
 
         AutoBackupKeepFilesForDays.Text = CStr(Settings.KeepForDays)
 
@@ -188,7 +190,7 @@ Public Class FormAutoBackups
 
     Private Sub BackupFolderDialog()
 
-        Dim f = Settings.BackupFolder.Replace("/", "\")
+        Dim f = BackupPath().Replace("/", "\")
         'Create an instance of the open file dialog box.
         Using openFileDialog1 = New FolderBrowserDialog With {
             .ShowNewFolderButton = True,
@@ -226,6 +228,7 @@ Public Class FormAutoBackups
         BackupForm.Visible = True
         BackupForm.Select()
         BackupForm.BringToFront()
+        Me.Close()
 
     End Sub
 
@@ -241,7 +244,7 @@ Public Class FormAutoBackups
 
     Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
 
-        Dim f = Settings.BackupFolder.Replace("/", "\")
+        Dim f = BackupPath().Replace("/", "\")
         System.Diagnostics.Process.Start("explorer.exe", $"/open, {f}")
 
     End Sub

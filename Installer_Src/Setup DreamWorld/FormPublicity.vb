@@ -51,7 +51,7 @@ Public Class FormPublicity
     Private Sub GDPRCheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles GDPRCheckBox.CheckedChanged
 
         If initted Then
-            Settings.GDPR() = GDPRCheckBox.Checked
+            Settings.Gdpr() = GDPRCheckBox.Checked
             Settings.SaveSettings()
         End If
 
@@ -98,7 +98,7 @@ Public Class FormPublicity
 
         SetScreen()
 
-        GDPRCheckBox.Checked = Settings.GDPR()
+        GDPRCheckBox.Checked = Settings.Gdpr()
 
         Dim p = IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\Photo.png")
         Try

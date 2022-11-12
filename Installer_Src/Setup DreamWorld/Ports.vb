@@ -64,8 +64,6 @@ Module Ports
                             Else
                                 RegionPortList.TryAdd(RegionPort, RegionUUID) ' add
                             End If
-                        Else
-
                         End If
                     Next
                 Catch ex As Exception
@@ -114,8 +112,7 @@ Module Ports
     ''' <returns>True if it is removed, false if it fails to be removed</returns>
     Public Function ReleasePort(Port As Integer) As Boolean
         If RegionPortList.ContainsKey(Port) Then
-            Dim RegionUUID As String = ""
-            Return RegionPortList.TryRemove(Port, RegionUUID)
+            Return RegionPortList.TryRemove(Port, "")
         End If
         Return True
     End Function

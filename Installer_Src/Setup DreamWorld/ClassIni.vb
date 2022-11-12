@@ -82,7 +82,7 @@ Public Class LoadIni
         Dim bool As Boolean
         If V = "Boolean" Then
             If Not Boolean.TryParse(Variable, bool) Then
-                Return Variable
+                Return False
             End If
             Return bool
         ElseIf V = "String" Then
@@ -90,19 +90,19 @@ Public Class LoadIni
         ElseIf V = "Double" Then
             Dim DBL As Double
             If Not Double.TryParse(Variable, DBL) Then
-                Return Variable
+                Return 0
             End If
             Return DBL
         ElseIf V = "Single" Then
             Dim SNG As Single
             If Not Single.TryParse(Variable, SNG) Then
-                Return Variable
+                Return 0
             End If
             Return SNG
         ElseIf V = "Integer" Then
             Dim I As Integer
             If Not Integer.TryParse(Variable, I) Then
-                Return Variable
+                Return 0
             End If
             Return I
         End If
@@ -111,8 +111,10 @@ Public Class LoadIni
 
     End Function
 
-    Public Sub SaveINI()
+    <CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2201:DoNotRaiseReservedExceptionTypes")>
+    Public Sub SaveIni()
 
+        CopyFileFast(Settings.CurrentDirectory + "\OutworldzFiles\Settings.ini", Settings.CurrentDirectory + "\OutworldzFiles\Settings.bak")
         Dim Retry As Integer = 100 ' 1 sec
         While Retry > 0
             Try

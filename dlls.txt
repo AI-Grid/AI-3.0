@@ -15,8 +15,10 @@
 \OutworldzFiles\Opensim\bin\Diva.Wifi.ScriptEngine.dll
 \OutworldzFiles\Opensim\bin\DotNetOpenId.dll
 \OutworldzFiles\Opensim\bin\DotNetOpenMail.dll
+\OutworldzFiles\Opensim\bin\Gloebit.dll
 \OutworldzFiles\Opensim\bin\ICSharpCode.SharpZipLib.dll
 \OutworldzFiles\Opensim\bin\Ionic.Zip.dll
+\OutworldzFiles\Opensim\bin\jOpenSimSearch.Modules.dll
 \OutworldzFiles\Opensim\bin\lame_enc.dll
 \OutworldzFiles\Opensim\bin\log4net.dll
 \OutworldzFiles\Opensim\bin\LukeSkywalker.IPNetwork.dll
@@ -124,6 +126,7 @@
 \OutworldzFiles\Opensim\bin\OpenSim.Tests.Performance.dll
 \OutworldzFiles\Opensim\bin\OpenSim.Tests.Permissions.dll
 \OutworldzFiles\Opensim\bin\OpenSim.Tests.Stress.dll
+\OutworldzFiles\Opensim\bin\OpenSimBirds.Module.dll
 \OutworldzFiles\Opensim\bin\OpenSimSearch.Modules.dll
 \OutworldzFiles\Opensim\bin\OpenSimTide.Module.dll
 \OutworldzFiles\Opensim\bin\PrimMesher.dll

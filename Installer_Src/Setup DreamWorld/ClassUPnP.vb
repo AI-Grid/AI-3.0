@@ -190,8 +190,8 @@ Public Class UPnp
         Dim LIP As String = ""
         Try
             If CacheIP.Length = 0 Then
-                If Settings.DNSName = "localhost" Or Settings.DNSName = "127.0.0.1" Then
-                    Return Settings.DNSName
+                If Settings.DnsName = "localhost" Or Settings.DnsName = "127.0.0.1" Then
+                    Return Settings.DnsName
                 End If
 
                 Dim sock As Socket = New Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0)

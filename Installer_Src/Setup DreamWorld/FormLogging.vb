@@ -64,24 +64,25 @@ Public Class FormLogging
 
     Private Sub Loaded(sender As Object, e As EventArgs) Handles Me.Load
 
+        AnalyzeButton.Text = Global.Outworldz.My.Resources.AnalyzeLogButton
+        Date_Time_Checkbox.Checked = Settings.ShowDateandTimeinLogs
+        Date_Time_Checkbox.Text = Global.Outworldz.My.Resources.ShowDateTime
+        DeleteOnBoot.Checked = Settings.DeleteByDate
+        DeleteOnBoot.Text = Global.Outworldz.My.Resources.DeletebyAge
         GroupBox1.Text = Global.Outworldz.My.Resources.Log_Level
         HelpToolStripMenuItem.Image = Global.Outworldz.My.Resources.question_and_answer
         HelpToolStripMenuItem.Text = Global.Outworldz.My.Resources.Help_word
+        KeepLog.Checked = Not Settings.DeleteByDate
+        KeepLog.Text = Global.Outworldz.My.Resources.KeepAlways
+        LogBenchmarks.Text = Global.Outworldz.My.Resources.LogBenchmarks
+        NotePadButton.Text = My.Resources.NotePadButton
         RadioDebug.Text = Global.Outworldz.My.Resources.Debug_word
         RadioError.Text = Global.Outworldz.My.Resources.Error_word
         RadioFatal.Text = Global.Outworldz.My.Resources.Fatal_word
         RadioInfo.Text = Global.Outworldz.My.Resources.Info_word
         RadioOff.Text = Global.Outworldz.My.Resources.Off
         RadioWarn.Text = Global.Outworldz.My.Resources.Warn_word
-        DeleteOnBoot.Text = Global.Outworldz.My.Resources.DeletebyAge
-        KeepLog.Text = Global.Outworldz.My.Resources.KeepAlways
         ViewLogButton.Text = Global.Outworldz.My.Resources.View_Logs
-        AnalyzeButton.Text = Global.Outworldz.My.Resources.AnalyzeLogButton
-        Date_Time_Checkbox.Text = Global.Outworldz.My.Resources.ShowDateTime
-
-        Date_Time_Checkbox.Checked = Settings.ShowDateandTimeinLogs
-        DeleteOnBoot.Checked = Settings.DeleteByDate
-        KeepLog.Checked = Not Settings.DeleteByDate
 
         LogBenchmarks.Checked = Settings.LogBenchmarks
 
@@ -107,7 +108,7 @@ Public Class FormLogging
         If Settings.Logger = "Baretail" Then
             BaretailButton.Checked = True
         Else
-            OutputViewerButton.Checked = True
+            NotePadButton.Checked = True
         End If
 
         HelpOnce("Logging")
@@ -196,6 +197,22 @@ Public Class FormLogging
 
     End Sub
 
+    Private Shared Sub LookatYengine(line As String, outputfile As StreamWriter, RegionName As String)
+
+        Dim pattern = New Regex("^(.*?)(\[YEngine\]\:.*)")
+        Dim match As Match = pattern.Match(line)
+        If match.Success Then
+            Dim DateTime1 As String = ""
+            Try
+                DateTime1 = match.Groups(1).Value
+            Catch
+            End Try
+            outputfile.WriteLine($"<tr><td>{DateTime1}</td><td>{RegionName}</td><td>{line}</td></tr>")
+        End If
+        Return
+
+    End Sub
+
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles AnalyzeButton.Click
 
         AnalyzeButton.Text = Global.Outworldz.My.Resources.Busy_word
@@ -218,10 +235,10 @@ Public Class FormLogging
                 outputFile.WriteLine("<table id=""t01"">")
                 outputFile.WriteLine("<tr><td>DateType</td><td>Region</td><td>Message</td></tr>")
 
-                For Each UUID As String In RegionUuids()
+                For Each UUID In RegionUuids()
                     Application.DoEvents()
                     Dim GroupName = Group_Name(UUID)
-                    ExamineOpensim(outputFile, GroupName)
+                    ExamineOpensim(outputFile, GroupName, Region_Name(UUID))
                 Next
                 outputFile.WriteLine("</table>")
             End Using
@@ -273,7 +290,7 @@ Public Class FormLogging
 
     End Sub
 
-    Private Sub ExamineOpensim(outputfile As StreamWriter, GroupName As String)
+    Private Sub ExamineOpensim(outputfile As StreamWriter, GroupName As String, RegionName As String)
 
         Try
             Dim Region = IO.Path.Combine(Settings.OpensimBinPath, $"Regions\{GroupName}\Opensim.log")
@@ -284,8 +301,8 @@ Public Class FormLogging
                         While S.Peek <> -1
                             _LineCounter += 1
                             Dim line = S.ReadLine()
-                            LookatOpensim(line, outputfile, GroupName)
-                            LookatYengine(line, outputfile, GroupName)
+                            LookatOpensim(line, outputfile, RegionName)
+                            LookatYengine(line, outputfile, RegionName)
                             Application.DoEvents()
                         End While
                     End Using
@@ -324,7 +341,7 @@ Public Class FormLogging
 
     End Sub
 
-    Private Function LookatOpensim(line As String, outputfile As StreamWriter, GroupName As String) As Integer
+    Private Sub LookatOpensim(line As String, outputfile As StreamWriter, RegionName As String)
 
         Dim pattern = New Regex("^(.*?),.*?ERROR(.*?)(<.*?,.*?,.*?>)(.*)")
         Dim match As Match = pattern.Match(line)
@@ -333,44 +350,21 @@ Public Class FormLogging
             Dim Preamble = match.Groups(2).Value
             Dim Vector = match.Groups(3).Value
             Dim Last = match.Groups(4).Value
-            outputfile.WriteLine($"<tr><td>{DateTime}</td><td>{GroupName}</td><td>{Preamble} <a href=""hop://{Settings.PublicIP}:{Settings.HttpPort} {GroupName}""> {Vector} </a> {Last} {GroupName}</td></tr>")
+            Dim v = Vector
+            v = v.Replace(",", "/")
+            v = v.Replace(" ", "")
+            v = v.Replace("<", "")
+            v = v.Replace(">", "")
+            outputfile.WriteLine($"<tr><td>{DateTime}</td><td>{RegionName}</td><td>{Preamble} <a href=""hop://{Settings.PublicIP}:{Settings.HttpPort}/{RegionName}/{v}""> {RegionName}/{v}</a> {Last}</td></tr>")
             _Err += 1
-            Return 1
         End If
-        Return 0
+        Return
 
-    End Function
+    End Sub
 
-    Private Function LookatYengine(line As String, outputfile As StreamWriter, GroupName As String) As Integer
+    Private Sub OutputViewerButton_CheckedChanged(sender As Object, e As EventArgs) Handles NotePadButton.CheckedChanged
 
-        Dim pattern = New Regex("^(.*?)(\[YEngine\]\:.*)|^(.*?)(\[YEngine\]\:.*)")
-        Dim match As Match = pattern.Match(line)
-        If match.Success Then
-            Dim DateTime1 As String = ""
-            Dim A As String = ""
-            Try
-                DateTime1 = match.Groups(1).Value
-                A = match.Groups(2).Value
-            Catch
-            End Try
-            Dim DateTime2 As String = ""
-            Dim B As String = ""
-            Try
-                DateTime2 = match.Groups(3).Value
-                B = match.Groups(4).Value
-            Catch
-            End Try
-            outputfile.WriteLine($"<tr><td>{DateTime1}{DateTime2}</td><td>{GroupName}</td><td>{A}{B}</td></tr>")
-            _Err += 1
-            Return 1
-        End If
-        Return 0
-
-    End Function
-
-    Private Sub OutputViewerButton_CheckedChanged(sender As Object, e As EventArgs) Handles OutputViewerButton.CheckedChanged
-
-        Settings.Logger = "Outputviewer"
+        Settings.Logger = "NotePad"
         Settings.SaveSettings()
 
     End Sub
@@ -386,7 +380,7 @@ Public Class FormLogging
 
     End Sub
 
-    Private Sub BaretailPictureBox_Click(sender As Object, e As EventArgs) Handles BaretailPictureBox.Click
+    Private Sub BaretailPictureBox_Click(sender As Object, e As EventArgs)
         Dim webAddress As String = "https://www.baremetalsoft.com/baretail/"
         Try
             Process.Start(webAddress)
@@ -405,7 +399,7 @@ Public Class FormLogging
 
     End Sub
 
-    Private Sub QuickmanagerPictureBox_Click(sender As Object, e As EventArgs) Handles QuickmanagerPictureBox.Click
+    Private Sub QuickmanagerPictureBox_Click(sender As Object, e As EventArgs)
         Dim webAddress As String = "https://github.com/itlezy/ITLezyTools#outputviewer"
         Try
             Process.Start(webAddress)

@@ -23,7 +23,22 @@ Partial Class FormEmailSetup
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.SMTPSendEmailAccountBox = New System.Windows.Forms.GroupBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.MaxMailSizeTextBox = New System.Windows.Forms.TextBox()
+        Me.MaxMailSizeTextBoxLabel = New System.Windows.Forms.Label()
+        Me.email_pause_timeTextBox = New System.Windows.Forms.TextBox()
+        Me.EmailPauseTimeLabel = New System.Windows.Forms.Label()
+        Me.enableEmailToSMTPCheckBox = New System.Windows.Forms.CheckBox()
+        Me.enableEmailToExternalObjectsCheckBox = New System.Windows.Forms.CheckBox()
+        Me.MailsToSMTPAddressPerHourTextBox = New System.Windows.Forms.TextBox()
+        Me.MailsToSMTPAddressPerHourLabel = New System.Windows.Forms.Label()
+        Me.SMTP_MailsPerDayTextBox = New System.Windows.Forms.TextBox()
+        Me.MailsPerDayLabel = New System.Windows.Forms.Label()
+        Me.MailsToPrimAddressPerHourTextBox = New System.Windows.Forms.TextBox()
+        Me.LabelMailsToPrimAddressPerHour = New System.Windows.Forms.Label()
+        Me.MailsFromPrimOwnerPerHourLabel = New System.Windows.Forms.Label()
+        Me.MailsFromOwnerPerHourTextBox = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.RadioButtonStartTlsWhenAvailable = New System.Windows.Forms.RadioButton()
         Me.RadioButtonNone = New System.Windows.Forms.RadioButton()
@@ -42,50 +57,176 @@ Partial Class FormEmailSetup
         Me.EmailUsername = New System.Windows.Forms.TextBox()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.MaxMailSizeTextBox = New System.Windows.Forms.TextBox()
-        Me.MaxMailSizeTextBoxLabel = New System.Windows.Forms.Label()
-        Me.email_pause_timeTextBox = New System.Windows.Forms.TextBox()
-        Me.EmailPauseTimeLabel = New System.Windows.Forms.Label()
-        Me.enableEmailToSMTPCheckBox = New System.Windows.Forms.CheckBox()
-        Me.enableEmailToExternalObjectsCheckBox = New System.Windows.Forms.CheckBox()
-        Me.MailsToSMTPAddressPerHourTextBox = New System.Windows.Forms.TextBox()
-        Me.MailsToSMTPAddressPerHourLabel = New System.Windows.Forms.Label()
-        Me.SMTP_MailsPerDayTextBox = New System.Windows.Forms.TextBox()
-        Me.MailsPerDayLabel = New System.Windows.Forms.Label()
-        Me.MailsToPrimAddressPerHourTextBox = New System.Windows.Forms.TextBox()
-        Me.LabelMailsToPrimAddressPerHour = New System.Windows.Forms.Label()
-        Me.MailsFromPrimOwnerPerHourLabel = New System.Windows.Forms.Label()
-        Me.MailsFromOwnerPerHourTextBox = New System.Windows.Forms.TextBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.GroupBox6.SuspendLayout()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.SMTPSendEmailAccountBox.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'GroupBox6
+        'SMTPSendEmailAccountBox
         '
-        Me.GroupBox6.Controls.Add(Me.GroupBox1)
-        Me.GroupBox6.Controls.Add(Me.GroupBox2)
-        Me.GroupBox6.Controls.Add(Me.EmailEnabledCheckBox)
-        Me.GroupBox6.Controls.Add(Me.SmtpPort)
-        Me.GroupBox6.Controls.Add(Me.EmailPortLabel)
-        Me.GroupBox6.Controls.Add(Me.SmtpHost)
-        Me.GroupBox6.Controls.Add(Me.EmailHostLabel)
-        Me.GroupBox6.Controls.Add(Me.EmailPassword)
-        Me.GroupBox6.Controls.Add(Me.EmailPasswordLabel)
-        Me.GroupBox6.Controls.Add(Me.UserNameLabel)
-        Me.GroupBox6.Controls.Add(Me.EmailUsername)
-        Me.GroupBox6.Location = New System.Drawing.Point(34, 48)
-        Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(662, 331)
-        Me.GroupBox6.TabIndex = 1
-        Me.GroupBox6.TabStop = False
-        Me.GroupBox6.Text = "SMTP Send Email Account"
+        Me.SMTPSendEmailAccountBox.Controls.Add(Me.GroupBox1)
+        Me.SMTPSendEmailAccountBox.Controls.Add(Me.GroupBox2)
+        Me.SMTPSendEmailAccountBox.Controls.Add(Me.EmailEnabledCheckBox)
+        Me.SMTPSendEmailAccountBox.Controls.Add(Me.SmtpPort)
+        Me.SMTPSendEmailAccountBox.Controls.Add(Me.EmailPortLabel)
+        Me.SMTPSendEmailAccountBox.Controls.Add(Me.SmtpHost)
+        Me.SMTPSendEmailAccountBox.Controls.Add(Me.EmailHostLabel)
+        Me.SMTPSendEmailAccountBox.Controls.Add(Me.EmailPassword)
+        Me.SMTPSendEmailAccountBox.Controls.Add(Me.EmailPasswordLabel)
+        Me.SMTPSendEmailAccountBox.Controls.Add(Me.UserNameLabel)
+        Me.SMTPSendEmailAccountBox.Controls.Add(Me.EmailUsername)
+        Me.SMTPSendEmailAccountBox.Location = New System.Drawing.Point(34, 48)
+        Me.SMTPSendEmailAccountBox.Name = "SMTPSendEmailAccountBox"
+        Me.SMTPSendEmailAccountBox.Size = New System.Drawing.Size(662, 331)
+        Me.SMTPSendEmailAccountBox.TabIndex = 1
+        Me.SMTPSendEmailAccountBox.TabStop = False
+        Me.SMTPSendEmailAccountBox.Text = "SMTP Send Email Account"
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.MaxMailSizeTextBox)
+        Me.GroupBox1.Controls.Add(Me.MaxMailSizeTextBoxLabel)
+        Me.GroupBox1.Controls.Add(Me.email_pause_timeTextBox)
+        Me.GroupBox1.Controls.Add(Me.EmailPauseTimeLabel)
+        Me.GroupBox1.Controls.Add(Me.enableEmailToSMTPCheckBox)
+        Me.GroupBox1.Controls.Add(Me.enableEmailToExternalObjectsCheckBox)
+        Me.GroupBox1.Controls.Add(Me.MailsToSMTPAddressPerHourTextBox)
+        Me.GroupBox1.Controls.Add(Me.MailsToSMTPAddressPerHourLabel)
+        Me.GroupBox1.Controls.Add(Me.SMTP_MailsPerDayTextBox)
+        Me.GroupBox1.Controls.Add(Me.MailsPerDayLabel)
+        Me.GroupBox1.Controls.Add(Me.MailsToPrimAddressPerHourTextBox)
+        Me.GroupBox1.Controls.Add(Me.LabelMailsToPrimAddressPerHour)
+        Me.GroupBox1.Controls.Add(Me.MailsFromPrimOwnerPerHourLabel)
+        Me.GroupBox1.Controls.Add(Me.MailsFromOwnerPerHourTextBox)
+        Me.GroupBox1.Location = New System.Drawing.Point(344, 29)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(309, 288)
+        Me.GroupBox1.TabIndex = 9
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Options"
+        '
+        'MaxMailSizeTextBox
+        '
+        Me.MaxMailSizeTextBox.Location = New System.Drawing.Point(9, 218)
+        Me.MaxMailSizeTextBox.Name = "MaxMailSizeTextBox"
+        Me.MaxMailSizeTextBox.Size = New System.Drawing.Size(45, 20)
+        Me.MaxMailSizeTextBox.TabIndex = 15
+        '
+        'MaxMailSizeTextBoxLabel
+        '
+        Me.MaxMailSizeTextBoxLabel.AutoSize = True
+        Me.MaxMailSizeTextBoxLabel.Location = New System.Drawing.Point(60, 221)
+        Me.MaxMailSizeTextBoxLabel.Name = "MaxMailSizeTextBoxLabel"
+        Me.MaxMailSizeTextBoxLabel.Size = New System.Drawing.Size(72, 13)
+        Me.MaxMailSizeTextBoxLabel.TabIndex = 14
+        Me.MaxMailSizeTextBoxLabel.Text = "Mail Max Size"
+        '
+        'email_pause_timeTextBox
+        '
+        Me.email_pause_timeTextBox.Location = New System.Drawing.Point(9, 191)
+        Me.email_pause_timeTextBox.Name = "email_pause_timeTextBox"
+        Me.email_pause_timeTextBox.Size = New System.Drawing.Size(45, 20)
+        Me.email_pause_timeTextBox.TabIndex = 13
+        '
+        'EmailPauseTimeLabel
+        '
+        Me.EmailPauseTimeLabel.AutoSize = True
+        Me.EmailPauseTimeLabel.Location = New System.Drawing.Point(60, 194)
+        Me.EmailPauseTimeLabel.Name = "EmailPauseTimeLabel"
+        Me.EmailPauseTimeLabel.Size = New System.Drawing.Size(85, 13)
+        Me.EmailPauseTimeLabel.TabIndex = 12
+        Me.EmailPauseTimeLabel.Text = "Mail Pause Time"
+        '
+        'enableEmailToSMTPCheckBox
+        '
+        Me.enableEmailToSMTPCheckBox.AutoSize = True
+        Me.enableEmailToSMTPCheckBox.Location = New System.Drawing.Point(9, 57)
+        Me.enableEmailToSMTPCheckBox.Name = "enableEmailToSMTPCheckBox"
+        Me.enableEmailToSMTPCheckBox.Size = New System.Drawing.Size(154, 17)
+        Me.enableEmailToSMTPCheckBox.TabIndex = 11
+        Me.enableEmailToSMTPCheckBox.Text = "Email to the World Enabled"
+        Me.enableEmailToSMTPCheckBox.UseVisualStyleBackColor = True
+        '
+        'enableEmailToExternalObjectsCheckBox
+        '
+        Me.enableEmailToExternalObjectsCheckBox.AutoSize = True
+        Me.enableEmailToExternalObjectsCheckBox.Location = New System.Drawing.Point(9, 29)
+        Me.enableEmailToExternalObjectsCheckBox.Name = "enableEmailToExternalObjectsCheckBox"
+        Me.enableEmailToExternalObjectsCheckBox.Size = New System.Drawing.Size(148, 17)
+        Me.enableEmailToExternalObjectsCheckBox.TabIndex = 10
+        Me.enableEmailToExternalObjectsCheckBox.Text = "Email To Objects Enabled"
+        Me.enableEmailToExternalObjectsCheckBox.UseVisualStyleBackColor = True
+        '
+        'MailsToSMTPAddressPerHourTextBox
+        '
+        Me.MailsToSMTPAddressPerHourTextBox.Location = New System.Drawing.Point(9, 165)
+        Me.MailsToSMTPAddressPerHourTextBox.Name = "MailsToSMTPAddressPerHourTextBox"
+        Me.MailsToSMTPAddressPerHourTextBox.Size = New System.Drawing.Size(45, 20)
+        Me.MailsToSMTPAddressPerHourTextBox.TabIndex = 7
+        '
+        'MailsToSMTPAddressPerHourLabel
+        '
+        Me.MailsToSMTPAddressPerHourLabel.AutoSize = True
+        Me.MailsToSMTPAddressPerHourLabel.Location = New System.Drawing.Point(60, 168)
+        Me.MailsToSMTPAddressPerHourLabel.Name = "MailsToSMTPAddressPerHourLabel"
+        Me.MailsToSMTPAddressPerHourLabel.Size = New System.Drawing.Size(166, 13)
+        Me.MailsToSMTPAddressPerHourLabel.TabIndex = 6
+        Me.MailsToSMTPAddressPerHourLabel.Text = "Mails To SMTP Address Per Hour"
+        '
+        'SMTP_MailsPerDayTextBox
+        '
+        Me.SMTP_MailsPerDayTextBox.Location = New System.Drawing.Point(9, 139)
+        Me.SMTP_MailsPerDayTextBox.Name = "SMTP_MailsPerDayTextBox"
+        Me.SMTP_MailsPerDayTextBox.Size = New System.Drawing.Size(45, 20)
+        Me.SMTP_MailsPerDayTextBox.TabIndex = 5
+        '
+        'MailsPerDayLabel
+        '
+        Me.MailsPerDayLabel.AutoSize = True
+        Me.MailsPerDayLabel.Location = New System.Drawing.Point(60, 141)
+        Me.MailsPerDayLabel.Name = "MailsPerDayLabel"
+        Me.MailsPerDayLabel.Size = New System.Drawing.Size(72, 13)
+        Me.MailsPerDayLabel.TabIndex = 4
+        Me.MailsPerDayLabel.Text = "Mails Per Day"
+        '
+        'MailsToPrimAddressPerHourTextBox
+        '
+        Me.MailsToPrimAddressPerHourTextBox.Location = New System.Drawing.Point(9, 113)
+        Me.MailsToPrimAddressPerHourTextBox.Name = "MailsToPrimAddressPerHourTextBox"
+        Me.MailsToPrimAddressPerHourTextBox.Size = New System.Drawing.Size(45, 20)
+        Me.MailsToPrimAddressPerHourTextBox.TabIndex = 3
+        '
+        'LabelMailsToPrimAddressPerHour
+        '
+        Me.LabelMailsToPrimAddressPerHour.AutoSize = True
+        Me.LabelMailsToPrimAddressPerHour.Location = New System.Drawing.Point(60, 115)
+        Me.LabelMailsToPrimAddressPerHour.Name = "LabelMailsToPrimAddressPerHour"
+        Me.LabelMailsToPrimAddressPerHour.Size = New System.Drawing.Size(156, 13)
+        Me.LabelMailsToPrimAddressPerHour.TabIndex = 2
+        Me.LabelMailsToPrimAddressPerHour.Text = "Mails To Prim Address Per Hour"
+        '
+        'MailsFromPrimOwnerPerHourLabel
+        '
+        Me.MailsFromPrimOwnerPerHourLabel.AutoSize = True
+        Me.MailsFromPrimOwnerPerHourLabel.Location = New System.Drawing.Point(60, 89)
+        Me.MailsFromPrimOwnerPerHourLabel.Name = "MailsFromPrimOwnerPerHourLabel"
+        Me.MailsFromPrimOwnerPerHourLabel.Size = New System.Drawing.Size(136, 13)
+        Me.MailsFromPrimOwnerPerHourLabel.TabIndex = 0
+        Me.MailsFromPrimOwnerPerHourLabel.Text = "Mails From Owner Per Hour"
+        '
+        'MailsFromOwnerPerHourTextBox
+        '
+        Me.MailsFromOwnerPerHourTextBox.Location = New System.Drawing.Point(9, 85)
+        Me.MailsFromOwnerPerHourTextBox.Name = "MailsFromOwnerPerHourTextBox"
+        Me.MailsFromOwnerPerHourTextBox.Size = New System.Drawing.Size(45, 20)
+        Me.MailsFromOwnerPerHourTextBox.TabIndex = 1
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.Button1)
         Me.GroupBox2.Controls.Add(Me.RadioButtonStartTlsWhenAvailable)
         Me.GroupBox2.Controls.Add(Me.RadioButtonNone)
         Me.GroupBox2.Controls.Add(Me.RadioButtonStartTls)
@@ -255,169 +396,39 @@ Partial Class FormEmailSetup
         Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
         Me.HelpToolStripMenuItem.Text = "Help"
         '
-        'GroupBox1
+        'Button1
         '
-        Me.GroupBox1.Controls.Add(Me.MaxMailSizeTextBox)
-        Me.GroupBox1.Controls.Add(Me.MaxMailSizeTextBoxLabel)
-        Me.GroupBox1.Controls.Add(Me.email_pause_timeTextBox)
-        Me.GroupBox1.Controls.Add(Me.EmailPauseTimeLabel)
-        Me.GroupBox1.Controls.Add(Me.enableEmailToSMTPCheckBox)
-        Me.GroupBox1.Controls.Add(Me.enableEmailToExternalObjectsCheckBox)
-        Me.GroupBox1.Controls.Add(Me.MailsToSMTPAddressPerHourTextBox)
-        Me.GroupBox1.Controls.Add(Me.MailsToSMTPAddressPerHourLabel)
-        Me.GroupBox1.Controls.Add(Me.SMTP_MailsPerDayTextBox)
-        Me.GroupBox1.Controls.Add(Me.MailsPerDayLabel)
-        Me.GroupBox1.Controls.Add(Me.MailsToPrimAddressPerHourTextBox)
-        Me.GroupBox1.Controls.Add(Me.LabelMailsToPrimAddressPerHour)
-        Me.GroupBox1.Controls.Add(Me.MailsFromPrimOwnerPerHourLabel)
-        Me.GroupBox1.Controls.Add(Me.MailsFromOwnerPerHourTextBox)
-        Me.GroupBox1.Location = New System.Drawing.Point(344, 29)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(309, 288)
-        Me.GroupBox1.TabIndex = 9
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Options"
-        '
-        'MaxMailSizeTextBox
-        '
-        Me.MaxMailSizeTextBox.Location = New System.Drawing.Point(9, 218)
-        Me.MaxMailSizeTextBox.Name = "MaxMailSizeTextBox"
-        Me.MaxMailSizeTextBox.Size = New System.Drawing.Size(45, 20)
-        Me.MaxMailSizeTextBox.TabIndex = 15
-        '
-        'MaxMailSizeTextBoxLabel
-        '
-        Me.MaxMailSizeTextBoxLabel.AutoSize = True
-        Me.MaxMailSizeTextBoxLabel.Location = New System.Drawing.Point(60, 221)
-        Me.MaxMailSizeTextBoxLabel.Name = "MaxMailSizeTextBoxLabel"
-        Me.MaxMailSizeTextBoxLabel.Size = New System.Drawing.Size(72, 13)
-        Me.MaxMailSizeTextBoxLabel.TabIndex = 14
-        Me.MaxMailSizeTextBoxLabel.Text = "Mail Max Size"
-        '
-        'email_pause_timeTextBox
-        '
-        Me.email_pause_timeTextBox.Location = New System.Drawing.Point(9, 191)
-        Me.email_pause_timeTextBox.Name = "email_pause_timeTextBox"
-        Me.email_pause_timeTextBox.Size = New System.Drawing.Size(45, 20)
-        Me.email_pause_timeTextBox.TabIndex = 13
-        '
-        'EmailPauseTimeLabel
-        '
-        Me.EmailPauseTimeLabel.AutoSize = True
-        Me.EmailPauseTimeLabel.Location = New System.Drawing.Point(60, 194)
-        Me.EmailPauseTimeLabel.Name = "EmailPauseTimeLabel"
-        Me.EmailPauseTimeLabel.Size = New System.Drawing.Size(85, 13)
-        Me.EmailPauseTimeLabel.TabIndex = 12
-        Me.EmailPauseTimeLabel.Text = "Mail Pause Time"
-        '
-        'enableEmailToSMTPCheckBox
-        '
-        Me.enableEmailToSMTPCheckBox.AutoSize = True
-        Me.enableEmailToSMTPCheckBox.Location = New System.Drawing.Point(9, 57)
-        Me.enableEmailToSMTPCheckBox.Name = "enableEmailToSMTPCheckBox"
-        Me.enableEmailToSMTPCheckBox.Size = New System.Drawing.Size(154, 17)
-        Me.enableEmailToSMTPCheckBox.TabIndex = 11
-        Me.enableEmailToSMTPCheckBox.Text = "Email to the World Enabled"
-        Me.enableEmailToSMTPCheckBox.UseVisualStyleBackColor = True
-        '
-        'enableEmailToExternalObjectsCheckBox
-        '
-        Me.enableEmailToExternalObjectsCheckBox.AutoSize = True
-        Me.enableEmailToExternalObjectsCheckBox.Location = New System.Drawing.Point(9, 29)
-        Me.enableEmailToExternalObjectsCheckBox.Name = "enableEmailToExternalObjectsCheckBox"
-        Me.enableEmailToExternalObjectsCheckBox.Size = New System.Drawing.Size(148, 17)
-        Me.enableEmailToExternalObjectsCheckBox.TabIndex = 10
-        Me.enableEmailToExternalObjectsCheckBox.Text = "Email To Objects Enabled"
-        Me.enableEmailToExternalObjectsCheckBox.UseVisualStyleBackColor = True
-        '
-        'MailsToSMTPAddressPerHourTextBox
-        '
-        Me.MailsToSMTPAddressPerHourTextBox.Location = New System.Drawing.Point(9, 165)
-        Me.MailsToSMTPAddressPerHourTextBox.Name = "MailsToSMTPAddressPerHourTextBox"
-        Me.MailsToSMTPAddressPerHourTextBox.Size = New System.Drawing.Size(45, 20)
-        Me.MailsToSMTPAddressPerHourTextBox.TabIndex = 7
-        '
-        'MailsToSMTPAddressPerHourLabel
-        '
-        Me.MailsToSMTPAddressPerHourLabel.AutoSize = True
-        Me.MailsToSMTPAddressPerHourLabel.Location = New System.Drawing.Point(60, 168)
-        Me.MailsToSMTPAddressPerHourLabel.Name = "MailsToSMTPAddressPerHourLabel"
-        Me.MailsToSMTPAddressPerHourLabel.Size = New System.Drawing.Size(166, 13)
-        Me.MailsToSMTPAddressPerHourLabel.TabIndex = 6
-        Me.MailsToSMTPAddressPerHourLabel.Text = "Mails To SMTP Address Per Hour"
-        '
-        'SMTP_MailsPerDayTextBox
-        '
-        Me.SMTP_MailsPerDayTextBox.Location = New System.Drawing.Point(9, 139)
-        Me.SMTP_MailsPerDayTextBox.Name = "SMTP_MailsPerDayTextBox"
-        Me.SMTP_MailsPerDayTextBox.Size = New System.Drawing.Size(45, 20)
-        Me.SMTP_MailsPerDayTextBox.TabIndex = 5
-        '
-        'MailsPerDayLabel
-        '
-        Me.MailsPerDayLabel.AutoSize = True
-        Me.MailsPerDayLabel.Location = New System.Drawing.Point(60, 141)
-        Me.MailsPerDayLabel.Name = "MailsPerDayLabel"
-        Me.MailsPerDayLabel.Size = New System.Drawing.Size(72, 13)
-        Me.MailsPerDayLabel.TabIndex = 4
-        Me.MailsPerDayLabel.Text = "Mails Per Day"
-        '
-        'MailsToPrimAddressPerHourTextBox
-        '
-        Me.MailsToPrimAddressPerHourTextBox.Location = New System.Drawing.Point(9, 113)
-        Me.MailsToPrimAddressPerHourTextBox.Name = "MailsToPrimAddressPerHourTextBox"
-        Me.MailsToPrimAddressPerHourTextBox.Size = New System.Drawing.Size(45, 20)
-        Me.MailsToPrimAddressPerHourTextBox.TabIndex = 3
-        '
-        'LabelMailsToPrimAddressPerHour
-        '
-        Me.LabelMailsToPrimAddressPerHour.AutoSize = True
-        Me.LabelMailsToPrimAddressPerHour.Location = New System.Drawing.Point(60, 115)
-        Me.LabelMailsToPrimAddressPerHour.Name = "LabelMailsToPrimAddressPerHour"
-        Me.LabelMailsToPrimAddressPerHour.Size = New System.Drawing.Size(156, 13)
-        Me.LabelMailsToPrimAddressPerHour.TabIndex = 2
-        Me.LabelMailsToPrimAddressPerHour.Text = "Mails To Prim Address Per Hour"
-        '
-        'MailsFromPrimOwnerPerHourLabel
-        '
-        Me.MailsFromPrimOwnerPerHourLabel.AutoSize = True
-        Me.MailsFromPrimOwnerPerHourLabel.Location = New System.Drawing.Point(60, 89)
-        Me.MailsFromPrimOwnerPerHourLabel.Name = "MailsFromPrimOwnerPerHourLabel"
-        Me.MailsFromPrimOwnerPerHourLabel.Size = New System.Drawing.Size(136, 13)
-        Me.MailsFromPrimOwnerPerHourLabel.TabIndex = 0
-        Me.MailsFromPrimOwnerPerHourLabel.Text = "Mails From Owner Per Hour"
-        '
-        'MailsFromOwnerPerHourTextBox
-        '
-        Me.MailsFromOwnerPerHourTextBox.Location = New System.Drawing.Point(9, 85)
-        Me.MailsFromOwnerPerHourTextBox.Name = "MailsFromOwnerPerHourTextBox"
-        Me.MailsFromOwnerPerHourTextBox.Size = New System.Drawing.Size(45, 20)
-        Me.MailsFromOwnerPerHourTextBox.TabIndex = 1
+        Me.Button1.Location = New System.Drawing.Point(163, 93)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(101, 23)
+        Me.Button1.TabIndex = 16
+        Me.Button1.Text = "Test"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'FormEmailSetup
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(712, 391)
-        Me.Controls.Add(Me.GroupBox6)
+        Me.Controls.Add(Me.SMTPSendEmailAccountBox)
         Me.Controls.Add(Me.MenuStrip1)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "FormEmailSetup"
         Me.Text = "FormEmailSetup"
-        Me.GroupBox6.ResumeLayout(False)
-        Me.GroupBox6.PerformLayout()
+        Me.SMTPSendEmailAccountBox.ResumeLayout(False)
+        Me.SMTPSendEmailAccountBox.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents GroupBox6 As GroupBox
+    Friend WithEvents SMTPSendEmailAccountBox As GroupBox
     Friend WithEvents SmtpPort As TextBox
     Friend WithEvents EmailPortLabel As Label
     Friend WithEvents SmtpHost As TextBox
@@ -452,4 +463,5 @@ Partial Class FormEmailSetup
     Friend WithEvents RadioButtonAuto As RadioButton
     Friend WithEvents RadioButtonSslOnConnect As RadioButton
     Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents Button1 As Button
 End Class

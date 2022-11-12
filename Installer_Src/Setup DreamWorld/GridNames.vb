@@ -13,7 +13,7 @@ Module GridNames
             TextPrint("--> " & My.Resources.Server_Type_is & " Robust")
             Settings.ExternalHostName = Settings.PublicIP
         ElseIf Settings.ServerType = OsgridServer Then
-            Settings.DNSName = "hg.osgrid.org"
+            Settings.DnsName = "hg.osgrid.org"
             Settings.BaseHostName = "hg.osgrid.org"
             Settings.ExternalHostName = WANIP()
             TextPrint("--> " & My.Resources.Server_Type_is & " OSGrid")
@@ -25,7 +25,7 @@ Module GridNames
             End If
             TextPrint("--> " & My.Resources.Server_Type_is & " Region")
         ElseIf Settings.ServerType = MetroServer Then
-            Settings.DNSName = "hg.metro.land"
+            Settings.DnsName = "hg.metro.land"
             Settings.ExternalHostName = Settings.PublicIP
             Settings.BaseHostName = "hg.metro.land"
             TextPrint("--> " & My.Resources.Server_Type_is & " Metro")

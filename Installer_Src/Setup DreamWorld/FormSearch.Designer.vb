@@ -27,7 +27,7 @@ Partial Class FormSearch
         Me.LocalButton = New System.Windows.Forms.RadioButton()
         Me.NoneButton = New System.Windows.Forms.RadioButton()
         Me.JOpensimRadioButton = New System.Windows.Forms.RadioButton()
-        Me.HypericaRadioButton = New System.Windows.Forms.RadioButton()
+        Me.OutworldzRadioButton = New System.Windows.Forms.RadioButton()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
@@ -40,7 +40,7 @@ Partial Class FormSearch
         Me.SearchBox.Controls.Add(Me.LocalButton)
         Me.SearchBox.Controls.Add(Me.NoneButton)
         Me.SearchBox.Controls.Add(Me.JOpensimRadioButton)
-        Me.SearchBox.Controls.Add(Me.HypericaRadioButton)
+        Me.SearchBox.Controls.Add(Me.OutworldzRadioButton)
         Me.SearchBox.Location = New System.Drawing.Point(16, 39)
         Me.SearchBox.Margin = New System.Windows.Forms.Padding(2)
         Me.SearchBox.Name = "SearchBox"
@@ -85,18 +85,19 @@ Partial Class FormSearch
         Me.JOpensimRadioButton.TabStop = True
         Me.JOpensimRadioButton.Text = Global.Outworldz.My.Resources.Resources.JOpensimSearch_word
         Me.JOpensimRadioButton.UseVisualStyleBackColor = True
+        Me.JOpensimRadioButton.Visible = False
         '
-        'HypericaRadioButton
+        'OutworldzRadioButton
         '
-        Me.HypericaRadioButton.AutoSize = True
-        Me.HypericaRadioButton.Location = New System.Drawing.Point(22, 75)
-        Me.HypericaRadioButton.Margin = New System.Windows.Forms.Padding(2)
-        Me.HypericaRadioButton.Name = "HypericaRadioButton"
-        Me.HypericaRadioButton.Size = New System.Drawing.Size(104, 17)
-        Me.HypericaRadioButton.TabIndex = 1
-        Me.HypericaRadioButton.TabStop = True
-        Me.HypericaRadioButton.Text = Global.Outworldz.My.Resources.Resources.HypericaSearch_word
-        Me.HypericaRadioButton.UseVisualStyleBackColor = True
+        Me.OutworldzRadioButton.AutoSize = True
+        Me.OutworldzRadioButton.Location = New System.Drawing.Point(22, 75)
+        Me.OutworldzRadioButton.Margin = New System.Windows.Forms.Padding(2)
+        Me.OutworldzRadioButton.Name = "OutworldzRadioButton"
+        Me.OutworldzRadioButton.Size = New System.Drawing.Size(92, 17)
+        Me.OutworldzRadioButton.TabIndex = 1
+        Me.OutworldzRadioButton.TabStop = True
+        Me.OutworldzRadioButton.Text = Global.Outworldz.My.Resources.Resources.HypericaSearch_word
+        Me.OutworldzRadioButton.UseVisualStyleBackColor = True
         '
         'ToolStrip1
         '
@@ -145,7 +146,7 @@ Partial Class FormSearch
     Friend WithEvents SearchBox As GroupBox
     Friend WithEvents NoneButton As RadioButton
     Friend WithEvents JOpensimRadioButton As RadioButton
-    Friend WithEvents HypericaRadioButton As RadioButton
+    Friend WithEvents OutworldzRadioButton As RadioButton
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents ToolStripButton1 As ToolStripButton
     Friend WithEvents ToolStripLabel1 As ToolStripLabel

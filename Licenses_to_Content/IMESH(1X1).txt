@@ -1,5 +1,0 @@
-
-
-I-Meshstore by Avia Bonne
-A Ikea-like store made with meshmodels of free 3D websites.
-Furnitures mostly. A gift of useful converted mesh to open sim users.

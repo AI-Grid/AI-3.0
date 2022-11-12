@@ -50,14 +50,12 @@ Public Class FormEmailSetup
         EmailPassword.UseSystemPasswordChar = True
         EmailPasswordLabel.Text = Global.Outworldz.My.Resources.SMTPPassword_word
         ToolTip1.SetToolTip(EmailPassword, Global.Outworldz.My.Resources.tt_Click_to_reveal_password)
-
+        HelpToolStripMenuItem.Text = My.Resources.Help_word
         UserNameLabel.Text = Global.Outworldz.My.Resources.User_Name_word
         EmailUsername.Text = Settings.SmtPropUserName
         ToolTip1.SetToolTip(UserNameLabel, Global.Outworldz.My.Resources.tt_EmailUserName)
         ToolTip1.SetToolTip(EmailUsername, Global.Outworldz.My.Resources.tt_EmailUserName)
-
-        ';# {enabled} {[Startup]emailmoduleDefaultEmailModule} {Enable module?} {true false} false
-        ';; Enable the email module
+        SMTPSendEmailAccountBox.Text = My.Resources.enableEmailToSMTP
         EmailEnabledCheckBox.Checked = Settings.EmailEnabled
         EmailEnabledCheckBox.Text = Global.Outworldz.My.Resources.EmailEnabled
         ToolTip1.SetToolTip(EmailEnabledCheckBox, Global.Outworldz.My.Resources.tt_EmailEnabled)
@@ -81,10 +79,10 @@ Public Class FormEmailSetup
         ';# {enabled} {[Startup]emailmoduleDefaultEmailModule} {Enable send to objects to regions Not on instance?} {true false} true
         ';; Enable sending email to regions Not on current opensimulator instance. Currently does Not work
         enableEmailToExternalObjectsCheckBox.Text = Global.Outworldz.My.Resources.EmailToObjectsEnabled
-        enableEmailToExternalObjectsCheckBox.Checked = Settings.enableEmailToExternalObjects
+        enableEmailToExternalObjectsCheckBox.Checked = Settings.EnableEmailToExternalObjects
         ToolTip1.SetToolTip(enableEmailToExternalObjectsCheckBox, Global.Outworldz.My.Resources.tt_enableEmailToExternalObjects)
 
-        enableEmailToSMTPCheckBox.Checked = Settings.enableEmailToSMTPCheckBox
+        enableEmailToSMTPCheckBox.Checked = Settings.EnableEmailToSMTPCheckBox
         enableEmailToSMTPCheckBox.Text = Global.Outworldz.My.Resources.enableEmailToSMTP
         ToolTip1.SetToolTip(enableEmailToSMTPCheckBox, Global.Outworldz.My.Resources.tt_enableEmailToSMTPCheckBox)
 
@@ -153,6 +151,7 @@ Public Class FormEmailSetup
         RadioButtonStartTlsWhenAvailable.Text = Global.Outworldz.My.Resources.StartTlsWhenAvailable
         ToolTip1.SetToolTip(RadioButtonStartTlsWhenAvailable, Global.Outworldz.My.Resources.tt_StartTlsWhenAvailable)
 
+        Button1.Text = My.Resources.Test_word
         HelpOnce("Email")
 
         SetScreen()
@@ -163,6 +162,27 @@ Public Class FormEmailSetup
 #End Region
 
 #Region "TextBoxes"
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        If Not Settings.EmailEnabled Then
+            MsgBox(My.Resources.EmailDisabled, MsgBoxStyle.Information Or MsgBoxStyle.MsgBoxSetForeground, Global.Outworldz.My.Resources.Error_word)
+            Return
+        End If
+
+        If Not Settings.EnableEmailToSMTPCheckBox Then
+            MsgBox(My.Resources.SMTPDisabled, MsgBoxStyle.Information Or MsgBoxStyle.MsgBoxSetForeground, Global.Outworldz.My.Resources.Error_word)
+            Return
+        End If
+
+        Dim result = SendEmail(Settings.SmtPropUserName, Settings.SmtPropUserName, "Test Message from Dreamgrid", "Test Message from Dreamgrid")
+        If result = My.Resources.Ok Then
+            Button1.Text = My.Resources.Ok
+            Sleep(3000)
+            Button1.Text = My.Resources.Send_word
+        End If
+
+    End Sub
 
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles VerifyCertificateCheckBox.CheckedChanged
 
@@ -208,14 +228,14 @@ Public Class FormEmailSetup
     Private Sub enableEmailToExternalObjectsCheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles enableEmailToExternalObjectsCheckBox.CheckedChanged
 
         If Not initted Then Return
-        Settings.enableEmailToExternalObjects = enableEmailToExternalObjectsCheckBox.Checked
+        Settings.EnableEmailToExternalObjects = enableEmailToExternalObjectsCheckBox.Checked
 
     End Sub
 
     Private Sub enableEmailToSMTPCheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles enableEmailToSMTPCheckBox.CheckedChanged
 
         If Not initted Then Return
-        Settings.enableEmailToSMTPCheckBox = enableEmailToSMTPCheckBox.Checked
+        Settings.EnableEmailToSMTPCheckBox = enableEmailToSMTPCheckBox.Checked
 
     End Sub
 

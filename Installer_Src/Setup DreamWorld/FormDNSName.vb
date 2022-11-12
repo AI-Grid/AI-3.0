@@ -8,7 +8,7 @@
 Imports System.Net
 Imports System.Text.RegularExpressions
 
-Public Class FormDNSName
+Public Class FormDnsName
 
 #Region "Private Fields"
 
@@ -51,6 +51,7 @@ Public Class FormDNSName
 
     Private Sub DNS_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        PictureBox.Visible = False
         EnableHypergrid.Text = Global.Outworldz.My.Resources.Enable_Hypergrid_word
         HelpToolStripMenuItem.Image = Global.Outworldz.My.Resources.question_and_answer
         HelpToolStripMenuItem.Text = Global.Outworldz.My.Resources.Help_word
@@ -80,8 +81,8 @@ Public Class FormDNSName
             UniqueId.ReadOnly = False
         End If
 
-        DNSNameBox.Text = Settings.DNSName
-        UniqueId.Text = Settings.MachineID()
+        DNSNameBox.Text = Settings.DnsName
+        UniqueId.Text = Settings.MachineId()
         EnableHypergrid.Checked = Settings.EnableHypergrid
         SuitcaseCheckbox.Checked = Settings.Suitcase
         NextNameButton.Enabled = True
@@ -108,6 +109,7 @@ Public Class FormDNSName
 
     Private Sub NextNameButton_Click(sender As Object, e As EventArgs) Handles NextNameButton.Click
 
+
         NextNameButton.Text = Global.Outworldz.My.Resources.Busy_word
         DNSNameBox.Text = String.Empty
         Application.DoEvents()
@@ -121,9 +123,11 @@ Public Class FormDNSName
             DNSNameBox.Text = newname
         End If
 
+
     End Sub
 
     Private Sub SaveAll()
+
 
         NextNameButton.Text = Global.Outworldz.My.Resources.Saving_word
 
@@ -138,6 +142,7 @@ Public Class FormDNSName
 
         SaveAll()
         Close()
+
     End Sub
 
     Private Sub SuitcaseCheckbox_CheckedChanged(sender As Object, e As EventArgs) Handles SuitcaseCheckbox.CheckedChanged
@@ -153,6 +158,8 @@ Public Class FormDNSName
 
     Private Sub TestButton1_Click(sender As Object, e As EventArgs) Handles TestButton1.Click
 
+        PictureBox.Visible = True
+        Application.DoEvents()
         NextNameButton.Text = Global.Outworldz.My.Resources.Busy_word
 
         Dim address As System.Net.IPAddress = Nothing
@@ -166,6 +173,7 @@ Public Class FormDNSName
                 If IPAddress.TryParse(DNSNameBox.Text, address) Then
                     Dim IP = GetHostAddresses(DNSNameBox.Text)
                     If IP.Length = 0 Then
+                        PictureBox.Visible = False
                         MsgBox(My.Resources.Cannot_resolve_word & " " & DNSNameBox.Text, MsgBoxStyle.Information Or MsgBoxStyle.MsgBoxSetForeground, Global.Outworldz.My.Resources.Error_word)
                     Else
                         MsgBox(DNSNameBox.Text + " " & Global.Outworldz.My.Resources.resolved & " " & IP, MsgBoxStyle.Information Or MsgBoxStyle.MsgBoxSetForeground, Global.Outworldz.My.Resources.Info_word)
@@ -173,6 +181,7 @@ Public Class FormDNSName
                 Else
                     Dim IP = GetHostAddresses(DNSNameBox.Text)
                     If IP.Length = 0 Then
+                        PictureBox.Visible = False
                         MsgBox(My.Resources.Cannot_resolve_word & " " & DNSNameBox.Text, MsgBoxStyle.Information Or MsgBoxStyle.MsgBoxSetForeground, Global.Outworldz.My.Resources.Error_word)
                     Else
                         MsgBox(DNSNameBox.Text + " " & Global.Outworldz.My.Resources.resolved & " " & IP, MsgBoxStyle.Information Or MsgBoxStyle.MsgBoxSetForeground, Global.Outworldz.My.Resources.Info_word)
@@ -189,7 +198,7 @@ Public Class FormDNSName
                     For Each part As String In array
 
                         RegisterName(part)
-
+                        PictureBox.Visible = False
                         If IPAddress.TryParse(part, address) Then
                             MsgBox(Global.Outworldz.My.Resources.resolved & " " & part, MsgBoxStyle.Information Or MsgBoxStyle.MsgBoxSetForeground, Global.Outworldz.My.Resources.Info_word)
                         Else
@@ -210,6 +219,8 @@ Public Class FormDNSName
 
         NextNameButton.Text = Global.Outworldz.My.Resources.Next1
 
+        PictureBox.Visible = False
+
     End Sub
 
     <CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase")>
@@ -227,7 +238,7 @@ Public Class FormDNSName
             DNSNameBox.Text = DNSNameBox.Text.Replace("https://", "")
 
         End If
-        Settings.DNSName = DNSNameBox.Text
+        Settings.DnsName = DNSNameBox.Text
 
     End Sub
 
@@ -249,7 +260,7 @@ Public Class FormDNSName
     Private Sub UniqueId_TextChanged_1(sender As Object, e As EventArgs) Handles UniqueId.TextChanged
 
         If Not initted Then Return
-        Settings.MachineID() = UniqueId.Text
+        Settings.MachineId() = UniqueId.Text
 
     End Sub
 

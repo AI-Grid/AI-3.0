@@ -27,11 +27,11 @@ Module DNS
 
     Public Sub NewDNSName()
 
-        If Settings.DNSName.Length = 0 And Settings.EnableHypergrid Then
+        If Settings.DnsName.Length = 0 And Settings.EnableHypergrid Then
             Dim newname = GetNewDnsName()
             If newname.Length >= 0 Then
                 If RegisterName(newname) Then
-                    Settings.DNSName = newname
+                    Settings.DnsName = newname
                     Settings.PublicIP = newname
                     Settings.SaveSettings()
                     MsgBox(My.Resources.NameAlreadySet, MsgBoxStyle.Information Or MsgBoxStyle.MsgBoxSetForeground, Global.Outworldz.My.Resources.Information_word)
@@ -45,11 +45,8 @@ Module DNS
     Public Function RegisterName(DNSName As String) As Boolean
 
         DNSName = DNSName.Trim
-
         If DNSName Is Nothing Then Return False
-
         If DNSName.Length = 0 Then Return False
-
         Dim Checkname As String = String.Empty
 
         If IPCheck.IsPrivateIP(DNSName) Then
@@ -58,8 +55,8 @@ Module DNS
 
         Dim DNS = New List(Of String) From {
              "http://ns1.outworldz.net/dns.plx" & GetPostData(DNSName),
-             "http://ns1.outworldz.com/dns.plx" & GetPostData(DNSName),
              "http://ns2.outworldz.net/dns.plx" & GetPostData(DNSName),
+             "http://ns1.outworldz.com/dns.plx" & GetPostData(DNSName),
              "http://ns2.outworldz.com/dns.plx" & GetPostData(DNSName)
             }
 
@@ -78,7 +75,7 @@ Module DNS
                     MsgBox(DNSName & ":" & My.Resources.DDNS_In_Use, vbInformation Or MsgBoxStyle.MsgBoxSetForeground)
                     Exit For
                 End If
-
+                Application.doevents()
             Next
         End Using
 
@@ -88,9 +85,10 @@ Module DNS
 
     Public Sub SetPublicIP()
 
+        Application.DoEvents()
         Settings.WANIP = WANIP()
         Settings.LANIP = PropMyUPnpMap.LocalIP
-        Settings.MacAddress = GetMacByIp(Settings.LANIP)
+        Settings.MacAddress = GetMacByIP(Settings.LANIP)
 
         ' Region Name override
         If Settings.OverrideName.Length > 0 Then
@@ -106,10 +104,10 @@ Module DNS
         Next
 
         ' WAN USE
-        If Settings.DNSName.Length = 0 Then
+        If Settings.DnsName.Length = 0 Then
             Settings.PublicIP = Settings.LANIP
-        ElseIf Settings.DNSName.Length > 0 Then
-            Settings.PublicIP = Settings.DNSName()
+        ElseIf Settings.DnsName.Length > 0 Then
+            Settings.PublicIP = Settings.DnsName()
         ElseIf IsPrivateIP(Settings.PublicIP) Then
             ' NAT'd ROUTER
             Settings.PublicIP = Settings.LANIP

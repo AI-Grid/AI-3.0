@@ -29,12 +29,13 @@ Partial Class TosForm
         Me.ApplyButton = New System.Windows.Forms.Button()
         Me.MenuStrip2 = New System.Windows.Forms.MenuStrip()
         Me.ToolStripMenuItem30 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.MenuStrip2.SuspendLayout()
         Me.SuspendLayout()
         '
         'PreviewButton
         '
-        Me.PreviewButton.Location = New System.Drawing.Point(403, 489)
+        Me.PreviewButton.Location = New System.Drawing.Point(403, 474)
         Me.PreviewButton.Name = "PreviewButton"
         Me.PreviewButton.Size = New System.Drawing.Size(171, 23)
         Me.PreviewButton.TabIndex = 0
@@ -59,7 +60,7 @@ Partial Class TosForm
         '
         'SaveButton
         '
-        Me.SaveButton.Location = New System.Drawing.Point(86, 489)
+        Me.SaveButton.Location = New System.Drawing.Point(85, 474)
         Me.SaveButton.Name = "SaveButton"
         Me.SaveButton.Size = New System.Drawing.Size(89, 23)
         Me.SaveButton.TabIndex = 3
@@ -68,7 +69,7 @@ Partial Class TosForm
         '
         'ApplyButton
         '
-        Me.ApplyButton.Location = New System.Drawing.Point(247, 489)
+        Me.ApplyButton.Location = New System.Drawing.Point(248, 474)
         Me.ApplyButton.Name = "ApplyButton"
         Me.ApplyButton.Size = New System.Drawing.Size(95, 23)
         Me.ApplyButton.TabIndex = 4
@@ -93,12 +94,23 @@ Partial Class TosForm
         Me.ToolStripMenuItem30.Size = New System.Drawing.Size(72, 32)
         Me.ToolStripMenuItem30.Text = Global.Outworldz.My.Resources.Resources.Help_word
         '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(98, 512)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(227, 17)
+        Me.CheckBox1.TabIndex = 5
+        Me.CheckBox1.Text = "Require Agreement to TOS with a Pop Up."
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
         'TosForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(660, 541)
+        Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.MenuStrip2)
         Me.Controls.Add(Me.ApplyButton)
         Me.Controls.Add(Me.SaveButton)
@@ -120,4 +132,5 @@ Partial Class TosForm
     Friend WithEvents ApplyButton As Button
     Friend WithEvents MenuStrip2 As MenuStrip
     Friend WithEvents ToolStripMenuItem30 As ToolStripMenuItem
+    Friend WithEvents CheckBox1 As CheckBox
 End Class

@@ -1,19 +1,19 @@
 @echo off
-echo Usage:  CheckAndRepair [Port number]
 SET PORT = %1
 IF "%PORT%" == "" (SET PORT=3306)
-mysql_upgrade.exe --port=%PORT%
+SET PWD = %2
+if NOT "%2" == ""  (SET CMD=-p%2) 
 
+mysql_upgrade.exe --user=root --port=%PORT% %CMD%
 myisamchk --force --fast --update-state ..\data\mysql\*.MYI
-myisamchk --force --fast --update-state ..\data\robust\*.MYI
 
 echo Checking Database
-mysqlcheck.exe --port %PORT% -u root -A 
+mysqlcheck.exe --port %PORT% -u root %CMD% -A
 set /p fixmysql=Repair and Optimize [y/n]?:
 @echo Repairing, please wait!
-IF "%fixmysql%" == "y" mysqlcheck.exe --port %PORT% -A  -u root -r
+IF "%fixmysql%" == "y" mysqlcheck.exe --port %PORT% -u root  %CMD%  -r -A 
 @echo Optimizing, please wait!
-IF "%fixmysql%" == "y" mysqlcheck.exe --port %PORT% -A  -u root -o
+IF "%fixmysql%" == "y" mysqlcheck.exe --port %PORT% -u root  %CMD% -o -A 
 
 set /p temp="Press enter to exit"
 

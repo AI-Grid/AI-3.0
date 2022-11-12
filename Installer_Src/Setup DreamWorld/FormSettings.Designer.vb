@@ -170,7 +170,7 @@ Partial Class FormSettings
         Me.BackupButton1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BackupButton1.Image = Global.Outworldz.My.Resources.Resources.data_copy1
+        Me.BackupButton1.Image = Global.Outworldz.My.Resources.Resources.data
         Me.BackupButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BackupButton1.Location = New System.Drawing.Point(3, 42)
         Me.BackupButton1.Name = "BackupButton1"

@@ -20,7 +20,7 @@ Module FileStuff
         If Settings.Logger = "Baretail" Then
             fname = IO.Path.Combine(Settings.CurrentDirectory, "baretail.exe")
         Else
-            fname = IO.Path.Combine(Settings.CurrentDirectory, "QuickManager\Quickmanager.exe")
+            fname = "notepad.exe"
         End If
 
         Try
@@ -43,6 +43,9 @@ Module FileStuff
     Public Sub Cleanup() ' old files
 
         Dim ToDrop = New List(Of String) From {
+            "NtSuspendProcess64.exe",
+            "OutworldzFiles\Mysql\bin\Create_Mutelist.bat",
+            "OutworldzFiles\Mysql\bin\Create_Mutelist.sql",
             "fw.bat",
             "Downloader.exe",
             "DreamGridSetup.exe",
@@ -71,8 +74,7 @@ Module FileStuff
         Next
 
         Dim files As New List(Of String) From {
-         "ReadMe",
-        "OutworldzFiles\Opensim\eZombie", ' never worked
+        "ReadMe",
         "OutworldzFiles\eZombie", ' never worked
         "Shoutcast", ' deprecated
         "Icecast",   ' moved to OutworldzFiles
@@ -81,8 +83,7 @@ Module FileStuff
         "Outworldzfiles\Mysql\Dieter Mueller - Fred",
         "OutworldzFiles\Opensim\bin\addin-db-001", ' must be cleared or opensim updates can break.
         "OutworldzFiles\Opensim\bin\addin-db",' must be cleared or opensim updates can break.
-        "OutworldzFiles\Opensim\bin\Library.proto", ' old Diva library for standalone only
-        "OutworldzFiles\Opensim\eZombie" ' Non working library
+        "OutworldzFiles\Opensim\bin\Library.proto" ' old Diva library for standalone only
         }
 
         If FormSetup.PropKillSource Then
@@ -272,6 +273,7 @@ Module FileStuff
         Delete_Region_Map(regionUUID)
         DeleteMapTile(regionUUID)
         DeregisterRegionUUID(regionUUID)
+        DeleteVisitorMap(regionUUID)
 
         DeleteFolder(IO.Path.Combine(Settings.OpensimBinPath, $"Regions\{GroupName}"))
         DeleteRegion(regionUUID)
@@ -335,7 +337,6 @@ Module FileStuff
             Try
                 System.IO.Directory.Delete(n, True)
             Catch ex As Exception
-                BreakPoint.Dump(ex)
             End Try
 
         End If
@@ -391,6 +392,19 @@ Module FileStuff
 
     End Sub
 
+    Public Sub ExpireLogByCount()
+
+        Dim count = 1
+        Dim folders = Directory.GetDirectories(BackupPath(), "Autobackup-*").OrderByDescending(Function(d) New FileInfo(d).CreationTime)
+        For Each folder In folders
+            If count > Settings.KeepForDays And Settings.KeepForDays > 0 Then
+                DeleteFolder(folder)
+            End If
+            count += 1
+        Next
+
+    End Sub
+
     Public Sub ExpireLogsByAge()
 
         ' Hourly
@@ -399,11 +413,9 @@ Module FileStuff
         Deletefilesin(IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\Logs\Apache"))
         Deletefilesin(IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\Logs"))
         Deletefilesin(IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\Icecast\log"))
-        Deletefilesin(IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\Autobackup"))
-
         DeleteThisOldFile(IO.Path.Combine(Settings.OpensimBinPath, "Robust.log"))
 
-        For Each UUID As String In RegionUuids()
+        For Each UUID In RegionUuids()
             Dim GroupName = Group_Name(UUID)
             DeleteThisOldFile($"{Settings.OpensimBinPath()}\Regions\{GroupName}\Opensim.log")
             DeleteThisOldFile($"{Settings.OpensimBinPath()}\regions\{GroupName}\OpensimConsole.log")

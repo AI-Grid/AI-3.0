@@ -1,5 +1,177 @@
 REVISIONS FOR DREAMGRID
-This is a high-level view of major changes. For detailed commit history, checkout with git and run gitk or navigate to https://github.com/Outworldz/DreamWorld. Click to open the file whose history you want to view. In the upper-right corner of the file view, click Blame to open the blame view. To see earlier revisions of a specific line, click until you have found the changes you are interested in viewing.
+
+V5.26
+When loading an OAR the Allow Rez Objects and Edit Land flags will always be cleared to prevent griefer attacks.
+
+Backups use a different folder layout and method of time.  The problem has been if you set it to store 5 days of data, 
+   and six days later you turn it on, it deletes all five backups as they have aged out.  
+   It is now coded to keep 5 days of the latest backups, regardless of the date created.
+   |
+   There is a new folder structure in Autobackup. Autobackup/Backup-YEAR-MM-DD folders hold all backups for that day.
+   Inside the Daily folder is a /OAR and /IAR folder that hold that days run of data:
+   OutworldzFiles\AutoBackup\ 
+                            \IAR\Test_User_2022-10-15_13_22_10.iar
+							\IAR\Wifi_Admin_2022-10-15_13_22_11.iar
+								\....
+							\OAR\
+							    \Test_2022-10-15_13_23_46.oar
+								...
+							Backup_2022-10-15_13_22_01.zip
+							Backup_opensim_2022-10-15_13_22_02.zip
+							Backup_Robust_2022-10-15_13_22_05.zip
+							Backup_WordPress_2022-10-15_13_22_08
+							...
+
+jOpensim search set to GLobal Search, and jProfiles is offline,as its broken due to core changes 
+    they refuse to add back. They will no longer work until jOpensim changes to V4 due to core 
+	Opensim changes. This will occur sometime after 0.9.2.2 release according to the Author.
+
+Add to MySQL->Check User's inventory for issues to Mysql menu.
+Add to Setup->Console a Show all regions. 
+Stop Asset 57 complaint caused by future Material upgrade from Linden Lab.
+Opensim core #0069c9fef334b	fix bullet config for mac osx to bring us up to date with core
+
+
+V5.25
+Mysql Query Stats in the Mysql pull down. This prints the number of queries per second in the stats bar. Useful for detecting excessive Satyr Farm use and runaway scripts or motion.
+Many Updates in Opensim now at 9/25/22 Core- see http://opensimulator.org/viewgit/?a=summary&p=opensim
+jOpensim Search is now Local Search.
+
+V5.24
+Prevent endless loop in teleports.
+
+V5.23
+Always thaw when resuming regions as they may have changed settings.
+Multi-region consoles would not come out of freeze with Console command.
+Read regions files just once, at boot time.
+Added a concurrent dictionary for teleports to prevent a rare crash.
+Opensim no longer uses Autobackup as its handled by Dreamgrid.
+
+V5.22
+Backups not starting on schedule
+Frozen regions would not auto restart after a period of time
+
+V5.21 
+Search was not settable due to a debug flag
+
+V5.2 General Release
+
+V5.198
+Robust restart counter added. after three crashes it will stop and show the log
+Fix an icon on Regions list for Stopped regions.
+Oar and IAR load and save:  Prevent early shutdown of Smart Start regions when by reading the console of each Opensim for specific phrases. 
+Streamline typing logic to prevent interruptions.
+
+
+V5.197
+Region List was not showing correct inventory count
+Fixes for regions freezing when saving OARs after 5 minutes.
+Crash if you clicked the CPU graph button before starting the grid.
+
+V5.196
+Add more time to detect an OAR saving for slow machines
+Fix for Gloebit, which requires "Convert Zero Datetime=True" in connect string
+There is a new feature where it shows inventory counts in the Users section of the region List.  These lists are sortable, too.
+Delete Map button did not show unless Visitor Maps was enabled
+
+V5.195
+Added more time to stop MySQL 15->30 seconds.
+If there is a root password, add it to the batch file StopMysql.bat
+
+V5.195
+Excessive CPU use fixed in Logger
+Welcome regions was using a UUID instead of a Name  - causing the system to always prompt you.
+
+V5.194
+OAR Backups can run sequentially or with CPU limits in Smart Start Mode.
+Added a error collector that makes a Opensim Error.log file.This grabs any error lines spit out in any region in real time.
+Caches get cleared because this is latest Opensim as of 2022-07-19 19:24:54.
+Alphabetic order when doing anything to all regions.
+Deletes Perl visitor maps when you delete a region.
+
+V5.193
+Lots of tweaks to Backups. Background timer works.  
+AppActivate() turns out to have been a mistake so focus is back to the original behavior.
+
+V5.192
+Default for Hybrid Physics was not set, could only be overwritten by region overrides.
+
+V5.191
+Fixed CheckAndRepair.bat to work with or without password.
+Moved the Mysql check and backup SQL buttons to the Mysql Icon.
+Change the CPU chart to show all CPUs time to match what Task Manager shows.
+Backup all OARS fixes 
+
+V5.19 
+Tweaks to Mass loader so you have choices on Suspend modes and Sequential start modes. I strongly suggest Smart Boot mode (Not suspend) and Sequential on low RAM machines. 
+If you have lots of RAM (32GB), SSDs and a fast CPU, you can go for parallel modes
+
+V5.18
+Stop Griefing:Added a button to Setup->Settings Regions to clear land flags for Rez and terrain = on. 
+	If you have sandboxes, either set them back on or set up a group to control land and rez rights
+No changes to Opensimulator.
+Backups: Print Backup progress. Add an Abort button to stop them. Backups are not reentrant, as  only one can run at a time.  
+	If you press backup while one is running, you can choose to abort it to start a new one. Only one backup will ever run at the same time.
+Security: Allow adding a root password to Mysql and allow database passwords to be changed from the GUI. It used localhost for security before.
+FsAssets: Export FsAssets runs one time at the hour mark. This moves asset blobs from mysql to file system for speed and de-duplication.
+Mysql error on quit:  Wait longer for mysql to quit. 
+View Console button sets the region timer to keep the region alive for 5 minutes.
+Added Freeze All Regions and Thaw All Region menus items to Setup->Console Menu
+
+V5.17
+Clicking a region in the Region List toggles them all off/on if in a DOS box with other regions. The On/OFF is per DOS box, not per region.
+Load OAR (web) refresh button refreshes all OAR/IAR data from Outworldz.com - there are 197 free OARS totaling 27.4 GB of OARS online.
+Added an exclusive button in  Region List to show OARS and IARS that are exclusive to DreamGrid.  I've paid over $10K this year alone for OARs so I reserve the right to decide who gets to use them.
+Region Ready in Opensim  had a bug where it would not always report a region is ready. This causes the checkbox icons to not show ready, on rare occasions which is bad for many functions. 
+Fixed, and filed Mantis 9017 http://opensimulator.org/mantis/view.php?id=9016.
+DeleteAll Temp regions was not attached to its event along with other buttons on the form, so they were not 'sticky'.
+All AvatarName text boxes now autofill from database in various places.
+Web OAR listings are prettier. You must agree to the Authors TOS to use them.
+Added Test Button and detailed Error messages in Email setup.
+Diva home page was not showing Smart Boot regions.
+
+V5.16
+Added Offline Email support.  Requires a working SMTP server in Setup-Email, and you must both enable it and enable Outside SMPT in the control panel.
+Added a SMTP test button to SMTP Setup.
+Minimize All DOS boxes Button in Settings->Consoles
+FSassets are exported from assets table to bin\fsassets folder on disk at the 1 hour runtime mark. This improves Robust speed and will send compressed, de-duplicated assets directly to the viewer.
+
+V5.15
+Added a link in the Log Analyzer web page direct to any script with YEngine errors 
+Added Sort buttons for OAR and IAR list, Sort by Name or Date, and search the Name, Author and the Text.
+185 free regions! Older versions of DreamGrid cannot see two large "free house"" regions as they would crash.
+PID was not stored in cache for Robust so it did not shut down when GUI is set to Auto close windows
+
+V5.14
+Fixed a bug where large OARS and IARS > 2 GB is size would crash the system. Older versions will no longer crash if a big one sneaks in due to a fix in the web site maker scripts.
+Stop saving MAP-* images in Opensim\bin. They are just for debug.  Core leaves them on. I don't.
+Long Delay in writing or saving regions is gone.
+INI writer made into a class. In some error cases the old module could overwrite PHP.ini with Apache, breaking Joomla.
+Rebuilt 36,500 unique translations in 30 languages.
+Smart Start Enable would not un-check.
+Robust would non minimize automatically.
+Y axis when moving sims around in blockify function would accumulate the largest Y. Reset to be per Row.
+
+V5.13
+Speedier handling of checkbox events in Region list.  Speeds up Detailed view refresh a lot which can take a long time when there are hundreds of regions.
+PH.ini was being corrupted on some machines. Old code in there that shared a variable. This could stop Jopensim/Joomla from running. Refactored it to a class to eliminate the common var.
+Shutting down would cause regions to get a XML quit in a loop until they quit. 
+
+V5.12
+Region List switching from Details to Icon and back to Detailed would shut down all regions. Oops. New code to power off a disabled region had an unexpected side effect. Cat Tax paid on Mewe.
+
+V5.11 Release 
+Oops. I left some debug in, so restart regions did not work. 
+
+V5.01 Post-release fixes
+Diva (in Robust) exposed a Denial of Service attack vector that was fixed by Diva just this week. We've always had the fix since I first spotted and reported it a year ago. But the 4.999's didn't have it due to the new Opensim.
+Ban list did not accept Mac addresses due to Upper Case bug
+Grid users table was deleted at startup which led to side effects. Grid users delete deleted.
+Region List now has a checkbox in Windows->Show On Boot.  If checked, the region list will appear on boot. if not, not. Default: Not.
+Smart Boot screen changed a bit. Added another tab to make clear that the endless land and sea is not always  part of Smart Start.
+If you are in a Smart Boot region, and set the pull down to 1, then the regions next to you will boot so you can walk there.  The larger the number the firther away a region will boot so you canm walk or see it. 
+Added a "Blockify Regions" function to Settings->Regions. This lets you reorganize the entire list of regions into an alphabetical order grid, with a preferred spacing and a preferred width.
+Moved and rebuilt the Bulk Region Loader to be much faster and more reliable. It is now in Regions.  It creates all 175 regions in a few seconds, then boots them and load them, with OARS. Itys restartable, too, so I you run it later, any newly published regions will appear.
 
 
 V5.0

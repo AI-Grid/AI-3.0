@@ -136,6 +136,7 @@ Partial Class FormRegion
         Me.Physics = New System.Windows.Forms.TabPage()
         Me.RichTextBoxPhysics = New System.Windows.Forms.RichTextBox()
         Me.PhysicsGroupbox = New System.Windows.Forms.GroupBox()
+        Me.Physics_Hybrid = New System.Windows.Forms.RadioButton()
         Me.Physics_Bullet = New System.Windows.Forms.RadioButton()
         Me.Physics_Default = New System.Windows.Forms.RadioButton()
         Me.Physics_Separate = New System.Windows.Forms.RadioButton()
@@ -174,6 +175,8 @@ Partial Class FormRegion
         Me.Label9 = New System.Windows.Forms.Label()
         Me.HelpProvider1 = New System.Windows.Forms.HelpProvider()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
+        Me.SearchLabel = New System.Windows.Forms.Label()
         Me.RegionsGroupbox.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.ScriptsGroupbox.SuspendLayout()
@@ -424,7 +427,7 @@ Partial Class FormRegion
         Me.DisableGBCheckBox.AutoSize = True
         Me.DisableGBCheckBox.Location = New System.Drawing.Point(15, 80)
         Me.DisableGBCheckBox.Name = "DisableGBCheckBox"
-        Me.DisableGBCheckBox.Size = New System.Drawing.Size(116, 17)
+        Me.DisableGBCheckBox.Size = New System.Drawing.Size(111, 17)
         Me.DisableGBCheckBox.TabIndex = 3
         Me.DisableGBCheckBox.Text = Global.Outworldz.My.Resources.Resources.Disable_Gloebits_word
         Me.ToolTip1.SetToolTip(Me.DisableGBCheckBox, Global.Outworldz.My.Resources.Resources.Disable_Gloebits_text)
@@ -924,6 +927,8 @@ Partial Class FormRegion
         '
         'PublicityGroupBox
         '
+        Me.PublicityGroupBox.Controls.Add(Me.SearchLabel)
+        Me.PublicityGroupBox.Controls.Add(Me.LinkLabel1)
         Me.PublicityGroupBox.Controls.Add(Me.Label5)
         Me.PublicityGroupBox.Controls.Add(Me.Hyperica)
         Me.PublicityGroupBox.Controls.Add(Me.APIKey)
@@ -1190,56 +1195,56 @@ Partial Class FormRegion
         '
         Me.BasicsToolStripMenuItem.Image = Global.Outworldz.My.Resources.Resources.cube_green
         Me.BasicsToolStripMenuItem.Name = "BasicsToolStripMenuItem"
-        Me.BasicsToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.BasicsToolStripMenuItem.Size = New System.Drawing.Size(188, 30)
         Me.BasicsToolStripMenuItem.Text = "Basics"
         '
         'OptionsToolStripMenuItem
         '
         Me.OptionsToolStripMenuItem.Image = Global.Outworldz.My.Resources.Resources.cube_green
         Me.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem"
-        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(188, 30)
         Me.OptionsToolStripMenuItem.Text = "Options"
         '
         'MapsToolStripMenuItem
         '
         Me.MapsToolStripMenuItem.Image = Global.Outworldz.My.Resources.Resources.earth_view
         Me.MapsToolStripMenuItem.Name = "MapsToolStripMenuItem"
-        Me.MapsToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.MapsToolStripMenuItem.Size = New System.Drawing.Size(188, 30)
         Me.MapsToolStripMenuItem.Text = "Maps"
         '
         'PhysicsToolStripMenuItem
         '
         Me.PhysicsToolStripMenuItem.Image = Global.Outworldz.My.Resources.Resources.transform
         Me.PhysicsToolStripMenuItem.Name = "PhysicsToolStripMenuItem"
-        Me.PhysicsToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.PhysicsToolStripMenuItem.Size = New System.Drawing.Size(188, 30)
         Me.PhysicsToolStripMenuItem.Text = "Physics"
         '
         'ScriptsToolStripMenuItem
         '
         Me.ScriptsToolStripMenuItem.Image = Global.Outworldz.My.Resources.Resources.text_marked
         Me.ScriptsToolStripMenuItem.Name = "ScriptsToolStripMenuItem"
-        Me.ScriptsToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.ScriptsToolStripMenuItem.Size = New System.Drawing.Size(188, 30)
         Me.ScriptsToolStripMenuItem.Text = "Scripts"
         '
         'PermissionsToolStripMenuItem
         '
         Me.PermissionsToolStripMenuItem.Image = Global.Outworldz.My.Resources.Resources.spy
         Me.PermissionsToolStripMenuItem.Name = "PermissionsToolStripMenuItem"
-        Me.PermissionsToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.PermissionsToolStripMenuItem.Size = New System.Drawing.Size(188, 30)
         Me.PermissionsToolStripMenuItem.Text = "Permissions"
         '
         'PublicityToolStripMenuItem
         '
         Me.PublicityToolStripMenuItem.Image = Global.Outworldz.My.Resources.Resources.microsoft_edge
         Me.PublicityToolStripMenuItem.Name = "PublicityToolStripMenuItem"
-        Me.PublicityToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.PublicityToolStripMenuItem.Size = New System.Drawing.Size(188, 30)
         Me.PublicityToolStripMenuItem.Text = "Publicity"
         '
         'ModulesToolStripMenuItem
         '
         Me.ModulesToolStripMenuItem.Image = Global.Outworldz.My.Resources.Resources.window_add
         Me.ModulesToolStripMenuItem.Name = "ModulesToolStripMenuItem"
-        Me.ModulesToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.ModulesToolStripMenuItem.Size = New System.Drawing.Size(188, 30)
         Me.ModulesToolStripMenuItem.Text = "Modules"
         '
         'CPUTab
@@ -1347,6 +1352,7 @@ Partial Class FormRegion
         '
         'PhysicsGroupbox
         '
+        Me.PhysicsGroupbox.Controls.Add(Me.Physics_Hybrid)
         Me.PhysicsGroupbox.Controls.Add(Me.Physics_Bullet)
         Me.PhysicsGroupbox.Controls.Add(Me.Physics_Default)
         Me.PhysicsGroupbox.Controls.Add(Me.Physics_Separate)
@@ -1358,10 +1364,21 @@ Partial Class FormRegion
         Me.PhysicsGroupbox.TabStop = False
         Me.PhysicsGroupbox.Text = "Physics"
         '
+        'Physics_Hybrid
+        '
+        Me.Physics_Hybrid.AutoSize = True
+        Me.Physics_Hybrid.Location = New System.Drawing.Point(15, 70)
+        Me.Physics_Hybrid.Name = "Physics_Hybrid"
+        Me.Physics_Hybrid.Size = New System.Drawing.Size(55, 17)
+        Me.Physics_Hybrid.TabIndex = 5
+        Me.Physics_Hybrid.TabStop = True
+        Me.Physics_Hybrid.Text = "Hybrid"
+        Me.Physics_Hybrid.UseVisualStyleBackColor = True
+        '
         'Physics_Bullet
         '
         Me.Physics_Bullet.AutoSize = True
-        Me.Physics_Bullet.Location = New System.Drawing.Point(15, 69)
+        Me.Physics_Bullet.Location = New System.Drawing.Point(15, 93)
         Me.Physics_Bullet.Name = "Physics_Bullet"
         Me.Physics_Bullet.Size = New System.Drawing.Size(92, 17)
         Me.Physics_Bullet.TabIndex = 3
@@ -1383,7 +1400,7 @@ Partial Class FormRegion
         'Physics_Separate
         '
         Me.Physics_Separate.AutoSize = True
-        Me.Physics_Separate.Location = New System.Drawing.Point(15, 92)
+        Me.Physics_Separate.Location = New System.Drawing.Point(15, 116)
         Me.Physics_Separate.Name = "Physics_Separate"
         Me.Physics_Separate.Size = New System.Drawing.Size(177, 17)
         Me.Physics_Separate.TabIndex = 4
@@ -1759,6 +1776,26 @@ Partial Class FormRegion
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         Me.ContextMenuStrip1.Size = New System.Drawing.Size(61, 4)
         '
+        'LinkLabel1
+        '
+        Me.LinkLabel1.AutoSize = True
+        Me.LinkLabel1.Location = New System.Drawing.Point(78, 111)
+        Me.LinkLabel1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.LinkLabel1.Name = "LinkLabel1"
+        Me.LinkLabel1.Size = New System.Drawing.Size(150, 13)
+        Me.LinkLabel1.TabIndex = 7
+        Me.LinkLabel1.TabStop = True
+        Me.LinkLabel1.Text = "https://outworldz.com/Search"
+        '
+        'SearchLabel
+        '
+        Me.SearchLabel.AutoSize = True
+        Me.SearchLabel.Location = New System.Drawing.Point(17, 111)
+        Me.SearchLabel.Name = "SearchLabel"
+        Me.SearchLabel.Size = New System.Drawing.Size(41, 13)
+        Me.SearchLabel.TabIndex = 8
+        Me.SearchLabel.Text = "Search"
+        '
         'FormRegion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -1958,4 +1995,7 @@ Partial Class FormRegion
     Friend WithEvents LandingSpotLabel As Label
     Friend WithEvents LandingSpotTextBox As TextBox
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents Physics_Hybrid As RadioButton
+    Friend WithEvents SearchLabel As Label
+    Friend WithEvents LinkLabel1 As LinkLabel
 End Class

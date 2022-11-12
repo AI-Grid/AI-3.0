@@ -13,13 +13,12 @@ Public Class MySettings
 
     Private Const DreamGrid As String = "DreamGrid"
     Private Const JOpensim As String = "JOpensim"
-    Private ReadOnly Apachein As New List(Of String)
-    Private ReadOnly Apacheout As New List(Of String)
     Private _CurSlashDir As String = ""
     Private _DeleteTreesFirst As Boolean
     Private _ExternalHostName As String
     Private _LANIP As String
     Private _MacAddress As String
+    Private _OarCount As Integer
     Private _RamUsed As Double
     Private _Settings As LoadIni
 
@@ -105,7 +104,7 @@ Public Class MySettings
 
     Public Sub SaveSettings()
 
-        Settings.SaveINI()
+        Settings.SaveIni()
 
     End Sub
 
@@ -121,7 +120,7 @@ Public Class MySettings
 #Region "Properties"
 
     ''' <summary>
-    ''' Diva will set regions to disabled (-1) if this switch is set
+    ''' Diva will set Logins to disabled (-1) if this switch is set
     ''' </summary>
     ''' <returns>AccountConfirmationRequired as boolean</returns>
     Public Property AccountConfirmationRequired() As Boolean
@@ -279,6 +278,20 @@ Public Class MySettings
     End Property
 
     ''' <summary>
+    ''' Sort Ascent or Descend in OARS
+    ''' </summary>
+    ''' <returns>Boolean</returns>
+    Public Property AscendOrDescend() As Boolean
+        Get
+            Return CType(GetMySetting("AscendOrDescend", "True"), Boolean)
+        End Get
+        Set
+            SetMySetting("AscendOrDescend", CStr(Value))
+        End Set
+
+    End Property
+
+    ''' <summary>
     ''' Run Autobackup?
     ''' </summary>
     ''' <returns>Boolean</returns>
@@ -386,7 +399,7 @@ Public Class MySettings
     ''' Backup IARS?
     ''' </summary>
     ''' <returns>Boolean</returns>
-    Public Property BackupIARs() As Boolean
+    Public Property BackupIars() As Boolean
         Get
             Return CType(GetMySetting("BackupIARs", "False"), Boolean)
         End Get
@@ -472,7 +485,7 @@ Public Class MySettings
 
     Public Property BaseHostName() As String
         Get
-            Return GetMySetting("BaseHostName", DNSName)
+            Return GetMySetting("BaseHostName", DnsName)
         End Get
         Set
             SetMySetting("BaseHostName", Value)
@@ -659,6 +672,19 @@ Public Class MySettings
         End Set
     End Property
 
+    ''' <summary>
+    ''' BulkLoadOwner User Name
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property BulkLoadOwner() As String
+        Get
+            Return GetMySetting("BulkLoadOwner", "")
+        End Get
+        Set
+            SetMySetting("BulkLoadOwner", Value)
+        End Set
+    End Property
+
     Public Property CacheEnabled() As Boolean
         Get
             Return CType(GetMySetting("CacheEnabled", "True"), Boolean)
@@ -773,7 +799,7 @@ Public Class MySettings
         End Set
     End Property
 
-    Public Property CPUMAX As Single
+    Public Property CpuMax As Single
         Get
             Return CType(GetMySetting("CPUMax", "90"), Single)
         End Get
@@ -782,7 +808,7 @@ Public Class MySettings
         End Set
     End Property
 
-    Public Property CPUPatched() As Boolean
+    Public Property CpuPatched() As Boolean
         Get
             Return CType(GetMySetting("CPUPatched", "False"), Boolean)
         End Get
@@ -899,7 +925,7 @@ Public Class MySettings
         End Set
     End Property
 
-    Public Property DNSName() As String
+    Public Property DnsName() As String
         Get
             Return GetMySetting("DnsName")
         End Get
@@ -1005,6 +1031,19 @@ Public Class MySettings
 
     End Property
 
+    ''' <summary>
+    ''' Exports all asserts to fsassets, once
+    ''' </summary>
+    ''' <returns>True is exported as boolean</returns>
+    Public Property ExportAssetsOnce() As Boolean
+        Get
+            Return CType(GetMySetting("ExportAssetsOnce", "False"), Boolean)
+        End Get
+        Set
+            SetMySetting("ExportAssetsOnce", CStr(Value))
+        End Set
+    End Property
+
     Public Property ExternalHostName() As String
         Get
             Return _ExternalHostName
@@ -1051,7 +1090,7 @@ Public Class MySettings
     End Property
 
     ' fsassets
-    Public Property FsAssetsEnabled() As Boolean
+    Public Property FSAssetsEnabled() As Boolean
         Get
             Return CType(GetMySetting("FsAssetsEnabled", "True"), Boolean)
         End Get
@@ -1060,13 +1099,7 @@ Public Class MySettings
         End Set
     End Property
 
-    Public ReadOnly Property GCG() As Boolean
-        Get
-            Return CType(GetMySetting("GCG", "False"), Boolean)
-        End Get
-    End Property
-
-    Public Property GDPR() As Boolean
+    Public Property Gdpr() As Boolean
         Get
             Return CType(GetMySetting("GDPR", "False"), Boolean)
         End Get
@@ -1075,7 +1108,7 @@ Public Class MySettings
         End Set
     End Property
 
-    Public Property GLBOwnerEmail() As String
+    Public Property GlbOwnerEmail() As String
         Get
             Return GetMySetting("GLBOwnerEmail")
         End Get
@@ -1084,7 +1117,7 @@ Public Class MySettings
         End Set
     End Property
 
-    Public Property GLBOwnerName() As String
+    Public Property GlbOwnerName() As String
         Get
             Return GetMySetting("GLBOwnerName")
         End Get
@@ -1095,7 +1128,7 @@ Public Class MySettings
 
     ''' <summary>Show authorization Instant Message to user at session start?</summary>
     ''' <returns>False</returns>
-    Public Property GLBShowNewSessionAuthIM() As Boolean
+    Public Property GlbShowNewSessionAuthIM() As Boolean
         Get
             Return CType(GetMySetting("GLBShowNewSessionAuthIM", "False"), Boolean)
         End Get
@@ -1106,7 +1139,7 @@ Public Class MySettings
 
     ''' <summary>Show purchase Gloebit Instant Message to user at session start?</summary>
     ''' <returns>False</returns>
-    Public Property GLBShowNewSessionPurchaseIM() As Boolean
+    Public Property GlbShowNewSessionPurchaseIM() As Boolean
         Get
             Return CType(GetMySetting("GLBShowNewSessionPurchaseIM", "False"), Boolean)
         End Get
@@ -1117,7 +1150,7 @@ Public Class MySettings
 
     ''' <summary>Show welcome message when entering a region?</summary>
     ''' <returns>True</returns>
-    Public Property GLBShowWelcomeMessage() As Boolean
+    Public Property GlbShowWelcomeMessage() As Boolean
         Get
             Return CType(GetMySetting("GLBShowWelcomeMessage", "True"), Boolean)
         End Get
@@ -1396,7 +1429,7 @@ Public Class MySettings
         End Set
     End Property
 
-    Public Property MachineID() As String
+    Public Property MachineId() As String
         Get
             Return GetMySetting("MachineID")
         End Get
@@ -1572,6 +1605,20 @@ Public Class MySettings
         End Set
     End Property
 
+    ''' <summary>
+    ''' Sort Name or Date in OARS
+    ''' </summary>
+    ''' <returns>Boolean</returns>
+    Public Property NameOrDate() As Boolean
+        Get
+            Return CType(GetMySetting("NameOrDate", "False"), Boolean)
+        End Get
+        Set
+            SetMySetting("NameOrDate", CStr(Value))
+        End Set
+
+    End Property
+
     Public Property NinjaRagdoll() As Boolean
         Get
             Return CType(GetMySetting("NinjaRagdoll", "False"), Boolean)
@@ -1587,6 +1634,15 @@ Public Class MySettings
         End Get
         Set
             SetMySetting("NoPlants", CStr(Value))
+        End Set
+    End Property
+
+    Public Property OarCount() As Integer
+        Get
+            Return _OarCount
+        End Get
+        Set
+            _OarCount = Value
         End Set
     End Property
 
@@ -1772,15 +1828,6 @@ Public Class MySettings
         End Set
     End Property
 
-    Public Property RegionListVisible() As Boolean
-        Get
-            Return CType(GetMySetting("RegionListVisible", "True"), Boolean)
-        End Get
-        Set
-            SetMySetting("RegionListVisible", CStr(Value))
-        End Set
-    End Property
-
     Public Property RegionManagerIsGod() As Boolean
         Get
             Return CType(GetMySetting("Region_manager_is_god", "False"), Boolean)
@@ -1831,6 +1878,8 @@ Public Class MySettings
             SetMySetting("RenderMinHeight", CStr(Value))
         End Set
     End Property
+
+
 
     Public Property RestartOnCrash() As Boolean
         Get
@@ -1883,6 +1932,18 @@ Public Class MySettings
         End Get
         Set
             SetMySetting("RobustMySqlUsername", Value)
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' Holds the mysql root user password
+    ''' </summary>
+    Public Property RootMysqlPassword() As String
+        Get
+            Return GetMySetting("RootMysqlPassword", "")
+        End Get
+        Set
+            SetMySetting("RootMysqlPassword", Value)
         End Set
     End Property
 
@@ -1978,7 +2039,7 @@ Public Class MySettings
 
     Public Property SearchOptions() As String
         Get
-            Return GetMySetting("OpensimSearch", "Hyperica")
+            Return GetMySetting("OpensimSearch", "Outworldz")
         End Get
         Set
             SetMySetting("OpensimSearch", Value)
@@ -2045,12 +2106,25 @@ Public Class MySettings
         End Set
     End Property
 
-    Public Property ShowFsAssetBackup() As Boolean
+    Public Property ShowFSAssetBackup() As Boolean
         Get
-            Return CType(GetMySetting("ShowFsAssetBackup", "True"), Boolean)
+            Return CType(GetMySetting("ShowFsAssetBackup", "False"), Boolean)
         End Get
         Set
             SetMySetting("ShowFsAssetBackup", CStr(Value))
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' SHows Mysql stats is enabled, which is laggy
+    ''' </summary>
+    ''' <returns>ShowMysqlStats as boolean</returns>
+    Public Property ShowMysqlStats() As Boolean
+        Get
+            Return CType(GetMySetting("ShowMysqlStats", "False"), Boolean)
+        End Get
+        Set
+            SetMySetting("ShowMysqlStats", CStr(Value))
         End Set
     End Property
 
@@ -2144,7 +2218,7 @@ Public Class MySettings
     End Property
 
     ''' <summary>
-    ''' Enable the email module
+    ''' Enable the SmartStart Module
     ''' </summary>
     Public Property Smart_Start() As Boolean
         Get
@@ -2585,73 +2659,6 @@ Public Class MySettings
 
 #End Region
 
-#Region "Apache"
-
-    ' reader ApacheStrings
-    Public Sub LoadLiteralIni(ini As String)
-
-        Try
-            Apachein.Clear()
-            Using Reader As New StreamReader(ini, System.Text.Encoding.UTF8)
-                While Reader.EndOfStream = False
-                    Apachein.Add(Reader.ReadLine())
-                End While
-            End Using
-        Catch ex As Exception
-            ErrorLog(ex.Message)
-        End Try
-
-    End Sub
-
-    'writer of ApacheStrings
-    Public Sub SaveLiteralIni(ini As String, name As String)
-
-        ' make a backup
-        DeleteFile(ini & ".bak")
-        Sleep(10)
-        Try
-            My.Computer.FileSystem.RenameFile(ini, name & ".bak")
-        Catch ex As Exception
-            BreakPoint.Dump(ex)
-        End Try
-
-        DeleteFile(ini)
-
-        ' bug 10627092
-        Try
-            Dim file As System.IO.StreamWriter
-            file = My.Computer.FileSystem.OpenTextFileWriter(ini, False)
-            For Each Item As String In Apachein
-                file.WriteLine(Item)
-            Next
-            file.Flush()
-            file.Close()
-        Catch ex As Exception
-            ErrorLog($"{ini} {ex.Message}")
-        End Try
-
-    End Sub
-
-    Public Sub SetLiteralIni(Name As String, value As String)
-
-        Apacheout.Clear()
-        Dim found As Boolean = False
-        For Each Item As String In Apachein
-            If Item.StartsWith(Name, StringComparison.OrdinalIgnoreCase) Then
-                Apacheout.Add(value)
-                found = True
-            Else
-                Apacheout.Add(Item)
-            End If
-        Next
-        Apachein.Clear()
-        For Each item In Apacheout
-            Apachein.Add(item)
-        Next
-    End Sub
-
-#End Region
-
 #Region "Robust"
 
     Public Function RegionDBConnection() As String
@@ -2663,6 +2670,7 @@ Public Class MySettings
         & ";User ID=" & RegionDBUserName _
         & ";Password=" & RegionDbPassword _
         & ";Old Guids=true;Allow Zero Datetime=true" _
+        & ";Convert Zero Datetime=True" _       ' thanks, Hairy Thor!
         & ";Connect Timeout=28800;Command Timeout=28800;" & """"
 
     End Function
@@ -2686,6 +2694,7 @@ Public Class MySettings
             & ";User ID=" & RobustUserName _
             & ";Password=" & RobustPassword _
             & ";Old Guids=true;Allow Zero Datetime=true" _
+            & ";Convert Zero Datetime=True" _
             & ";Connect Timeout=28800;Command Timeout=28800" & """"
 
     End Function
@@ -2697,6 +2706,19 @@ Public Class MySettings
             & ";port=" & CStr(MySqlRobustDBPort) _
             & ";user=" & RobustUserName _
             & ";password=" & RobustPassword _
+            & ";Old Guids=true;Allow Zero Datetime=true" _
+            & ";Convert Zero Datetime=True" _
+            & ";Connect Timeout=28800;Command Timeout=28800;"
+
+    End Function
+
+    Public Function RootMysqlConnection() As String
+
+        Return "server=" & RobustServerIP _
+            & ";database=mysql" _
+            & ";port=" & CStr(MySqlRobustDBPort) _
+            & ";user=root" _
+            & ";password=" & RootMysqlPassword _
             & ";Old Guids=true;Allow Zero Datetime=true" _
             & ";Connect Timeout=28800;Command Timeout=28800;"
 

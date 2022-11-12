@@ -27,7 +27,7 @@ Module UploadImage
 
         Try
             Dim params As New Specialized.NameValueCollection From {
-                {"MachineID", Settings.MachineID()},
+                {"MachineID", Settings.MachineId()},
                 {"DnsName", Settings.PublicIP}
             }
 
@@ -59,7 +59,7 @@ Module UploadImage
 
     Public Sub UploadCategory()
 
-        If Settings.DNSName.Length = 0 Then Return
+        If Settings.DnsName.Length = 0 Then Return
 
         Dim result As String = Nothing
         If Settings.Categories.Length = 0 Then Return
@@ -99,7 +99,7 @@ Module UploadImage
     Public Sub UploadPhoto()
 
         ''' <summary>Upload in a separate thread the photo, if any. Cannot be called unless main web server is known to be on line.</summary>
-        If Settings.GDPR() Then
+        If Settings.Gdpr() Then
             UploadCategory()
             If System.IO.File.Exists(IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\Photo.png")) Then
                 Dim CGI As Uri = New Uri("https://outworldz.com/cgi/uploadphoto.plx")

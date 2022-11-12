@@ -66,7 +66,6 @@ Public Class FormDiva
 
         If setpassword And PropOpensimIsRunning() And Settings.Password.Length > 0 Then
             ConsoleCommand(RobustName(), "reset user password " & Settings.AdminFirst & " " & Settings.AdminLast & " " & Settings.Password)
-            ShowDOSWindow(GetHwnd(RobustName), MaybeHideWindow())
         End If
 
     End Sub
@@ -283,7 +282,6 @@ Public Class FormDiva
 
     End Sub
 
-
     Private Sub GmailPassword_TextChanged(sender As Object, e As EventArgs)
 
         If Not initted Then Return
@@ -293,7 +291,6 @@ Public Class FormDiva
     End Sub
 
     Private Sub GmailUsername_TextChanged(sender As Object, e As EventArgs)
-
 
     End Sub
 
@@ -371,8 +368,6 @@ Public Class FormDiva
         _SaveNeeded = True
 
     End Sub
-
-
 
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles SplashPage.LostFocus
 

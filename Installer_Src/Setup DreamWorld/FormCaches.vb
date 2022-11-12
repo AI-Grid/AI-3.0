@@ -50,6 +50,8 @@ Public Class FormCaches
 
     Private Sub B_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
+        PictureBox.Visible = True
+
         If GridCacheCheckbox.Checked Then
             DeleteOnlineUsers()
         End If
@@ -80,11 +82,12 @@ Public Class FormCaches
             TextPrint(My.Resources.Cache_Most_Cleared)
         End If
 
+        PictureBox.Visible = False
         Me.Close()
 
     End Sub
 
-    Private Sub CacheEnabledBox_CheckedChanged(sender As Object, e As EventArgs) Handles CacheEnabledBox.CheckedChanged
+    Private Sub CacheEnabledBox_CheckedChanged(sender As Object, e As EventArgs)
         If Not gInitted Then Return
 
     End Sub
@@ -100,9 +103,7 @@ Public Class FormCaches
 
         Settings.CacheLogLevel = LogLevelBox.SelectedIndex.ToString(Globalization.CultureInfo.InvariantCulture)
         Settings.CacheFolder = CacheFolder.Text
-        Settings.CacheEnabled = CacheEnabledBox.Checked
         Settings.CacheTimeout = CacheTimeout.Text
-        Settings.SupportViewerObjectsCache = ViewerCacheCheckbox.Checked
 
         Settings.SaveSettings()
 
@@ -118,21 +119,19 @@ Public Class FormCaches
         MeshCheckBox5.Text = Global.Outworldz.My.Resources.Mesh_Cache_word
         GridUsers.Text = Global.Outworldz.My.Resources.Choose_Cache ' "Choose which cache to empty"
         GroupBox2.Text = Global.Outworldz.My.Resources.Asset_Cache_word
-        GroupBox3.Text = Global.Outworldz.My.Resources.Viewer_Cache_word
+
         HelpToolStripMenuItem.Image = Global.Outworldz.My.Resources.question_and_answer
         HelpToolStripMenuItem.Text = Global.Outworldz.My.Resources.Help_word
         Label1.Text = Global.Outworldz.My.Resources.Cache_Directory_word
         Label2.Text = Global.Outworldz.My.Resources.Log_Level
-        Label4.Text = Global.Outworldz.My.Resources.Cache_Enabled_word
+
         Label5.Text = Global.Outworldz.My.Resources.Timeout_in_hours_word
         LogLevelBox.Items.AddRange(New Object() {Global.Outworldz.My.Resources.ErrorLevel0, Global.Outworldz.My.Resources.ErrorLevel1, Global.Outworldz.My.Resources.ErrorLevel2})
         PictureBox1.BackgroundImage = Global.Outworldz.My.Resources.folder
         Text = Global.Outworldz.My.Resources.Cache_Control_word
-        ToolTip1.SetToolTip(CacheEnabledBox, Global.Outworldz.My.Resources.Default_Checked_word)
-        ToolTip1.SetToolTip(CacheTimeout, Global.Outworldz.My.Resources.Timeout_in_hours_word)
 
-        ToolTip1.SetToolTip(ViewerCacheCheckbox, Global.Outworldz.My.Resources.Viewer_Cache_text)
-        ViewerCacheCheckbox.Text = Global.Outworldz.My.Resources.Enabled_word
+        ToolTip1.SetToolTip(CacheTimeout, Global.Outworldz.My.Resources.Timeout_in_hours_word)
+        PictureBox.Visible = False
 
         SetScreen()
 
@@ -157,7 +156,7 @@ Public Class FormCaches
         HelpOnce("Flotsam Cache")
 
         CacheFolder.Text = Settings.CacheFolder
-        CacheEnabledBox.Checked = Settings.CacheEnabled
+
         CacheTimeout.Text = Settings.CacheTimeout
         LogLevelBox.SelectedIndex = CType(Settings.CacheLogLevel, Integer)
 
@@ -170,8 +169,6 @@ Public Class FormCaches
             MsgBox(My.Resources.No_Locate_FSassets & tmp & Global.Outworldz.My.Resources.Reset_To_Default, MsgBoxStyle.Information Or MsgBoxStyle.MsgBoxSetForeground)
             CacheFolder.Text = ".\assetcache".ToString(Globalization.CultureInfo.InvariantCulture)
         End If
-
-        ViewerCacheCheckbox.Checked = Settings.SupportViewerObjectsCache
 
         gInitted = True
 
@@ -202,15 +199,6 @@ Public Class FormCaches
 
             End If
         End If
-
-    End Sub
-
-    Private Sub ViewerCacheCheckbox_CheckedChanged(sender As Object, e As EventArgs) Handles ViewerCacheCheckbox.CheckedChanged
-
-        ' Support viewers object cache, default true Users may need to reduce viewer bandwidth if
-        ' some prims Or terrain parts fail to rez. Change to false if you need to use old viewers
-        ' that do not support this feature
-        Settings.SupportViewerObjectsCache = ViewerCacheCheckbox.Checked
 
     End Sub
 

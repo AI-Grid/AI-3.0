@@ -38,23 +38,21 @@ Partial Class FormSmartStart
         Me.SuspendButton = New System.Windows.Forms.RadioButton()
         Me.ShutDownButton = New System.Windows.Forms.RadioButton()
         Me.DelayRegionReady = New System.Windows.Forms.TextBox()
+        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.DelayLabelRegionReady = New System.Windows.Forms.Label()
+        Me.FillSizeLabel = New System.Windows.Forms.Label()
+        Me.ParkingRegion = New System.Windows.Forms.Label()
+        Me.ListBox2 = New System.Windows.Forms.ListBox()
+        Me.ParkingSpot = New System.Windows.Forms.ListBox()
+        Me.MenuStrip4 = New System.Windows.Forms.MenuStrip()
+        Me.HelpSmartStartToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.EndlessLand = New System.Windows.Forms.GroupBox()
         Me.AviName = New System.Windows.Forms.TextBox()
         Me.DeleteAllRegions = New System.Windows.Forms.Button()
         Me.TempCheckBox = New System.Windows.Forms.CheckBox()
-        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.AutoFillEnable = New System.Windows.Forms.CheckBox()
-        Me.FillSizeLabel = New System.Windows.Forms.Label()
         Me.OwnerLabel = New System.Windows.Forms.Label()
-        Me.ListBox2 = New System.Windows.Forms.ListBox()
-        Me.ParkingRegion = New System.Windows.Forms.Label()
-        Me.ParkingSpot = New System.Windows.Forms.ListBox()
-        Me.MenuStrip4 = New System.Windows.Forms.MenuStrip()
-        Me.HelpSmartStartToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BulkLoadRegionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.StartToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AbortToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.BakeButton = New System.Windows.Forms.Button()
@@ -165,9 +163,10 @@ Partial Class FormSmartStart
         Me.MenuStrip1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
-        Me.EndlessLand.SuspendLayout()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip4.SuspendLayout()
+        Me.TabPage5.SuspendLayout()
+        Me.EndlessLand.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -190,7 +189,7 @@ Partial Class FormSmartStart
         'SmartStartEnabled
         '
         Me.SmartStartEnabled.AutoSize = True
-        Me.SmartStartEnabled.Location = New System.Drawing.Point(18, 114)
+        Me.SmartStartEnabled.Location = New System.Drawing.Point(79, 93)
         Me.SmartStartEnabled.Margin = New System.Windows.Forms.Padding(1)
         Me.SmartStartEnabled.Name = "SmartStartEnabled"
         Me.SmartStartEnabled.Size = New System.Drawing.Size(114, 17)
@@ -253,6 +252,7 @@ Partial Class FormSmartStart
         'TabControl1
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
+        Me.TabControl1.Controls.Add(Me.TabPage5)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Controls.Add(Me.TabPage4)
@@ -271,7 +271,6 @@ Partial Class FormSmartStart
         Me.TabPage1.Controls.Add(Me.PictureBox4)
         Me.TabPage1.Controls.Add(Me.DelayLabelRegionReady)
         Me.TabPage1.Controls.Add(Me.FillSizeLabel)
-        Me.TabPage1.Controls.Add(Me.EndlessLand)
         Me.TabPage1.Controls.Add(Me.ParkingRegion)
         Me.TabPage1.Controls.Add(Me.ListBox2)
         Me.TabPage1.Controls.Add(Me.ParkingSpot)
@@ -290,7 +289,7 @@ Partial Class FormSmartStart
         'SuspendButton
         '
         Me.SuspendButton.AutoSize = True
-        Me.SuspendButton.Location = New System.Drawing.Point(167, 114)
+        Me.SuspendButton.Location = New System.Drawing.Point(105, 114)
         Me.SuspendButton.Name = "SuspendButton"
         Me.SuspendButton.Size = New System.Drawing.Size(67, 17)
         Me.SuspendButton.TabIndex = 54
@@ -301,7 +300,7 @@ Partial Class FormSmartStart
         'ShutDownButton
         '
         Me.ShutDownButton.AutoSize = True
-        Me.ShutDownButton.Location = New System.Drawing.Point(256, 114)
+        Me.ShutDownButton.Location = New System.Drawing.Point(105, 134)
         Me.ShutDownButton.Name = "ShutDownButton"
         Me.ShutDownButton.Size = New System.Drawing.Size(78, 17)
         Me.ShutDownButton.TabIndex = 53
@@ -317,6 +316,17 @@ Partial Class FormSmartStart
         Me.DelayRegionReady.Size = New System.Drawing.Size(40, 20)
         Me.DelayRegionReady.TabIndex = 52
         '
+        'PictureBox4
+        '
+        Me.PictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBox4.Image = Global.Outworldz.My.Resources.Resources._3x3
+        Me.PictureBox4.Location = New System.Drawing.Point(110, 195)
+        Me.PictureBox4.Name = "PictureBox4"
+        Me.PictureBox4.Size = New System.Drawing.Size(102, 90)
+        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox4.TabIndex = 43
+        Me.PictureBox4.TabStop = False
+        '
         'DelayLabelRegionReady
         '
         Me.DelayLabelRegionReady.AutoSize = True
@@ -326,6 +336,68 @@ Partial Class FormSmartStart
         Me.DelayLabelRegionReady.TabIndex = 51
         Me.DelayLabelRegionReady.Text = "Seconds Before Teleporting"
         '
+        'FillSizeLabel
+        '
+        Me.FillSizeLabel.AutoSize = True
+        Me.FillSizeLabel.Location = New System.Drawing.Point(15, 213)
+        Me.FillSizeLabel.Name = "FillSizeLabel"
+        Me.FillSizeLabel.Size = New System.Drawing.Size(42, 13)
+        Me.FillSizeLabel.TabIndex = 42
+        Me.FillSizeLabel.Text = "Fill Size"
+        '
+        'ParkingRegion
+        '
+        Me.ParkingRegion.AutoSize = True
+        Me.ParkingRegion.Location = New System.Drawing.Point(283, 27)
+        Me.ParkingRegion.Name = "ParkingRegion"
+        Me.ParkingRegion.Size = New System.Drawing.Size(80, 13)
+        Me.ParkingRegion.TabIndex = 40
+        Me.ParkingRegion.Text = "Parking Region"
+        '
+        'ListBox2
+        '
+        Me.ListBox2.FormattingEnabled = True
+        Me.ListBox2.Items.AddRange(New Object() {"0", "1", "2", "3"})
+        Me.ListBox2.Location = New System.Drawing.Point(18, 229)
+        Me.ListBox2.Name = "ListBox2"
+        Me.ListBox2.Size = New System.Drawing.Size(56, 56)
+        Me.ListBox2.TabIndex = 39
+        '
+        'ParkingSpot
+        '
+        Me.ParkingSpot.FormattingEnabled = True
+        Me.ParkingSpot.Location = New System.Drawing.Point(286, 50)
+        Me.ParkingSpot.Name = "ParkingSpot"
+        Me.ParkingSpot.Size = New System.Drawing.Size(202, 290)
+        Me.ParkingSpot.TabIndex = 38
+        '
+        'MenuStrip4
+        '
+        Me.MenuStrip4.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HelpSmartStartToolStripMenuItem})
+        Me.MenuStrip4.Location = New System.Drawing.Point(3, 3)
+        Me.MenuStrip4.Name = "MenuStrip4"
+        Me.MenuStrip4.Size = New System.Drawing.Size(850, 24)
+        Me.MenuStrip4.TabIndex = 44
+        Me.MenuStrip4.Text = "MenuStrip4"
+        '
+        'HelpSmartStartToolStripMenuItem
+        '
+        Me.HelpSmartStartToolStripMenuItem.Image = Global.Outworldz.My.Resources.Resources.about
+        Me.HelpSmartStartToolStripMenuItem.Name = "HelpSmartStartToolStripMenuItem"
+        Me.HelpSmartStartToolStripMenuItem.Size = New System.Drawing.Size(121, 20)
+        Me.HelpSmartStartToolStripMenuItem.Text = "Help Smart Start"
+        '
+        'TabPage5
+        '
+        Me.TabPage5.Controls.Add(Me.EndlessLand)
+        Me.TabPage5.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage5.Name = "TabPage5"
+        Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage5.Size = New System.Drawing.Size(856, 352)
+        Me.TabPage5.TabIndex = 4
+        Me.TabPage5.Text = "Endless Land and Sea"
+        Me.TabPage5.UseVisualStyleBackColor = True
+        '
         'EndlessLand
         '
         Me.EndlessLand.Controls.Add(Me.AviName)
@@ -333,25 +405,25 @@ Partial Class FormSmartStart
         Me.EndlessLand.Controls.Add(Me.TempCheckBox)
         Me.EndlessLand.Controls.Add(Me.AutoFillEnable)
         Me.EndlessLand.Controls.Add(Me.OwnerLabel)
-        Me.EndlessLand.Location = New System.Drawing.Point(621, 39)
+        Me.EndlessLand.Location = New System.Drawing.Point(31, 32)
         Me.EndlessLand.Name = "EndlessLand"
-        Me.EndlessLand.Size = New System.Drawing.Size(200, 214)
-        Me.EndlessLand.TabIndex = 50
+        Me.EndlessLand.Size = New System.Drawing.Size(225, 214)
+        Me.EndlessLand.TabIndex = 51
         Me.EndlessLand.TabStop = False
         Me.EndlessLand.Text = "Endless Land & Seas"
         '
         'AviName
         '
-        Me.AviName.Location = New System.Drawing.Point(14, 115)
+        Me.AviName.Location = New System.Drawing.Point(14, 122)
         Me.AviName.Name = "AviName"
-        Me.AviName.Size = New System.Drawing.Size(171, 20)
+        Me.AviName.Size = New System.Drawing.Size(172, 20)
         Me.AviName.TabIndex = 45
         '
         'DeleteAllRegions
         '
-        Me.DeleteAllRegions.Location = New System.Drawing.Point(0, 166)
+        Me.DeleteAllRegions.Location = New System.Drawing.Point(14, 165)
         Me.DeleteAllRegions.Name = "DeleteAllRegions"
-        Me.DeleteAllRegions.Size = New System.Drawing.Size(188, 23)
+        Me.DeleteAllRegions.Size = New System.Drawing.Size(172, 23)
         Me.DeleteAllRegions.TabIndex = 48
         Me.DeleteAllRegions.Text = "Delete All Autofill Regions"
         Me.DeleteAllRegions.UseVisualStyleBackColor = True
@@ -367,17 +439,6 @@ Partial Class FormSmartStart
         Me.TempCheckBox.Text = "Temporary Regions"
         Me.TempCheckBox.UseVisualStyleBackColor = True
         '
-        'PictureBox4
-        '
-        Me.PictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox4.Image = Global.Outworldz.My.Resources.Resources._3x3
-        Me.PictureBox4.Location = New System.Drawing.Point(91, 172)
-        Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(102, 90)
-        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox4.TabIndex = 43
-        Me.PictureBox4.TabStop = False
-        '
         'AutoFillEnable
         '
         Me.AutoFillEnable.AutoSize = True
@@ -389,87 +450,14 @@ Partial Class FormSmartStart
         Me.AutoFillEnable.Text = "Automatic Fill Enable"
         Me.AutoFillEnable.UseVisualStyleBackColor = True
         '
-        'FillSizeLabel
-        '
-        Me.FillSizeLabel.AutoSize = True
-        Me.FillSizeLabel.Location = New System.Drawing.Point(26, 156)
-        Me.FillSizeLabel.Name = "FillSizeLabel"
-        Me.FillSizeLabel.Size = New System.Drawing.Size(42, 13)
-        Me.FillSizeLabel.TabIndex = 42
-        Me.FillSizeLabel.Text = "Fill Size"
-        '
         'OwnerLabel
         '
         Me.OwnerLabel.AutoSize = True
-        Me.OwnerLabel.Location = New System.Drawing.Point(17, 99)
+        Me.OwnerLabel.Location = New System.Drawing.Point(11, 106)
         Me.OwnerLabel.Name = "OwnerLabel"
         Me.OwnerLabel.Size = New System.Drawing.Size(121, 13)
         Me.OwnerLabel.TabIndex = 46
         Me.OwnerLabel.Text = "Owner of Sim Surrounds"
-        '
-        'ListBox2
-        '
-        Me.ListBox2.FormattingEnabled = True
-        Me.ListBox2.Items.AddRange(New Object() {"0", "1", "2", "3"})
-        Me.ListBox2.Location = New System.Drawing.Point(29, 172)
-        Me.ListBox2.Name = "ListBox2"
-        Me.ListBox2.Size = New System.Drawing.Size(56, 56)
-        Me.ListBox2.TabIndex = 39
-        '
-        'ParkingRegion
-        '
-        Me.ParkingRegion.AutoSize = True
-        Me.ParkingRegion.Location = New System.Drawing.Point(398, 23)
-        Me.ParkingRegion.Name = "ParkingRegion"
-        Me.ParkingRegion.Size = New System.Drawing.Size(80, 13)
-        Me.ParkingRegion.TabIndex = 40
-        Me.ParkingRegion.Text = "Parking Region"
-        '
-        'ParkingSpot
-        '
-        Me.ParkingSpot.FormattingEnabled = True
-        Me.ParkingSpot.Location = New System.Drawing.Point(401, 46)
-        Me.ParkingSpot.Name = "ParkingSpot"
-        Me.ParkingSpot.Size = New System.Drawing.Size(202, 212)
-        Me.ParkingSpot.TabIndex = 38
-        '
-        'MenuStrip4
-        '
-        Me.MenuStrip4.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HelpSmartStartToolStripMenuItem, Me.BulkLoadRegionsToolStripMenuItem})
-        Me.MenuStrip4.Location = New System.Drawing.Point(3, 3)
-        Me.MenuStrip4.Name = "MenuStrip4"
-        Me.MenuStrip4.Size = New System.Drawing.Size(850, 24)
-        Me.MenuStrip4.TabIndex = 44
-        Me.MenuStrip4.Text = "MenuStrip4"
-        '
-        'HelpSmartStartToolStripMenuItem
-        '
-        Me.HelpSmartStartToolStripMenuItem.Image = Global.Outworldz.My.Resources.Resources.about
-        Me.HelpSmartStartToolStripMenuItem.Name = "HelpSmartStartToolStripMenuItem"
-        Me.HelpSmartStartToolStripMenuItem.Size = New System.Drawing.Size(121, 20)
-        Me.HelpSmartStartToolStripMenuItem.Text = "Help Smart Start"
-        '
-        'BulkLoadRegionsToolStripMenuItem
-        '
-        Me.BulkLoadRegionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StartToolStripMenuItem, Me.AbortToolStripMenuItem})
-        Me.BulkLoadRegionsToolStripMenuItem.Image = Global.Outworldz.My.Resources.Resources.box_tall
-        Me.BulkLoadRegionsToolStripMenuItem.Name = "BulkLoadRegionsToolStripMenuItem"
-        Me.BulkLoadRegionsToolStripMenuItem.Size = New System.Drawing.Size(132, 20)
-        Me.BulkLoadRegionsToolStripMenuItem.Text = "Bulk Load Regions"
-        '
-        'StartToolStripMenuItem
-        '
-        Me.StartToolStripMenuItem.Image = Global.Outworldz.My.Resources.Resources.gear_run
-        Me.StartToolStripMenuItem.Name = "StartToolStripMenuItem"
-        Me.StartToolStripMenuItem.Size = New System.Drawing.Size(98, 22)
-        Me.StartToolStripMenuItem.Text = "Start"
-        '
-        'AbortToolStripMenuItem
-        '
-        Me.AbortToolStripMenuItem.Image = Global.Outworldz.My.Resources.Resources.gear_stop
-        Me.AbortToolStripMenuItem.Name = "AbortToolStripMenuItem"
-        Me.AbortToolStripMenuItem.Size = New System.Drawing.Size(98, 22)
-        Me.AbortToolStripMenuItem.Text = "Stop"
         '
         'TabPage2
         '
@@ -847,7 +835,7 @@ Partial Class FormSmartStart
         Me.GroupBox1.Controls.Add(Me.Pine1)
         Me.GroupBox1.Location = New System.Drawing.Point(17, 41)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(803, 292)
+        Me.GroupBox1.Size = New System.Drawing.Size(819, 292)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Plants"
@@ -858,7 +846,7 @@ Partial Class FormSmartStart
         Me.Delete_TreeButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Delete_TreeButton.Location = New System.Drawing.Point(655, 94)
         Me.Delete_TreeButton.Name = "Delete_TreeButton"
-        Me.Delete_TreeButton.Size = New System.Drawing.Size(111, 34)
+        Me.Delete_TreeButton.Size = New System.Drawing.Size(142, 34)
         Me.Delete_TreeButton.TabIndex = 27
         Me.Delete_TreeButton.Text = "Delete All"
         Me.Delete_TreeButton.UseVisualStyleBackColor = True
@@ -909,7 +897,7 @@ Partial Class FormSmartStart
         Me.ApplyPlantButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ApplyPlantButton.Location = New System.Drawing.Point(655, 144)
         Me.ApplyPlantButton.Name = "ApplyPlantButton"
-        Me.ApplyPlantButton.Size = New System.Drawing.Size(111, 37)
+        Me.ApplyPlantButton.Size = New System.Drawing.Size(142, 37)
         Me.ApplyPlantButton.TabIndex = 10
         Me.ApplyPlantButton.Text = "Apply"
         Me.ApplyPlantButton.UseVisualStyleBackColor = True
@@ -1089,9 +1077,9 @@ Partial Class FormSmartStart
         '
         Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(351, 21)
+        Me.PictureBox1.Location = New System.Drawing.Point(370, 41)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(284, 265)
+        Me.PictureBox1.Size = New System.Drawing.Size(265, 245)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 5
         Me.PictureBox1.TabStop = False
@@ -1628,11 +1616,12 @@ Partial Class FormSmartStart
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
-        Me.EndlessLand.ResumeLayout(False)
-        Me.EndlessLand.PerformLayout()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip4.ResumeLayout(False)
         Me.MenuStrip4.PerformLayout()
+        Me.TabPage5.ResumeLayout(False)
+        Me.EndlessLand.ResumeLayout(False)
+        Me.EndlessLand.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
@@ -1759,7 +1748,6 @@ Partial Class FormSmartStart
     Friend WithEvents PictureBox3 As PictureBox
     Friend WithEvents TerrainApply As Button
     Friend WithEvents LabelName As Label
-    Friend WithEvents AutoFillEnable As CheckBox
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents Noise As CheckBox
     Friend WithEvents Smooth As CheckBox
@@ -1779,14 +1767,11 @@ Partial Class FormSmartStart
     Friend WithEvents ViewTerrainFolderToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PictureBox4 As PictureBox
     Friend WithEvents MenuStrip4 As MenuStrip
-    Friend WithEvents BulkLoadRegionsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents HelpTerrainsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MenuStrip5 As MenuStrip
     Friend WithEvents HelpLandcapingToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MenuStrip6 As MenuStrip
     Friend WithEvents HelpPlantEditorToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents OwnerLabel As Label
-    Friend WithEvents AviName As TextBox
     Friend WithEvents Dogwood As CheckBox
     Friend WithEvents Radius As Label
     Friend WithEvents Rad As TextBox
@@ -1794,14 +1779,16 @@ Partial Class FormSmartStart
     Friend WithEvents Delete_TreeButton As Button
     Friend WithEvents BakeButton As Button
     Friend WithEvents RevertButton As Button
-    Friend WithEvents TempCheckBox As CheckBox
-    Friend WithEvents DeleteAllRegions As Button
     Friend WithEvents HelpSmartStartToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents EndlessLand As GroupBox
     Friend WithEvents DelayRegionReady As TextBox
     Friend WithEvents DelayLabelRegionReady As Label
     Friend WithEvents SuspendButton As RadioButton
     Friend WithEvents ShutDownButton As RadioButton
-    Friend WithEvents StartToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AbortToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TabPage5 As TabPage
+    Friend WithEvents EndlessLand As GroupBox
+    Friend WithEvents AviName As TextBox
+    Friend WithEvents DeleteAllRegions As Button
+    Friend WithEvents TempCheckBox As CheckBox
+    Friend WithEvents AutoFillEnable As CheckBox
+    Friend WithEvents OwnerLabel As Label
 End Class

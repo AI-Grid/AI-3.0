@@ -1,5 +1,0 @@
-This OAR file contains terrain modeled on the Athens Acropolis, a model of the Theatre of Dionysus built by Erik N. and a model of the Parthenon built by about 40 8/9th grade students in their geometry class in 2010. The models are built to scale, which was the point of having students do it as a geometry activity. The only thing that is way off is the Acropolis itself, which should be about twice as big, but it would have far exceeded the boundaries of a single 256 x 256 meter region.
-
-Eric is releasing it with an Attribution-NonCommercial-ShareAlike (CC BY-NC-SA) license by "Erik Nauman and The Hewitt School" as the original creators. Only one texture is used aside from the default viewer textures and that is a white marble texture downloaded from CG Textures.
-
-Src:https://metatek.blogspot.com/2011/06/you-wanna-buy-parthenon.html

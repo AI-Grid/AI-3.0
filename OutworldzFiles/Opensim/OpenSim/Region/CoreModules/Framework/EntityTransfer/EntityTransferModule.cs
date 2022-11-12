@@ -39,6 +39,7 @@ using OpenSim.Region.Framework.Scenes;
 using OpenSim.Region.PhysicsModules.SharedBase;
 using OpenSim.Services.Interfaces;
 
+// SmartStart
 using GridRegion = OpenSim.Services.Interfaces.GridRegion;
 using RegionFlags = OpenSim.Framework.RegionFlags;
 
@@ -741,35 +742,9 @@ namespace OpenSim.Region.CoreModules.Framework.EntityTransfer
                 return;
             }
 
-
-            // Smartstart            
-            //fkb 
-            if (true)
-            {
-                //if (reg.RegionLocY != 0) // NZ = on HG, not sure why this is here??
-                {
-                    UUID regID = sp.Scene.GetSmartStartALTRegion(finalDestination.RegionID, sp.ControllingClient.AgentId); // fkb
-                    if (regID != UUID.Zero && regID != finalDestination.RegionID)
-                    {
-                        if (regID == sp.Scene.RegionInfo.RegionID)
-                        {
-                            sp.ControllingClient.SendTeleportFailed("Destination region Loading. Teleport will happen soon");
-                            return;
-                        }
-
-                        finalDestination = sp.Scene.GridService.GetRegionByUUID(sp.Scene.RegionInfo.ScopeID, regID);
-                        if (finalDestination == null)
-                        {
-                            sp.ControllingClient.SendTeleportFailed("Destination region Loading. Teleport will happen soon");
-                            return;
-                        }
-
-                        reg = finalDestination;
-                    }
-                }
-
-            }
-
+            // Let's do DNS resolution only once in this process, please!
+            // This may be a costly operation. The reg.ExternalEndPoint field is not a passive field,
+            // it's actually doing a lot of work.
             IPEndPoint endPoint = finalDestination.ExternalEndPoint;
             if (endPoint == null || endPoint.Address == null)
             {
@@ -781,6 +756,37 @@ namespace OpenSim.Region.CoreModules.Framework.EntityTransfer
                 m_log.DebugFormat(
                     "[ENTITY TRANSFER MODULE]: Failed validation of all attachments for teleport of {0} from {1} to {2}.  Continuing.",
                     sp.Name, sp.Scene.Name, finalDestination.RegionName);
+
+            
+            // SmartStart                                    
+            //if (reg.RegionLocY != 0) // not on HG
+            {              
+                UUID regID = sp.Scene.GetSmartStartALTRegion(finalDestination.RegionID, sp.ControllingClient.AgentId);
+                if (regID != UUID.Zero && regID != finalDestination.RegionID)
+                {
+                    //if (regID == sp.Scene.RegionInfo.RegionID)
+                    //{
+                    //    sp.ControllingClient.SendTeleportFailed("Destination region Loading. Teleport will happen soon");
+                    //    return;
+                    //}
+
+                    finalDestination = sp.Scene.GridService.GetRegionByUUID(sp.Scene.RegionInfo.ScopeID, regID);
+                    if (finalDestination == null)
+                    {
+                        sp.ControllingClient.SendTeleportFailed("Teleport Failed. No region located.");
+                        return;
+                    }
+
+                    m_log.DebugFormat(
+                              "[SMART START]: Teleporting {0} {1} from {2} to {3} ({4}) {5}/{6}",
+                              sp.Name, sp.UUID, m_sceneName,
+                              reg.ServerURI, finalDestination.ServerURI, finalDestination.RegionName, position);
+                }
+
+            }
+
+
+
             string reason;
             EntityTransferContext ctx = new EntityTransferContext();
 
@@ -2800,16 +2806,33 @@ namespace OpenSim.Region.CoreModules.Framework.EntityTransfer
 
         public virtual bool HandleIncomingSceneObject(SceneObjectGroup so, Vector3 newPosition)
         {
+            if (so.OwnerID.IsZero())
+            {
+                m_log.DebugFormat(
+                    "[ENTITY TRANSFER MODULE]: Denied object {0}({1}) entry into {2} because ownerID is zero",
+                        so.Name, so.UUID, m_sceneName);
+                return false;
+            }
+
             // If the user is banned, we won't let any of their objects
             // enter. Period.
-            //
             if (m_sceneRegionInfo.EstateSettings.IsBanned(so.OwnerID))
             {
                 m_log.DebugFormat(
-                    "[ENTITY TRANSFER MODULE]: Denied prim crossing of {0} {1} into {2} for banned avatar {3}",
-                    so.Name, so.UUID, m_sceneName, so.OwnerID);
-
+                    "[ENTITY TRANSFER MODULE]: Denied {0} {1} into {2} of banned owner {3}",
+                        so.Name, so.UUID, m_sceneName, so.OwnerID);
                 return false;
+            }
+
+            if(so.IsAttachmentCheckFull())
+            {
+                if(m_scene.GetScenePresence(so.OwnerID) == null)
+                {
+                    m_log.DebugFormat(
+                    "[ENTITY TRANSFER MODULE]: Denied attachment {0}({1}) owner {2} not in region {3}",
+                        so.Name, so.UUID, so.OwnerID, m_sceneName);
+                    return false;
+                }
             }
 
             if (!newPosition.IsZero())

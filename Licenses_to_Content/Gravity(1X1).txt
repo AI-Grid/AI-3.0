@@ -1,7 +1,0 @@
-Gravity-4X4-by-Vegaslon.oar
-About 550 MB of RAM in use.
-License:  This work is licensed under AGPL 3.0 license for exclusive use in the Dreamgrid software by Outworldz, LLC.
-
-Changes must be given back to the community
-
-If you don't like these terms, please do not use this OAR.

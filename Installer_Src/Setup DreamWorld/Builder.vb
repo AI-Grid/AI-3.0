@@ -14,11 +14,6 @@ Module Build
     Public TreeList As New List(Of String)
     Private _ctr As Integer
 
-    Public Class RegionEssentials
-        Public RegionName As String
-        Public RegionUUID As String
-    End Class
-
 #Region "Land"
 
     Public Function GenLand(R As Object) As Boolean
@@ -114,7 +109,9 @@ Module Build
             Dim SimSize As Integer = CInt(SizeX(RegionUUID) / 256)
             For Xstep = 0 To SimSize - 1
                 For Ystep = 0 To SimSize - 1
-                    RegionXY.Add($"{Coord_X(UUID) + Xstep}:{Coord_Y(UUID) + Ystep}", UUID)
+                    If Not RegionXY.ContainsKey($"{Coord_X(UUID) + Xstep}:{Coord_Y(UUID) + Ystep}") Then
+                        RegionXY.Add($"{Coord_X(UUID) + Xstep}:{Coord_Y(UUID) + Ystep}", UUID)
+                    End If
                 Next
             Next
         Next
@@ -132,7 +129,9 @@ Module Build
 
         For XPos As Integer = X1 To X2 Step 1
             For Ypos As Integer = Y1 To Y2 Step 1
-                xy.Add($"{XPos}:{Ypos}")
+                If Not xy.Contains($"{XPos}:{Ypos}") Then
+                    xy.Add($"{XPos}:{Ypos}")
+                End If
             Next
         Next
 
@@ -141,9 +140,8 @@ Module Build
         Dim Bootable As New List(Of String)
 
         For Each possible As String In xy
-            If RegionXY.ContainsKey(possible) Then
-                If Debugger.IsAttached Then BreakPoint.Print("Region exists: " & Region_Name(RegionXY.Item(possible)))
-            Else
+            If Not RegionXY.ContainsKey(possible) Then
+
                 Dim parts As String() = possible.Split(New Char() {":"c}) ' split at the space
                 Dim nX = CInt(CStr(parts(0).Trim))
                 Dim nY = CInt(CStr(parts(1).Trim))
@@ -154,17 +152,20 @@ Module Build
                 End If
 
                 Dim NewName = MakeTempRegion(GroupName, nX, nY)
-                Bootable.Add(NewName)
+                If Not Bootable.Contains(NewName) Then
+                    Bootable.Add(NewName)
+                End If
             End If
 
         Next
 
         If Bootable.Count > 0 Then
-            PropChangedRegionSettings = True
-            GetAllRegions(False)
+            'PropChangedRegionSettings = True
+            'GetAllRegions(False)
+
             For Each Name In Bootable
                 If Name.Length > 0 Then
-                    ReBoot(FindRegionByName(Name))
+                    ResumeRegion(FindRegionByName(Name))
                 End If
             Next
         End If
@@ -330,9 +331,7 @@ Module Build
         Try
             Dim Existing As New List(Of String)
             For Each UUID In RegionUuids()
-                If Region_Name(UUID).Length > 0 Then
-                    Existing.Add(Region_Name(UUID))
-                End If
+                Existing.Add(Region_Name(UUID))
             Next
 
             ' if no names, make up a number
@@ -377,15 +376,15 @@ Module Build
         CrashCounter(RegionUUID) = 0
         Coord_X(RegionUUID) = X
         Coord_Y(RegionUUID) = Y
-        Smart_Start(RegionUUID) = "True"
-        Teleport_Sign(RegionUUID) = "True"
+        Smart_Start(RegionUUID) = True
+        Teleport_Sign(RegionUUID) = True
         SizeX(RegionUUID) = 256
         SizeY(RegionUUID) = 256
         Group_Name(RegionUUID) = Group
 
         SetCores(RegionUUID)
 
-        GDPR(RegionUUID) = CStr(Settings.GDPR)
+        GDPR(RegionUUID) = CStr(Settings.Gdpr)
 
         Dim port = LargestPort() + 1
         GroupPort(RegionUUID) = port
@@ -413,5 +412,10 @@ Module Build
     End Sub
 
 #End Region
+
+    Public Class RegionEssentials
+        Public RegionName As String
+        Public RegionUUID As String
+    End Class
 
 End Module

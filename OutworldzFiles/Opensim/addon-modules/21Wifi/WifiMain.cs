@@ -169,7 +169,7 @@ namespace Diva.Wifi
             {
                 AddinManager.AddExtensionNodeHandler("/Diva/Wifi/Addon", OnExtensionChanged);
             }
-            catch (Exception e)
+            catch 
             {
                 m_log.DebugFormat("[Wifi]: extension point /Diva/Wifi/Addon not found");
             }

@@ -75,6 +75,11 @@ Public Class FormTide
         TideInfoChannelTextBox.Text = CStr(Settings.TideInfoChannel)
         TideHiLoChannelTextBox.Text = CStr(Settings.TideLevelChannel)
         TideInfoDebugCheckBox.Checked = Settings.TideInfoDebug
+        GroupBox1.Text = My.Resources.GlobalTideSettings
+        HighwaterLabel.Text = My.Resources.HighwaterLevel
+        LowWaterLevelLabel.Text = My.Resources.LowWaterLevel
+        TideInfoChannelLabel.Text = My.Resources.TideInfoChannel
+        TideHiLoChannelLabel.Text = My.Resources.TideHiLoChannelLabel
 
         SetScreen()
         HelpOnce("Tides")

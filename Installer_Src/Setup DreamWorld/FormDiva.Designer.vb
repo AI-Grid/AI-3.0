@@ -117,7 +117,7 @@ Partial Class FormDiva
         Me.AccountConfirmationRequired.AutoSize = True
         Me.AccountConfirmationRequired.Location = New System.Drawing.Point(19, 173)
         Me.AccountConfirmationRequired.Name = "AccountConfirmationRequired"
-        Me.AccountConfirmationRequired.Size = New System.Drawing.Size(171, 17)
+        Me.AccountConfirmationRequired.Size = New System.Drawing.Size(264, 17)
         Me.AccountConfirmationRequired.TabIndex = 9
         Me.AccountConfirmationRequired.Text = Global.Outworldz.My.Resources.Resources.AccountConfirm
         Me.AccountConfirmationRequired.UseVisualStyleBackColor = True

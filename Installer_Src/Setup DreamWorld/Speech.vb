@@ -54,7 +54,7 @@ Module Speech
     Public Function Text2Speech(POST As String) As String
 
         Dim P = GetParam(POST, "Password")
-        Dim M = Settings.MachineID
+        Dim M = Settings.MachineId
         If M <> P Then Return $"Bad Password {P}"
         Dim OutLoud = GetParam(POST, "Speak")
         Dim Save2File As Boolean
@@ -98,13 +98,17 @@ Module Speech
         Using Synth = New ChatToSpeech
             While SpeechList.Count > 0
                 If Settings.VoiceName = "No Speech" Then Return
-                Dim ProcessString As String = SpeechList.Dequeue
+                Try
+                    Dim ProcessString As String = SpeechList.Dequeue
 
-                Dim Par = New SpeechParameters With {
-                .TTS = ProcessString,
-                .Voice = Settings.VoiceName
-            }
-                Synth.Speach(Par)
+                    Dim Par = New SpeechParameters With {
+                        .TTS = ProcessString,
+                        .Voice = Settings.VoiceName
+                    }
+                    Synth.Speach(Par)
+                Catch
+                End Try
+
             End While
         End Using
 

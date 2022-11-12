@@ -17,7 +17,6 @@ Public Class FormMaps
 
 #End Region
 
-
 #Region "Public Properties"
 
     Public Property ScreenPosition As ClassScreenpos
@@ -59,7 +58,14 @@ Public Class FormMaps
     End Sub
 
     Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles ViewVisitorMapButton.Click
-        Dim webAddress As String = "http://127.0.0.1:" & CStr(Settings.ApachePort) & "/Stats"
+
+        Dim webAddress As String
+        If Settings.PublicVisitorMaps Then
+            webAddress = $"http://{Settings.LANIP}:{CStr(Settings.ApachePort)}/Stats?r={Random()}"
+        Else
+            webAddress = $"http://127.0.0.1:{CStr(Settings.ApachePort)}/Stats"
+        End If
+
         Try
             Process.Start(webAddress)
         Catch ex As Exception
@@ -81,6 +87,18 @@ Public Class FormMaps
         End Try
     End Sub
 
+    Private Sub DeleteAMapButton_Click(sender As Object, e As EventArgs) Handles DeleteAMapButton.Click
+
+        Dim regionname = ChooseRegion()
+        ' check it
+        Dim RegionUUID As String = FindRegionByName(regionname)
+        If RegionUUID.Length = 0 Then Return
+
+        DeleteMapTile(RegionUUID)
+        TextPrint($"{regionname} {My.Resources.maphasbeendeleted}")
+
+    End Sub
+
     Private Sub ExportAllMaps_Click(sender As Object, e As EventArgs) Handles ExportAllMaps.Click
 
         'export-map [<path>] - Save an image of the world map (default name is exportmap.jpg)
@@ -95,7 +113,7 @@ Public Class FormMaps
             If UserClickedOK = DialogResult.OK Then
                 Dim thing = openFileDialog1.SelectedPath
                 If thing.Length > 0 Then
-                    For Each RegionUUID As String In RegionUuids()
+                    For Each RegionUUID In RegionUuids()
 
                         If RegionStatus(RegionUUID) = SIMSTATUSENUM.Booted Then
                             thing = IO.Path.Combine(thing, Region_Name(RegionUUID))
@@ -213,11 +231,7 @@ Public Class FormMaps
 
         Days2KeepBox.Text = CStr(Settings.KeepVisits)
 
-        If Settings.VisitorsEnabled Then
-            DelMapButton.Visible = True
-        Else
-            DelMapButton.Visible = False
-        End If
+        DelMapButton.Visible = True
 
         initted = True
 
@@ -352,22 +366,10 @@ Public Class FormMaps
 
     Private Sub VieweAllMaps_Click(sender As Object, e As EventArgs) Handles VieweAllMaps.Click
 
-        For Each RegionUUID As String In RegionUuids()
+        For Each RegionUUID In RegionUuids()
             VarChooser(Region_Name(RegionUUID), False, False)
             Application.DoEvents()
         Next
-
-    End Sub
-
-    Private Sub DeleteAMapButton_Click(sender As Object, e As EventArgs) Handles DeleteAMapButton.Click
-
-        Dim regionname = ChooseRegion()
-        ' check it
-        Dim RegionUUID As String = FindRegionByName(regionname)
-        If RegionUUID.Length = 0 Then Return
-
-        DeleteMapTile(RegionUUID)
-        TextPrint($"{regionname} {My.Resources.maphasbeendeleted}")
 
     End Sub
 

@@ -25,6 +25,7 @@ Partial Class FormBackupBoxes
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBackupBoxes))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.ShowFsassets = New System.Windows.Forms.CheckBox()
         Me.BackupIARsCheckBox = New System.Windows.Forms.CheckBox()
         Me.BackupSQlCheckBox = New System.Windows.Forms.CheckBox()
         Me.BackupOarsCheckBox = New System.Windows.Forms.CheckBox()
@@ -36,13 +37,14 @@ Partial Class FormBackupBoxes
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.ShowFsassets = New System.Windows.Forms.CheckBox()
+        Me.AbortButton = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.AbortButton)
         Me.GroupBox1.Controls.Add(Me.ShowFsassets)
         Me.GroupBox1.Controls.Add(Me.BackupIARsCheckBox)
         Me.GroupBox1.Controls.Add(Me.BackupSQlCheckBox)
@@ -58,6 +60,18 @@ Partial Class FormBackupBoxes
         Me.GroupBox1.TabIndex = 6
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Backup"
+        '
+        'ShowFsassets
+        '
+        Me.ShowFsassets.AutoSize = True
+        Me.ShowFsassets.Checked = True
+        Me.ShowFsassets.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ShowFsassets.Location = New System.Drawing.Point(211, 68)
+        Me.ShowFsassets.Name = "ShowFsassets"
+        Me.ShowFsassets.Size = New System.Drawing.Size(53, 17)
+        Me.ShowFsassets.TabIndex = 12
+        Me.ShowFsassets.Text = "Show"
+        Me.ShowFsassets.UseVisualStyleBackColor = True
         '
         'BackupIARsCheckBox
         '
@@ -169,19 +183,16 @@ Partial Class FormBackupBoxes
         Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(68, 28)
         Me.HelpToolStripMenuItem.Text = Global.Outworldz.My.Resources.Resources.Help_word
         '
-        'ShowFsassets
+        'AbortButton
         '
-        Me.ShowFsassets.AutoSize = True
-        Me.ShowFsassets.Checked = True
-        Me.ShowFsassets.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ShowFsassets.Location = New System.Drawing.Point(211, 68)
-        Me.ShowFsassets.Name = "ShowFsassets"
-        Me.ShowFsassets.Size = New System.Drawing.Size(53, 17)
-        Me.ShowFsassets.TabIndex = 12
-        Me.ShowFsassets.Text = "Show"
-        Me.ShowFsassets.UseVisualStyleBackColor = True
+        Me.AbortButton.Location = New System.Drawing.Point(174, 193)
+        Me.AbortButton.Name = "AbortButton"
+        Me.AbortButton.Size = New System.Drawing.Size(110, 23)
+        Me.AbortButton.TabIndex = 13
+        Me.AbortButton.Text = "Abort"
+        Me.AbortButton.UseVisualStyleBackColor = True
         '
-        'FormBackupboxes
+        'FormBackupBoxes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -190,7 +201,7 @@ Partial Class FormBackupBoxes
         Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "FormBackupboxes"
+        Me.Name = "FormBackupBoxes"
         Me.RightToLeftLayout = True
         Me.Text = "System Backup"
         Me.GroupBox1.ResumeLayout(False)
@@ -215,4 +226,5 @@ Partial Class FormBackupBoxes
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents BackupIARsCheckBox As CheckBox
     Friend WithEvents ShowFsassets As CheckBox
+    Friend WithEvents AbortButton As Button
 End Class

@@ -13,7 +13,7 @@ Public Class FormSearchHelp
         Dim directory As New System.IO.DirectoryInfo(IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\Help"))
         ' get each file's last modified date
         For Each FileName As System.IO.FileInfo In directory.GetFiles()
-            If FileName.Name.EndsWith(".htm", StringComparison.InvariantCulture) Then files.Add(FileName)
+            If FileName.Name.EndsWith(".htm", StringComparison.OrdinalIgnoreCase) Then files.Add(FileName)
         Next
 
         SetupLayout()

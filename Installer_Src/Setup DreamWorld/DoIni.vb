@@ -19,48 +19,48 @@ Module DoIni
 
         ' lean rightward paths for Apache
         Dim ini = IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\Apache\conf\httpd.conf")
-        Settings.LoadLiteralIni(ini)
-        Settings.SetLiteralIni("Listen", $"Listen {Settings.ApachePort}")
-        Settings.SetLiteralIni("Define SRVROOT", $"Define SRVROOT ""{Settings.CurrentSlashDir}/OutworldzFiles/Apache""")
-        Settings.SetLiteralIni("DocumentRoot", $"DocumentRoot ""{Settings.CurrentSlashDir}/OutworldzFiles/Apache/htdocs""")
-        Settings.SetLiteralIni("Use VDir", $"Use VDir ""{Settings.CurrentSlashDir}/OutworldzFiles/Apache/htdocs""")
-        Settings.SetLiteralIni("PHPIniDir", $"PHPIniDir ""{Settings.CurrentSlashDir}/OutworldzFiles/PHP7""")
-        Settings.SetLiteralIni("ServerName", "ServerName " & Settings.PublicIP)
-        Settings.SetLiteralIni("ServerAdmin", "ServerAdmin " & Settings.AdminEmail)
-        Settings.SetLiteralIni("<VirtualHost", $"<VirtualHost  *:{Convert.ToString(Settings.ApachePort, Globalization.CultureInfo.InvariantCulture)}>")
-        Settings.SetLiteralIni("ErrorLog", $"ErrorLog ""|bin/rotatelogs.exe  -l \""{Settings.CurrentSlashDir}/OutworldzFiles/Logs/Apache/Error-%Y-%m-%d.log\"" 86400""")
-        Settings.SetLiteralIni("CustomLog", $"CustomLog ""|bin/rotatelogs.exe -l \""{Settings.CurrentSlashDir}/OutworldzFiles/Logs/Apache/access-%Y-%m-%d.log\"" 86400"" common env=!dontlog")
-        Settings.SetLiteralIni("LoadModule php7_module", $"LoadModule php7_module ""{Settings.CurrentSlashDir}/OutworldzFiles/PHP7/php7apache2_4.dll""")
+        Dim Apache = New IniWriter(ini)
+        Apache.Write("Listen", $"Listen {Settings.ApachePort}")
+        Apache.Write("Define SRVROOT", $"Define SRVROOT ""{Settings.CurrentSlashDir}/OutworldzFiles/Apache""")
+        Apache.Write("DocumentRoot", $"DocumentRoot ""{Settings.CurrentSlashDir}/OutworldzFiles/Apache/htdocs""")
+        Apache.Write("Use VDir", $"Use VDir ""{Settings.CurrentSlashDir}/OutworldzFiles/Apache/htdocs""")
+        Apache.Write("PHPIniDir", $"PHPIniDir ""{Settings.CurrentSlashDir}/OutworldzFiles/PHP7""")
+        Apache.Write("ServerName", "ServerName " & Settings.PublicIP)
+        Apache.Write("ServerAdmin", "ServerAdmin " & Settings.AdminEmail)
+        Apache.Write("<VirtualHost", $"<VirtualHost  *:{Convert.ToString(Settings.ApachePort, Globalization.CultureInfo.InvariantCulture)}>")
+        Apache.Write("ErrorLog", $"ErrorLog ""|bin/rotatelogs.exe  -l \""{Settings.CurrentSlashDir}/OutworldzFiles/Logs/Apache/Error-%Y-%m-%d.log\"" 86400""")
+        Apache.Write("CustomLog", $"CustomLog ""|bin/rotatelogs.exe -l \""{Settings.CurrentSlashDir}/OutworldzFiles/Logs/Apache/access-%Y-%m-%d.log\"" 86400"" common env=!dontlog")
+        Apache.Write("LoadModule php7_module", $"LoadModule php7_module ""{Settings.CurrentSlashDir}/OutworldzFiles/PHP7/php7apache2_4.dll""")
 
         If Settings.SSLIsInstalled And Settings.SSLEnabled Then
-            Settings.SetLiteralIni("UnDefine SSL", "Define SSL")
+            Apache.Write("UnDefine SSL", "Define SSL")
         Else
-            Settings.SetLiteralIni("Define SSL", "UnDefine SSL")
+            Apache.Write("Define SSL", "UnDefine SSL")
         End If
 
-        Settings.SaveLiteralIni(ini, "httpd.conf")
+        Apache.Save("httpd.conf")
 
         DeleteFolder(IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\PHP5"))
         FileIO.FileSystem.CreateDirectory(IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\Logs\Apache"))
 
         ' lean rightward paths for Apache
         ini = IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\Apache\conf\extra\httpd-ssl.conf")
-        Settings.LoadLiteralIni(ini)
-        Settings.SetLiteralIni("Listen", $"Listen {Settings.LANIP()}:443")
-        Settings.SetLiteralIni("ServerName", "ServerName " & Settings.PublicIP)
-        Settings.SetLiteralIni("Define SRVROOT", $"Define SRVROOT ""{Settings.CurrentSlashDir}/OutworldzFiles/Apache""")
-        Settings.SetLiteralIni("DocumentRoot", $"DocumentRoot ""{Settings.CurrentSlashDir}/OutworldzFiles/Apache/htdocs""")
-        Settings.SetLiteralIni("Use VDir", $"Use VDir ""{Settings.CurrentSlashDir}/OutworldzFiles/Apache/htdocs""")
-        Settings.SetLiteralIni("ServerName", "ServerName " & Settings.PublicIP)
-        Settings.SetLiteralIni("ServerAdmin", "ServerAdmin " & Settings.AdminEmail)
+        Dim SSL = New IniWriter(ini)
+        SSL.Write("Listen", $"Listen {Settings.LANIP()}:443")
+        SSL.Write("ServerName", "ServerName " & Settings.PublicIP)
+        SSL.Write("Define SRVROOT", $"Define SRVROOT ""{Settings.CurrentSlashDir}/OutworldzFiles/Apache""")
+        SSL.Write("DocumentRoot", $"DocumentRoot ""{Settings.CurrentSlashDir}/OutworldzFiles/Apache/htdocs""")
+        SSL.Write("Use VDir", $"Use VDir ""{Settings.CurrentSlashDir}/OutworldzFiles/Apache/htdocs""")
+        SSL.Write("ServerName", "ServerName " & Settings.PublicIP)
+        SSL.Write("ServerAdmin", "ServerAdmin " & Settings.AdminEmail)
 
         ' Install Certificates
-        Settings.SetLiteralIni("SSLCertificateFile", $"SSLCertificateFile ""{Settings.CurrentSlashDir}/Outworldzfiles/Apache/Certs/{Settings.DNSName}-chain.pem""")
-        Settings.SetLiteralIni("SSLCertificateKeyFile", $"SSLCertificateKeyFile ""{Settings.CurrentSlashDir}/Outworldzfiles/Apache/Certs/{Settings.DNSName}-key.pem""")
-        Settings.SetLiteralIni("SSLCertificateChainFile", $"SSLCertificateChainFile ""{Settings.CurrentSlashDir}/Outworldzfiles/Apache/Certs/{Settings.DNSName}-crt.pem""")
-        Settings.SetLiteralIni("SSLCACertificateFile", $"SSLCACertificateFile ""{Settings.CurrentSlashDir}/Outworldzfiles/Apache/Certs/lets-encrypt-r3.pem""")
+        SSL.Write("SSLCertificateFile", $"SSLCertificateFile ""{Settings.CurrentSlashDir}/Outworldzfiles/Apache/Certs/{Settings.DnsName}-chain.pem""")
+        SSL.Write("SSLCertificateKeyFile", $"SSLCertificateKeyFile ""{Settings.CurrentSlashDir}/Outworldzfiles/Apache/Certs/{Settings.DnsName}-key.pem""")
+        SSL.Write("SSLCertificateChainFile", $"SSLCertificateChainFile ""{Settings.CurrentSlashDir}/Outworldzfiles/Apache/Certs/{Settings.DnsName}-crt.pem""")
+        SSL.Write("SSLCACertificateFile", $"SSLCACertificateFile ""{Settings.CurrentSlashDir}/Outworldzfiles/Apache/Certs/lets-encrypt-r3.pem""")
 
-        Settings.SaveLiteralIni(ini, "httpd-ssl.conf")
+        SSL.Save("httpd-ssl.conf")
 
         Return False
 
@@ -81,7 +81,7 @@ Module DoIni
         Dim BirdData As String = ""
 
         ' Birds setup per region
-        For Each RegionUUID As String In RegionUuids()
+        For Each RegionUUID In RegionUuids()
             Application.DoEvents()
             Dim Name = Region_Name(RegionUUID)
 
@@ -137,11 +137,11 @@ Module DoIni
             Dim INI = New LoadIni(IO.Path.Combine(Settings.OpensimBinPath, "Estates\Estates.ini"), ";", System.Text.Encoding.UTF8)
             Dim AvatarUUID As String = GetAviUUUD(Settings.SurroundOwner)
             INI.SetIni("SimSurround", "Owner", AvatarUUID)
-            INI.SaveINI()
+            INI.SaveIni()
         Else
             Dim INI = New LoadIni(IO.Path.Combine(Settings.OpensimBinPath, "Estates\Estates.ini"), ";", System.Text.Encoding.UTF8)
             INI.SetIni("SimSurround", "Owner", "")
-            INI.SaveINI()
+            INI.SaveIni()
         End If
         Return False
 
@@ -177,16 +177,16 @@ Module DoIni
         If Not Settings.GloebitsEnable Then Return False
 
         INI.SetIni("Gloebit", "Enabled", CStr(Settings.GloebitsEnable))
-        INI.SetIni("Gloebit", "GLBShowNewSessionAuthIM", CStr(Settings.GLBShowNewSessionAuthIM))
-        INI.SetIni("Gloebit", "GLBShowNewSessionPurchaseIM", CStr(Settings.GLBShowNewSessionPurchaseIM))
-        INI.SetIni("Gloebit", "GLBShowWelcomeMessage", CStr(Settings.GLBShowWelcomeMessage))
+        INI.SetIni("Gloebit", "GLBShowNewSessionAuthIM", CStr(Settings.GlbShowNewSessionAuthIM))
+        INI.SetIni("Gloebit", "GLBShowNewSessionPurchaseIM", CStr(Settings.GlbShowNewSessionPurchaseIM))
+        INI.SetIni("Gloebit", "GLBShowWelcomeMessage", CStr(Settings.GlbShowWelcomeMessage))
 
         INI.SetIni("Gloebit", "GLBEnvironment", "production")
         INI.SetIni("Gloebit", "GLBKey", Settings.GLProdKey)
         INI.SetIni("Gloebit", "GLBSecret", Settings.GLProdSecret)
 
-        INI.SetIni("Gloebit", "GLBOwnerName", Settings.GLBOwnerName)
-        INI.SetIni("Gloebit", "GLBOwnerEmail", Settings.GLBOwnerEmail)
+        INI.SetIni("Gloebit", "GLBOwnerName", Settings.GlbOwnerName)
+        INI.SetIni("Gloebit", "GLBOwnerEmail", Settings.GlbOwnerEmail)
 
         If Settings.ServerType = RobustServerName Then
             INI.SetIni("Gloebit", "GLBSpecificConnectionString", Settings.RobustDBConnection)
@@ -194,7 +194,7 @@ Module DoIni
             INI.SetIni("Gloebit", "GLBSpecificConnectionString", Settings.RegionDBConnection)
         End If
 
-        INI.SaveINI()
+        INI.SaveIni()
 
         Return False
 
@@ -203,10 +203,7 @@ Module DoIni
     Private Sub SelectMoneySymbol(INI As LoadIni)
 
         DeleteFile(IO.Path.Combine(Settings.OpensimBinPath, "jOpenSim.Money.dll"))
-        If Settings.GCG Then
-            INI.SetIni("LoginService", "Currency", "MC$")
-            CopyFileFast(IO.Path.Combine(Settings.OpensimBinPath, "Gloebit.dll.bak"), IO.Path.Combine(Settings.OpensimBinPath, "Gloebit.dll"))
-        ElseIf Settings.GloebitsEnable Then
+        If Settings.GloebitsEnable Then
             INI.SetIni("LoginService", "Currency", "G$")
             CopyFileFast(IO.Path.Combine(Settings.OpensimBinPath, "Gloebit.dll.bak"), IO.Path.Combine(Settings.OpensimBinPath, "Gloebit.dll"))
         ElseIf Settings.GloebitsEnable = False And Settings.CMS = JOpensim Then
@@ -223,134 +220,147 @@ Module DoIni
 
     Public Function DoGrid() As Boolean
 
-        TextPrint("->Set Grid.ini")
+        Try
+            TextPrint("->Set Grid.ini")
 
-        ' Put that grid.ini file in place
-        Dim Src = IO.Path.Combine(Settings.OpensimBinPath & "config-include\Proto")
-        Src = IO.Path.Combine(Src, Settings.ServerType)
-        Src = IO.Path.Combine(Src, "Grid.ini")
+            ' Put that grid.ini file in place
+            Dim Src = IO.Path.Combine(Settings.OpensimBinPath & "config-include\Proto")
+            Src = IO.Path.Combine(Src, Settings.ServerType)
+            Src = IO.Path.Combine(Src, "Grid.ini")
 
-        Dim dest = IO.Path.Combine(Settings.OpensimBinPath, "config-include\Grid.ini")
+            Dim dest = IO.Path.Combine(Settings.OpensimBinPath, "config-include\Grid.ini")
 
-        CopyFileFast(Src, dest)
-        Return False
+            CopyFileFast(Src, dest)
+            Return False
+        Catch
+            Return True
+        End Try
 
     End Function
 
     Public Function DoGridCommon() As Boolean
 
-        TextPrint("->Set GridCommon.ini")
-
-        'Choose a GridCommon.ini to use.
-        Dim GridCommon As String = ""
-
-        Select Case Settings.ServerType
-            Case RobustServerName
-                If Settings.CMS = JOpensim Then
-                    GridCommon = "Joomla\Gridcommon.ini"
-                Else
-                    GridCommon = "Robust\Gridcommon.ini"
-                End If
-            Case RegionServerName
-                GridCommon = "Region\Gridcommon.ini"
-            Case OsgridServer
-                GridCommon = "OsGrid\Gridcommon.ini"
-                Settings.HttpPort = 80
-            Case MetroServer
-                GridCommon = "Metro\Gridcommon.ini"
-        End Select
-
-        ' Put that gridcommon.ini file in place
-        Dim s = IO.Path.Combine(Settings.OpensimBinPath & "config-include\Proto")
-        s = IO.Path.Combine(s, GridCommon)
-
-        Dim d = IO.Path.Combine(Settings.OpensimBinPath, "config-include\")
-        d = IO.Path.Combine(d, "GridCommon.ini")
-
-        ' set the defaults in the INI for the viewer to use. Painful as it's a Left hand side edit
-        Dim reader As IO.StreamReader
-        Dim line As String
-
         Try
-            ' make a long list of the various regions with region_ at the start
-            Dim Authorizationlist As String = ""
-            For Each RegionUUID As String In RegionUuids()
-                Dim RegionName = Region_Name(RegionUUID)
+            TextPrint("->Set GridCommon.ini")
 
-                RegionName = RegionName.Replace(" ", "_")
+            'Choose a GridCommon.ini to use.
+            Dim GridCommon As String = ""
 
-                If Disallow_Foreigners(RegionUUID) = "True" Then
-                    Authorizationlist += $"Region_{RegionName}=DisallowForeigners{vbLf}"
-                ElseIf Disallow_Residents(RegionUUID) = "True" Then
-                    Authorizationlist += $"Region_{RegionName}=DisallowResidents{vbLf}"
-                End If
-            Next
-
-            Using outputFile As New StreamWriter(d, False)
-                outputFile.AutoFlush = True
-                reader = System.IO.File.OpenText(s)
-                'now loop through each line
-                While reader.Peek <> -1
-                    line = reader.ReadLine()
-                    Dim Output As String = Nothing
-                    'Breakpoint.Print(line)
-                    If line.StartsWith("; START", StringComparison.OrdinalIgnoreCase) Then
-                        Output += line & vbLf ' add back on the ; START
-                        Output += Authorizationlist
+            Select Case Settings.ServerType
+                Case RobustServerName
+                    If Settings.CMS = JOpensim Then
+                        GridCommon = "Joomla\Gridcommon.ini"
                     Else
-                        Output += line
+                        GridCommon = "Robust\Gridcommon.ini"
                     End If
-                    outputFile.WriteLine(Output)
-                End While
-                outputFile.Flush()
-            End Using
-            'close your reader
-            reader.Close()
-        Catch ex As Exception
-            BreakPoint.Dump(ex)
+                Case RegionServerName
+                    GridCommon = "Region\Gridcommon.ini"
+                Case OsgridServer
+                    GridCommon = "OsGrid\Gridcommon.ini"
+                    Settings.HttpPort = 80
+                Case MetroServer
+                    GridCommon = "Metro\Gridcommon.ini"
+            End Select
+
+            ' Put that gridcommon.ini file in place
+            Dim s = IO.Path.Combine(Settings.OpensimBinPath & "config-include\Proto")
+            s = IO.Path.Combine(s, GridCommon)
+
+            Dim d = IO.Path.Combine(Settings.OpensimBinPath, "config-include\")
+            d = IO.Path.Combine(d, "GridCommon.ini")
+
+            ' set the defaults in the INI for the viewer to use. Painful as it's a Left hand side edit
+            Dim reader As IO.StreamReader
+            Dim line As String
+
+            Try
+                ' make a long list of the various regions with region_ at the start
+                Dim Authorizationlist As String = ""
+                For Each RegionUUID In RegionUuids()
+                    Dim RegionName = Region_Name(RegionUUID)
+
+                    RegionName = RegionName.Replace(" ", "_")
+
+                    If Disallow_Foreigners(RegionUUID) = "True" Then
+                        Authorizationlist += $"Region_{RegionName}=DisallowForeigners{vbLf}"
+                    ElseIf Disallow_Residents(RegionUUID) = "True" Then
+                        Authorizationlist += $"Region_{RegionName}=DisallowResidents{vbLf}"
+                    End If
+                Next
+
+                Using outputFile As New StreamWriter(d, False)
+                    outputFile.AutoFlush = True
+                    reader = System.IO.File.OpenText(s)
+                    'now loop through each line
+                    While reader.Peek <> -1
+                        line = reader.ReadLine()
+                        Dim Output As String = Nothing
+                        'Breakpoint.Print(line)
+                        If line.StartsWith("; START", StringComparison.OrdinalIgnoreCase) Then
+                            Output += line & vbLf ' add back on the ; START
+                            Output += Authorizationlist
+                        Else
+                            Output += line
+                        End If
+                        outputFile.WriteLine(Output)
+                    End While
+                    outputFile.Flush()
+                End Using
+                'close your reader
+                reader.Close()
+            Catch ex As Exception
+                BreakPoint.Dump(ex)
+            End Try
+
+            Dim INI = New LoadIni(d, ";", System.Text.Encoding.UTF8)
+
+            INI.SetIni("HGInventoryAccessModule", "OutboundPermission", CStr(Settings.OutboundPermissions))
+            INI.SetIni("DatabaseService", "ConnectionString", Settings.RegionDBConnection)
+
+            ' ;; Send visual reminder to local users that their inventories are unavailable while they are traveling ;; and available when they return. True by default.
+            If Settings.Suitcase Then
+                INI.SetIni("HGInventoryAccessModule", "RestrictInventoryAccessAbroad", "True")
+            Else
+                INI.SetIni("HGInventoryAccessModule", "RestrictInventoryAccessAbroad", "False")
+            End If
+
+            INI.SaveIni()
+            Return False
+        Catch
+            Return True
         End Try
-
-        Dim INI = New LoadIni(d, ";", System.Text.Encoding.UTF8)
-
-        INI.SetIni("HGInventoryAccessModule", "OutboundPermission", CStr(Settings.OutboundPermissions))
-        INI.SetIni("DatabaseService", "ConnectionString", Settings.RegionDBConnection)
-
-        ' ;; Send visual reminder to local users that their inventories are unavailable while they are traveling ;; and available when they return. True by default.
-        If Settings.Suitcase Then
-            INI.SetIni("HGInventoryAccessModule", "RestrictInventoryAccessAbroad", "True")
-        Else
-            INI.SetIni("HGInventoryAccessModule", "RestrictInventoryAccessAbroad", "False")
-        End If
-
-        INI.SaveINI()
-
-        Return False
 
     End Function
 
     Public Function DoGridHyperGrid() As Boolean
 
-        TextPrint("->Set GridHypergrid.ini")
+        Try
+            TextPrint("->Set GridHypergrid.ini")
 
-        Dim src = IO.Path.Combine(Settings.OpensimBinPath & "config-include\Proto")
-        src = IO.Path.Combine(src, Settings.ServerType)
-        src = IO.Path.Combine(src, "GridHypergrid.ini")
+            Dim src = IO.Path.Combine(Settings.OpensimBinPath & "config-include\Proto")
+            src = IO.Path.Combine(src, Settings.ServerType)
+            src = IO.Path.Combine(src, "GridHypergrid.ini")
 
-        Dim dest = IO.Path.Combine(Settings.OpensimBinPath, "config-include\GridHypergrid.ini")
-        'Put that gridhypergrid.ini file in place
-        CopyFileFast(src, dest)
-        Return False
+            Dim dest = IO.Path.Combine(Settings.OpensimBinPath, "config-include\GridHypergrid.ini")
+            'Put that gridhypergrid.ini file in place
+            CopyFileFast(src, dest)
+            Return False
+        Catch
+            Return True
+        End Try
 
     End Function
 
     Public Function DoIceCast() As Boolean
 
         If Not Settings.SCEnable Then Return False
-        TextPrint("->Set IceCast")
-        Dim rgx As New Regex("[^a-zA-Z0-9 ]")
-        Dim name As String = rgx.Replace(Settings.SimName, "")
+        Try
 
-        Dim icecast As String = "<icecast>" & vbCrLf +
+            TextPrint("->Set IceCast")
+            Dim rgx As New Regex("[^a-zA-Z0-9 ]")
+            Dim name As String = rgx.Replace(Settings.SimName, "")
+
+            Dim icecast As String = "<icecast>" & vbCrLf +
                            "<hostname>" & Settings.PublicIP & "</hostname>" & vbCrLf +
                             "<location>" & name & "</location>" & vbCrLf +
                             "<admin>" & Settings.AdminEmail & "</admin>" & vbCrLf +
@@ -396,12 +406,15 @@ Module DoIni
                               "</logging>" & vbCrLf +
                           "</icecast>" & vbCrLf
 
-        Using outputFile As New IO.StreamWriter(IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\Icecast\icecast_run.xml"), False)
-            outputFile.WriteLine(icecast)
-            outputFile.Flush()
-        End Using
+            Using outputFile As New IO.StreamWriter(IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\Icecast\icecast_run.xml"), False)
+                outputFile.WriteLine(icecast)
+                outputFile.Flush()
+            End Using
 
-        Return False
+            Return False
+        Catch
+            Return True
+        End Try
 
     End Function
 
@@ -414,7 +427,7 @@ Module DoIni
                 outputFile.Flush()
             End Using
         Catch ex As Exception
-            MsgBox(ex.Message, vbCritical Or MsgBoxStyle.MsgBoxSetForeground)
+            Return True
         End Try
 
         Return False
@@ -423,76 +436,71 @@ Module DoIni
 
     Public Function DoPHPDBSetup() As Boolean
 
-        TextPrint("->Set PHP7")
-        Dim phptext = "<?php " & vbCrLf &
-"/* General Domain */" & vbCrLf &
-"$CONF_domain        = " & """" & Settings.PublicIP & """" & "; " & vbCrLf &
-"$CONF_port          = " & """" & Settings.HttpPort & """" & "; " & vbCrLf &
-"$CONF_sim_domain    = " & """" & "http://" & Settings.PublicIP & "/" & """" & ";" & vbCrLf &
-"$CONF_install_path  = " & """" & "/Metromap" & """" & ";   // Installation path " & vbCrLf & "/* MySQL Database */ " & vbCrLf &
-"$CONF_db_server     = " & """" & Settings.RobustServerIP & """" & "; // Address Of Robust Server " & vbCrLf &
-"$CONF_db_port       = " & """" & CStr(Settings.MySqlRobustDBPort) & """" & "; // Robust port " & vbCrLf &
-"$CONF_db_user       = " & """" & Settings.RobustUserName & """" & ";  // login " & vbCrLf &
-"$CONF_db_pass       = " & """" & Settings.RobustPassword & """" & ";  // password " & vbCrLf &
-"$CONF_db_database   = " & """" & Settings.RobustDatabaseName & """" & ";     // Name Of Robust Server " & vbCrLf &
-"/* The Coordinates Of the Grid-Center */ " & vbCrLf &
-"$CONF_center_coord_x = " & """" & CStr(Settings.MapCenterX) & """" & ";		// the Center-X-Coordinate " & vbCrLf &
-"$CONF_center_coord_y = " & """" & CStr(Settings.MapCenterY) & """" & ";		// the Center-Y-Coordinate " & vbCrLf &
-"// style-sheet items" & vbCrLf &
-"$CONF_style_sheet     = " & """" & "/css/stylesheet.css" & """" & ";          //Link To your StyleSheet" & vbCrLf &
-"$CONF_HOME            = " & """" & Settings.CMS & """" & ";          //Link To your Home Folder in htdocs.  WordPress, DreamGrid, JOpensim/jOpensim or user assigned folder" & vbCrLf &
-"?>"
-
         Try
-            Using outputFile As New StreamWriter(IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\Apache\htdocs\MetroMap\includes\config.php"), False)
-                outputFile.WriteLine(phptext)
-                outputFile.Flush()
-            End Using
-        Catch ex As Exception
-            MsgBox(ex.Message, vbCritical Or MsgBoxStyle.MsgBoxSetForeground)
+
+            TextPrint("->Set PHP7")
+            Dim phptext = "<?php " & vbCrLf &
+    "/* General Domain */" & vbCrLf &
+    "$CONF_domain        = " & """" & Settings.PublicIP & """" & "; " & vbCrLf &
+    "$CONF_port          = " & """" & Settings.HttpPort & """" & "; " & vbCrLf &
+    "$CONF_sim_domain    = " & """" & "http://" & Settings.PublicIP & "/" & """" & ";" & vbCrLf &
+    "$CONF_install_path  = " & """" & "/Metromap" & """" & ";   // Installation path " & vbCrLf & "/* MySQL Database */ " & vbCrLf &
+    "$CONF_db_server     = " & """" & Settings.RobustServerIP & """" & "; // Address Of Robust Server " & vbCrLf &
+    "$CONF_db_port       = " & """" & CStr(Settings.MySqlRobustDBPort) & """" & "; // Robust port " & vbCrLf &
+    "$CONF_db_user       = " & """" & Settings.RobustUserName & """" & ";  // login " & vbCrLf &
+    "$CONF_db_pass       = " & """" & Settings.RobustPassword & """" & ";  // password " & vbCrLf &
+    "$CONF_db_database   = " & """" & Settings.RobustDatabaseName & """" & ";     // Name Of Robust Server " & vbCrLf &
+    "/* The Coordinates Of the Grid-Center */ " & vbCrLf &
+    "$CONF_center_coord_x = " & """" & CStr(Settings.MapCenterX) & """" & ";		// the Center-X-Coordinate " & vbCrLf &
+    "$CONF_center_coord_y = " & """" & CStr(Settings.MapCenterY) & """" & ";		// the Center-Y-Coordinate " & vbCrLf &
+    "// style-sheet items" & vbCrLf &
+    "$CONF_style_sheet     = " & """" & "/css/stylesheet.css" & """" & ";          //Link To your StyleSheet" & vbCrLf &
+    "$CONF_HOME            = " & """/" & Settings.CMS & "/""" & ";          //Link To your Home Folder in htdocs.  WordPress, DreamGrid, JOpensim/jOpensim or user assigned folder" & vbCrLf &
+    "?>"
+
+            Try
+                Using outputFile As New StreamWriter(IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\Apache\htdocs\MetroMap\includes\config.php"), False)
+                    outputFile.WriteLine(phptext)
+                    outputFile.Flush()
+                End Using
+            Catch ex As Exception
+                MsgBox(ex.Message, vbCritical Or MsgBoxStyle.MsgBoxSetForeground)
+            End Try
+
+            Try
+                phptext = "<?php " & vbCrLf &
+    "$DB_GRIDNAME = " & """" & Settings.PublicIP & ":" & Settings.HttpPort & """" & ";" & vbCrLf &
+    "$DB_HOST = " & """" & Settings.RobustServerIP & """" & ";" & vbCrLf &
+    "$DB_PORT = " & """" & CStr(Settings.MySqlRobustDBPort) & """" & "; // Robust port " & vbCrLf &
+    "$DB_USER = " & """" & Settings.RobustUserName & """" & ";" & vbCrLf &
+    "$DB_PASSWORD = " & """" & Settings.RobustPassword & """" & ";" & vbCrLf &
+    "$DB_NAME = " & """" & "ossearch" & """" & ";" & vbCrLf &
+    "$ROBUST_NAME = " & """" & Settings.RobustDatabaseName & """" & ";" & vbCrLf &
+    "$OPENSIM_NAME = " & """" & Settings.RegionDBName & """" & ";" & vbCrLf &
+    "?>"
+
+                Using outputFile As New StreamWriter(IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\PHP7\databaseinfo.php"), False)
+                    outputFile.WriteLine(phptext)
+                    outputFile.Flush()
+                End Using
+            Catch ex As Exception
+                MsgBox(ex.Message, vbCritical Or MsgBoxStyle.MsgBoxSetForeground)
+            End Try
+
+            Return False
+        Catch
+            Return True
         End Try
-
-        Try
-            phptext = "<?php " & vbCrLf &
-"$DB_GRIDNAME = " & """" & Settings.PublicIP & ":" & Settings.HttpPort & """" & ";" & vbCrLf &
-"$DB_HOST = " & """" & Settings.RobustServerIP & """" & ";" & vbCrLf &
-"$DB_PORT = " & """" & CStr(Settings.MySqlRobustDBPort) & """" & "; // Robust port " & vbCrLf &
-"$DB_USER = " & """" & Settings.RobustUserName & """" & ";" & vbCrLf &
-"$DB_PASSWORD = " & """" & Settings.RobustPassword & """" & ";" & vbCrLf &
-"$DB_NAME = " & """" & "ossearch" & """" & ";" & vbCrLf &
-"?>"
-
-            Using outputFile As New StreamWriter(IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\PHP7\databaseinfo.php"), False)
-                outputFile.WriteLine(phptext)
-                outputFile.Flush()
-            End Using
-        Catch ex As Exception
-            MsgBox(ex.Message, vbCritical Or MsgBoxStyle.MsgBoxSetForeground)
-        End Try
-
-        Return False
 
     End Function
 
     Public Function DoTos() As Boolean
 
-        Try
-            Dim reader As System.IO.StreamReader
-            reader = System.IO.File.OpenText(IO.Path.Combine(Settings.CurrentDirectory, "tos.html"))
-            'now loop through each line
-            Dim HTML As String = ""
-            While reader.Peek <> -1
-                HTML = HTML + reader.ReadLine() + vbCrLf
-            End While
-            reader.Close()
+        If Not IO.File.Exists(IO.Path.Combine(Settings.CurrentDirectory, "tos.html")) Then
+            CopyFileFast(IO.Path.Combine(Settings.CurrentDirectory, "tos.proto"), IO.Path.Combine(Settings.CurrentDirectory, "tos.html"))
+        End If
 
-            Using outputFile As New StreamWriter(IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\Opensim\bin\WifiPages\tos.html"), False)
-                outputFile.WriteLine(HTML)
-                outputFile.Flush()
-            End Using
-        Catch ex As Exception
-            BreakPoint.Dump(ex)
-        End Try
+        CopyFileFast(IO.Path.Combine(Settings.CurrentDirectory, "tos.html"), IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\Opensim\bin\WifiPages\tos.html"))
 
         Return False
 
@@ -500,64 +508,71 @@ Module DoIni
 
     Public Function DoWhoGotWhat() As Boolean
 
-        Dim INI = New LoadIni(Settings.OpensimBinPath & "config-addon-opensim\WhoGotWhat.ini", ";", System.Text.Encoding.UTF8)
-        INI.SetIni("WhoGotWhat", "MachineID", Settings.MachineID)
-        INI.SaveINI()
-        Return False
+        Try
+            Dim INI = New LoadIni(Settings.OpensimBinPath & "config-addon-opensim\WhoGotWhat.ini", ";", System.Text.Encoding.UTF8)
+            INI.SetIni("WhoGotWhat", "MachineID", Settings.MachineId)
+            INI.SaveIni()
+            Return False
+        Catch
+            Return True
+        End Try
 
     End Function
 
     Public Function DoWifi() As Boolean
 
         ' There are two Wifi's so search will work
+        Try
+            Dim INI = New LoadIni(Settings.OpensimBinPath & "config-addon-opensim\Wifi.ini", ";", System.Text.Encoding.UTF8)
+            TextPrint("->Set Diva Wifi page")
+            INI.SetIni("DatabaseService", "ConnectionString", Settings.RobustDBConnection)
+            INI.SaveIni()
 
-        Dim INI = New LoadIni(Settings.OpensimBinPath & "config-addon-opensim\Wifi.ini", ";", System.Text.Encoding.UTF8)
-        TextPrint("->Set Diva Wifi page")
-        INI.SetIni("DatabaseService", "ConnectionString", Settings.RobustDBConnection)
-        INI.SaveINI()
+            INI = New LoadIni(IO.Path.Combine(Settings.OpensimBinPath, "Wifi.ini"), ";", System.Text.Encoding.UTF8)
 
-        INI = New LoadIni(IO.Path.Combine(Settings.OpensimBinPath, "Wifi.ini"), ";", System.Text.Encoding.UTF8)
+            INI.SetIni("DatabaseService", "ConnectionString", Settings.RobustDBConnection)
 
-        INI.SetIni("DatabaseService", "ConnectionString", Settings.RobustDBConnection)
-
-        If Settings.ServerType = RobustServerName Then ' wifi could be on or off
-            If (Settings.WifiEnabled) Then
-                INI.SetIni("WifiService", "Enabled", "True")
-            Else
+            If Settings.ServerType = RobustServerName Then ' wifi could be on or off
+                If (Settings.WifiEnabled) Then
+                    INI.SetIni("WifiService", "Enabled", "True")
+                Else
+                    INI.SetIni("WifiService", "Enabled", "False")
+                End If
+            Else ' it is always off
+                ' shutdown wifi in Attached mode
                 INI.SetIni("WifiService", "Enabled", "False")
             End If
-        Else ' it is always off
-            ' shutdown wifi in Attached mode
-            INI.SetIni("WifiService", "Enabled", "False")
-        End If
 
-        INI.SetIni("WifiService", "GridName", Settings.SimName)
-        INI.SetIni("WifiService", "LoginURL", "http://" & Settings.PublicIP & ":" & Settings.HttpPort)
-        INI.SetIni("WifiService", "WebAddress", "http://" & Settings.PublicIP & ":" & Settings.HttpPort)
+            INI.SetIni("WifiService", "GridName", Settings.SimName)
+            INI.SetIni("WifiService", "LoginURL", "http://" & Settings.PublicIP & ":" & Settings.HttpPort)
+            INI.SetIni("WifiService", "WebAddress", "http://" & Settings.PublicIP & ":" & Settings.HttpPort)
 
-        ' Wifi Admin'
-        INI.SetIni("WifiService", "AdminFirst", Settings.AdminFirst)    ' Wifi
-        INI.SetIni("WifiService", "AdminLast", Settings.AdminLast)      ' Admin
-        INI.SetIni("WifiService", "AdminPassword", Settings.Password)   ' secret
-        INI.SetIni("WifiService", "AdminEmail", Settings.AdminEmail)    ' send notifications to this person
+            ' Wifi Admin'
+            INI.SetIni("WifiService", "AdminFirst", Settings.AdminFirst)    ' Wifi
+            INI.SetIni("WifiService", "AdminLast", Settings.AdminLast)      ' Admin
+            INI.SetIni("WifiService", "AdminPassword", Settings.Password)   ' secret
+            INI.SetIni("WifiService", "AdminEmail", Settings.AdminEmail)    ' send notifications to this person
 
-        'Gmail and other SMTP mailers
-        ' Gmail requires you set to set low security access
-        INI.SetIni("WifiService", "SmtpHost", Settings.SmtpHost)
-        INI.SetIni("WifiService", "SmtpPort", Convert.ToString(Settings.SmtpPort, Globalization.CultureInfo.InvariantCulture))
-        INI.SetIni("WifiService", "SmtpUsername", Settings.SmtPropUserName)
-        INI.SetIni("WifiService", "SmtpPassword", Settings.SmtpPassword)
+            'Gmail and other SMTP mailers
+            ' Gmail requires you set to set low security access
+            INI.SetIni("WifiService", "SmtpHost", Settings.SmtpHost)
+            INI.SetIni("WifiService", "SmtpPort", Convert.ToString(Settings.SmtpPort, Globalization.CultureInfo.InvariantCulture))
+            INI.SetIni("WifiService", "SmtpUsername", Settings.SmtPropUserName)
+            INI.SetIni("WifiService", "SmtpPassword", Settings.SmtpPassword)
 
-        INI.SetIni("WifiService", "HomeLocation", Settings.WelcomeRegion & "/" & Settings.HomeVectorX & "/" & Settings.HomeVectorY & "/" & Settings.HomeVectorZ)
+            INI.SetIni("WifiService", "HomeLocation", Settings.WelcomeRegion & "/" & Settings.HomeVectorX & "/" & Settings.HomeVectorY & "/" & Settings.HomeVectorZ)
 
-        If Settings.AccountConfirmationRequired Then
-            INI.SetIni("WifiService", "AccountConfirmationRequired", "True")
-        Else
-            INI.SetIni("WifiService", "AccountConfirmationRequired", "False")
-        End If
+            If Settings.AccountConfirmationRequired Then
+                INI.SetIni("WifiService", "AccountConfirmationRequired", "True")
+            Else
+                INI.SetIni("WifiService", "AccountConfirmationRequired", "False")
+            End If
 
-        INI.SaveINI()
-        Return False
+            INI.SaveIni()
+            Return False
+        Catch
+            Return True
+        End Try
 
     End Function
 
@@ -612,14 +627,17 @@ Module DoIni
     Private Function DoFlotsamINI() As Boolean
 
         Dim INI = New LoadIni(Settings.OpensimBinPath & "config-include\FlotsamCache.ini", ";", System.Text.Encoding.UTF8)
-
-        TextPrint("->Set Flotsam Cache")
-        INI.SetIni("AssetCache", "LogLevel", Settings.CacheLogLevel)
-        INI.SetIni("AssetCache", "CacheDirectory", Settings.CacheFolder)
-        INI.SetIni("AssetCache", "FileCacheEnabled", CStr(Settings.CacheEnabled))
-        INI.SetIni("AssetCache", "FileCacheTimeout", Settings.CacheTimeout)
-        INI.SaveINI()
-        Return False
+        Try
+            TextPrint("->Set Flotsam Cache")
+            INI.SetIni("AssetCache", "LogLevel", Settings.CacheLogLevel)
+            INI.SetIni("AssetCache", "CacheDirectory", Settings.CacheFolder)
+            INI.SetIni("AssetCache", "FileCacheEnabled", CStr(Settings.CacheEnabled))
+            INI.SetIni("AssetCache", "FileCacheTimeout", Settings.CacheTimeout)
+            INI.SaveIni()
+            Return False
+        Catch
+            Return True
+        End Try
 
     End Function
 
@@ -627,11 +645,14 @@ Module DoIni
 
         Dim ini = IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\PHP7\php.ini")
 
-        Settings.LoadLiteralIni(ini)
-        Settings.SetLiteralIni("extension_dir", "extension_dir = " & """" & Settings.CurrentSlashDir & "/OutworldzFiles/PHP7/ext/""")
-        Settings.SetLiteralIni("doc_root", "doc_root = """ & Settings.CurrentSlashDir & "/OutworldzFiles/Apache/htdocs/""")
-
-        Settings.SaveLiteralIni(ini, "php.ini")
+        Try
+            Dim PHP = New IniWriter(ini)
+            PHP.Write("extension_dir", "extension_dir = " & """" & Settings.CurrentSlashDir & "/OutworldzFiles/PHP7/ext/""")
+            PHP.Write("doc_root", "doc_root = """ & Settings.CurrentSlashDir & "/OutworldzFiles/Apache/htdocs/""")
+            PHP.Save("php.ini")
+        Catch
+            Return True
+        End Try
 
         Return False
 
@@ -639,56 +660,60 @@ Module DoIni
 
     Private Function DoTides() As Boolean
 
-        Dim TideData As String = ""
-        Dim TideFile = Settings.OpensimBinPath & "addon-modules\OpenSimTide\config\OpenSimTide.ini"
+        Try
+            Dim TideData As String = ""
+            Dim TideFile = Settings.OpensimBinPath & "addon-modules\OpenSimTide\config\OpenSimTide.ini"
 
-        DeleteFile(TideFile)
+            DeleteFile(TideFile)
 
-        For Each RegionUUID As String In RegionUuids()
-            Dim RegionName = Region_Name(RegionUUID)
-            'Tides Setup per region
-            If Settings.TideEnabled And Tides(RegionUUID) = "True" Then
+            For Each RegionUUID In RegionUuids()
+                Dim RegionName = Region_Name(RegionUUID)
+                'Tides Setup per region
+                If Settings.TideEnabled And Tides(RegionUUID) = "True" Then
 
-                TideData = TideData & ";; Set the Tide settings per named region" & vbCrLf &
-                    "[" & RegionName & "]" & vbCrLf &
-                ";this determines whether the Module does anything In this region" & vbCrLf &
-                ";# {TideEnabled} {} {Enable the tide To come In And out?} {True False} False" & vbCrLf &
-                "TideEnabled = True" & vbCrLf &
+                    TideData = TideData & ";; Set the Tide settings per named region" & vbCrLf &
+                        "[" & RegionName & "]" & vbCrLf &
+                    ";this determines whether the Module does anything In this region" & vbCrLf &
+                    ";# {TideEnabled} {} {Enable the tide To come In And out?} {True False} False" & vbCrLf &
+                    "TideEnabled = True" & vbCrLf &
+                        vbCrLf &
+                    ";; Tides currently only work On Single regions And varregions (non megaregions) " & vbCrLf &
+                    ";# surrounded completely by water" & vbCrLf &
+                    ";; Anything Else will produce weird results where you may see a big" & vbCrLf &
+                    ";; vertical 'step' in the ocean" & vbCrLf &
+                    ";; update the tide every x simulator frames" & vbCrLf &
+                    "TideUpdateRate = 50" & vbCrLf &
+                        vbCrLf &
+                    ";; low And high water marks in metres" & vbCrLf &
+                    "TideHighWater = " & Convert.ToString(Settings.TideHighLevel(), Globalization.CultureInfo.InvariantCulture) & vbCrLf &
+                    "TideLowWater = " & Convert.ToString(Settings.TideLowLevel(), Globalization.CultureInfo.InvariantCulture) & vbCrLf &
                     vbCrLf &
-                ";; Tides currently only work On Single regions And varregions (non megaregions) " & vbCrLf &
-                ";# surrounded completely by water" & vbCrLf &
-                ";; Anything Else will produce weird results where you may see a big" & vbCrLf &
-                ";; vertical 'step' in the ocean" & vbCrLf &
-                ";; update the tide every x simulator frames" & vbCrLf &
-                "TideUpdateRate = 50" & vbCrLf &
+                    ";; how long in seconds for a complete cycle time low->high->low" & vbCrLf &
+                    "TideCycleTime = " & Convert.ToString(Settings.CycleTime(), Globalization.CultureInfo.InvariantCulture) & vbCrLf &
+                        vbCrLf &
+                    ";; provide tide information on the console?" & vbCrLf &
+                    "TideInfoDebug = " & CStr(Settings.TideInfoDebug) & vbCrLf &
+                        vbCrLf &
+                    ";; chat tide info to the whole region?" & vbCrLf &
+                    "TideInfoBroadcast = " & Settings.BroadcastTideInfo() & vbCrLf &
+                        vbCrLf &
+                    ";; which channel to region chat on for the full tide info" & vbCrLf &
+                    "TideInfoChannel = " & CStr(Settings.TideInfoChannel) & vbCrLf &
                     vbCrLf &
-                ";; low And high water marks in metres" & vbCrLf &
-                "TideHighWater = " & Convert.ToString(Settings.TideHighLevel(), Globalization.CultureInfo.InvariantCulture) & vbCrLf &
-                "TideLowWater = " & Convert.ToString(Settings.TideLowLevel(), Globalization.CultureInfo.InvariantCulture) & vbCrLf &
-                vbCrLf &
-                ";; how long in seconds for a complete cycle time low->high->low" & vbCrLf &
-                "TideCycleTime = " & Convert.ToString(Settings.CycleTime(), Globalization.CultureInfo.InvariantCulture) & vbCrLf &
-                    vbCrLf &
-                ";; provide tide information on the console?" & vbCrLf &
-                "TideInfoDebug = " & CStr(Settings.TideInfoDebug) & vbCrLf &
-                    vbCrLf &
-                ";; chat tide info to the whole region?" & vbCrLf &
-                "TideInfoBroadcast = " & Settings.BroadcastTideInfo() & vbCrLf &
-                    vbCrLf &
-                ";; which channel to region chat on for the full tide info" & vbCrLf &
-                "TideInfoChannel = " & CStr(Settings.TideInfoChannel) & vbCrLf &
-                vbCrLf &
-                ";; which channel to region chat on for just the tide level in metres" & vbCrLf &
-                "TideLevelChannel = " & Convert.ToString(Settings.TideLevelChannel(), Globalization.CultureInfo.InvariantCulture) & vbCrLf &
-                    vbCrLf &
-                ";; How many times to repeat Tide Warning messages at high/low tide" & vbCrLf &
-                "TideAnnounceCount = 1" & vbCrLf & vbCrLf & vbCrLf & vbCrLf
-            End If
+                    ";; which channel to region chat on for just the tide level in metres" & vbCrLf &
+                    "TideLevelChannel = " & Convert.ToString(Settings.TideLevelChannel(), Globalization.CultureInfo.InvariantCulture) & vbCrLf &
+                        vbCrLf &
+                    ";; How many times to repeat Tide Warning messages at high/low tide" & vbCrLf &
+                    "TideAnnounceCount = 1" & vbCrLf & vbCrLf & vbCrLf & vbCrLf
+                End If
 
-        Next
-        IO.File.WriteAllText(TideFile, TideData, System.Text.Encoding.Default) 'The text file will be created if it does not already exist
+            Next
+            IO.File.WriteAllText(TideFile, TideData, System.Text.Encoding.Default) 'The text file will be created if it does not already exist
 
-        Return False
+            Return False
+        Catch
+            Return True
+        End Try
 
     End Function
 

@@ -13,7 +13,7 @@
         End Set
     End Property
 
-    Public Sub init(UUID As String)
+    Public Sub Init(UUID As String)
 
         UD = MysqlGetUserData(UUID)
         TitleTextBox.Enabled = True

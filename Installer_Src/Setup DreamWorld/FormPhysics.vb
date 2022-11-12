@@ -57,6 +57,7 @@ Public Class FormPhysics
         Physics0_None.Text = Global.Outworldz.My.Resources.None
         Physics2_Bullet.Text = Global.Outworldz.My.Resources.Bullet_Physics_word
         Physics3_Separate.Text = Global.Outworldz.My.Resources.Bullet_Threaded_word
+        Physics5_Hybrid.Text = Global.Outworldz.My.Resources.ubODE_Hybrid_word
 
         Text = Global.Outworldz.My.Resources.Physics_word
         ToolStripMenuItem30.Image = Global.Outworldz.My.Resources.question_and_answer
@@ -69,6 +70,7 @@ Public Class FormPhysics
             Case 2 : Physics2_Bullet.Checked = True
             Case 3 : Physics3_Separate.Checked = True
             Case 4 : Physics4_UbODE.Checked = True
+            Case 5 : Physics5_Hybrid.Checked = True
             Case Else : Physics3_Separate.Checked = True
         End Select
 
@@ -89,20 +91,33 @@ Public Class FormPhysics
 
 #Region "Physics"
 
+    Private Sub Physics5_Hybrid_CheckedChanged(sender As Object, e As EventArgs) Handles Physics5_Hybrid.CheckedChanged
+
+        If Physics5_Hybrid.Checked Then
+            Settings.Physics = 5
+            Settings.SaveSettings()
+        End If
+
+    End Sub
+
     Private Sub PhysicsNone_CheckedChanged(sender As Object, e As EventArgs) Handles Physics0_None.CheckedChanged
+
         If Not initted Then Return
         If Physics0_None.Checked Then
             Settings.Physics = 0
             Settings.SaveSettings()
         End If
+
     End Sub
 
     Private Sub PhysicsSeparate_CheckedChanged(sender As Object, e As EventArgs) Handles Physics3_Separate.CheckedChanged
+
         If Not initted Then Return
         If Physics3_Separate.Checked Then
             Settings.Physics = 3
             Settings.SaveSettings()
         End If
+
     End Sub
 
     Private Sub PhysicsUbODE_CheckedChanged_1(sender As Object, e As EventArgs) Handles Physics4_UbODE.CheckedChanged
@@ -111,14 +126,17 @@ Public Class FormPhysics
             Settings.Physics = 4
             Settings.SaveSettings()
         End If
+
     End Sub
 
     Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles Physics2_Bullet.CheckedChanged
+
         If Not initted Then Return
         If Physics2_Bullet.Checked Then
             Settings.Physics = 2
             Settings.SaveSettings()
         End If
+
     End Sub
 
 #End Region

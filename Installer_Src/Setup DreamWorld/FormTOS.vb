@@ -44,17 +44,7 @@ Public Class TosForm
 
     Private Sub ApplyButton_Click(sender As Object, e As EventArgs) Handles ApplyButton.Click
 
-        Try
-            Using outputFile As New StreamWriter(IO.Path.Combine(Settings.CurrentDirectory & "\tos.html"), False)
-                outputFile.WriteLine(Editor1.BodyHtml)
-            End Using
-
-            Using outputFile As New StreamWriter(IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\opensim\bin\WifiPages\tos.html"), False)
-                outputFile.WriteLine(Editor1.BodyHtml)
-            End Using
-        Catch ex As Exception
-            BreakPoint.Dump(ex)
-        End Try
+        Save()
 
     End Sub
 
@@ -73,18 +63,30 @@ Public Class TosForm
 
     End Sub
 
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+
+        Settings.TOSEnabled = CheckBox1.Checked
+        Settings.SaveSettings()
+
+    End Sub
+
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         SaveButton.Text = My.Resources.Save_changes_word
         ApplyButton.Text = My.Resources.Apply_word
         PreviewButton.Text = My.Resources.Preview_in_Browser
 
+        CheckBox1.Checked = Settings.TOSEnabled
+        CheckBox1.Text = My.Resources.RequireTOS
+
         Dim reader As System.IO.StreamReader
         reader = System.IO.File.OpenText(IO.Path.Combine(Settings.CurrentDirectory, "tos.html"))
         'now loop through each line
         Dim HTML As String = ""
         While reader.Peek <> -1
-            HTML = HTML + reader.ReadLine() + vbCrLf
+            Dim Str = reader.ReadLine()
+            Str = Str.Replace("'<!-- #get var=GridName -->'", "[GRIDNAME]")
+            HTML = HTML + Str + vbCrLf
         End While
         reader.Close()
         Editor1.BodyHtml = HTML
@@ -95,20 +97,28 @@ Public Class TosForm
 
     End Sub
 
-    Private Sub SaveButton_Click(sender As Object, e As EventArgs) Handles SaveButton.Click
-
+    Private Sub Save()
         Try
-            Using outputFile As New StreamWriter(IO.Path.Combine(Settings.CurrentDirectory, "tos.html"), False)
-                outputFile.WriteLine(Editor1.BodyHtml)
-            End Using
+            Dim reader As System.IO.StreamReader
+            reader = System.IO.File.OpenText(IO.Path.Combine(Settings.CurrentDirectory, "tos.html"))
+            'now loop through each line
+            Dim HTML As String = ""
+            While reader.Peek <> -1
+                Dim Str = reader.ReadLine()
+                Str = Str.Replace("[GRIDNAME]", "'<!-- #get var=GridName -->'")
+                HTML = HTML + Str + vbCrLf
+            End While
+            reader.Close()
 
-            Using outputFile As New StreamWriter(IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\opensim\bin\WifiPages\tos.html"), False)
-                outputFile.WriteLine(Editor1.BodyHtml)
-            End Using
-        Catch ex As Exception
-            BreakPoint.Dump(ex)
+            CopyFileFast(IO.Path.Combine(Settings.CurrentDirectory, "tos.html"), IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\Opensim\bin\WifiPages\tos.html"))
+        Catch
         End Try
 
+    End Sub
+
+    Private Sub SaveButton_Click(sender As Object, e As EventArgs) Handles SaveButton.Click
+
+        Save()
         Me.Close()
 
     End Sub

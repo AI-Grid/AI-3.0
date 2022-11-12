@@ -59,16 +59,16 @@ Public Class FormGloebits
         ProductionCreateButton.Text = Global.Outworldz.My.Resources.Create_Account
         ProductionReqAppButton.Text = Global.Outworldz.My.Resources.Request_App
 
-        ContactEmailTextBox.Text = Settings.GLBOwnerEmail
-        OwnerNameTextbox.Text = Settings.GLBOwnerName
+        ContactEmailTextBox.Text = Settings.GlbOwnerEmail
+        OwnerNameTextbox.Text = Settings.GlbOwnerName
 
         ProdKeyTextBox.Text = Settings.GLProdKey
         ProdSecretTextBox.UseSystemPasswordChar = True
         ProdSecretTextBox.Text = Settings.GLProdSecret
 
-        GLBShowNewSessionAuthIMCheckBox.Checked = Settings.GLBShowNewSessionAuthIM
-        GLBShowNewSessionPurchaseIMCheckBox.Checked = Settings.GLBShowNewSessionPurchaseIM
-        GLBShowWelcomeMessageCheckBox.Checked = Settings.GLBShowWelcomeMessage
+        GLBShowNewSessionAuthIMCheckBox.Checked = Settings.GlbShowNewSessionAuthIM
+        GLBShowNewSessionPurchaseIMCheckBox.Checked = Settings.GlbShowNewSessionPurchaseIM
+        GLBShowWelcomeMessageCheckBox.Checked = Settings.GlbShowWelcomeMessage
 
         GloebitsEnabled.Checked = Settings.GloebitsEnable
         SetScreen()
@@ -173,7 +173,7 @@ Public Class FormGloebits
 
     Private Sub ContactEmailTextBox_TextChanged(sender As Object, e As EventArgs) Handles ContactEmailTextBox.TextChanged
 
-        Settings.GLBOwnerEmail = ContactEmailTextBox.Text
+        Settings.GlbOwnerEmail = ContactEmailTextBox.Text
         Settings.SaveSettings()
 
     End Sub
@@ -187,7 +187,7 @@ Public Class FormGloebits
 
     Private Sub OwnerNameTextbox_TextChanged(sender As Object, e As EventArgs) Handles OwnerNameTextbox.TextChanged
 
-        Settings.GLBOwnerName = OwnerNameTextbox.Text
+        Settings.GlbOwnerName = OwnerNameTextbox.Text
         Settings.SaveSettings()
 
     End Sub
@@ -207,21 +207,21 @@ Public Class FormGloebits
 
     Private Sub GLBShowNewSessionAuthIMCheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles GLBShowNewSessionAuthIMCheckBox.CheckedChanged
 
-        Settings.GLBShowNewSessionAuthIM = GLBShowNewSessionAuthIMCheckBox.Checked
+        Settings.GlbShowNewSessionAuthIM = GLBShowNewSessionAuthIMCheckBox.Checked
         Settings.SaveSettings()
 
     End Sub
 
     Private Sub GLBShowNewSessionPurchaseIMCheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles GLBShowNewSessionPurchaseIMCheckBox.CheckedChanged
 
-        Settings.GLBShowNewSessionPurchaseIM = GLBShowNewSessionPurchaseIMCheckBox.Checked
+        Settings.GlbShowNewSessionPurchaseIM = GLBShowNewSessionPurchaseIMCheckBox.Checked
         Settings.SaveSettings()
 
     End Sub
 
     Private Sub GLBShowWelcomeMessageCheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles GLBShowWelcomeMessageCheckBox.CheckedChanged
 
-        Settings.GLBShowWelcomeMessage = GLBShowWelcomeMessageCheckBox.Checked
+        Settings.GlbShowWelcomeMessage = GLBShowWelcomeMessageCheckBox.Checked
         Settings.SaveSettings()
 
     End Sub

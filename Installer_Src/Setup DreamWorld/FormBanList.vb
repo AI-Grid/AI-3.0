@@ -155,7 +155,7 @@ Public Class FormBanList
         Dim name As String = e.Column.Name.ToString(Globalization.CultureInfo.CurrentCulture)
 
         colsize.PutSize(name, w)
-        BreakPoint.Print(name & " " & w.ToString(Globalization.CultureInfo.InvariantCulture))
+
         ScreenPosition.SaveFormSettings()
 
     End Sub

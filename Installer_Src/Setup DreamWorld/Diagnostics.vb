@@ -15,7 +15,7 @@ Module Diags
 
     Public Sub DoDiag()
 
-        If IPCheck.IsPrivateIP(Settings.DNSName) Then
+        If IPCheck.IsPrivateIP(Settings.DnsName) Then
             Logger("INFO", Global.Outworldz.My.Resources.LAN_IP, "Diagnostics")
             TextPrint(My.Resources.LAN_IP)
             Return
@@ -47,31 +47,32 @@ Module Diags
 
     Public Function GetPostData(Optional Name As String = "") As String
 
-        If Name.Length = 0 Then Name = Settings.DNSName   ' optional Alt DNS name can come in
+        If Name.Length = 0 Then Name = Settings.PublicIP   ' optional Alt DNS name can come in
         Dim TotalSize As Double
-        Dim L = RegionUuids()
-        L.Sort()
-        For Each RegionUUID As String In L
+        Dim RegionCount As Integer
+        For Each RegionUUID In RegionUuids()
             TotalSize += SizeX(RegionUUID) / 256 * SizeY(RegionUUID) / 256
+            RegionCount += 1
         Next
 
         Dim fs = CreateObject("Scripting.FileSystemObject")
         Dim d As Object = fs.GetDrive(fs.GetDriveName(fs.GetAbsolutePathName("C:")))
 
-        Dim data As String = "?MachineID=" & Settings.MachineID() _
+        Dim data As String = "?MachineID=" & Settings.MachineId() _
         & "&FriendlyName=" & WebUtility.UrlEncode(Settings.SimName) _
         & "&V=" & WebUtility.UrlEncode(PropMyVersion) _
         & "&OV=" & WebUtility.UrlEncode(PropSimVersion) _
-        & "&isPublic=" & CStr(Settings.GDPR()) _
+        & "&isPublic=" & CStr(Settings.Gdpr()) _
         & "&GridName=" & Name _
         & "&Port=" & CStr(Settings.HttpPort()) _
         & "&Category=" & Settings.Categories _
         & "&Description=" & Settings.Description _
-        & "&IP=" & Settings.PublicIP _
+        & "&IP=" & Name _
         & "&ServerType=" & Settings.ServerType _
+        & "&RegionCount=" & CStr(RegionCount) _
+        & "&RegionSize=" & CStr(TotalSize) _
         & "&MAC=" & Settings.MacAddress _
         & "&ID0=" & CreateMD5(CStr(d.SerialNumber)) _
-        & "&RegionSize=" & CStr(TotalSize) _
         & "&r=" & RandomNumber.Random()
         Return data
 
@@ -196,10 +197,7 @@ Module Diags
 
             Application.DoEvents()
 
-            Dim L = RegionUuids()
-            L.Sort()
-
-            For Each RegionUUID As String In L
+            For Each RegionUUID In RegionUuids()
                 Dim R As Integer = Region_Port(RegionUUID)
 
                 If PropMyUPnpMap.Exists(R, UPnp.MyProtocol.UDP) Then
@@ -355,9 +353,8 @@ Module Diags
 
         Dim Used As New List(Of String)
         ' Boot them up
-        Dim L = RegionUuids()
-        L.Sort()
-        For Each RegionUUID As String In L
+
+        For Each RegionUUID In RegionUuids()
             If IsBooted(RegionUUID) Then
                 Dim RegionName = Region_Name(RegionUUID)
 

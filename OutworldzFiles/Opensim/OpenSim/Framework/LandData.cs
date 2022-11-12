@@ -49,11 +49,11 @@ namespace OpenSim.Framework
         private Vector3 _AABBMax = new Vector3();
         private Vector3 _AABBMin = new Vector3();
         private int _area = 0;
-        private uint _auctionID = 0; //Unimplemented. If set to 0, not being auctioned
-        private UUID _authBuyerID = UUID.Zero; //Unimplemented. Authorized Buyer's UUID
-        private ParcelCategory _category = ParcelCategory.None; //Unimplemented. Parcel's chosen category
+        private uint _auctionID = 0; //Unemplemented. If set to 0, not being auctioned
+        private UUID _authBuyerID = UUID.Zero; //Unemplemented. Authorized Buyer's UUID
+        private ParcelCategory _category = ParcelCategory.None; //Unemplemented. Parcel's chosen category
         private int _claimDate = 0;
-        private int _claimPrice = 0; //Unimplemented
+        private int _claimPrice = 0; //Unemplemented
         private UUID _globalID = UUID.Zero;
         private UUID _groupID = UUID.Zero;
         private bool _isGroupOwned = false;
@@ -63,8 +63,11 @@ namespace OpenSim.Framework
         private uint _flags = (uint)ParcelFlags.AllowFly | (uint)ParcelFlags.AllowLandmark |
                                 (uint)ParcelFlags.AllowAPrimitiveEntry |
                                 (uint)ParcelFlags.AllowDeedToGroup |
-                                // FKB DreamGrid (uint)ParcelFlags.CreateObjects | (uint)ParcelFlags.AllowOtherScripts |
                                 (uint)ParcelFlags.AllowVoiceChat;
+        
+                                // FKB DreamGrid stop Rez
+                                // (uint)ParcelFlags.CreateObjects | (uint)ParcelFlags.AllowOtherScripts
+
 
         private byte _landingType = (byte)OpenMetaverse.LandingType.Direct;
         private string _name = "Your Parcel";

@@ -59,9 +59,10 @@ Module Apache
 
 #End Region
 
+    ''' <summary>Check is Apache port 80 or 8000 is up</summary>
+    ''' <returns>boolean</returns>
     Public Function IsApacheRunning() As Boolean
-        ''' <summary>Check is Apache port 80 or 8000 is up</summary>
-        ''' <returns>boolean</returns>
+
         Dim Up As String
         Using TimedClient As New TimedWebClient With {
               .Timeout = 1000
@@ -87,6 +88,9 @@ Module Apache
 
     End Function
 
+    ''' <summary>
+    ''' Installs and sets up Apache Web Server
+    ''' </summary>
     Public Sub StartApache()
 
         ' Depends upon PHP for home page
@@ -252,6 +256,9 @@ Module Apache
 
     End Sub
 
+    ''' <summary>
+    ''' Stop Web Service
+    ''' </summary>
     Public Sub StopApache()
 
         If Not Settings.ApacheEnable Then Return
@@ -283,7 +290,9 @@ Module Apache
 
     End Sub
 
-    'Handle Exited Event And display process information.
+    ''' <summary>
+    ''' Handle Exited Event And display process information.
+    ''' </summary>
     Private Sub ApacheProcess_Exited(ByVal sender As Object, ByVal e As EventArgs) Handles ApacheProcess.Exited
 
         FormSetup.RestartApacheIcon.Image = Global.Outworldz.My.Resources.nav_plain_red
@@ -306,6 +315,9 @@ Module Apache
 
     End Sub
 
+    ''' <summary>
+    ''' Copies curl PHP DLLs to Windows\system32
+    ''' </summary>
     Private Sub SetPath()
 
         Dim DLLList As New List(Of String) From {"libeay32.dll", "libssh2.dll", "ssleay32.dll"}

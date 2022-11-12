@@ -55,6 +55,7 @@ Partial Class FormServerType
         Me.MetroRadioButton2.TabIndex = 3
         Me.MetroRadioButton2.Text = "Metro.land Region Server"
         Me.MetroRadioButton2.UseVisualStyleBackColor = True
+        Me.MetroRadioButton2.Visible = False
         '
         'GridRegionButton
         '

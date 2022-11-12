@@ -24,6 +24,7 @@ Partial Class FormRegions
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormRegions))
         Me.GroupBoxRegion = New System.Windows.Forms.GroupBox()
+        Me.BlockButton = New System.Windows.Forms.Button()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Button_Clear = New System.Windows.Forms.Button()
         Me.Button_Normalize = New System.Windows.Forms.Button()
@@ -37,6 +38,7 @@ Partial Class FormRegions
         Me.WelcomeBox1 = New System.Windows.Forms.ComboBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Button_AddRegion = New System.Windows.Forms.Button()
+        Me.BulkLoadButton = New System.Windows.Forms.Button()
         Me.CheckboxConcierge = New System.Windows.Forms.CheckBox()
         Me.MenuStrip2 = New System.Windows.Forms.MenuStrip()
         Me.ToolStripMenuItem30 = New System.Windows.Forms.ToolStripMenuItem()
@@ -52,6 +54,9 @@ Partial Class FormRegions
         Me.TextBox_Shout_Distance = New System.Windows.Forms.TextBox()
         Me.GroupBoxChat = New System.Windows.Forms.GroupBox()
         Me.ClearFarmButton = New System.Windows.Forms.Button()
+        Me.AviName = New System.Windows.Forms.TextBox()
+        Me.OwnerLabel = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBoxRegion.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip2.SuspendLayout()
@@ -61,6 +66,8 @@ Partial Class FormRegions
         '
         'GroupBoxRegion
         '
+        Me.GroupBoxRegion.Controls.Add(Me.Button1)
+        Me.GroupBoxRegion.Controls.Add(Me.BlockButton)
         Me.GroupBoxRegion.Controls.Add(Me.PictureBox2)
         Me.GroupBoxRegion.Controls.Add(Me.Button_Clear)
         Me.GroupBoxRegion.Controls.Add(Me.Button_Normalize)
@@ -78,10 +85,22 @@ Partial Class FormRegions
         Me.GroupBoxRegion.Margin = New System.Windows.Forms.Padding(1)
         Me.GroupBoxRegion.Name = "GroupBoxRegion"
         Me.GroupBoxRegion.Padding = New System.Windows.Forms.Padding(1)
-        Me.GroupBoxRegion.Size = New System.Drawing.Size(216, 329)
+        Me.GroupBoxRegion.Size = New System.Drawing.Size(216, 394)
         Me.GroupBoxRegion.TabIndex = 0
         Me.GroupBoxRegion.TabStop = False
         Me.GroupBoxRegion.Text = "Region"
+        '
+        'BlockButton
+        '
+        Me.BlockButton.Image = Global.Outworldz.My.Resources.Resources.package
+        Me.BlockButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BlockButton.Location = New System.Drawing.Point(16, 256)
+        Me.BlockButton.Margin = New System.Windows.Forms.Padding(1)
+        Me.BlockButton.Name = "BlockButton"
+        Me.BlockButton.Size = New System.Drawing.Size(185, 35)
+        Me.BlockButton.TabIndex = 1889
+        Me.BlockButton.Text = "Rearrange Regions"
+        Me.BlockButton.UseVisualStyleBackColor = True
         '
         'PictureBox2
         '
@@ -155,7 +174,7 @@ Partial Class FormRegions
         'LabelEditRegion
         '
         Me.LabelEditRegion.AutoSize = True
-        Me.LabelEditRegion.Location = New System.Drawing.Point(15, 274)
+        Me.LabelEditRegion.Location = New System.Drawing.Point(19, 338)
         Me.LabelEditRegion.Margin = New System.Windows.Forms.Padding(1, 0, 1, 0)
         Me.LabelEditRegion.Name = "LabelEditRegion"
         Me.LabelEditRegion.Size = New System.Drawing.Size(62, 13)
@@ -179,7 +198,7 @@ Partial Class FormRegions
         Me.RegionBox.AutoCompleteCustomSource.AddRange(New String() {"1 Hour", "4 Hour", "12 Hour", "Daily", "Weekly"})
         Me.RegionBox.FormattingEnabled = True
         Me.RegionBox.Items.AddRange(New Object() {Global.Outworldz.My.Resources.Resources.Choose_Region_word})
-        Me.RegionBox.Location = New System.Drawing.Point(16, 290)
+        Me.RegionBox.Location = New System.Drawing.Point(19, 361)
         Me.RegionBox.Margin = New System.Windows.Forms.Padding(1)
         Me.RegionBox.MaxDropDownItems = 15
         Me.RegionBox.Name = "RegionBox"
@@ -209,7 +228,7 @@ Partial Class FormRegions
         '
         'Button_AddRegion
         '
-        Me.Button_AddRegion.Image = Global.Outworldz.My.Resources.Resources.package_add
+        Me.Button_AddRegion.Image = Global.Outworldz.My.Resources.Resources.package_ok
         Me.Button_AddRegion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Button_AddRegion.Location = New System.Drawing.Point(16, 108)
         Me.Button_AddRegion.Margin = New System.Windows.Forms.Padding(1)
@@ -218,6 +237,18 @@ Partial Class FormRegions
         Me.Button_AddRegion.TabIndex = 4
         Me.Button_AddRegion.Text = Global.Outworldz.My.Resources.Resources.Add_Region_word
         Me.Button_AddRegion.UseVisualStyleBackColor = True
+        '
+        'BulkLoadButton
+        '
+        Me.BulkLoadButton.Image = Global.Outworldz.My.Resources.Resources.package_add
+        Me.BulkLoadButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BulkLoadButton.Location = New System.Drawing.Point(240, 372)
+        Me.BulkLoadButton.Margin = New System.Windows.Forms.Padding(1)
+        Me.BulkLoadButton.Name = "BulkLoadButton"
+        Me.BulkLoadButton.Size = New System.Drawing.Size(185, 35)
+        Me.BulkLoadButton.TabIndex = 1890
+        Me.BulkLoadButton.Text = "Bulk Load Regions"
+        Me.BulkLoadButton.UseVisualStyleBackColor = True
         '
         'CheckboxConcierge
         '
@@ -343,7 +374,7 @@ Partial Class FormRegions
         '
         Me.ClearFarmButton.Image = Global.Outworldz.My.Resources.Resources.package_delete
         Me.ClearFarmButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ClearFarmButton.Location = New System.Drawing.Point(257, 317)
+        Me.ClearFarmButton.Location = New System.Drawing.Point(240, 270)
         Me.ClearFarmButton.Margin = New System.Windows.Forms.Padding(1)
         Me.ClearFarmButton.Name = "ClearFarmButton"
         Me.ClearFarmButton.Size = New System.Drawing.Size(185, 35)
@@ -351,13 +382,44 @@ Partial Class FormRegions
         Me.ClearFarmButton.Text = "Clean Satyr Farm"
         Me.ClearFarmButton.UseVisualStyleBackColor = True
         '
+        'AviName
+        '
+        Me.AviName.Location = New System.Drawing.Point(240, 343)
+        Me.AviName.Name = "AviName"
+        Me.AviName.Size = New System.Drawing.Size(171, 20)
+        Me.AviName.TabIndex = 1896
+        '
+        'OwnerLabel
+        '
+        Me.OwnerLabel.AutoSize = True
+        Me.OwnerLabel.Location = New System.Drawing.Point(243, 327)
+        Me.OwnerLabel.Name = "OwnerLabel"
+        Me.OwnerLabel.Size = New System.Drawing.Size(117, 13)
+        Me.OwnerLabel.TabIndex = 1897
+        Me.OwnerLabel.Text = "Owner of New Regions"
+        '
+        'Button1
+        '
+        Me.Button1.Image = Global.Outworldz.My.Resources.Resources.package
+        Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button1.Location = New System.Drawing.Point(19, 293)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(1)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(185, 35)
+        Me.Button1.TabIndex = 1890
+        Me.Button1.Text = "Make Regions No Rez"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'FormRegions
         '
         Me.AllowDrop = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.AutoSize = True
-        Me.ClientSize = New System.Drawing.Size(464, 373)
+        Me.ClientSize = New System.Drawing.Size(464, 439)
+        Me.Controls.Add(Me.BulkLoadButton)
+        Me.Controls.Add(Me.AviName)
+        Me.Controls.Add(Me.OwnerLabel)
         Me.Controls.Add(Me.ClearFarmButton)
         Me.Controls.Add(Me.GroupBoxChat)
         Me.Controls.Add(Me.GroupBoxConcierge)
@@ -411,4 +473,9 @@ Partial Class FormRegions
     Friend WithEvents TextBox_Shout_Distance As TextBox
     Friend WithEvents GroupBoxChat As GroupBox
     Friend WithEvents ClearFarmButton As Button
+    Friend WithEvents BlockButton As Button
+    Friend WithEvents BulkLoadButton As Button
+    Friend WithEvents AviName As TextBox
+    Friend WithEvents OwnerLabel As Label
+    Friend WithEvents Button1 As Button
 End Class

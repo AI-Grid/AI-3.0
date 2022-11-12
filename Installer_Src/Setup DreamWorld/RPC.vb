@@ -24,7 +24,7 @@ Module RPC
         End If
 
         Dim ht = New Hashtable From {
-           {"password", Settings.MachineID},
+           {"password", Settings.MachineId},
            {"region_id", RegionUUID}
         }
         Dim o As Object = GetRPCAsObject(RegionUUID, "admin_get_agents", ht)
@@ -40,19 +40,6 @@ Module RPC
         Return c
 
     End Function
-
-    Public Sub ForceShutDown(RegionUUID As String, nextstate As SIMSTATUSENUM)
-
-        RPC_Region_Command(RegionUUID, "quit")
-
-        Dim Group = Group_Name(RegionUUID)
-        Logger("RecyclingDown", Group, "Status")
-
-        For Each RegionUUID In RegionUuidListByName(Group)
-            RegionStatus(RegionUUID) = nextstate
-        Next
-
-    End Sub
 
     Public Function GetRPCAsObject(FromRegionUUID As String, cmd As String, ht As Hashtable) As Object
 
@@ -73,14 +60,29 @@ Module RPC
 
     End Function
 
+    Public Sub ReallyShutDown(RegionUUID As String, nextstate As SIMSTATUSENUM)
+
+        Thaw(RegionUUID)
+        RPC_Region_Command(RegionUUID, "quit")
+
+        Dim Group = Group_Name(RegionUUID)
+
+        For Each RegionUUID In RegionUuidListByName(Group)
+            RegionStatus(RegionUUID) = nextstate
+        Next
+
+    End Sub
+
+    ''TODO logoff_user
+
     Public Function RPC_admin_dialog(agentId As String, text As String) As Boolean
 
-        Dim RegionUUID As String = GetRegionFromAgentID(agentId)
+        Dim RegionUUID As String = GetRegionFromAgentId(agentId)
         Dim ht = New Hashtable From {
-           {"password", Settings.MachineID},
+           {"password", Settings.MachineId},
            {"message", text}
         }
-        Return SendRPC(RegionUUID, "admin_broadcast", ht)
+        Return SendRPC(RegionUUID, "admin_dialog", ht)
 
     End Function
 
@@ -93,7 +95,7 @@ Module RPC
         End If
 
         Dim ht = New Hashtable From {
-           {"password", Settings.MachineID},
+           {"password", Settings.MachineId},
            {"region_id", RegionUUID}
         }
 
@@ -130,7 +132,7 @@ Module RPC
     Public Function RPC_Region_Command(RegionUUID As String, Message As String) As Boolean
 
         Dim ht = New Hashtable From {
-           {"password", Settings.MachineID},
+           {"password", Settings.MachineId},
            {"command", Message}
         }
         Debug.Print($"admin_console_command {Message}")
@@ -145,7 +147,7 @@ Module RPC
         End If
 
         Dim ht = New Hashtable From {
-           {"password", Settings.MachineID},
+           {"password", Settings.MachineId},
            {"filename", Filename},
            {"region_name", Region_Name}
         }
@@ -166,7 +168,7 @@ Module RPC
         'http://opensimulator.org/wiki/RemoteAdmin:admin_dialog
 
         Dim ht = New Hashtable From {
-           {"password", Settings.MachineID},
+           {"password", Settings.MachineId},
            {"message", Message}
         }
         Log("Info", "Message to " & Region_Name(RegionUUID) & " of " & Message)
@@ -183,7 +185,7 @@ Module RPC
         'http://opensimulator.org/wiki/RemoteAdmin:admin_broadcast
 
         Dim ht = New Hashtable From {
-           {"password", Settings.MachineID},
+           {"password", Settings.MachineId},
            {"message", Message}
        }
         Log("Info", "Message to " & Region_Name(RegionUUID) & " of " & Message)
@@ -193,10 +195,10 @@ Module RPC
 
     Public Sub ShutDown(RegionUUID As String, nextstate As SIMSTATUSENUM)
 
-        ConsoleCommand(RegionUUID, "q", True)
+        Thaw(RegionUUID)
+        ConsoleCommand(RegionUUID, "q")
 
         Dim Group = Group_Name(RegionUUID)
-        Logger("RecyclingDown", Group, "Status")
 
         For Each RegionUUID In RegionUuidListByName(Group)
             RegionStatus(RegionUUID) = nextstate
@@ -211,7 +213,7 @@ Module RPC
         Debug.Print("Teleport To:" & ToRegionName)
 
         Dim ht = New Hashtable From {
-            {"password", Settings.MachineID},
+            {"password", Settings.MachineId},
             {"region_name", ToRegionName},
             {"agent_id", AgentID}
         }
@@ -221,35 +223,6 @@ Module RPC
             Return Status
         End If
         Return False
-
-    End Function
-
-    Private Function GetRPC(FromRegionUUID As String, cmd As String, ht As Hashtable) As Integer
-
-        Dim RegionPort = GroupPort(FromRegionUUID)
-
-        Dim url = $"http://{Settings.LANIP}:{RegionPort}"
-
-        Dim parameters = New List(Of Hashtable) From {ht}
-        Try
-
-            Dim RPC = New XmlRpcRequest(cmd, parameters)
-            Dim r As XmlRpcResponse = RPC.Send(url, 2000)
-            If r.Value Is Nothing Then
-                Return 0
-            End If
-#Disable Warning BC42016 ' Implicit conversion
-
-            For Each s In r.Value
-                'Log("Info", s.Key & ":" & s.Value)
-                If s.key = "count" Then
-                    Return CInt(s.value)
-                End If
-            Next
-#Enable Warning BC42016 ' Implicit conversion
-        Catch
-        End Try
-        Return 0
 
     End Function
 
@@ -265,7 +238,9 @@ Module RPC
 
         Try
             Dim r = RPC.Send(url, Timeout)
-            If r.Value Is Nothing Then Return True
+            If r.Value Is Nothing Then
+                Return True
+            End If
 #Disable Warning BC42016 ' Implicit conversion
 
             For Each s In r.Value
@@ -275,7 +250,7 @@ Module RPC
                     Return True
                 End If
                 If s.Key = "success" AndAlso s.Value = "True" Then
-                    Debug.Print("Teleport Sent")
+                    Debug.Print($"{cmd} Sent")
                     Return True
                 End If
                 If s.Key = "faultCode" Then

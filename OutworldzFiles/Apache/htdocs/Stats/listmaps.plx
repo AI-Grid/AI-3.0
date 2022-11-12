@@ -94,7 +94,8 @@ foreach my $row ( $rs->all ) {
     }
 
     my $count = $schema->resultset('Visitor')
-      ->search( { regionname => $row->regionname } )->count;
+      ->search( { regionname => $row->regionname })->count;
+   
     my $mapfile = $path . '/maps/' . $row->regionname . '.png';
     if ( -e $mapfile ) {
         $file = '/Stats/maps/' . $row->regionname . '.png';

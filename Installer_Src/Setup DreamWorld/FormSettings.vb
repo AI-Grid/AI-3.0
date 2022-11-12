@@ -19,7 +19,7 @@ Public Class FormSettings
     Dim FormCache As New FormCaches
     Dim FormDatabase As New FormDatabase
     Dim FormDiva As New FormDiva
-    Dim FormDNSName As New FormDNSName
+    Dim FormDNSName As New FormDnsName
     Dim FormJoomla As New FormJoomla
     Dim FormPermissions As New FormPermissions
     Dim FormPhysics As New FormPhysics
@@ -113,6 +113,7 @@ Public Class FormSettings
         EmailButton.Text = Global.Outworldz.My.Resources.Email_word
         FSAssetsButton.Text = Global.Outworldz.My.Resources.FSasset_word
         IcecastButton.Text = Global.Outworldz.My.Resources.Icecast_word
+        LanguageButton.Text = Global.Outworldz.My.Resources.Language
         LoggingButton.Text = Global.Outworldz.My.Resources.Logging_word
         MapsButton.Text = Global.Outworldz.My.Resources.Maps_word
         PermissionsButton.Text = Global.Outworldz.My.Resources.Permissions_word
@@ -123,6 +124,7 @@ Public Class FormSettings
         RestartButton.Text = Global.Outworldz.My.Resources.Restart_Settings_word
         ScriptButton.Text = Global.Outworldz.My.Resources.Scripts_word
         SearchButton.Text = Global.Outworldz.My.Resources.SearchOptions_word
+        SpeechButton.Text = Global.Outworldz.My.Resources.Speech
         ServerTypeButton.Text = Global.Outworldz.My.Resources.Server_Type_word
         SmartStartButton.Text = Global.Outworldz.My.Resources.Smart_Start_word
         TideButton.Text = Global.Outworldz.My.Resources.Tides_word
@@ -379,7 +381,7 @@ Public Class FormSettings
 
         FormDNSName.Close()
         FormDNSName.Dispose()
-        FormDNSName = New FormDNSName
+        FormDNSName = New FormDnsName
         FormDNSName.Activate()
         FormDNSName.Visible = True
         FormDNSName.Select()

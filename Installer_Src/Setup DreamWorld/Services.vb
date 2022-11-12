@@ -76,9 +76,14 @@
 
         End If
 
+        Dim addon As String = ""
+        If Settings.RootMysqlPassword.Length > 0 Then
+            addon = $" -p{Settings.RootMysqlPassword} "
+        End If
+
         Using p As Process = New Process()
             Dim pi As ProcessStartInfo = New ProcessStartInfo With {
-                .Arguments = "--port " & CStr(Settings.MySqlRobustDBPort) & " -u root shutdown",
+                .Arguments = $"--port {CStr(Settings.MySqlRobustDBPort)} -u root {addon} shutdown",
                 .FileName = """" & IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\mysql\bin\mysqladmin.exe") & """",
                 .UseShellExecute = True, ' so we can redirect streams and minimize
                 .WindowStyle = ProcessWindowStyle.Hidden
@@ -92,7 +97,7 @@
             End Try
         End Using
 
-        Dim ctr = 5
+        Dim ctr = 30
 
         While MysqlInterface.IsMySqlRunning() And ctr >= 0
             Sleep(1000)

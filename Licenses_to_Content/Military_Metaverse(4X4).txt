@@ -1,5 +1,0 @@
-Adapted to a 4X4 by Alexander
-The soldier patrol region is a circuit path for people to experience five different mini-scenarios that a soldier may encounter while on patrol.  This region was created to demonstrate the rapid scenario generation capabilities of the MOSES platform.  The region was created from existing assets as well as newly created items in under 3 weeks.
-Content by http://militarymetaverse.org/content/
-
-All OAR file are provided under the Creative Commons Attribution-ShareAlike 4.0 International license. More information on the license can be found here: http://creativecommons.org/licenses/by-sa/4.0/deed.en_US

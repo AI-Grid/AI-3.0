@@ -16,6 +16,9 @@
 	{font-family:"Segoe UI Emoji";
 	panose-1:2 11 5 2 4 2 4 2 2 3;}
 @font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
 	{font-family:"Open Sans";}
 @font-face
 	{font-family:"Segoe UI Symbol";
@@ -50,7 +53,7 @@ h2
 	margin-top:5.0pt;
 	margin-right:.5in;
 	margin-bottom:0in;
-	margin-left:-.5in;
+	margin-left:0in;
 	background:#D9E2F3;
 	text-autospace:none;
 	border:none;
@@ -281,7 +284,7 @@ span.Heading1Char
 span.Heading2Char
 	{mso-style-name:"Heading 2 Char";
 	mso-style-link:"Heading 2";
-	font-family:"Times New Roman",serif;
+	font-family:"Verdana",sans-serif;
 	text-transform:uppercase;
 	letter-spacing:.75pt;
 	background:#D9E2F3;}
@@ -358,8 +361,7 @@ span.IntenseQuoteChar
 	font-family:"Times New Roman",serif;
 	color:#4472C4;}
 .MsoChpDefault
-	{font-size:10.0pt;
-	font-family:"Calibri",sans-serif;}
+	{font-size:10.0pt;}
 .MsoPapDefault
 	{margin-top:5.0pt;
 	margin-right:0in;
@@ -391,9 +393,102 @@ text-justify-trim:punctuation'>
 margin-left:0in;margin-right:.5in'>
 
 <h1 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#4472C4'>Revisions for DreamGrid</h1>
+0in;margin-bottom:.0001pt;text-align:justify;text-justify:inter-ideograph;
+background:#4472C4'>Revisions for DreamGrid</h1>
 
 </div>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2 style='margin-right:0in;background:#D9E2F3'><span style='color:black'>V5.17</span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:0in'>Clicking a region in the Region List
+toggles them all off/on if in a DOS box with other regions. The On/OFF is per
+DOS box, not per region.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Load OAR (web) refresh button
+refreshes all OAR/IAR data from Outworldz.com - there are 197 free OARS
+totaling 27.4 GB of OARS online.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Added an exclusive button in  Region
+List to show OARS and IARS that are exclusive to DreamGrid.  I've paid over
+$10K this year alone for OARs so I reserve the right to decide who gets to use
+them.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Region Ready in Opensim  had a bug
+where it would not always report a region is ready. This causes the checkbox
+icons to not show ready, on rare occasions which is bad for many functions. </p>
+
+<p class=MsoNormal style='margin-left:0in'>Fixed, and filed Mantis 9017
+http://opensimulator.org/mantis/view.php?id=9016.</p>
+
+<p class=MsoNormal style='margin-left:0in'>DeleteAll Temp regions was not
+attached to its event along with other buttons on the form, so they were not
+'sticky'.</p>
+
+<p class=MsoNormal style='margin-left:0in'>All AvatarName text boxes now
+autofill from database in various places.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Web OAR listings are prettier. You
+must agree to the Authors TOS to use them.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Added Test Button and detailed Error
+messages in Email setup.</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2 style='margin-right:0in;background:#D9E2F3'><span style='color:black'>V5.16</span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Added Offline Email support. 
+Requires a working SMTP server in Setup-Email, and you must both enable it and
+enable Outside SMPT in the control panel.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Added a SMTP test button to SMTP
+Setup.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Minimize All DOS boxes Button in
+Settings-&gt;Consoles</p>
+
+<p class=MsoNormal style='margin-left:0in'>FSassets are exported from assets
+table to bin\fsassets folder on disk at the 1 hour runtime mark. This improves
+Robust speed and will send compressed, de-duplicated assets directly to the
+viewer.</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2 style='margin-right:0in;background:#D9E2F3'><span style='color:black'>V5.15</span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Added a link in the Log Analyzer web
+page direct to any script with YEngine errors </p>
+
+<p class=MsoNormal style='margin-left:0in'>Added Sort buttons for OAR and IAR
+list, Sort by Name or Date, and search the Name, Author and the Text.</p>
+
+<p class=MsoNormal style='margin-left:0in'>185 free regions! Older versions of
+DreamGrid cannot see two large &quot;free house&quot;&quot; regions as they
+would crash.</p>
+
+<p class=MsoNormal style='margin-left:0in'>PID was not stored in cache for
+Robust so it did not shut down when GUI is set to Auto close windows</p>
 
 <p class=MsoNormal style='margin-left:0in'>This is a high-level view of major
 changes. For detailed commit history, checkout with git and run gitk or
@@ -402,11 +497,633 @@ whose history you want to view. In the upper-right corner of the file view,
 click Blame to open the blame view. To see earlier revisions of a specific
 line, click until you have found the changes you are interested in viewing.</p>
 
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<p class=MsoNormal style='margin:0in;margin-bottom:.0001pt'><span
+style='font-size:9.5pt;font-family:Consolas;color:black'>&nbsp;</span></p>
+
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.92</span></h2>
+<h2><span style='color:black'>V5.14</span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Fixed a bug where large OARS and
+IARS &gt; 2 GB is size would crash the system. Older versions will no longer
+crash if a big one sneaks in due to a fix in the web site maker scripts.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Stop saving MAP-* images in
+Opensim\bin. They are just for debug.  Core leaves them on. I don't.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Long Delay in writing or saving
+regions is gone.</p>
+
+<p class=MsoNormal style='margin-left:0in'>INI writer made into a class. In
+some error cases the old module could overwrite PHP.ini with Apache, breaking
+Joomla.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Rebuilt 36,500 unique translations
+in 30 languages.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Smart Start Enable would not
+un-check.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Y axis when moving sims around in
+blockify function would accumulate the largest Y. Reset to be per Row.</p>
+
+<p class=MsoNormal style='margin:0in;margin-bottom:.0001pt'><span
+style='font-size:9.5pt;font-family:Consolas;color:black'>&nbsp;</span></p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V5.13</span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Speedier handling of checkbox events
+in Region list.  Speeds up Detailed view refresh a lot which can take a long
+time when there are hundreds of regions.</p>
+
+<p class=MsoNormal style='margin-left:0in'><span style='font-size:9.5pt;
+font-family:Consolas;color:black'>PH.ini was being corrupted on some machines.
+Old code in there that shared a variable. This could stop Jopensim/Joomla from
+running. Refactored it to a class to eliminate the common var.</span></p>
+
+<p class=MsoNormal style='margin-left:0in'><span style='font-size:9.5pt;
+font-family:Consolas;color:black'>Shutting down would cause regions to get a
+XML quit in a loop until they quit. </span></p>
+
+<p class=MsoNormal style='margin:0in;margin-bottom:.0001pt'><span
+style='font-size:9.5pt;font-family:Consolas;color:black'>&nbsp;</span></p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V5.12</span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Region List switching from Details
+to Icon and back to Detailed would shut down all regions. Oops. New code to
+power off a disabled region had an unexpected side effect. Cat Tax paid on
+Mewe.</p>
+
+<p class=MsoNormal style='margin:0in;margin-bottom:.0001pt'><span
+style='font-size:9.5pt;font-family:Consolas;color:black'>&nbsp;</span></p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V5.11 Release </span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'><span style='font-size:9.5pt;
+font-family:Consolas;color:black'>Oops. </span>I left some debug in, so restart
+regions did not work.</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V5.01 Post-release fixes</span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Ban list did not accept Mac
+addresses due to Upper Case bug</p>
+
+<p class=MsoNormal style='margin-left:0in'>Diva (in Robust) exposed a
+Denial-of-Service attack vector that was fixed by Diva, just this week. We've
+always had the fix since I first spotted and reported it a year ago. But the
+4.999's didn't have it.  </p>
+
+<p class=MsoNormal style='margin-left:0in'>Grid users table was deleted at
+startup which led to side effects. Grid users delete deleted.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Region List now has a checkbox in
+Windows-&gt;Show On Boot.  If checked the region list will appear on boot. if
+not, not. Default: Not.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Smart Boot screen changed a bit.
+added another tab to make clear that the endless land and sea is not always 
+part of Smart Start.</p>
+
+<p class=MsoNormal style='margin-left:0in'>If you are in a Smart Boot region,
+and set the pulldown to 1, then the regions next to you will boot so you can
+walk there.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Added a &quot;Blockify Regions&quot;
+function to Settings-&gt;Regions. This lets you reorganize the entire list of
+regions into an alphabetical order grid, with a preferred spacing and a
+preferred width.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Moved and rebuilt the Bulk Region
+Loader to be much faster and more reliable. It is now in Regions.  It creates
+all 175 regions in a few seconds, then boots them and load them, with OARS. It
+is restartable, too, so I you run it later, any newly published regions will
+appear.</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V5.0</span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Push notification Release</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V4.99993</span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Fixed the surround Sim features in
+Smart Boot. It would not always surround a region.</p>
+
+<p class=MsoNormal style='margin-left:0in'>The surrounding regions will be
+powered on if you have Smart Start on and a region next to you is smart start
+enabled.  The number of regions is controlled by the size of the region
+surround setting on the same page.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Temp Regions are in the Estate SimSurround.
+</p>
+
+<p class=MsoNormal style='margin-left:0in'>Temp regions are deleted if you stop
+the grid or start it.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Flushes OARs to disk after they load
+with 'backup' command</p>
+
+<p class=MsoNormal style='margin-left:0in'>Ban list is lower case MAC
+addresses, UPPER CASE does not work.</p>
+
+<p class=MsoNormal style='margin-left:0in'>V4.99992</p>
+
+<p class=MsoNormal style='margin-left:0in'>Ai Austin spotted that the default
+landing spot in Regions-&gt;Maps was blank which caused a error in Opensim to
+be printed. Default is set back to 128,128,30 which is core default setting.</p>
+
+<p class=MsoNormal style='margin-left:0in'>David Monday reported that the
+Visitors list had him listed twice.  Old data in the table is now cleared if
+opensim is started from the beginning.</p>
+
+<p class=MsoNormal style='margin-left:0in'>New regions will have parcels with
+Scripts, Terrain editing, and Build off to help stop griefers. Scripts may go
+back on by default based on a survey this week. This has no effect on existing
+regions.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Viewing the region console with the
+region popup &quot;View Console&quot;&quot; sets the shutdown timer to 5
+minutes to give you more time.</p>
+
+<p class=MsoNormal style='margin-left:0in'>MySQL now enables
+&quot;innodb_doublewrite&quot; buffer for better crash recovery. If Mysql is
+running as a service on a UPS/Generator, it is disabled for performance. </p>
+
+<p class=MsoNormal style='margin-left:0in'>MySQL RAM use is also limited to 1
+or 2 GB based on many calculated factors. </p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V4.99991</span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Manuals:  Added more help to the
+troubleshooting guide.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Windows:  SetWindowText(myhandle,
+windowName) is horrifically unreliable. Added a better retry loop with longer waits.
+                    </p>
+
+<p class=MsoNormal style='margin-left:0in'>Bans: Read ban list at boot instead
+of waiting until you start, otherwise you might think it was gone.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Region Editor: Added a editable
+default per region where people land. &lt;128,1128,35&gt; is the usual default</p>
+
+<p class=MsoNormal style='margin-left:0in'>Opensim: PhysicalPrimMax was getting
+the PhysicalPrimMin, then getting overwritten. Filed a Mantis and it was fixed.</p>
+
+<p class=MsoNormal style='margin-left:0in'>                   AllowTeleportsToAnyRegion
+is broken in Opensim. This was what broke Hypergrid. Disabled it and HG works
+again. Its supposed to send all traffic to the Welcome region. Instead you get
+a protocol error.</p>
+
+<p class=MsoNormal style='margin-left:0in'>                   Deregister
+regions and people when booting when no Opensim’s are running and in Grid mode.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Region List: Exporting the region
+list left out the parcel permissions column.</p>
+
+<p class=MsoNormal style='margin-left:0in'>                        Region list
+shifted left a column at boot if Mysql was off.</p>
+
+<p class=MsoNormal style='margin-left:0in'>                              The HG
+visitors show up again.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Security: Updated SSH.net due to a
+required security patch, spotted by CIM/GitHub.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Sequential Pause: Retry loop fixes
+when starting regions one at a time.</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V4.9999</span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Back to Opensim 0.9.2.2  eee11f5d5
+(&quot;Opensim Core d6760ec0ef (&quot;a few changes for mantis 9006 attachment
+moveToTarget()&quot;&quot;, 2022-05-29)</p>
+
+<p class=MsoNormal style='margin-left:0in'>The only thing not working is Smart
+Start.  This is because of changes inside Opensim 0.9.2.2</p>
+
+<p class=MsoNormal style='margin-left:0in'>Changing the Opensimworld Key
+immediately updates their web site.</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V4.998</span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Visitors not always showing in Log
+on home page.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Text in some DOS boxes not sticking.
+Windows API is very unreliable. Added loop where it must be and written and
+read back 3 times.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Dropped reporting of scripts in the
+Estate report in the region List. Not much of a security risk and prevents HUDS
+from running.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Web Oars hold info on their size. If
+too large to fit a region, the loader now aborts with an error message.</p>
+
+<p class=MsoNormal style='margin-left:0in'>There was a problem loading Web OARs
+where the name was not typed. Fixed. </p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V4.997</span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Background and User Initiated OAR
+and IAR backups wait for each OAR or IAR to save sequentially.  The Smart
+regions will stay alive until the region finishes.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Load oar did not always change to
+the proper region - affected only multi-region DOS boxes.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Region List now shows parcel names
+in all regions that have rez, script or terrain edit enabled.  You should
+disable these to stop griefing.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Glitch in Smart Start caused
+difficulties in logging in.  </p>
+
+<p class=MsoNormal style='margin-left:0in'>All regions except Default are now
+set to persistent so you can enable Smart Start on a region without needed to
+restart Robust.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Speech when avatar arrives or leaves
+only ran once but should have been continuously. </p>
+
+<p class=MsoNormal style='margin-left:0in'>DNS password error would occur
+multiple times- pops up an alert only once now.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Hyperlinks in Screen text are
+clickable.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Grid settings and IPs print at end
+of boot to make them more visible.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Now refreshes Region list as people
+move around.  And it detects Hypergrid visitors again.</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V4.996 </span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Dev Master 0.9.2.2 Opensim
+#4f7b293c5efe69af0180f  as of 5/1/2022.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Clicking Teleport button in Region
+Pop is using hop:// syntax, which works better.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Suppress notice on Smart Start
+Suspend mode and speed up Region Thaw by a second.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Mysql innodb buffer pool set to auto
+size from .5 to 4 GB. It was too aggressive in its growth before.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Test the internal webserver at
+bootup and every 5 minutes.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Test Loopback at Bootup.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Use Robust.HG.ini.Proto better to
+make it easier to add mods.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Fixed Diva, Inventory, IAR and other
+missing items in 0.9.2.2. ports that happened after V4.992.</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V4.995 </span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Clicking View Console on a Smart
+Suspend region would resume but stop too soon. Now it stays resumed for 5
+minutes.</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V4.994</span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Fixes to Smart Boot for the latest
+Opensim so you can login directly to a Smart region.</p>
+
+<p class=MsoNormal style='margin-left:0in'>More translations added (35,170
+total). The tool I use (ResxManager) is very intermittent so this is a slow,
+frustrating process. I have filed a bug report with the developer.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Some string to double conversions
+would fail in languages that use a comma for a decimal point. This could cause
+updates to act up. Using Convert.toDouble(X,cultureinfo.invariant) so it works
+for all languages</p>
+
+<p class=MsoNormal style='margin-left:0in'>Lots more tool tips.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Help for Compiling and Email added.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Robust would not be sensed as
+started if your loopback/Port forwards do not work.  For grids this now checks
+the LAN address. For all other types it checks the Public WAN address.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Clear cache now clears the YEngine
+cache.</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V4.993</span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Opensim #b7ed5f109ec9b28 prebuild
+for .net6, disable.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Add all the options for SMTP Email
+and TLS/SSL to a new Button in Settings.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Drop clouds as they no longer work
+in EEP.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Fixed Diva Web Panel as the dlls
+were excluded in an earlier build.</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V4.992</span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Updated all 30 translations. 
+Currently at about 33,960 translations</p>
+
+<p class=MsoNormal style='margin-left:0in'>All/None button in region panel
+fixes.</p>
+
+<p class=MsoNormal style='margin-left:0in'>How to Compile manual for merging
+new Opensim code so it will compile with all Diva and Smart Start functions.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Recompiled Opensim so comments match
+upcoming V5 Opensim dev/master, in prep for dev master (Released) Opensim for
+V5.</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V4.991 </span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>V4.99 Fixed for Apache SSL where it
+would not start if SSL was enabled.</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V4.99</span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Prep for V5</p>
+
+<p class=MsoNormal style='margin-left:0in'>Add button to Updater to reinstall
+dependencies such as Dot Net or Perl and its modules.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Add SSL capability to SMTP for
+email. Gmail is quitting on us so you will need to use a company such as
+PObox.com</p>
+
+<p class=MsoNormal style='margin-left:0in'>Add Search Help</p>
+
+<p class=MsoNormal style='margin-left:0in'>Add decrapify button for Satyr Farm
+leftovers that removes excess buckets and water</p>
+
+<p class=MsoNormal style='margin-left:0in'>Manual for Text to Speech API</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V4.98</span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Added a Search Help files feature to
+the Help pull down and updated some of the Help files.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Supports wild card operators such as
+*, ? to match any character, [abc] to match any single character in the list,</p>
+
+<p class=MsoNormal style='margin-left:0in'># for any single digit (09),
+[!charlist] matches any single character not in charlist</p>
+
+<p class=MsoNormal style='margin-left:0in'>Eliminated a crash in the Region
+Form when you clicked Add region a second time</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V4.97</span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Only thaw frozen windows (small
+performance tweak)</p>
+
+<p class=MsoNormal style='margin-left:0in'>Only shutdown regions that need
+shutdown (small performance tweak)</p>
+
+<p class=MsoNormal style='margin-left:0in'>Delete robust database texture maps
+per mantis. (I had over 8,000)</p>
+
+<p class=MsoNormal style='margin-left:0in'>Add many language translations
+-33,900 total to be exact</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V4.96</span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Sped up background processing to use
+less CPU time</p>
+
+<p class=MsoNormal style='margin-left:0in'>Added a Delete a region map</p>
+
+<p class=MsoNormal style='margin-left:0in'>Total Ram used by regions is shown
+in Region at the top</p>
+
+<p class=MsoNormal style='margin-left:0in'>icon for Opensim was incorrect</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V4.95</span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Smart Start Freeze/Thaw mode
+activated. Smart Boot regions stay in RAM but do not use any CPU. Just like a
+laptop’s Sleep mode, versus Hibernate.  </p>
+
+<p class=MsoNormal style='margin-left:0in'>They start instantly. You can exceed
+memory limits with an SSD as they get swapped to disk.  Add an ice cube icon
+for the above state.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Updated all manuals including the
+big PDF. </p>
+
+<p class=MsoNormal style='margin-left:0in'>Suppress two Opensim warnings by
+moving them to debug level. </p>
+
+<p class=MsoNormal style='margin-left:0in'>Small glitch in Smart Start Sign -
+disabled SS regions still appeared.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Could not reopen Settings form.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Do not deregister a region when
+saved and its running.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Shutdown regions in Alphabetical
+order.</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V4.94</span></h2>
+
+</div>
+
+<p class=MsoNormal style='margin-left:0in'>Manuals on Web site did not match
+style the builder now makes then match the style and word-for word fir each
+release.</p>
+
+<p class=MsoNormal style='margin-left:0in'>V4.93 some fixes got left out of
+4.92 </p>
+
+<p class=MsoNormal style='margin-left:0in'>Whisper distance showed up as blank</p>
+
+<p class=MsoNormal style='margin-left:0in'>Yet another Region port bug is fixed.
+This could cause large numbers of region ports to be used and possible region
+crashes.</p>
+
+<p class=MsoNormal style='margin-left:0in'>SQL backups when the system is not
+booted would do nothing.  It now starts Mysql when run.</p>
+
+<p class=MsoNormal style='margin-left:0in'>Crash counter:  if you have it set
+to Restart on crash, 5 crashes will just turn it off.</p>
+
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
+margin-left:0in;margin-right:.5in'>
+
+<h2><span style='color:black'>V4.92</span></h2>
 
 </div>
 
@@ -415,15 +1132,15 @@ region ini to be skipped. Please run a backup.</p>
 
 <p class=MsoNormal style='margin-left:0in'>Sequential boot and Parallel Boot
 gets a new type: No Limits. Sequential still waits up to 5 minutes for a region
-to start, then boots the next. Parallel waits on 90&lt;% CPU or &lt;90% RAM. No
-limits is a let-it-rip mode for Smart Boot. They load into RAM and get swapped
+to start, then boots the next. Parallel waits on 90&lt;% CPU or &lt;90% RAM. “No
+limits” is a let-it-rip mode for Smart Boot. They load into RAM and get swapped
 to disk. </p>
 
 <p class=MsoNormal style='margin-left:0in'>Yet another Region port bug is
 fixed. This could cause large numbers of region ports to be used.</p>
 
-<p class=MsoNormal style='margin-left:0in'>Consoles will pop up less often.
-Just once when it does a command you may be interested in.</p>
+<p class=MsoNormal style='margin-left:0in'>Consoles will pop up less often. Just
+once when it does a command you may be interested in.</p>
 
 <p class=MsoNormal style='margin-left:0in'>Language form is resizable</p>
 
@@ -433,8 +1150,8 @@ Just once when it does a command you may be interested in.</p>
 to Restart on crash, 5 crashes will just turn it off.</p>
 
 <p class=MsoNormal style='margin-left:0in'>SSL mode now has a certificate for
-Let’s Encrypt that was missing. This verifies that your Domain and the Lets Encrypt
-certs are genuine.</p>
+Let’s Encrypt that was missing. This verifies that your Domain and the Let’s
+Encrypt certs are genuine.</p>
 
 <p class=MsoNormal style='margin-left:0in'>All Perl examples have been
 updated.  Some of them only run on localhost for security.</p>
@@ -449,26 +1166,26 @@ needed.  </p>
 <p class=MsoNormal style='margin-left:0in'>Missing &quot;&quot; in a Load OAR
 would prevent oars with spaces from loading.</p>
 
+<p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
+
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.91</span></h2>
+<h2><span style='color:black'>V4.91</span></h2>
 
 </div>
 
-<p class=MsoNormal style='margin-left:0in'>There is a new &quot;double size&quot;
-teleport sign in the Local IAR that supports 64 regions. It and the Single wide
-can support more than the 16536-character limit in HTTP I run into with 170
-regions.  Just change the Description from 0, to 1, 2, etc.</p>
+<p class=MsoNormal style='margin-left:0in'>There is a new &quot;double
+size&quot; teleport sign in the Local IAR that supports 64 regions. It and the
+Single wide can support more than the 16536-character limit in HTTP I run into
+with 170 regions.  Just change the Description from 0, to 1, 2, etc.</p>
 
 <p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
 
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.9 </span></h2>
+<h2><span style='color:black'>V4.9 </span></h2>
 
 </div>
 
@@ -480,8 +1197,7 @@ IARS instead of TEMP region</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.899</span></h2>
+<h2><span style='color:black'>V4.899</span></h2>
 
 </div>
 
@@ -500,8 +1216,7 @@ up in Backups when they were selected.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.898</span></h2>
+<h2><span style='color:black'>V4.898</span></h2>
 
 </div>
 
@@ -522,8 +1237,7 @@ for SSL. You need to port forward 443 in your router to use SSL!</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.897</span></h2>
+<h2><span style='color:black'>V4.897</span></h2>
 
 </div>
 
@@ -545,8 +1259,7 @@ to Perl Builder</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.896</span></h2>
+<h2><span style='color:black'>V4.896</span></h2>
 
 </div>
 
@@ -570,8 +1283,7 @@ save even when nothing changed</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.895</span></h2>
+<h2><span style='color:black'>V4.895</span></h2>
 
 </div>
 
@@ -586,8 +1298,7 @@ God level and give them a title.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.894</span></h2>
+<h2><span style='color:black'>V4.894</span></h2>
 
 </div>
 
@@ -599,10 +1310,10 @@ grid has been down for an entire week.</p>
 
 <p class=MsoNormal style='margin-left:0in'>Added an API for Chat To Speech.</p>
 
-<p class=MsoNormal style='margin-left:0in'>Added a Form for you to create
-arbitrary Text 2 Speech.  The wav files can be uploaded and played in world, or
-you can use the mP3 files directly in world using Media On A Prim.  More
-documentation and a sample script are in the works.</p>
+<p class=MsoNormal style='margin-left:0in'>Added a Form for you to create arbitrary
+Text 2 Speech.  The wav files can be uploaded and played in world, or you can
+use the mP3 files directly in world using Media On A Prim.  More documentation
+and a sample script are in the works.</p>
 
 <p class=MsoNormal style='margin-left:0in'>Boot sequence of regions is back in
 alphabetical order.</p>
@@ -622,9 +1333,10 @@ buttons enables them, then boots.</p>
 <p class=MsoNormal style='margin-left:0in'>OsGrid HTTP port 80 was not set. It
 printed wrong, otherwise this was harmless.</p>
 
-<p class=MsoNormal style='margin-left:0in'>I expose the until-now-in-debug-mode-only
-button, because the system looks like it has a missing tooth without it. This
-button will remain disabled until I finish it. It runs only in Visual Studio.  </p>
+<p class=MsoNormal style='margin-left:0in'>I expose the
+until-now-in-debug-mode-only button, because the system looks like it has a
+missing tooth without it. This button will remain disabled until I finish it. It
+runs only in Visual Studio.  </p>
 
 <p class=MsoNormal style='margin-left:0in'>Security is important! This will add
 a free SSL certificate to Opensim and Apache/jOpensim.</p>
@@ -640,8 +1352,7 @@ out an integer text field.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.893</span></h2>
+<h2><span style='color:black'>V4.893</span></h2>
 
 </div>
 
@@ -682,8 +1393,7 @@ reduce CPU use by DreamGrid GUI</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.892</span></h2>
+<h2><span style='color:black'>V4.892</span></h2>
 
 </div>
 
@@ -698,8 +1408,7 @@ https://mewe.com/i/richarddennis14</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.891</span></h2>
+<h2><span style='color:black'>V4.891</span></h2>
 
 </div>
 
@@ -730,8 +1439,7 @@ to the Regions Setting. </p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.89</span></h2>
+<h2><span style='color:black'>V4.89</span></h2>
 
 </div>
 
@@ -740,7 +1448,8 @@ margin-left:0in;margin-right:.5in'>
 </p>
 
 <p class=MsoNormal style='margin-left:0in'>Visitor Maps are finally working as
-expected.  Changed the colors to be brighter and fixed the swapped X and Y axis.</p>
+expected.  Changed the colors to be brighter and fixed the swapped X and Y
+axis.</p>
 
 <p class=MsoNormal style='margin-left:0in'>Reduced CPU use in a key function by
 80%.</p>
@@ -756,8 +1465,7 @@ automatically renews it. This is prep work for V5.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.88</span></h2>
+<h2><span style='color:black'>V4.88</span></h2>
 
 </div>
 
@@ -780,8 +1488,7 @@ correct Login URI.   The PublicIP had not yet been set. </p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.87</span></h2>
+<h2><span style='color:black'>V4.87</span></h2>
 
 </div>
 
@@ -793,8 +1500,7 @@ the update button in the Help-Update form to explain what update is available.</
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.86</span></h2>
+<h2><span style='color:black'>V4.86</span></h2>
 
 </div>
 
@@ -806,8 +1512,7 @@ is running. </p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.85</span></h2>
+<h2><span style='color:black'>V4.85</span></h2>
 
 </div>
 
@@ -818,8 +1523,7 @@ same as the 4.84 zip now.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.84</span></h2>
+<h2><span style='color:black'>V4.84</span></h2>
 
 </div>
 
@@ -831,10 +1535,11 @@ server.</p>
 <p class=MsoNormal style='margin-left:0in'>Sometimes the Visitor Maps language
 Perl, does not load/work for unknown reasons.  It could be a conflict with Git
 coming first in the system path.  To help troubleshoot this, a batch file “InstallPerlModules.bat”
-has been added to MSFT_Runtimes folder to re-install the necessary Perl modules.
-These modules should auto install on first boot, but may take s seco9nd boot to
-load.  There is no need to run this batch file if Visitor Maps work. See http://www.outworldz.com:8000/Stats/
-to get an idea of how these Visitor Stats work.</p>
+has been added to MSFT_Runtimes folder to re-install the necessary Perl
+modules. These modules should auto install on first boot, but may take s
+seco9nd boot to load.  There is no need to run this batch file if Visitor Maps
+work. See http://www.outworldz.com:8000/Stats/ to get an idea of how these
+Visitor Stats work.</p>
 
 <p class=MsoNormal style='margin-left:0in'>Hyperica.com is gone. I purchased
 this domain and web site from Maria at Hypergrid Business some years ago to
@@ -847,8 +1552,7 @@ that indexes the world.   </p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.83</span></h2>
+<h2><span style='color:black'>V4.83</span></h2>
 
 </div>
 
@@ -906,8 +1610,7 @@ disabled for more testing. It will be back.<br>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.82</span></h2>
+<h2><span style='color:black'>V4.82</span></h2>
 
 </div>
 
@@ -962,8 +1665,7 @@ the small tiles.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.81</span></h2>
+<h2><span style='color:black'>V4.81</span></h2>
 
 </div>
 
@@ -972,8 +1674,7 @@ margin-left:0in;margin-right:.5in'>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.81</span></h2>
+<h2><span style='color:black'>V4.81</span></h2>
 
 </div>
 
@@ -985,17 +1686,16 @@ goes back 62 pages in time.        </p>
 <p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
 
 <p class=MsoNormal style='margin-left:0in'>Text To Speech has the ability to
-make Male and Female Wav files you can play in Opensim. See Help-Debug for now. 
-These files appear in the web server so can be played with media on a prim. 
-Lots of plans for this, none written down.  It uses the Microsoft Zira and
-David voices for now.Or whatever it thinks is the male or female on Win 7.  You
-cannot use this on Contabo or most servers as they have no sound card.</p>
+make Male and Female Wav files you can play in Opensim. See Help-Debug for
+now.  These files appear in the web server so can be played with media on a
+prim.  Lots of plans for this, none written down.  It uses the Microsoft Zira
+and David voices for now.Or whatever it thinks is the male or female on Win 7. 
+You cannot use this on Contabo or most servers as they have no sound card.</p>
 
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.8</span></h2>
+<h2><span style='color:black'>V4.8</span></h2>
 
 </div>
 
@@ -1017,8 +1717,7 @@ mention. Startup of the app should be 2X faster.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.79</span></h2>
+<h2><span style='color:black'>V4.79</span></h2>
 
 </div>
 
@@ -1041,8 +1740,7 @@ green Icon.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.78 </span></h2>
+<h2><span style='color:black'>V4.78 </span></h2>
 
 </div>
 
@@ -1101,8 +1799,7 @@ center of the sim (Opensim bug, this module is very old)</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.77</span></h2>
+<h2><span style='color:black'>V4.77</span></h2>
 
 </div>
 
@@ -1115,8 +1812,7 @@ could not log in except to an online regions. This is now fixed.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.76</span></h2>
+<h2><span style='color:black'>V4.76</span></h2>
 
 </div>
 
@@ -1147,8 +1843,7 @@ for compactness.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.75</span></h2>
+<h2><span style='color:black'>V4.75</span></h2>
 
 </div>
 
@@ -1166,8 +1861,7 @@ in the splash screen</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.74</span></h2>
+<h2><span style='color:black'>V4.74</span></h2>
 
 </div>
 
@@ -1195,8 +1889,7 @@ alteration after publication.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.73</span></h2>
+<h2><span style='color:black'>V4.73</span></h2>
 
 </div>
 
@@ -1209,8 +1902,7 @@ Version and Date of build to crash dumps.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.72</span></h2>
+<h2><span style='color:black'>V4.72</span></h2>
 
 </div>
 
@@ -1223,8 +1915,7 @@ Maps.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.71</span></h2>
+<h2><span style='color:black'>V4.71</span></h2>
 
 </div>
 
@@ -1240,8 +1931,7 @@ proper coordinates for each minute.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.7</span></h2>
+<h2><span style='color:black'>V4.7</span></h2>
 
 </div>
 
@@ -1261,8 +1951,7 @@ retry.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.69 </span></h2>
+<h2><span style='color:black'>V4.69 </span></h2>
 
 </div>
 
@@ -1273,8 +1962,7 @@ prompt on first boot.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.68</span></h2>
+<h2><span style='color:black'>V4.68</span></h2>
 
 </div>
 
@@ -1284,8 +1972,7 @@ you overrode a region Script engine in a region. It left scripts off.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.67</span></h2>
+<h2><span style='color:black'>V4.67</span></h2>
 
 </div>
 
@@ -1308,9 +1995,7 @@ unmanaged code crash 'connection already open', when it clearly was not.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.66
-Beta</span></h2>
+<h2><span style='color:black'>V4.66 Beta</span></h2>
 
 </div>
 
@@ -1321,9 +2006,7 @@ a time using that region.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.65
-Beta</span></h2>
+<h2><span style='color:black'>V4.65 Beta</span></h2>
 
 </div>
 
@@ -1345,9 +2028,7 @@ not trigger a save warning if panel was closed</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.64
-Beta</span></h2>
+<h2><span style='color:black'>V4.64 Beta</span></h2>
 
 </div>
 
@@ -1361,9 +2042,7 @@ commands before potentially closing windows for readability</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.63
-Beta</span></h2>
+<h2><span style='color:black'>V4.63 Beta</span></h2>
 
 </div>
 
@@ -1379,9 +2058,7 @@ start settings are changed. </p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.62
-Beta</span></h2>
+<h2><span style='color:black'>V4.62 Beta</span></h2>
 
 </div>
 
@@ -1401,9 +2078,7 @@ password length too often and the Robust box did not close in some situations.</
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.61
-Beta </span></h2>
+<h2><span style='color:black'>V4.61 Beta </span></h2>
 
 </div>
 
@@ -1417,9 +2092,7 @@ in-world in chat.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.6
-General release</span></h2>
+<h2><span style='color:black'>V4.6 General release</span></h2>
 
 </div>
 
@@ -1429,8 +2102,7 @@ backup. A typo added a space in a file path.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.58</span></h2>
+<h2><span style='color:black'>V4.58</span></h2>
 
 </div>
 
@@ -1455,8 +2127,7 @@ and an older prim-based region.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.57 </span></h2>
+<h2><span style='color:black'>V4.57 </span></h2>
 
 </div>
 
@@ -1510,8 +2181,7 @@ robust to restart, if running, as it should.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.56</span></h2>
+<h2><span style='color:black'>V4.56</span></h2>
 
 </div>
 
@@ -1530,8 +2200,7 @@ bin region with Map-* maptiles which are just for debug.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.5</span></h2>
+<h2><span style='color:black'>V4.5</span></h2>
 
 </div>
 
@@ -1546,8 +2215,7 @@ OpensimWorld and other places.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.54</span></h2>
+<h2><span style='color:black'>V4.54</span></h2>
 
 </div>
 
@@ -1567,8 +2235,7 @@ also set the initial place for thew backups to Autobackup.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.53</span></h2>
+<h2><span style='color:black'>V4.53</span></h2>
 
 </div>
 
@@ -1588,8 +2255,7 @@ may lead to issues.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.52</span></h2>
+<h2><span style='color:black'>V4.52</span></h2>
 
 </div>
 
@@ -1643,8 +2309,7 @@ multiple sims per DOS box.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.5 </span></h2>
+<h2><span style='color:black'>V4.5 </span></h2>
 
 </div>
 
@@ -1664,8 +2329,7 @@ lead to a crash when debugging.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.46</span></h2>
+<h2><span style='color:black'>V4.46</span></h2>
 
 </div>
 
@@ -1682,8 +2346,7 @@ Region. </p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.45</span></h2>
+<h2><span style='color:black'>V4.45</span></h2>
 
 </div>
 
@@ -1698,8 +2361,7 @@ least 100 more Opensim repairs by Ubit Umarov.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.44</span></h2>
+<h2><span style='color:black'>V4.44</span></h2>
 
 </div>
 
@@ -1719,8 +2381,7 @@ to speed up shutdown by 59.5 seconds. </p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.43</span></h2>
+<h2><span style='color:black'>V4.43</span></h2>
 
 </div>
 
@@ -1753,9 +2414,7 @@ is basically an antique. I added a admin_get_avatar_count.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V.42
-Internal alpha test</span></h2>
+<h2><span style='color:black'>V.42 Internal alpha test</span></h2>
 
 </div>
 
@@ -1764,8 +2423,7 @@ Internal alpha test</span></h2>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.41</span></h2>
+<h2><span style='color:black'>V4.41</span></h2>
 
 </div>
 
@@ -1783,8 +2441,7 @@ to all files in AutoBackup. </p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.4 </span></h2>
+<h2><span style='color:black'>V4.4 </span></h2>
 
 </div>
 
@@ -1814,9 +2471,7 @@ list title</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.3-4.2
-Alpha tests</span></h2>
+<h2><span style='color:black'>V4.3-4.2 Alpha tests</span></h2>
 
 </div>
 
@@ -1833,9 +2488,7 @@ where a URL could (and did) crash robust.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.04 Performance
-Tweaks to Mysql and Smart Start</span></h2>
+<h2><span style='color:black'>V4.04 Performance Tweaks to Mysql and Smart Start</span></h2>
 
 </div>
 
@@ -1899,8 +2552,7 @@ longer.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.03</span></h2>
+<h2><span style='color:black'>V4.03</span></h2>
 
 </div>
 
@@ -1931,9 +2583,7 @@ ready.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.02
-5-23-2021 </span></h2>
+<h2><span style='color:black'>V4.02 5-23-2021 </span></h2>
 
 </div>
 
@@ -2005,9 +2655,7 @@ WAN IP or DNS Name):(80) in case a loopback adapter is involved</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.01
-Maintenance</span></h2>
+<h2><span style='color:black'>V4.01 Maintenance</span></h2>
 
 </div>
 
@@ -2046,9 +2694,7 @@ main form under the Mysql Menu.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V4.0
-Release</span></h2>
+<h2><span style='color:black'>V4.0 Release</span></h2>
 
 </div>
 
@@ -2063,8 +2709,7 @@ in days, Birth date, count of inventory items, and User level to User Screen</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V.392</span></h2>
+<h2><span style='color:black'>V.392</span></h2>
 
 </div>
 
@@ -2088,8 +2733,7 @@ big PDF.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.931</span></h2>
+<h2><span style='color:black'>V3.931</span></h2>
 
 </div>
 
@@ -2104,8 +2748,7 @@ margin-left:0in;margin-right:.5in'>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.93</span></h2>
+<h2><span style='color:black'>V3.93</span></h2>
 
 </div>
 
@@ -2126,8 +2769,7 @@ in alphabetical order. </p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.929</span></h2>
+<h2><span style='color:black'>V3.929</span></h2>
 
 </div>
 
@@ -2142,8 +2784,7 @@ Smart Boot-enabled region, it shut down as soon as it booted.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.928</span></h2>
+<h2><span style='color:black'>V3.928</span></h2>
 
 </div>
 
@@ -2168,8 +2809,7 @@ Adapter. A note is appended if you try it.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.927</span></h2>
+<h2><span style='color:black'>V3.927</span></h2>
 
 </div>
 
@@ -2184,8 +2824,7 @@ startup due to an extra space. - Fixed</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.926 </span></h2>
+<h2><span style='color:black'>V3.926 </span></h2>
 
 </div>
 
@@ -2231,8 +2870,7 @@ Analyzer</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.924</span></h2>
+<h2><span style='color:black'>V3.924</span></h2>
 
 </div>
 
@@ -2270,8 +2908,7 @@ the lower left, and the 15 remaining slots would collide.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.923</span></h2>
+<h2><span style='color:black'>V3.923</span></h2>
 
 </div>
 
@@ -2287,8 +2924,7 @@ appear as Hypergrid and local visitors.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.922</span></h2>
+<h2><span style='color:black'>V3.922</span></h2>
 
 </div>
 
@@ -2341,8 +2977,7 @@ Hypergrid links work, as do the V3.9 signs.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.921</span></h2>
+<h2><span style='color:black'>V3.921</span></h2>
 
 </div>
 
@@ -2368,8 +3003,7 @@ dozen readme's</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.92</span></h2>
+<h2><span style='color:black'>V3.92</span></h2>
 
 </div>
 
@@ -2383,9 +3017,7 @@ overridden to off in Region options.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.91 Post
-fixes for 3.9</span></h2>
+<h2><span style='color:black'>V3.91 Post fixes for 3.9</span></h2>
 
 </div>
 
@@ -2402,8 +3034,7 @@ instead of a region name, so scripted teleports were borked. missing an else.</p
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.9 </span></h2>
+<h2><span style='color:black'>V3.9 </span></h2>
 
 </div>
 
@@ -2415,8 +3046,7 @@ more visible. These remember the last setting.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.8996</span></h2>
+<h2><span style='color:black'>V3.8996</span></h2>
 
 </div>
 
@@ -2472,8 +3102,7 @@ Log4Net.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.8995</span></h2>
+<h2><span style='color:black'>V3.8995</span></h2>
 
 </div>
 
@@ -2491,8 +3120,7 @@ expected.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.8994</span></h2>
+<h2><span style='color:black'>V3.8994</span></h2>
 
 </div>
 
@@ -2512,8 +3140,7 @@ when starting one at a time.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.8993</span></h2>
+<h2><span style='color:black'>V3.8993</span></h2>
 
 </div>
 
@@ -2537,8 +3164,7 @@ the other rebuilt stuff in Regions.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.8992</span></h2>
+<h2><span style='color:black'>V3.8992</span></h2>
 
 </div>
 
@@ -2551,8 +3177,7 @@ The Welcome region.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.8991</span></h2>
+<h2><span style='color:black'>V3.8991</span></h2>
 
 </div>
 
@@ -2583,8 +3208,7 @@ Welcome (HG default) region is offline.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.899</span></h2>
+<h2><span style='color:black'>V3.899</span></h2>
 
 </div>
 
@@ -2605,8 +3229,7 @@ and fill a hard drive. Now gets emptied on startup.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.898</span></h2>
+<h2><span style='color:black'>V3.898</span></h2>
 
 </div>
 
@@ -2632,8 +3255,7 @@ OAR.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.897</span></h2>
+<h2><span style='color:black'>V3.897</span></h2>
 
 </div>
 
@@ -2657,8 +3279,7 @@ an avatar gets stuck.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.896</span></h2>
+<h2><span style='color:black'>V3.896</span></h2>
 
 </div>
 
@@ -2678,8 +3299,7 @@ not work if paths had spaces in them.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.895</span></h2>
+<h2><span style='color:black'>V3.895</span></h2>
 
 </div>
 
@@ -2715,8 +3335,7 @@ running processes which speeds up booting.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.894</span></h2>
+<h2><span style='color:black'>V3.894</span></h2>
 
 </div>
 
@@ -2728,8 +3347,7 @@ users</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.893</span></h2>
+<h2><span style='color:black'>V3.893</span></h2>
 
 </div>
 
@@ -2740,8 +3358,7 @@ margin-left:0in;margin-right:.5in'>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.892</span></h2>
+<h2><span style='color:black'>V3.892</span></h2>
 
 </div>
 
@@ -2759,8 +3376,7 @@ while running logic.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.891</span></h2>
+<h2><span style='color:black'>V3.891</span></h2>
 
 </div>
 
@@ -2772,8 +3388,7 @@ to update of Opensim. This sets it back to no password.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.89</span></h2>
+<h2><span style='color:black'>V3.89</span></h2>
 
 </div>
 
@@ -2804,8 +3419,7 @@ links to the AGPL 3.0 copyright</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.88</span></h2>
+<h2><span style='color:black'>V3.88</span></h2>
 
 </div>
 
@@ -2816,8 +3430,7 @@ margin-left:0in;margin-right:.5in'>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.87 </span></h2>
+<h2><span style='color:black'>V3.87 </span></h2>
 
 </div>
 
@@ -2878,8 +3491,7 @@ could cause the region to become blank or not start.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.86 </span></h2>
+<h2><span style='color:black'>V3.86 </span></h2>
 
 </div>
 
@@ -2894,8 +3506,7 @@ out a grid telling you it cannot deregister regions.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.85 </span></h2>
+<h2><span style='color:black'>V3.85 </span></h2>
 
 </div>
 
@@ -2931,17 +3542,15 @@ enable for ODE.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.84
-Post fixes</span></h2>
+<h2><span style='color:black'>V3.84 Post fixes</span></h2>
 
 </div>
 
 <p class=MsoNormal style='margin-left:0in'>Another crash in Black and White
 Diva Wifi Image on boot.</p>
 
-<p class=MsoNormal style='margin-left:0in'>Systems running with a merged
-database where robust and region files are in the same db would backup twice.</p>
+<p class=MsoNormal style='margin-left:0in'>Systems running with a merged database
+where robust and region files are in the same db would backup twice.</p>
 
 <p class=MsoNormal style='margin-left:0in'>Ban Lists did not reload
 automatically. It required you to click the Ban list after a reboot.</p>
@@ -2953,9 +3562,7 @@ automatically. It required you to click the Ban list after a reboot.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.83
-Post Fixes</span></h2>
+<h2><span style='color:black'>V3.83 Post Fixes</span></h2>
 
 </div>
 
@@ -2979,9 +3586,7 @@ correctly.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.82
-Post fixes</span></h2>
+<h2><span style='color:black'>V3.82 Post fixes</span></h2>
 
 </div>
 
@@ -3002,19 +3607,17 @@ FSassets help, and the Opensimulator wiki.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.81
-Post-fixes</span></h2>
+<h2><span style='color:black'>V3.81 Post-fixes</span></h2>
 
 </div>
 
 <p class=MsoNormal style='margin-left:0in'>Adding a new Region no longer
 requires restarting the grid</p>
 
-<p class=MsoNormal style='margin-left:0in'>Backups used to make a copy, then zipped
-the copies folder. This used 1.5 times the original data while being backed up.
-Now it uses about half, depending on compression, throughout the entire
-process. Thanks for the idea, Marianna!</p>
+<p class=MsoNormal style='margin-left:0in'>Backups used to make a copy, then
+zipped the copies folder. This used 1.5 times the original data while being
+backed up. Now it uses about half, depending on compression, throughout the
+entire process. Thanks for the idea, Marianna!</p>
 
 <p class=MsoNormal style='margin-left:0in'>Apache sometimes would not install.
 Added an isApacheInstalled function to detect and install. Thanks for the tip,
@@ -3041,9 +3644,7 @@ delete.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.8
-Release</span></h2>
+<h2><span style='color:black'>V3.8 Release</span></h2>
 
 </div>
 
@@ -3052,8 +3653,7 @@ Release</span></h2>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.799</span></h2>
+<h2><span style='color:black'>V3.799</span></h2>
 
 </div>
 
@@ -3072,8 +3672,7 @@ passwords.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.798</span></h2>
+<h2><span style='color:black'>V3.798</span></h2>
 
 </div>
 
@@ -3087,8 +3686,7 @@ margin-left:0in;margin-right:.5in'>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.797</span></h2>
+<h2><span style='color:black'>V3.797</span></h2>
 
 </div>
 
@@ -3100,8 +3698,7 @@ by using a tmp folder</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.796</span></h2>
+<h2><span style='color:black'>V3.796</span></h2>
 
 </div>
 
@@ -3120,8 +3717,7 @@ causing speed issues on slower machines.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.795</span></h2>
+<h2><span style='color:black'>V3.795</span></h2>
 
 </div>
 
@@ -3157,8 +3753,7 @@ names. </p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.794</span></h2>
+<h2><span style='color:black'>V3.794</span></h2>
 
 </div>
 
@@ -3179,8 +3774,7 @@ fixes if Jopensim was enabled and them disabled.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.793</span></h2>
+<h2><span style='color:black'>V3.793</span></h2>
 
 </div>
 
@@ -3192,8 +3786,7 @@ missing slash.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3 .792</span></h2>
+<h2><span style='color:black'>V3 .792</span></h2>
 
 </div>
 
@@ -3210,8 +3803,7 @@ would boot but not let you log in. Or crash regions and not boot.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.791</span></h2>
+<h2><span style='color:black'>V3.791</span></h2>
 
 </div>
 
@@ -3244,8 +3836,7 @@ larger buffer for imports of large mesh items.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.782 </span></h2>
+<h2><span style='color:black'>V3.782 </span></h2>
 
 </div>
 
@@ -3330,9 +3921,7 @@ which now support /24 subnets</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.781
-JOpensim Update</span></h2>
+<h2><span style='color:black'>V3.781 JOpensim Update</span></h2>
 
 </div>
 
@@ -3361,9 +3950,7 @@ pkg_jopensim.0.3.2.0.zip. There is no need to unzip it first.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.78
-JOpensim fix</span></h2>
+<h2><span style='color:black'>V3.78 JOpensim fix</span></h2>
 
 </div>
 
@@ -3468,8 +4055,7 @@ yet.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.77</span></h2>
+<h2><span style='color:black'>V3.77</span></h2>
 
 </div>
 
@@ -3534,8 +4120,7 @@ and know what people have been getting. </p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.76</span></h2>
+<h2><span style='color:black'>V3.76</span></h2>
 
 </div>
 
@@ -3556,9 +4141,7 @@ source</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.75
-Updater Tweak </span></h2>
+<h2><span style='color:black'>V3.75 Updater Tweak </span></h2>
 
 </div>
 
@@ -3567,10 +4150,10 @@ Older versions of DreamGrid were forced to use this DLL at an even old rev due
 to collisions in updater and older Dreamgrids. Now its really, really dead.
 Replaced by System.Compression.DotNetZip.</p>
 
-<p class=MsoNormal style='margin-left:0in'>DreamGridUpdater case in URL
-(Dremgrid vs DreamGrid) caused download to be incredibly slow. An updateable
-redirect at Outworldz.com was supposed to send this URL to a Cloud Storage
-service. It did not always do so.</p>
+<p class=MsoNormal style='margin-left:0in'>DreamGridUpdater case in URL (Dremgrid
+vs DreamGrid) caused download to be incredibly slow. An updateable redirect at
+Outworldz.com was supposed to send this URL to a Cloud Storage service. It did
+not always do so.</p>
 
 <p class=MsoNormal style='margin-left:0in'>Add CAA record to Outworldz and
 Hyperica DNS for security - prevents forgery of certificates.</p>
@@ -3580,9 +4163,7 @@ Hyperica DNS for security - prevents forgery of certificates.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.74
-Updater Updated</span></h2>
+<h2><span style='color:black'>V3.74 Updater Updated</span></h2>
 
 </div>
 
@@ -3610,8 +4191,7 @@ choose between JOpensimSearch of your local grid or Hyperica Global Search.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.7 3 </span></h2>
+<h2><span style='color:black'>V3.7 3 </span></h2>
 
 </div>
 
@@ -3642,8 +4222,7 @@ manager.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.72</span></h2>
+<h2><span style='color:black'>V3.72</span></h2>
 
 </div>
 
@@ -3665,8 +4244,7 @@ fixed)</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.71</span></h2>
+<h2><span style='color:black'>V3.71</span></h2>
 
 </div>
 
@@ -3703,8 +4281,7 @@ causes boxes to change size.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.7</span></h2>
+<h2><span style='color:black'>V3.7</span></h2>
 
 </div>
 
@@ -3721,9 +4298,7 @@ the main UI</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.695
-Alpha Release for 3.7</span></h2>
+<h2><span style='color:black'>V3.695 Alpha Release for 3.7</span></h2>
 
 </div>
 
@@ -3734,9 +4309,7 @@ Alpha Release for 3.7</span></h2>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.694
-Alpha Release for 3.7</span></h2>
+<h2><span style='color:black'>V3.694 Alpha Release for 3.7</span></h2>
 
 </div>
 
@@ -3748,9 +4321,7 @@ not add more than one http:grid.com&gt;:8002 address</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.693
-Alpha Release for 3.7</span></h2>
+<h2><span style='color:black'>V3.693 Alpha Release for 3.7</span></h2>
 
 </div>
 
@@ -3781,9 +4352,7 @@ ban all older Firestorms.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.692
-Alpha Release for 3.7</span></h2>
+<h2><span style='color:black'>V3.692 Alpha Release for 3.7</span></h2>
 
 </div>
 
@@ -3794,9 +4363,7 @@ Alpha Release for 3.7</span></h2>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.691
-Alpha Release for 3.7</span></h2>
+<h2><span style='color:black'>V3.691 Alpha Release for 3.7</span></h2>
 
 </div>
 
@@ -3831,9 +4398,7 @@ work at all so they are disabled.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.69
-Post Fixes</span></h2>
+<h2><span style='color:black'>V3.69 Post Fixes</span></h2>
 
 </div>
 
@@ -3855,9 +4420,7 @@ some avatars and NPCs</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.68
-Post fixes (Beta Bleeding edge)</span></h2>
+<h2><span style='color:black'>V3.68 Post fixes (Beta Bleeding edge)</span></h2>
 
 </div>
 
@@ -3885,9 +4448,7 @@ settings.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.67
-Post Fixes (Bleeding edge Opensim)</span></h2>
+<h2><span style='color:black'>V3.67 Post Fixes (Bleeding edge Opensim)</span></h2>
 
 </div>
 
@@ -3903,9 +4464,7 @@ fixes some HTTP-In</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.65
-Post Fixes (Bleeding edge Opensim)</span></h2>
+<h2><span style='color:black'>V3.65 Post Fixes (Bleeding edge Opensim)</span></h2>
 
 </div>
 
@@ -3917,9 +4476,7 @@ crash in 3.64</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.64
-Post Fixes (Bleeding edge Opensim)</span></h2>
+<h2><span style='color:black'>V3.64 Post Fixes (Bleeding edge Opensim)</span></h2>
 
 </div>
 
@@ -3954,9 +4511,7 @@ for testing. And Opensim Birds are available.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.63
-Post Fixes</span></h2>
+<h2><span style='color:black'>V3.63 Post Fixes</span></h2>
 
 </div>
 
@@ -3977,9 +4532,7 @@ Hyperica.com</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.62
-Post Fixes</span></h2>
+<h2><span style='color:black'>V3.62 Post Fixes</span></h2>
 
 </div>
 
@@ -3996,9 +4549,7 @@ match names in OAR folder. Add 6 new OARS.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.61
-Post fixes</span></h2>
+<h2><span style='color:black'>V3.61 Post fixes</span></h2>
 
 </div>
 
@@ -4025,8 +4576,7 @@ textures.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.6</span></h2>
+<h2><span style='color:black'>V3.6</span></h2>
 
 </div>
 
@@ -4039,9 +4589,7 @@ margin-left:0in;margin-right:.5in'>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.592
-Release Candidate for V3.6</span></h2>
+<h2><span style='color:black'>V3.592 Release Candidate for V3.6</span></h2>
 
 </div>
 
@@ -4052,9 +4600,7 @@ Release Candidate for V3.6</span></h2>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.591
-Release Candidate </span></h2>
+<h2><span style='color:black'>V3.591 Release Candidate </span></h2>
 
 </div>
 
@@ -4072,9 +4618,7 @@ not just one session.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.59
-Release Candidate 7/24/2020</span></h2>
+<h2><span style='color:black'>V3.59 Release Candidate 7/24/2020</span></h2>
 
 </div>
 
@@ -4121,9 +4665,7 @@ for new DreamGrids.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.58
-Post Fixes 7/14/2020</span></h2>
+<h2><span style='color:black'>V3.58 Post Fixes 7/14/2020</span></h2>
 
 </div>
 
@@ -4176,9 +4718,7 @@ happening on slow machines which again delayed startup of Regions.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.57
-Post Fixes 7/6/2020</span></h2>
+<h2><span style='color:black'>V3.57 Post Fixes 7/6/2020</span></h2>
 
 </div>
 
@@ -4204,9 +4744,7 @@ column.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.56
-Post Fixes 6/18/2020</span></h2>
+<h2><span style='color:black'>V3.56 Post Fixes 6/18/2020</span></h2>
 
 </div>
 
@@ -4246,9 +4784,7 @@ as it useless.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.55
-Post Fixes 6/12/2020</span></h2>
+<h2><span style='color:black'>V3.55 Post Fixes 6/12/2020</span></h2>
 
 </div>
 
@@ -4260,9 +4796,7 @@ loader</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.54
-Post Fixes 6/10/2020</span></h2>
+<h2><span style='color:black'>V3.54 Post Fixes 6/10/2020</span></h2>
 
 </div>
 
@@ -4294,9 +4828,7 @@ home.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.53
-Post Fixes 6/2/2020</span></h2>
+<h2><span style='color:black'>V3.53 Post Fixes 6/2/2020</span></h2>
 
 </div>
 
@@ -4326,9 +4858,7 @@ web browsers built-in caches.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.52
-Post Fixes 5/31/2020</span></h2>
+<h2><span style='color:black'>V3.52 Post Fixes 5/31/2020</span></h2>
 
 </div>
 
@@ -4341,9 +4871,7 @@ to 15 characters.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.51
-Post fixes. 5/28/2020</span></h2>
+<h2><span style='color:black'>V3.51 Post fixes. 5/28/2020</span></h2>
 
 </div>
 
@@ -4357,9 +4885,7 @@ make a longer default password for Wifi Admin.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.5
-Release 5/26/2020</span></h2>
+<h2><span style='color:black'>V3.5 Release 5/26/2020</span></h2>
 
 </div>
 
@@ -4374,9 +4900,7 @@ and remember its size per request from Ethan Breck. Nice idea!</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.49
-Release candidate for 3.5 5/22/2020 </span></h2>
+<h2><span style='color:black'>V3.49 Release candidate for 3.5 5/22/2020 </span></h2>
 
 </div>
 
@@ -4388,9 +4912,7 @@ over HG was broken.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.48
-Release Candidate for 3.5 5/22/2020</span></h2>
+<h2><span style='color:black'>V3.48 Release Candidate for 3.5 5/22/2020</span></h2>
 
 </div>
 
@@ -4419,9 +4941,7 @@ background service.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.47
-Release Candidate for 4.5 4/26/2020</span></h2>
+<h2><span style='color:black'>V3.47 Release Candidate for 4.5 4/26/2020</span></h2>
 
 </div>
 
@@ -4434,9 +4954,7 @@ users password. Doh!</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.46
-Release 4/26/2020</span></h2>
+<h2><span style='color:black'>V3.46 Release 4/26/2020</span></h2>
 
 </div>
 
@@ -4450,9 +4968,7 @@ Wifi Web Panel using their password.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.45
-Release 4/21/2020</span></h2>
+<h2><span style='color:black'>V3.45 Release 4/21/2020</span></h2>
 
 </div>
 
@@ -4490,9 +5006,7 @@ just one. Also changed some PHP settings for Search.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.44
-Release</span></h2>
+<h2><span style='color:black'>V3.44 Release</span></h2>
 
 </div>
 
@@ -4509,9 +5023,7 @@ Windows is not always setting them.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.43
-Release 4/7/2020</span></h2>
+<h2><span style='color:black'>V3.43 Release 4/7/2020</span></h2>
 
 </div>
 
@@ -4526,9 +5038,7 @@ login and Help</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.42 Postfixes
-released 3/27/2010</span></h2>
+<h2><span style='color:black'>V3.42 Postfixes released 3/27/2010</span></h2>
 
 </div>
 
@@ -4553,9 +5063,7 @@ servers will crash without it set up.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.41
-Post fixes release 3/6/2020</span></h2>
+<h2><span style='color:black'>V3.41 Post fixes release 3/6/2020</span></h2>
 
 </div>
 
@@ -4567,9 +5075,7 @@ to load it got you the wrong item. Thankxx for the tip, Scott Taylor!</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.4
-release 2/28/2080</span></h2>
+<h2><span style='color:black'>V3.4 release 2/28/2080</span></h2>
 
 </div>
 
@@ -4599,9 +5105,7 @@ which is not nothing.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.38
-Beta</span></h2>
+<h2><span style='color:black'>V3.38 Beta</span></h2>
 
 </div>
 
@@ -4626,9 +5130,7 @@ threading during boot and shutdown. </p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.37
-Beta</span></h2>
+<h2><span style='color:black'>V3.37 Beta</span></h2>
 
 </div>
 
@@ -4652,9 +5154,7 @@ restarting the system</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.36
-beta</span></h2>
+<h2><span style='color:black'>V3.36 beta</span></h2>
 
 </div>
 
@@ -4667,9 +5167,7 @@ been a number</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.35
-Beta</span></h2>
+<h2><span style='color:black'>V3.35 Beta</span></h2>
 
 </div>
 
@@ -4692,9 +5190,7 @@ version is ready.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.34
-Beta</span></h2>
+<h2><span style='color:black'>V3.34 Beta</span></h2>
 
 </div>
 
@@ -4713,9 +5209,7 @@ value is nothing.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V.33
-Beta </span></h2>
+<h2><span style='color:black'>V.33 Beta </span></h2>
 
 </div>
 
@@ -4788,9 +5282,7 @@ save.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.32
-Beta </span></h2>
+<h2><span style='color:black'>V3.32 Beta </span></h2>
 
 </div>
 
@@ -4806,9 +5298,7 @@ could cause a crash if the fsasset folder did not exist.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.31
-Beta</span></h2>
+<h2><span style='color:black'>V3.31 Beta</span></h2>
 
 </div>
 
@@ -4920,8 +5410,7 @@ row selected. Now it is just the cell, Thanks AI Austin!</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.3</span></h2>
+<h2><span style='color:black'>V3.3</span></h2>
 
 </div>
 
@@ -4968,17 +5457,16 @@ avatar capsules.</p>
 <p class=MsoNormal style='margin-left:0in'>* Handles complex terrain,
 multi-prim objects and seated avatars.</p>
 
-<p class=MsoNormal style='margin-left:0in'>* Implements throttling and the status
-codes RCERR_UNKNOWN and RCERR_CAST_TIME_EXCEEDED, so LSL scripts need to handle
-these responses and RCERR_SIM_PERF_LOW.</p>
+<p class=MsoNormal style='margin-left:0in'>* Implements throttling and the
+status codes RCERR_UNKNOWN and RCERR_CAST_TIME_EXCEEDED, so LSL scripts need to
+handle these responses and RCERR_SIM_PERF_LOW.</p>
 
 <p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
 
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.299</span></h2>
+<h2><span style='color:black'>V3.299</span></h2>
 
 </div>
 
@@ -5030,8 +5518,7 @@ the name. Regions can have single quotes in them.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.298</span></h2>
+<h2><span style='color:black'>V3.298</span></h2>
 
 </div>
 
@@ -5069,8 +5556,7 @@ Region List which goofed up Large Screen mode</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.297</span></h2>
+<h2><span style='color:black'>V3.297</span></h2>
 
 </div>
 
@@ -5106,8 +5592,7 @@ running so PHP maps work.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.296</span></h2>
+<h2><span style='color:black'>V3.296</span></h2>
 
 </div>
 
@@ -5136,8 +5621,7 @@ Outworldz.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.295</span></h2>
+<h2><span style='color:black'>V3.295</span></h2>
 
 </div>
 
@@ -5159,8 +5643,7 @@ and creating the first user.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.294</span></h2>
+<h2><span style='color:black'>V3.294</span></h2>
 
 </div>
 
@@ -5184,8 +5667,7 @@ make the 'q' key more reliable on obsolete Windows 7 machines.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.293</span></h2>
+<h2><span style='color:black'>V3.293</span></h2>
 
 </div>
 
@@ -5195,8 +5677,7 @@ lead to a crash if you updated from an older version and enabled birds.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.292</span></h2>
+<h2><span style='color:black'>V3.292</span></h2>
 
 </div>
 
@@ -5212,8 +5693,7 @@ more than once due to a missing line of code.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.291</span></h2>
+<h2><span style='color:black'>V3.291</span></h2>
 
 </div>
 
@@ -5250,8 +5730,7 @@ Help.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.29</span></h2>
+<h2><span style='color:black'>V3.29</span></h2>
 
 </div>
 
@@ -5341,8 +5820,7 @@ finally. :-)</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.28</span></h2>
+<h2><span style='color:black'>V3.28</span></h2>
 
 </div>
 
@@ -5357,8 +5835,7 @@ widths for Detail view. </p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.27</span></h2>
+<h2><span style='color:black'>V3.27</span></h2>
 
 </div>
 
@@ -5386,8 +5863,7 @@ repo.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.26</span></h2>
+<h2><span style='color:black'>V3.26</span></h2>
 
 </div>
 
@@ -5402,8 +5878,7 @@ fix</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.25</span></h2>
+<h2><span style='color:black'>V3.25</span></h2>
 
 </div>
 
@@ -5430,8 +5905,7 @@ Opensim version or hash changes</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.24</span></h2>
+<h2><span style='color:black'>V3.24</span></h2>
 
 </div>
 
@@ -5445,8 +5919,7 @@ notes.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.23</span></h2>
+<h2><span style='color:black'>V3.23</span></h2>
 
 </div>
 
@@ -5471,8 +5944,7 @@ smaller footprint.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.22</span></h2>
+<h2><span style='color:black'>V3.22</span></h2>
 
 </div>
 
@@ -5489,8 +5961,7 @@ Apache if Auto restart is Enabled</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.21 </span></h2>
+<h2><span style='color:black'>V3.21 </span></h2>
 
 </div>
 
@@ -5524,9 +5995,7 @@ issue if the puny human entered 'Autobackup'.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.2
-Release Rollup</span></h2>
+<h2><span style='color:black'>V3.2 Release Rollup</span></h2>
 
 </div>
 
@@ -5543,8 +6012,7 @@ translations are available.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.197</span></h2>
+<h2><span style='color:black'>V3.197</span></h2>
 
 </div>
 
@@ -5565,8 +6033,7 @@ missing explicit ossearch directive</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.196</span></h2>
+<h2><span style='color:black'>V3.196</span></h2>
 
 </div>
 
@@ -5591,8 +6058,7 @@ and Global search to be set. Now a toggle for one or the other.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.195</span></h2>
+<h2><span style='color:black'>V3.195</span></h2>
 
 </div>
 
@@ -5608,8 +6074,7 @@ be compatible with older updater. This causes a crash in the DLL.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.194</span></h2>
+<h2><span style='color:black'>V3.194</span></h2>
 
 </div>
 
@@ -5626,8 +6091,7 @@ margin-left:0in;margin-right:.5in'>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.194</span></h2>
+<h2><span style='color:black'>V3.194</span></h2>
 
 </div>
 
@@ -5664,8 +6128,7 @@ updates.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.192</span></h2>
+<h2><span style='color:black'>V3.192</span></h2>
 
 </div>
 
@@ -5687,8 +6150,7 @@ RobustDBConnection</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.191</span></h2>
+<h2><span style='color:black'>V3.191</span></h2>
 
 </div>
 
@@ -5700,8 +6162,7 @@ add a new region</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.19 </span></h2>
+<h2><span style='color:black'>V3.19 </span></h2>
 
 </div>
 
@@ -5728,8 +6189,7 @@ stuck. Port 8003 should not need to be opened to allow IM's.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.18</span></h2>
+<h2><span style='color:black'>V3.18</span></h2>
 
 </div>
 
@@ -5748,8 +6208,7 @@ Studio 2019.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.17 </span></h2>
+<h2><span style='color:black'>V3.17 </span></h2>
 
 </div>
 
@@ -5804,9 +6263,7 @@ instance; qualifying expression will not be evaluated refactored</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.16
-Beta</span></h2>
+<h2><span style='color:black'>V3.16 Beta</span></h2>
 
 </div>
 
@@ -5820,9 +6277,7 @@ dwell time (the Second Life visitor metric). </p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.15
-Beta </span></h2>
+<h2><span style='color:black'>V3.15 Beta </span></h2>
 
 </div>
 
@@ -5891,9 +6346,7 @@ Tested as not being vulnerable to any common attacks such as Heart bleed.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.13
-Beta</span></h2>
+<h2><span style='color:black'>V3.13 Beta</span></h2>
 
 </div>
 
@@ -5912,9 +6365,7 @@ Regions.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.12
-Beta</span></h2>
+<h2><span style='color:black'>V3.12 Beta</span></h2>
 
 </div>
 
@@ -5946,9 +6397,7 @@ changed.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.11
-Beta</span></h2>
+<h2><span style='color:black'>V3.11 Beta</span></h2>
 
 </div>
 
@@ -5965,9 +6414,7 @@ some machines/routers.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.1
-Released 7/29/2019</span></h2>
+<h2><span style='color:black'>V3.1 Released 7/29/2019</span></h2>
 
 </div>
 
@@ -5981,8 +6428,8 @@ the system</p>
 <p class=MsoNormal style='margin-left:0in'>IM Offline works without having to
 open port 8003.</p>
 
-<p class=MsoNormal style='margin-left:0in'>Firewall code typo put an extra
-Apache Http Port 80 in the firewall every start.</p>
+<p class=MsoNormal style='margin-left:0in'>Firewall code typo put an extra Apache
+Http Port 80 in the firewall every start.</p>
 
 <p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
 
@@ -5991,8 +6438,7 @@ Apache Http Port 80 in the firewall every start.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.06</span></h2>
+<h2><span style='color:black'>V3.06</span></h2>
 
 </div>
 
@@ -6018,8 +6464,7 @@ teleport HUD by anybody.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.05 </span></h2>
+<h2><span style='color:black'>V3.05 </span></h2>
 
 </div>
 
@@ -6031,8 +6476,7 @@ Prim V2.5</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.04 </span></h2>
+<h2><span style='color:black'>V3.04 </span></h2>
 
 </div>
 
@@ -6050,8 +6494,7 @@ start reliably. </p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.03</span></h2>
+<h2><span style='color:black'>V3.03</span></h2>
 
 </div>
 
@@ -6075,8 +6518,7 @@ Opensim's internal Frame rate. </p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.02</span></h2>
+<h2><span style='color:black'>V3.02</span></h2>
 
 </div>
 
@@ -6097,8 +6539,8 @@ Ports section Help for details.</p>
 
 <p class=MsoNormal style='margin-left:0in'>Auto Teleports now support multiple
 region servers. Avatar counts will not work on Region servers - no access to
-the data unless you edit robust settings and grant access to the robust server with
-special MySQL commands.</p>
+the data unless you edit robust settings and grant access to the robust server
+with special MySQL commands.</p>
 
 <p class=MsoNormal style='margin-left:0in'>Added a catch-all Error message
 handler for any missed exceptions to catch unexpected crashes.</p>
@@ -6110,17 +6552,16 @@ size with a new panel.</p>
 server. Also updated the Steam punk TP and set the partners prim to full
 mod/copy.</p>
 
-<p class=MsoNormal style='margin-left:0in'>SupportViewerObjectsCache -= true
-explicitly to help with missing prims, theoretically this does nothing as true
-is the default. See http://opensimulator.org/mantis/view.php?id=8516</p>
+<p class=MsoNormal style='margin-left:0in'>SupportViewerObjectsCache -= true explicitly
+to help with missing prims, theoretically this does nothing as true is the
+default. See http://opensimulator.org/mantis/view.php?id=8516</p>
 
 <p class=MsoNormal style='margin-left:0in'>&nbsp;</p>
 
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.01 </span></h2>
+<h2><span style='color:black'>V3.01 </span></h2>
 
 </div>
 
@@ -6145,8 +6586,7 @@ and made it adjustable.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V3.0 </span></h2>
+<h2><span style='color:black'>V3.0 </span></h2>
 
 </div>
 
@@ -6158,8 +6598,7 @@ some additional Help file tweaks.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.96</span></h2>
+<h2><span style='color:black'>V2.96</span></h2>
 
 </div>
 
@@ -6181,8 +6620,7 @@ also set Region Owner gods to on.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.95</span></h2>
+<h2><span style='color:black'>V2.95</span></h2>
 
 </div>
 
@@ -6217,8 +6655,7 @@ running' while it checks them all, just stop.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.94</span></h2>
+<h2><span style='color:black'>V2.94</span></h2>
 
 </div>
 
@@ -6230,8 +6667,7 @@ broke partnering prim</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.93</span></h2>
+<h2><span style='color:black'>V2.93</span></h2>
 
 </div>
 
@@ -6244,8 +6680,7 @@ correct IP automatically.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.92</span></h2>
+<h2><span style='color:black'>V2.92</span></h2>
 
 </div>
 
@@ -6265,8 +6700,7 @@ shutting down by poking port.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.91 </span></h2>
+<h2><span style='color:black'>V2.91 </span></h2>
 
 </div>
 
@@ -6293,8 +6727,8 @@ of the tiles has wrong coordinates.</p>
 <p class=MsoNormal style='margin-left:0in'>Deletes all old DLLs that are not in
 the list 'dll.txt'.</p>
 
-<p class=MsoNormal style='margin-left:0in'>Installs for Microsoft C++ 1012 32/64
-bit which are needed for Apache.</p>
+<p class=MsoNormal style='margin-left:0in'>Installs for Microsoft C++ 1012
+32/64 bit which are needed for Apache.</p>
 
 <p class=MsoNormal style='margin-left:0in'>A UUID could be zeroed out, leading
 to a crash.</p>
@@ -6304,8 +6738,7 @@ to a crash.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.90</span></h2>
+<h2><span style='color:black'>V2.90</span></h2>
 
 </div>
 
@@ -6317,17 +6750,16 @@ deleted.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.89</span></h2>
+<h2><span style='color:black'>V2.89</span></h2>
 
 </div>
 
 <p class=MsoNormal style='margin-left:0in'>Try-catch a possible crash on events
-load if Outworldz web site is offline. There should never be any dependencies on
-having an external PC running except for ns1.outworldz.net for dynamic DNS and
-that only applies to outworldz.net users. DreamGrid pulls a list of available
-OARS, IARs, and events from Outworldz.com web site periodically, and these are
-dependent on Outworldz.com being online.</p>
+load if Outworldz web site is offline. There should never be any dependencies
+on having an external PC running except for ns1.outworldz.net for dynamic DNS
+and that only applies to outworldz.net users. DreamGrid pulls a list of
+available OARS, IARs, and events from Outworldz.com web site periodically, and
+these are dependent on Outworldz.com being online.</p>
 
 <p class=MsoNormal style='margin-left:0in'>Removed bin\addins as it is old,
 unused, and may have old DLLS in it leading to mysterious crashes about log4net
@@ -6338,8 +6770,7 @@ because log4net is now Dot net 4.6.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V.28</span></h2>
+<h2><span style='color:black'>V.28</span></h2>
 
 </div>
 
@@ -6353,8 +6784,7 @@ ancient updates.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.87</span></h2>
+<h2><span style='color:black'>V2.87</span></h2>
 
 </div>
 
@@ -6373,8 +6803,7 @@ Server2016 will run without Administrator mode.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.86 </span></h2>
+<h2><span style='color:black'>V2.86 </span></h2>
 
 </div>
 
@@ -6389,8 +6818,7 @@ stop.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.85 </span></h2>
+<h2><span style='color:black'>V2.85 </span></h2>
 
 </div>
 
@@ -6412,8 +6840,7 @@ port 8001 to listen to localhost only.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.84 </span></h2>
+<h2><span style='color:black'>V2.84 </span></h2>
 
 </div>
 
@@ -6431,8 +6858,7 @@ Outworldz e very hour and on startup</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V 2.83</span></h2>
+<h2><span style='color:black'>V 2.83</span></h2>
 
 </div>
 
@@ -6486,8 +6912,7 @@ selecting Save on Exit option ‘To File in Application Directory’ </p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.82 </span></h2>
+<h2><span style='color:black'>2.82 </span></h2>
 
 </div>
 
@@ -6508,8 +6933,7 @@ Regionlist and made them resize and re-position the list</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.81</span></h2>
+<h2><span style='color:black'>2.81</span></h2>
 
 </div>
 
@@ -6528,9 +6952,7 @@ panel</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.8
-Release </span></h2>
+<h2><span style='color:black'>2.8 Release </span></h2>
 
 </div>
 
@@ -6541,9 +6963,7 @@ Release </span></h2>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.79A
-through E:</span></h2>
+<h2><span style='color:black'>2.79A through E:</span></h2>
 
 </div>
 
@@ -6595,8 +7015,7 @@ blue arrows, Bootup and Shutdown are double Blue arrows.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.78</span></h2>
+<h2><span style='color:black'>2.78</span></h2>
 
 </div>
 
@@ -6625,8 +7044,7 @@ instead of DEBUG, less spam, more speed.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.77</span></h2>
+<h2><span style='color:black'>2.77</span></h2>
 
 </div>
 
@@ -6643,8 +7061,7 @@ making it impossible to create the initial owner</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.76</span></h2>
+<h2><span style='color:black'>2.76</span></h2>
 
 </div>
 
@@ -6658,8 +7075,7 @@ becomes LAN IP.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.75</span></h2>
+<h2><span style='color:black'>2.75</span></h2>
 
 </div>
 
@@ -6680,8 +7096,7 @@ Name at top.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.74 </span></h2>
+<h2><span style='color:black'>2.74 </span></h2>
 
 </div>
 
@@ -6714,8 +7129,7 @@ Start/Stop</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.73</span></h2>
+<h2><span style='color:black'>2.73</span></h2>
 
 </div>
 
@@ -6731,8 +7145,7 @@ into all OARS. not just one</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.72</span></h2>
+<h2><span style='color:black'>2.72</span></h2>
 
 </div>
 
@@ -6757,8 +7170,7 @@ webserver is offline and you have Publicity checked - threaded apartment violati
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.71</span></h2>
+<h2><span style='color:black'>2.71</span></h2>
 
 </div>
 
@@ -6778,8 +7190,7 @@ MySQL robust port on initial startup.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.7</span></h2>
+<h2><span style='color:black'>2.7</span></h2>
 
 </div>
 
@@ -6805,8 +7216,7 @@ ports.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.69</span></h2>
+<h2><span style='color:black'>2.69</span></h2>
 
 </div>
 
@@ -6858,8 +7268,7 @@ Settings&quot; Menu</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.68</span></h2>
+<h2><span style='color:black'>2.68</span></h2>
 
 </div>
 
@@ -6878,8 +7287,7 @@ RegionForm</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.67</span></h2>
+<h2><span style='color:black'>2.67</span></h2>
 
 </div>
 
@@ -6894,8 +7302,7 @@ when auto restarting</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.66</span></h2>
+<h2><span style='color:black'>2.66</span></h2>
 
 </div>
 
@@ -6912,8 +7319,7 @@ DOS box. </p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.65</span></h2>
+<h2><span style='color:black'>2.65</span></h2>
 
 </div>
 
@@ -6931,8 +7337,7 @@ and delete user buttons</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.64 </span></h2>
+<h2><span style='color:black'>2.64 </span></h2>
 
 </div>
 
@@ -6946,8 +7351,7 @@ not 2M, tweaks to buffers and threads</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.63</span></h2>
+<h2><span style='color:black'>2.63</span></h2>
 
 </div>
 
@@ -6971,8 +7375,7 @@ modules</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.61</span></h2>
+<h2><span style='color:black'>2.61</span></h2>
 
 </div>
 
@@ -7001,8 +7404,7 @@ Image</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.59</span></h2>
+<h2><span style='color:black'>2.59</span></h2>
 
 </div>
 
@@ -7016,8 +7418,7 @@ response</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>2.58</span></h2>
+<h2><span style='color:black'>2.58</span></h2>
 
 </div>
 
@@ -7036,8 +7437,7 @@ Key files backup</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.57 </span></h2>
+<h2><span style='color:black'>V2.57 </span></h2>
 
 </div>
 
@@ -7057,8 +7457,7 @@ reporting.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.56</span></h2>
+<h2><span style='color:black'>V2.56</span></h2>
 
 </div>
 
@@ -7069,8 +7468,7 @@ margin-left:0in;margin-right:.5in'>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.55</span></h2>
+<h2><span style='color:black'>V2.55</span></h2>
 
 </div>
 
@@ -7092,8 +7490,7 @@ something changes</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.54</span></h2>
+<h2><span style='color:black'>V2.54</span></h2>
 
 </div>
 
@@ -7124,8 +7521,7 @@ back on.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.53 </span></h2>
+<h2><span style='color:black'>V2.53 </span></h2>
 
 </div>
 
@@ -7137,8 +7533,7 @@ be REALLY disabled when it is off by renaming the DLL</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.52 </span></h2>
+<h2><span style='color:black'>V2.52 </span></h2>
 
 </div>
 
@@ -7168,8 +7563,7 @@ by renaming OpenSimBirds.Module.dll to .bak.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.51</span></h2>
+<h2><span style='color:black'>V2.51</span></h2>
 
 </div>
 
@@ -7181,8 +7575,7 @@ position. </p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.50</span></h2>
+<h2><span style='color:black'>V2.50</span></h2>
 
 </div>
 
@@ -7194,8 +7587,7 @@ no more [More] Button</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.49</span></h2>
+<h2><span style='color:black'>V2.49</span></h2>
 
 </div>
 
@@ -7211,8 +7603,7 @@ and OK's it.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.48</span></h2>
+<h2><span style='color:black'>V2.48</span></h2>
 
 </div>
 
@@ -7224,8 +7615,7 @@ region port when starting an offline region.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.47</span></h2>
+<h2><span style='color:black'>V2.47</span></h2>
 
 </div>
 
@@ -7253,8 +7643,7 @@ routers</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.46 </span></h2>
+<h2><span style='color:black'>V2.46 </span></h2>
 
 </div>
 
@@ -7266,8 +7655,7 @@ a bad variable name</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.45</span></h2>
+<h2><span style='color:black'>V2.45</span></h2>
 
 </div>
 
@@ -7282,8 +7670,7 @@ set, would not unset.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.44</span></h2>
+<h2><span style='color:black'>V2.44</span></h2>
 
 </div>
 
@@ -7304,8 +7691,7 @@ script state.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.43</span></h2>
+<h2><span style='color:black'>V2.43</span></h2>
 
 </div>
 
@@ -7319,8 +7705,7 @@ margin-left:0in;margin-right:.5in'>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.42 </span></h2>
+<h2><span style='color:black'>V2.42 </span></h2>
 
 </div>
 
@@ -7346,8 +7731,7 @@ Region folder in each Group</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.41</span></h2>
+<h2><span style='color:black'>V2.41</span></h2>
 
 </div>
 
@@ -7359,8 +7743,7 @@ swapped</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.4</span></h2>
+<h2><span style='color:black'>V2.4</span></h2>
 
 </div>
 
@@ -7378,8 +7761,7 @@ HttpServer_OpenSim.dll</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.39</span></h2>
+<h2><span style='color:black'>V2.39</span></h2>
 
 </div>
 
@@ -7393,8 +7775,7 @@ reach the server&quot; switch to use the teleporter</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.38</span></h2>
+<h2><span style='color:black'>V2.38</span></h2>
 
 </div>
 
@@ -7406,8 +7787,7 @@ Teleporter for the first 32 regions.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.37 </span></h2>
+<h2><span style='color:black'>V2.37 </span></h2>
 
 </div>
 
@@ -7424,8 +7804,7 @@ tides and floating objects that move with the water</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.36</span></h2>
+<h2><span style='color:black'>V2.36</span></h2>
 
 </div>
 
@@ -7436,8 +7815,7 @@ margin-left:0in;margin-right:.5in'>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.35</span></h2>
+<h2><span style='color:black'>V2.35</span></h2>
 
 </div>
 
@@ -7449,8 +7827,7 @@ only be enabled in regions.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.34</span></h2>
+<h2><span style='color:black'>V2.34</span></h2>
 
 </div>
 
@@ -7462,8 +7839,7 @@ commands</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.33</span></h2>
+<h2><span style='color:black'>V2.33</span></h2>
 
 </div>
 
@@ -7503,8 +7879,7 @@ from Zero</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.32 </span></h2>
+<h2><span style='color:black'>V2.32 </span></h2>
 
 </div>
 
@@ -7519,8 +7894,7 @@ These links scan the Outworldzfiles\OAR and \IAR folders for files.</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.31</span></h2>
+<h2><span style='color:black'>V2.31</span></h2>
 
 </div>
 
@@ -7545,8 +7919,7 @@ in commands</p>
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:0in;margin-right:.5in'>
 
-<h2 style='margin-top:5.0pt;margin-right:0in;margin-bottom:0in;margin-left:
-0in;margin-bottom:.0001pt;background:#D9E2F3'><span style='color:black'>V2.30</span></h2>
+<h2><span style='color:black'>V2.30</span></h2>
 
 </div>
 

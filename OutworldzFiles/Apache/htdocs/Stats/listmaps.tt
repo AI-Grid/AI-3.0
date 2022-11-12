@@ -35,7 +35,7 @@ function myFunction() {
         [% FOREACH item IN sims  %]          
         <li><a href="[% item.link %]">[% item.regionname %] 
           [% IF item.count > 0 %]
-               ([% item.count %] Visits)
+               ([% item.count %] Minutes)
            [% END %]
         </a>
         

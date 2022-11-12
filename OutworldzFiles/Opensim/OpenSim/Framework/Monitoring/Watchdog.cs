@@ -345,12 +345,9 @@ namespace OpenSim.Framework.Monitoring
             int msElapsed = now - LastWatchdogThreadTick;
 
             if (msElapsed > WATCHDOG_INTERVAL_MS * 2)
-            {
-                // SmartStart suspends so this is a Debug message, not an error or warn
                 m_log.DebugFormat(
                     "[WATCHDOG]: {0} ms since Watchdog last ran.  Interval should be approximately {1} ms",
                     msElapsed, WATCHDOG_INTERVAL_MS);
-            }
 
             LastWatchdogThreadTick = Environment.TickCount & Int32.MaxValue;
 

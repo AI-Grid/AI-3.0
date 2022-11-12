@@ -140,7 +140,7 @@ namespace Diva.Wifi.WifiScript
 
         private string Include(string argStr)
         {
-            if (m_Index > 10)
+            if (m_Index > 500)
                 return string.Empty;
 
             Match match = args.Match(argStr);

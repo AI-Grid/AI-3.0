@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -492,9 +492,6 @@
   <data name="Category_word" xml:space="preserve">
     <value>thể loại</value>
   </data>
-  <data name="CautionOAR" xml:space="preserve">
-    <value>Thận trọng! Điều này sẽ tải hơn 150 OARS và vùng vào hệ thống của bạn. Điều này sẽ mất nhiều thời gian.</value>
-  </data>
   <data name="Caution_word" xml:space="preserve">
     <value>Thận trọng!</value>
   </data>
@@ -723,9 +720,6 @@
   <data name="Configger" xml:space="preserve">
     <value>Định cấu hình tất cả các khu vực</value>
   </data>
-  <data name="Confirm" xml:space="preserve">
-    <value>Cần xác nhận để đăng nhập?</value>
-  </data>
   <data name="Consoles_word" xml:space="preserve">
     <value>Bảng điều khiển</value>
   </data>
@@ -857,9 +851,6 @@
   </data>
   <data name="DelayAfterRegionReady" xml:space="preserve">
     <value>Khu vực sẵn sàng trì hoãn</value>
-  </data>
-  <data name="DelayBeforeExit" xml:space="preserve">
-    <value>Giây trước khi chờ đợi</value>
   </data>
   <data name="DeletebyAge" xml:space="preserve">
     <value>Xóa theo độ tuổi</value>
@@ -1220,9 +1211,6 @@
   </data>
   <data name="FSA" xml:space="preserve">
     <value>Nội dung dưới dạng tệp</value>
-  </data>
-  <data name="FSassets" xml:space="preserve">
-    <value>Cơ sở dữ liệu hệ thống tệp</value>
   </data>
   <data name="FSassets_Server_word" xml:space="preserve">
     <value>Máy chủ tài sản hệ thống Fie</value>
@@ -2109,16 +2097,10 @@
   <data name="Parcels" xml:space="preserve">
     <value>Bưu kiện</value>
   </data>
-  <data name="ParkingRegion" xml:space="preserve">
-    <value>Đậu xe</value>
-  </data>
   <data name="ParkingRegion1" xml:space="preserve">
     <value>Khu vực đậu xe</value>
   </data>
   <data name="Parking_Spot" xml:space="preserve">
-    <value>Sim đậu xe</value>
-  </data>
-  <data name="Parking_Spot1" xml:space="preserve">
     <value>Sim đậu xe</value>
   </data>
   <data name="Passed_LAN" xml:space="preserve">
@@ -2138,9 +2120,6 @@
   </data>
   <data name="Pending_word" xml:space="preserve">
     <value>Đang chờ xử lý</value>
-  </data>
-  <data name="people_are_in" xml:space="preserve">
-    <value>mọi người đang ở</value>
   </data>
   <data name="Permissions_word" xml:space="preserve">
     <value>Quyền</value>
@@ -2519,9 +2498,6 @@
   </data>
   <data name="Robust_word" xml:space="preserve">
     <value>Mạnh mẽ</value>
-  </data>
-  <data name="Row" xml:space="preserve">
-    <value>Nhấp vào một hàng đã bật để bắt đầu hoặc dừng khu vực. Nhấp vào một hàng bị vô hiệu hóa để chỉnh sửa khu vực.</value>
   </data>
   <data name="Row_note" xml:space="preserve">
     <value>Nhấp vào một hàng để kiểm soát khu vực. Chọn hộp để bật / tắt.</value>
@@ -3336,15 +3312,6 @@
   <data name="XEngine_word" xml:space="preserve">
     <value>Động cơ X</value>
   </data>
-  <data name="XMLRPC" xml:space="preserve">
-    <value>XMLRPC</value>
-  </data>
-  <data name="XMLRPC_TCP_is_set_word" xml:space="preserve">
-    <value>Cổng khu vực XMLRPC</value>
-  </data>
-  <data name="XMLRP_start" xml:space="preserve">
-    <value>Số bắt đầu cổng XMLRPC</value>
-  </data>
   <data name="Y" xml:space="preserve">
     <value>Y</value>
   </data>
@@ -3653,5 +3620,194 @@
   </data>
   <data name="ViewGoogleMap" xml:space="preserve">
     <value>Xem bản đồ Google</value>
+  </data>
+  <data name="BulkLoadRegions" xml:space="preserve">
+    <value>Khu vực tải hàng loạt</value>
+  </data>
+  <data name="AccountConfirm" xml:space="preserve">
+    <value>Cần xác nhận Diva Manager cho người dùng mới?</value>
+  </data>
+  <data name="FSasset_word" xml:space="preserve">
+    <value>Cơ sở dữ liệu tài sản FS</value>
+  </data>
+  <data name="rezzableParcels" xml:space="preserve">
+    <value>Cài đặt bưu kiện</value>
+  </data>
+  <data name="DefaultLandingSpot" xml:space="preserve">
+    <value>Điểm hạ cánh mặc định</value>
+  </data>
+  <data name="LandingSpotTooltip" xml:space="preserve">
+    <value>Đặt Vị trí Đích mặc định (Mặc định thành &lt;128,128,30&gt;)</value>
+  </data>
+  <data name="NotValidVector" xml:space="preserve">
+    <value>Không phải là một vectơ hợp lệ! &lt;X, Y, Z&gt;, trong đó các giá trị&gt; 0</value>
+  </data>
+  <data name="DeletingTempRegion" xml:space="preserve">
+    <value>Xóa vùng nhiệt độ</value>
+  </data>
+  <data name="_20" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="CautionMoving" xml:space="preserve">
+    <value>Thận trọng! Thao tác này sẽ chuyển tất cả các vùng thành một khối Hình vuông.</value>
+  </data>
+  <data name="BackingUp" xml:space="preserve">
+    <value>Sao lưu tất cả các khu vực vào thư mục sao lưu tự động</value>
+  </data>
+  <data name="OpensimNeedstoStop" xml:space="preserve">
+    <value>Opensimulator phải được dừng lại</value>
+  </data>
+  <data name="Packing" xml:space="preserve">
+    <value>Đóng gói tất cả các vùng</value>
+  </data>
+  <data name="Packregions" xml:space="preserve">
+    <value>Đóng gói tất cả các khu vực</value>
+  </data>
+  <data name="PackRegionTT" xml:space="preserve">
+    <value>Đóng gói tất cả các vùng theo thứ tự bảng chữ cái từ dưới cùng bên trái sang phía trên bên phải</value>
+  </data>
+  <data name="RearrangeRegions" xml:space="preserve">
+    <value>Sắp xếp lại các khu vực</value>
+  </data>
+  <data name="RowSizeTT" xml:space="preserve">
+    <value>Có bao nhiêu hàng ngang? 1 = 1 vùng tiêu chuẩn 256X256.</value>
+  </data>
+  <data name="Spacing" xml:space="preserve">
+    <value>khoảng cách</value>
+  </data>
+  <data name="SpacingTT" xml:space="preserve">
+    <value>Khoảng cách giữa các vùng là bao nhiêu. 0 = cảm động. Mặc định = 4 nên bạn không thể nhìn thấy vùng tiếp theo.</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Bề rộng</value>
+  </data>
+  <data name="Abort" xml:space="preserve">
+    <value>Huỷ bỏ</value>
+  </data>
+  <data name="Aborting" xml:space="preserve">
+    <value>Hủy bỏ</value>
+  </data>
+  <data name="OwnerofNewRegions" xml:space="preserve">
+    <value>Chủ sở hữu của các khu vực mới</value>
+  </data>
+  <data name="Pack_Word" xml:space="preserve">
+    <value>Đóng gói</value>
+  </data>
+  <data name="TryAgain" xml:space="preserve">
+    <value>Đặt Chủ sở hữu và thử lại</value>
+  </data>
+  <data name="HighwaterLevel" xml:space="preserve">
+    <value>Mực nước cao</value>
+  </data>
+  <data name="LowWaterLevel" xml:space="preserve">
+    <value>Mực nước thấp</value>
+  </data>
+  <data name="TideInfoChannel" xml:space="preserve">
+    <value>Kênh thông tin về thủy triều</value>
+  </data>
+  <data name="GlobalTideSettings" xml:space="preserve">
+    <value>Cài đặt thủy triều toàn cầu</value>
+  </data>
+  <data name="ShowUponStart" xml:space="preserve">
+    <value>Hiển thị khi khởi động!</value>
+  </data>
+  <data name="CleanSatyrFarm" xml:space="preserve">
+    <value>Nông trại Satyr sạch sẽ!</value>
+  </data>
+  <data name="LogBenchmarks" xml:space="preserve">
+    <value>Điểm chuẩn</value>
+  </data>
+  <data name="NotePadButton" xml:space="preserve">
+    <value>Như một Notepad</value>
+  </data>
+  <data name="TideHiLoChannelLabel" xml:space="preserve">
+    <value>Kênh Thủy triều Cao/Thấp!</value>
+  </data>
+  <data name="EndlessLandAndSea" xml:space="preserve">
+    <value>Vùng Đất Và Biển Vô Tận!</value>
+  </data>
+  <data name="Speech" xml:space="preserve">
+    <value>Phát âm</value>
+  </data>
+  <data name="Ascending" xml:space="preserve">
+    <value>Tăng dần</value>
+  </data>
+  <data name="Descending" xml:space="preserve">
+    <value>Giảm Dần</value>
+  </data>
+  <data name="exclusive" xml:space="preserve">
+    <value>để sử dụng độc quyền trong phần mềm DreamGrid!</value>
+  </data>
+  <data name="islicensedas" xml:space="preserve">
+    <value>được cấp phép như!</value>
+  </data>
+  <data name="SortbyDate" xml:space="preserve">
+    <value>Sắp xếp theo ngày</value>
+  </data>
+  <data name="SortbyName" xml:space="preserve">
+    <value>Sắp xếp theo tên</value>
+  </data>
+  <data name="Terms" xml:space="preserve">
+    <value>Bạn có đồng ý với các điều khoản này không ?!</value>
+  </data>
+  <data name="Minimize_all" xml:space="preserve">
+    <value>Giảm thiểu tất cả các khu vực!</value>
+  </data>
+  <data name="EmailDisabled" xml:space="preserve">
+    <value>Email không được kích hoạt!</value>
+  </data>
+  <data name="NoBody" xml:space="preserve">
+    <value>Không có email</value>
+  </data>
+  <data name="NoFromEmail" xml:space="preserve">
+    <value>Từ Email</value>
+  </data>
+  <data name="NoToEmail" xml:space="preserve">
+    <value>Gởi tới email</value>
+  </data>
+  <data name="SMTPDisabled" xml:space="preserve">
+    <value>Email đến SMTP không được kích hoạt!</value>
+  </data>
+  <data name="Test_word" xml:space="preserve">
+    <value>Thử nghiệm</value>
+  </data>
+  <data name="CautionOARs2" xml:space="preserve">
+    <value>Thận trọng! Điều này sẽ tạo ra nhiều vùng và tải OAR của chúng vào hệ thống của bạn. Điều này sẽ mất nhiều thời gian. Chế độ tắt máy khởi động thông minh sẽ được bật. Đếm:</value>
+  </data>
+  <data name="Backup_Settings" xml:space="preserve">
+    <value>Cài đặt sao lưu</value>
+  </data>
+  <data name="BusyWith" xml:space="preserve">
+    <value>Bận rộn với</value>
+  </data>
+  <data name="Backup_IAR" xml:space="preserve">
+    <value>IAR dự phòng</value>
+  </data>
+  <data name="Backup_Region_INI" xml:space="preserve">
+    <value>INI khu vực dự phòng</value>
+  </data>
+  <data name="Backup_Wifi" xml:space="preserve">
+    <value>Wifi dự phòng</value>
+  </data>
+  <data name="Saving_Zip" xml:space="preserve">
+    <value>Tiết kiệm Zip</value>
+  </data>
+  <data name="rezrights" xml:space="preserve">
+    <value>Điều này sẽ xóa quyền rez cho những người đau buồn trên tất cả các khu vực. Tiếp tục?</value>
+  </data>
+  <data name="Failpassword" xml:space="preserve">
+    <value>Không lưu được mật khẩu mới</value>
+  </data>
+  <data name="FreezeAllRegions" xml:space="preserve">
+    <value>Cố định tất cả các khu vực</value>
+  </data>
+  <data name="ThawAllRegions" xml:space="preserve">
+    <value>Làm tan băng tất cả các khu vực</value>
+  </data>
+  <data name="OneMinute" xml:space="preserve">
+    <value>1 Phút</value>
+  </data>
+  <data name="ApacheMustBe80" xml:space="preserve">
+    <value>Apache phải  sử dụng cổng 80. Không thể tiếp tục.!</value>
   </data>
 </root>

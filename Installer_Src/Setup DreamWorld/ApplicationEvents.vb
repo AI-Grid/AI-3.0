@@ -21,6 +21,10 @@ Namespace My
         'AddHandler AppDomain.CurrentDomain.AssemblyResolve, AddressOf ResolveAssemblies
         'End Sub
 
+        ''' <summary>
+        ''' UnhandledException: Raised if the application encounters an unhandled exception.
+        ''' </summary>
+
         Private Sub MyApplication_UnhandledException(
                             ByVal sender As Object,
                     ByVal e As Microsoft.VisualBasic.ApplicationServices.UnhandledExceptionEventArgs

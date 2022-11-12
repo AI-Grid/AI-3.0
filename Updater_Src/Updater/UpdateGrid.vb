@@ -117,7 +117,6 @@ Public Class UpdateGrid
                 Next
                 ProgressBar1.Value = 80
                 Application.DoEvents()
-                Thread.Sleep(1000)
 
 
                 Dim err As Integer = 0

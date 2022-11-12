@@ -1,19 +1,30 @@
-﻿Imports System.IO
+﻿Imports System.Collections.Concurrent
+Imports System.IO
 Imports System.Threading
 Imports IniParser.Model
+
+Public Class AvatarObject
+    Public AgentName As String
+    Public AvatarUUID As String
+    Public FirstName As String
+    Public LastName As String
+    Public RegionID As String
+End Class
 
 Module Global_Properties
 
 #Region "Globals"
 
+    Public ReadOnly LogResults As New Dictionary(Of String, LogReader)
     Public _Data As IniParser.Model.IniData
+    Public BackupAbort As Boolean
     Public Bench As New Benchmark()
-    Public DebugLandMaker As Boolean
+    Public CachedAvatars As New List(Of AvatarObject)
     Public gEstateName As String = ""
     Public gEstateOwner As String = ""
     Public MapX As Integer = 100
     Public MapY As Integer = 100
-    Public RunningBackupName As String = ""
+    Public RunningBackupName As New ConcurrentDictionary(Of String, String)
 
 #End Region
 
@@ -32,19 +43,7 @@ Module Global_Properties
 
 #Region "Subs"
 
-    Public Sub PokeGroupTimer(GroupName As String)
-
-        For Each RegionUUID In RegionUuidListByName(GroupName)
-            Timer(RegionUUID) = Date.Now()
-        Next
-
-    End Sub
-
-    Public Sub PokeRegionTimer(RegionUUID As String)
-
-        PokeGroupTimer(Group_Name(RegionUUID))
-
-    End Sub
+    Private TextLock As New Object
 
     Public Sub Sleep(value As Integer)
         ''' <summary>Sleep(ms)</summary>
@@ -63,102 +62,37 @@ Module Global_Properties
 
     Public Sub TextPrint(Value As String)
 
-        Log(My.Resources.Info_word, Value)
-        Dim dt = Date.Now.ToString(Globalization.CultureInfo.CurrentCulture)
-        If Settings.ShowDateandTimeinLogs Then
-            FormSetup.TextBox1.Text += $"{dt} {Value}{vbCrLf}"
-            Log(My.Resources.Info_word, $"{dt} {Value}{vbCrLf}")
-        Else
-            FormSetup.TextBox1.Text += $"{Value}{vbCrLf}"
-            Log(My.Resources.Info_word, $"{dt} {Value}{vbCrLf}")
-        End If
+        SyncLock TextLock
+            Log(My.Resources.Info_word, Value)
+            Dim dt = Date.Now.ToString(Globalization.CultureInfo.CurrentCulture)
+            If Settings.ShowDateandTimeinLogs Then
+                FormSetup.TextBox1.Text += $"{dt} {Value}{vbCrLf}"
+                Log(My.Resources.Info_word, $"{dt} {Value}{vbCrLf}")
+            Else
+                FormSetup.TextBox1.Text += $"{Value}{vbCrLf}"
+                Log(My.Resources.Info_word, $"{dt} {Value}{vbCrLf}")
+            End If
 
-        If FormSetup.TextBox1.Text.Length > FormSetup.TextBox1.MaxLength - 1000 Then
-            FormSetup.TextBox1.Text = Mid(FormSetup.TextBox1.Text, 1000)
-        End If
+            Dim ln As Integer = FormSetup.TextBox1.Text.Length
+            FormSetup.TextBox1.SelectionStart = ln
+            'FormSetup.TextBox1.ScrollToCaret()
+            Dim Le As Integer = 29000
+            Dim L = FormSetup.TextBox1.Text.Length - Le
+            If L > 0 Then
+                FormSetup.TextBox1.Text = FormSetup.TextBox1.Text.Substring(FormSetup.TextBox1.Text.Length - Le, Le)
+            End If
+            FormSetup.TextBox1.SelectionStart = FormSetup.TextBox1.Text.Length
+            FormSetup.TextBox1.ScrollToCaret()
+
+        End SyncLock
 
     End Sub
-
-#End Region
-
-#Region "Functions"
-
-    Public Function GetStateString(state As Integer) As String
-
-        Dim statestring As String
-        Select Case state
-            Case -1
-                statestring = "ERROR"
-            Case 0
-                statestring = "Stopped"
-            Case 1
-                statestring = "Booting"
-            Case 2
-                statestring = "Booted"
-            Case 3
-                statestring = "RecyclingUp"
-            Case 4
-                statestring = "RecyclingDown"
-            Case 5
-                statestring = "RestartPending"
-            Case 6
-                statestring = "RetartingNow"
-            Case 7
-                statestring = "Resume"
-            Case 8
-                statestring = "Suspended"
-            Case 9
-                statestring = "RestartStage2"
-            Case 10
-                statestring = "ShuttingDownForGood"
-            Case 11
-                statestring = "NoLogin"
-            Case 12
-                statestring = "No Error"
-            Case Else
-                statestring = "**** Unknown state ****"
-                BreakPoint.Print($"**** Unknown state **** {CStr(state)}")
-        End Select
-
-        Return statestring
-
-    End Function
-
-    Public Function RobustName() As String
-
-        Return "Robust " & Settings.PublicIP
-
-    End Function
-
-    Public Function VarChooser(RegionName As String, Optional modal As Boolean = True, Optional Map As Boolean = True) As String
-
-        Dim RegionUUID As String = FindRegionByName(RegionName)
-        Dim size = SizeX(RegionUUID)
-
-#Disable Warning CA2000 ' Dispose objects before losing scope
-        Dim VarForm As New FormDisplacement ' form for choosing a region in  a var
-#Enable Warning CA2000 ' Dispose objects before losing scope
-        Dim span As Integer = CInt(Math.Ceiling(size / 256))
-        ' Show Dialog as a modal dialog
-        VarForm.Init(span, RegionUUID, Map)
-
-        If modal Then
-            VarForm.ShowDialog()
-            VarForm.Dispose()
-        Else
-            VarForm.Show()
-        End If
-
-        Return PropSelectedBox
-
-    End Function
 
 #End Region
 
 #Region "Classes and Enums"
 
     Public Class PRIEnumClass
-
         Public AboveNormal As ProcessPriorityClass = ProcessPriorityClass.AboveNormal
         Public BelowNormal As ProcessPriorityClass = ProcessPriorityClass.BelowNormal
         Public High As ProcessPriorityClass = ProcessPriorityClass.High
@@ -196,6 +130,7 @@ Module Global_Properties
             _PropAborting = Value
         End Set
     End Property
+
     ''' <summary>
     ''' Set when the RegionList should be refreshed
     ''' </summary>
@@ -228,6 +163,7 @@ Module Global_Properties
             Return _MyVersion
         End Get
     End Property
+
     ''' <summary>
     ''' Property set if Opensim when supposed to be running
     ''' </summary>

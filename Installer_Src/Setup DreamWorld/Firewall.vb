@@ -10,6 +10,8 @@ Imports System.Threading
 
 Public Module Firewall
 
+    Dim FirewallLock As New Object
+
     Function AddFirewallRules() As String
 
         ' TCP only for 8001 (DiagnosticPort) and both for 8002
@@ -87,7 +89,7 @@ Public Module Firewall
             Command = Command & $"netsh advfirewall firewall delete rule name=""Apache HTTP Web Port {CStr(Settings.ApachePort)}""" & vbCrLf
         End If
 
-        For Each RegionUUID As String In RegionUuids()
+        For Each RegionUUID In RegionUuids()
 
             Dim R As Integer = CInt("0" & Region_Port(RegionUUID))
             If R > 0 Then
@@ -105,25 +107,37 @@ Public Module Firewall
 
     End Function
 
-    Public Sub ReleaseIp(Ip As String)
+    Public Sub ReleaseIp(IP As String)
 
-        Dim Command As String = $"netsh advfirewall firewall delete rule name=""Opensim Deny {Ip}""" & vbCrLf
+        Dim Command As String = $"netsh advfirewall firewall delete rule name=""Opensim Deny {IP}""" & vbCrLf
         RunFirewall(Command)
 
     End Sub
 
     Sub SetFirewall()
 
-        Dim start As ParameterizedThreadStart = AddressOf RunFirewall
+        SyncLock FirewallLock
+            Dim start As ParameterizedThreadStart = AddressOf SetFirewall2
+            Dim _WebThread1 = New Thread(start)
+            _WebThread1.SetApartmentState(ApartmentState.STA)
+            _WebThread1.Priority = ThreadPriority.BelowNormal
+            _WebThread1.Start()
+        End SyncLock
 
+    End Sub
+
+    Sub SetFirewall2()
+
+        Dim start As ParameterizedThreadStart = AddressOf RunFirewall
         If Not Settings.FirewallMigrated = 2 Then
             Dim CMD1 As Object = DeleteOldFirewallRules()
             Dim _WebThread1 = New Thread(start)
             _WebThread1.SetApartmentState(ApartmentState.STA)
             _WebThread1.Priority = ThreadPriority.BelowNormal
             _WebThread1.Start(CMD1)
+            _WebThread1.Join()
         End If
-        Sleep(1000)
+
         Dim CMD2 As Object = DeleteNewFirewallRules() & AddFirewallRules()
         Dim _WebThread2 = New Thread(start)
         _WebThread2.SetApartmentState(ApartmentState.STA)

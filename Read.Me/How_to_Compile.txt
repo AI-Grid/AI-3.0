@@ -81,6 +81,8 @@ To compile and run opensim, you can use Visual Studio or command line.   For VS,
 
 Navigate to Debug->Build Start. The app should compile.   Navigate to "Installer-Src\2010\SetupDreamWorld\Setup DreamWorld\bin\Release" and copy Start.exe and other DLL's it compile to the root folder to be ready for production.   
 
+Translations are done with Resx. The installer ResXManager.application is in the Opensim Addon-modules folder in the src code.  
+
 
 fred@outworldz.com
 ~ Ferd/Fred

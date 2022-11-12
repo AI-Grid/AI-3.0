@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -492,9 +492,6 @@
   <data name="Category_word" xml:space="preserve">
     <value>Category</value>
   </data>
-  <data name="CautionOAR" xml:space="preserve">
-    <value>Caution! This will load 150+ OARS and regions into your system. This will take a long time.</value>
-  </data>
   <data name="Caution_word" xml:space="preserve">
     <value>Caution!</value>
   </data>
@@ -723,9 +720,6 @@
   <data name="Configger" xml:space="preserve">
     <value>Configure All Regions</value>
   </data>
-  <data name="Confirm" xml:space="preserve">
-    <value>Confirmation required to log in?</value>
-  </data>
   <data name="Consoles_word" xml:space="preserve">
     <value>Consoles</value>
   </data>
@@ -857,9 +851,6 @@
   </data>
   <data name="DelayAfterRegionReady" xml:space="preserve">
     <value>Region Ready Delay</value>
-  </data>
-  <data name="DelayBeforeExit" xml:space="preserve">
-    <value>Seconds Before Waiting</value>
   </data>
   <data name="DeletebyAge" xml:space="preserve">
     <value>Delete by Age</value>
@@ -1220,9 +1211,6 @@
   </data>
   <data name="FSA" xml:space="preserve">
     <value>Assets as Files</value>
-  </data>
-  <data name="FSassets" xml:space="preserve">
-    <value>File System Database</value>
   </data>
   <data name="FSassets_Server_word" xml:space="preserve">
     <value>Fie System Assets Server</value>
@@ -2109,16 +2097,10 @@
   <data name="Parcels" xml:space="preserve">
     <value>Parcels</value>
   </data>
-  <data name="ParkingRegion" xml:space="preserve">
-    <value>ParkingRegion</value>
-  </data>
   <data name="ParkingRegion1" xml:space="preserve">
     <value>Parking Region!</value>
   </data>
   <data name="Parking_Spot" xml:space="preserve">
-    <value>Parking Sim</value>
-  </data>
-  <data name="Parking_Spot1" xml:space="preserve">
     <value>Parking Sim</value>
   </data>
   <data name="Passed_LAN" xml:space="preserve">
@@ -2138,9 +2120,6 @@
   </data>
   <data name="Pending_word" xml:space="preserve">
     <value>Pending</value>
-  </data>
-  <data name="people_are_in" xml:space="preserve">
-    <value>people are in</value>
   </data>
   <data name="Permissions_word" xml:space="preserve">
     <value>Permissions</value>
@@ -2519,9 +2498,6 @@
   </data>
   <data name="Robust_word" xml:space="preserve">
     <value>Robust</value>
-  </data>
-  <data name="Row" xml:space="preserve">
-    <value>Click an enabled row to start or stop the region.  Click a disabled row to edit the region.</value>
   </data>
   <data name="Row_note" xml:space="preserve">
     <value>Click a row to control the region. Check the box to enable/disable.</value>
@@ -3336,15 +3312,6 @@
   <data name="XEngine_word" xml:space="preserve">
     <value>X Engine</value>
   </data>
-  <data name="XMLRPC" xml:space="preserve">
-    <value>XMLRPC</value>
-  </data>
-  <data name="XMLRPC_TCP_is_set_word" xml:space="preserve">
-    <value>XMLRPC Region Port</value>
-  </data>
-  <data name="XMLRP_start" xml:space="preserve">
-    <value>XMLRPC Port Start #</value>
-  </data>
   <data name="Y" xml:space="preserve">
     <value>Y</value>
   </data>
@@ -3653,5 +3620,194 @@
   </data>
   <data name="ViewGoogleMap" xml:space="preserve">
     <value>View Google Map</value>
+  </data>
+  <data name="BulkLoadRegions" xml:space="preserve">
+    <value>Bulk Load Regions</value>
+  </data>
+  <data name="AccountConfirm" xml:space="preserve">
+    <value>Diva Manager confirmation for new users needed?!</value>
+  </data>
+  <data name="FSasset_word" xml:space="preserve">
+    <value>FS Asset Database!</value>
+  </data>
+  <data name="rezzableParcels" xml:space="preserve">
+    <value>Parcels Settings!</value>
+  </data>
+  <data name="DefaultLandingSpot" xml:space="preserve">
+    <value>Default Landing Spot!</value>
+  </data>
+  <data name="LandingSpotTooltip" xml:space="preserve">
+    <value>Set Default Landing Location (Defaults to &lt;128,128,30&gt;)!</value>
+  </data>
+  <data name="NotValidVector" xml:space="preserve">
+    <value>Not a Valid Vector! &lt;X, Y, Z&gt;, where values are &gt; 0 !</value>
+  </data>
+  <data name="DeletingTempRegion" xml:space="preserve">
+    <value>Deleting Temp Region!</value>
+  </data>
+  <data name="_20" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="CautionMoving" xml:space="preserve">
+    <value>Caution! This will move all regions  into a Square block.   !</value>
+  </data>
+  <data name="BackingUp" xml:space="preserve">
+    <value>Backing Up All Regions to Automatic backup folder!</value>
+  </data>
+  <data name="OpensimNeedstoStop" xml:space="preserve">
+    <value>Opensimulator  Must Be Stopped!</value>
+  </data>
+  <data name="Packing" xml:space="preserve">
+    <value>Packing all regions!</value>
+  </data>
+  <data name="Packregions" xml:space="preserve">
+    <value>Alle Regionen</value>
+  </data>
+  <data name="PackRegionTT" xml:space="preserve">
+    <value>Packs all regions alphabetically from bottom left to upper right!</value>
+  </data>
+  <data name="RearrangeRegions" xml:space="preserve">
+    <value>Rearrange Regions!</value>
+  </data>
+  <data name="RowSizeTT" xml:space="preserve">
+    <value>How many rows across?  1 = 1 standard 256X256 region.!</value>
+  </data>
+  <data name="Spacing" xml:space="preserve">
+    <value>Spacing</value>
+  </data>
+  <data name="SpacingTT" xml:space="preserve">
+    <value>How much space between regions.  0 = touching. Default = 4 so you cannot see the next region.!</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Width</value>
+  </data>
+  <data name="Abort" xml:space="preserve">
+    <value>Abort</value>
+  </data>
+  <data name="Aborting" xml:space="preserve">
+    <value>Aborting!</value>
+  </data>
+  <data name="OwnerofNewRegions" xml:space="preserve">
+    <value>Owner of New Regions!</value>
+  </data>
+  <data name="Pack_Word" xml:space="preserve">
+    <value>Pack</value>
+  </data>
+  <data name="TryAgain" xml:space="preserve">
+    <value>Set the Owner and try again!</value>
+  </data>
+  <data name="HighwaterLevel" xml:space="preserve">
+    <value>High Water Level</value>
+  </data>
+  <data name="LowWaterLevel" xml:space="preserve">
+    <value>Low Water Level</value>
+  </data>
+  <data name="TideInfoChannel" xml:space="preserve">
+    <value>Tide Info Channel</value>
+  </data>
+  <data name="GlobalTideSettings" xml:space="preserve">
+    <value>Global Tide Settings</value>
+  </data>
+  <data name="ShowUponStart" xml:space="preserve">
+    <value>Show On Startup!</value>
+  </data>
+  <data name="CleanSatyrFarm" xml:space="preserve">
+    <value>Clean Satyr Farm!</value>
+  </data>
+  <data name="LogBenchmarks" xml:space="preserve">
+    <value>Log Benchmarks!</value>
+  </data>
+  <data name="NotePadButton" xml:space="preserve">
+    <value>Notepad!</value>
+  </data>
+  <data name="TideHiLoChannelLabel" xml:space="preserve">
+    <value>Tide High/Low Channel!</value>
+  </data>
+  <data name="EndlessLandAndSea" xml:space="preserve">
+    <value>Endless Land And Sea!</value>
+  </data>
+  <data name="Speech" xml:space="preserve">
+    <value>Appearence</value>
+  </data>
+  <data name="Ascending" xml:space="preserve">
+    <value>Ascending</value>
+  </data>
+  <data name="Descending" xml:space="preserve">
+    <value>Descending</value>
+  </data>
+  <data name="exclusive" xml:space="preserve">
+    <value>for exclusive use in DreamGrid software!</value>
+  </data>
+  <data name="islicensedas" xml:space="preserve">
+    <value>is licensed as!</value>
+  </data>
+  <data name="SortbyDate" xml:space="preserve">
+    <value>Sort by</value>
+  </data>
+  <data name="SortbyName" xml:space="preserve">
+    <value>Sort by</value>
+  </data>
+  <data name="Terms" xml:space="preserve">
+    <value>Do you agree to these terms?!</value>
+  </data>
+  <data name="Minimize_all" xml:space="preserve">
+    <value>Minimize All Regions!</value>
+  </data>
+  <data name="EmailDisabled" xml:space="preserve">
+    <value>Email is not enabled!</value>
+  </data>
+  <data name="NoBody" xml:space="preserve">
+    <value>No Email Text!</value>
+  </data>
+  <data name="NoFromEmail" xml:space="preserve">
+    <value>From e-mail</value>
+  </data>
+  <data name="NoToEmail" xml:space="preserve">
+    <value>To email</value>
+  </data>
+  <data name="SMTPDisabled" xml:space="preserve">
+    <value>Email to SMTP is not enabled!</value>
+  </data>
+  <data name="Test_word" xml:space="preserve">
+    <value>テスト！</value>
+  </data>
+  <data name="CautionOARs2" xml:space="preserve">
+    <value>Caution! This will create many regions and load their OARs into your system. This will take a long time. Smart Start Shutdown Mode will be enabled.   Count: !</value>
+  </data>
+  <data name="BusyWith" xml:space="preserve">
+    <value>Busy with!</value>
+  </data>
+  <data name="Backup_IAR" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="Backup_Region_INI" xml:space="preserve">
+    <value>Backup Region INI!</value>
+  </data>
+  <data name="Backup_Settings" xml:space="preserve">
+    <value>Backup Settings</value>
+  </data>
+  <data name="Backup_Wifi" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="Saving_Zip" xml:space="preserve">
+    <value>Saving</value>
+  </data>
+  <data name="rezrights" xml:space="preserve">
+    <value>This will remove rez rights for griefers on all regions. Proceed?!</value>
+  </data>
+  <data name="Failpassword" xml:space="preserve">
+    <value>Failed to Save New Password!</value>
+  </data>
+  <data name="FreezeAllRegions" xml:space="preserve">
+    <value>Freeze All Regions!</value>
+  </data>
+  <data name="ThawAllRegions" xml:space="preserve">
+    <value>All regions</value>
+  </data>
+  <data name="OneMinute" xml:space="preserve">
+    <value>1 Minute</value>
+  </data>
+  <data name="ApacheMustBe80" xml:space="preserve">
+    <value>Apache must  be using port 80. Cannot continue.!</value>
   </data>
 </root>

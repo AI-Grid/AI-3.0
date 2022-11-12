@@ -5,13 +5,13 @@ Module OpensimWorld
 
     Public Sub ScanOpenSimWorld(Force As Boolean)
 
-        For Each RegionUUID As String In RegionUuids()
+        For Each RegionUUID In RegionUuids()
 
             If OpensimWorldAPIKey(RegionUUID).Length = 0 Then Continue For
             If Not RegionEnabled(RegionUUID) Then Continue For
 
             If RegionStatus(RegionUUID) = SIMSTATUSENUM.Booted Or
-                (Smart_Start(RegionUUID) = "True" And Settings.Smart_Start) Then
+                (Smart_Start(RegionUUID) And Settings.Smart_Start) Then
 
                 Dim Avatars = GetAgentsInRegion(RegionUUID)
                 If Avatars <> InRegion(RegionUUID) Then
@@ -39,6 +39,7 @@ Module OpensimWorld
         Dim URL = $"http://beacon.opensimworld.com/index.php/osgate/beacon/?wk={k}&na={Avatars}&rat=0&r={Regionname}&pos={pos}"
         ' If he says to delete it, we do so.
         If Poke(URL) = -1 Then OpensimWorldAPIKey(RegionUUID) = ""
+        Application.DoEvents()
 
     End Sub
 

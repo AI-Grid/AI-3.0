@@ -103,26 +103,25 @@ Public Class FormDebug
 
     End Sub
 
+    Private Shared Sub Poketest()
+        For Each RegionUUID In RegionUuids()
+            Thaw(RegionUUID)
+            ConsoleCommand(RegionUUID, "show stats")
+        Next
+    End Sub
+
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles ApplyButton.Click
 
-        If Command = "Debug LandMaker" Then
-            If Value = True Then
-                Dim res = MsgBox("Are you sure?  This makes a LOT of regions! - Make them Smart Boot and Temporary!", vbYesNo)
-                If res = vbYes Then
-                    DebugLandMaker = True
-                    ProgressPrint("Land making On")
-                End If
-            Else
-                DebugLandMaker = False
-                ProgressPrint("Land making Off")
-            End If
-
-        ElseIf Command = My.Resources.MakeNewMap Then
+        If Command = My.Resources.MakeNewMap Then
             MakeMap()
 
         ElseIf Command = My.Resources.TeleportAPI Then
 
             TPAPITest()
+
+        ElseIf Command = "All region stats" Then
+
+            Poketest()
 
         ElseIf Command = $"{My.Resources.Debug_word} {My.Resources.Off}" Then
 
@@ -197,13 +196,14 @@ Public Class FormDebug
         RadioTrue.Text = My.Resources.True_word
         RadioFalse.Text = My.Resources.False_word
 
+        ComboBox1.Items.Add("All region stats")
         ComboBox1.Items.Add(My.Resources.TeleportAPI)
         ComboBox1.Items.Add($"{My.Resources.Debug_word} {My.Resources.Off}")
         ComboBox1.Items.Add($"{My.Resources.Debug_word} 1 {My.Resources.Minute}")
         ComboBox1.Items.Add($"{My.Resources.Debug_word} 10 {My.Resources.Minutes}")
         ComboBox1.Items.Add($"{My.Resources.Debug_word} 60 {My.Resources.Minutes}")
         ComboBox1.Items.Add($"{My.Resources.Debug_word} 24 {My.Resources.Hours}")
-        ComboBox1.Items.Add("Debug LandMaker")
+
         ComboBox1.Items.Add(My.Resources.MakeNewMap)
 
         SetScreen()
@@ -222,7 +222,7 @@ Public Class FormDebug
             If AviName.Length > 0 Then
                 AviUUID = Uri.EscapeDataString(MysqlInterface.GetAviUUUD(AviName))
                 If AviUUID.Length > 0 Then
-                    Dim url = $"http://{Settings.PublicIP}:{Settings.DiagnosticPort}/alt={region}&agent=AviName&AgentID={AviUUID}&password={Settings.MachineID}"
+                    Dim url = $"http://{Settings.PublicIP}:{Settings.DiagnosticPort}/alt={region}&agent=AviName&AgentID={AviUUID}&password={Settings.MachineId}"
                     ProgressPrint(url)
                     Using client As New WebClient ' download client for web pages
                         Dim r As String = ""

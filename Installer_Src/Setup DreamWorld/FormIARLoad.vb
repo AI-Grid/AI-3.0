@@ -1,4 +1,4 @@
-﻿Public Class FormIARLoad
+﻿Public Class FormIarLoad
 
 #Region "Private"
 

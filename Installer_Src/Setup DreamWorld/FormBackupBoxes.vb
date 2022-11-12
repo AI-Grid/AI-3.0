@@ -48,20 +48,36 @@ Public Class FormBackupBoxes
     ''' </summary>
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles BackupButton.Click
 
+        If BackupAbort = True Then
+            RunningBackupName.Clear()
+            BackupAbort = False
+        End If
+
+        FormSetup.StartTimer()
+
+        If Not RunningBackupName.IsEmpty Then
+            Dim namelist As String = ""
+            For Each N In RunningBackupName
+                namelist += N.Key + ","
+            Next
+
+            Dim cancel = MsgBox($"{My.Resources.BusyWith} {namelist} {My.Resources.Cancel_word}? ", MsgBoxStyle.YesNo Or MsgBoxStyle.MsgBoxSetForeground, My.Resources.Busy_word)
+            If cancel = vbYes Then
+                BackupAbort = True
+                RunningBackupName.Clear()
+                TextPrint($"{My.Resources.Backup_word} {My.Resources.Aborted_word}")
+                Return
+            End If
+            Me.Close()
+        End If
+
+        BackupButton.Text = My.Resources.Running_word
 #Disable Warning CA2000 ' Dispose objects before losing scope
         Dim b As New Backups()
 #Enable Warning CA2000 ' Dispose objects before losing scope
 
-        BackupButton.Text = My.Resources.Running_word
-
-        b.RunAllBackups(True) 'run backup right now instead of on a timer
-        Sleep(1000)
-
-        If Settings.BackupOARs And PropOpensimIsRunning() Then
-            BackupAllRegions()
-        Else
-            TextPrint(My.Resources.Not_Running)
-        End If
+        ' Settings.ini, BackupW Wifi and Backup Region ini
+        b.RunFullBackupThread() 'run backup right now instead of on a timer
 
         Me.Close()
 
@@ -106,7 +122,7 @@ Public Class FormBackupBoxes
 
         HelpOnce("Backup Manually")
 
-        If Settings.FsAssetsEnabled Then
+        If Settings.FSAssetsEnabled Then
             FSAssetsCheckBox.Enabled = True
             FSAssetsCheckBox.Checked = True
         Else
@@ -120,7 +136,7 @@ Public Class FormBackupBoxes
         FSAssetsCheckBox.Checked = Settings.BackupFSAssets
         CustomCheckBox.Checked = Settings.BackupWifi
         BackupOarsCheckBox.Checked = Settings.BackupOARs
-        BackupIARsCheckBox.Checked = Settings.BackupIARs
+        BackupIARsCheckBox.Checked = Settings.BackupIars
         BackupSQlCheckBox.Checked = Settings.BackupSQL
 
         initted = True
@@ -130,6 +146,14 @@ Public Class FormBackupBoxes
 #End Region
 
 #Region "CheckBoxes"
+
+    Private Sub AbortButton_Click(sender As Object, e As EventArgs) Handles AbortButton.Click
+
+        BackupAbort = True
+        BackupButton.Text = Global.Outworldz.My.Resources.System_Backup_Now_word
+        TextPrint($"{My.Resources.Backup_word} {My.Resources.Aborted_word}")
+
+    End Sub
 
     Private Sub BackupSQlCheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles BackupSQlCheckBox.CheckedChanged
 
@@ -150,7 +174,7 @@ Public Class FormBackupBoxes
     Private Sub CheckBox1_CheckedChanged_1(sender As Object, e As EventArgs) Handles BackupIARsCheckBox.CheckedChanged
 
         If Not initted Then Return
-        Settings.BackupIARs = BackupIARsCheckBox.Checked
+        Settings.BackupIars = BackupIARsCheckBox.Checked
         Settings.SaveSettings()
 
     End Sub
@@ -190,7 +214,7 @@ Public Class FormBackupBoxes
     Private Sub ShowFsassets_CheckedChanged(sender As Object, e As EventArgs) Handles ShowFsassets.CheckedChanged
 
         If Not initted Then Return
-        Settings.ShowFsAssetBackup = ShowFsassets.Checked
+        Settings.ShowFSAssetBackup = ShowFsassets.Checked
         Settings.SaveSettings()
 
     End Sub

@@ -26,6 +26,8 @@ Module BreakPoint
 
         If Settings.LogLevel = "DEBUG" Then
             TextPrint($"> {Message}")
+        Else
+            Diagnostics.Debug.Print(Message)
         End If
 
     End Sub

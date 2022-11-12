@@ -169,23 +169,21 @@ PC.</span></p>
 
 </div>
 
-<p class=MsoNormal><span lang=EN>Go to Settings -&gt; Expert mode, click the
-DNS button at top left, and enter '127.0.0.1'.   Then restart the grid and use </span><a
-href="http://127.0.0.1:8002"><span lang=EN style='color:windowtext;text-decoration:
-none'>http://127.0.0.1:8002</span></a><span lang=EN> as the grid in the viewers
-&quot;Add Grid&quot; menu. </span></p>
+<p class=MsoNormal><span lang=EN>Go to Setyup-&gt; Settings, click the DNS
+button at top left, and enter '127.0.0.1'.   Now start the grid.</span></p>
 
 <p class=MsoNormal><span lang=EN>You should also be able to see the Systems
-admin web page with a viewer by clicking the above link.  </span></p>
+admin web page with a viewer by clicking the above address with the :8002.  </span></p>
 
 <p class=MsoNormal><span lang=EN>Open up your viewer.  Now add the grid </span><a
 href="http://127.0.0.1:8002"><span lang=EN style='color:windowtext;text-decoration:
 none'>http://127.0.0.1:8002</span></a><span lang=EN> to the viewer.   You
-should now be able to log in on the Server from the Server. </span></p>
+should be able to log in on the Server from the Server. </span></p>
 
 <p class=MsoNormal><span lang=EN>You should see the Welcome region spit out a
 lot of text as you log in.  If this fails, it is not your network, router, or
-loopback as you are on localhost, aka. 127.0.0.1. </span></p>
+loopback as you are on localhost, aka. 127.0.0.1.   You will need to read the error
+message and troubleshoot from there.</span></p>
 
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3'>
 
@@ -205,14 +203,16 @@ screen.</span></p>
 </div>
 
 <p class=MsoNormal><span lang=EN><br>
-Any IP from outside must be able to connect to ports 8001 to 8002, and from
-8004 upwards.   A test at http://canyouseeme.org should work on port 8002 when
-Robust is running.</span></p>
+Any IP from outside must be able to connect to port 8002, and from 8004
+upwards.   A test at http://canyouseeme.org should work on port 8002 when
+Robust is running.  It should also work on port 8004 which is the default home
+or welcome region at the very beginning.</span></p>
 
 <p class=MsoNormal><span lang=EN>If not, you need to Port Forward.  See the
 manual on Port Forwards.  <br>
 <br>
-If it does not work, t is highly likely to be an antivirus firewall. </span></p>
+If it does not work after port forwards,  it is very likely to be an antivirus
+firewall.  DreamGrid automatically opens the Windows firewall.</span></p>
 
 <div style='border:none;border-top:solid #4472C4 1.0pt;padding:2.0pt 0in 0in 0in'>
 
@@ -223,12 +223,12 @@ If it does not work, t is highly likely to be an antivirus firewall. </span></p>
 <p class=MsoNormal><span lang=EN>Programs such as MalwareBytes, Norton, Avast,
 and others are designed to block Ports.  Try disabling them entirely to get
 Canyouseeme.org to work on port 8002.  You have a firewall in your router so
-should be perfectly safe.  Once you get the system running, enables your AV one
+should be perfectly safe.  Once you get the system running, enable your AV one
 at a time. If it quits, add exclusions to the ports you used:</span></p>
 
 <p class=MsoNormal><span lang=EN>8001 – Used by PC for icons, signs and status,
 may be closed in the router<br>
-8002 - Robust HTTP port “The Grid”. This is where avatars connect, Must be open<br>
+8002 - Robust HTTP port “The Grid”. This is where avatars connect. Must be open<br>
 8003 – <b>Should not be port forwarded.</b> <br>
 8004 – from 8004 upwards it uses one port per region. </span></p>
 
@@ -287,10 +287,7 @@ PC connected to your LAN&nbsp;for this next one.</span></p>
 10.0pt;margin-left:.5in'><span lang=EN>Navigate using a web browser on that
 OTHER device to </span><a href="http://192.168.0.10:8002"><span lang=EN
 style='color:windowtext;text-decoration:none'>http://192.168.0.10:8002</span></a><span
-lang=EN>.</span></p>
-
-<p class=MsoNormal style='margin-top:5.0pt;margin-right:.5in;margin-bottom:
-10.0pt;margin-left:.5in'><span lang=EN>You should see the web page. <br>
+lang=EN> or whatever you system reported.  You should see the web page. <br>
 <br>
 If this fails, it is likely to be an antivirus program blocking a port such as
 the Windows Defender firewall. Turn them ALL off.&nbsp; Look for Malwarebytes
@@ -304,9 +301,10 @@ exclusions to that anti-virus program.</span></p>
 test passes.</span></b></p>
 
 <p class=MsoNormal style='margin-top:5.0pt;margin-right:.5in;margin-bottom:
-10.0pt;margin-left:.5in'><span lang=EN>4. If UPNP is enabled in the Setup-Settings-&gt;Network
-ports, go to step 5. If not, you MUST port forward port 8002 and 8004-8100 or
-more in the router.  Go read the manual on Port Forwards.  </span></p>
+10.0pt;margin-left:.5in'><span lang=EN>4. If UPNP is enabled in the
+Setup-Settings-&gt;Network ports, go to step 5. If not, you MUST port forward port
+8002 and 8004-8100 or more in the router.  Go read the manual on Port
+Forwards.  </span></p>
 
 <p class=MsoNormal style='margin-top:5.0pt;margin-right:.5in;margin-bottom:
 10.0pt;margin-left:.5in'><span lang=EN>5. All the above tests are
@@ -315,20 +313,23 @@ LAN-based.&nbsp; So now try the router:<br>
 &nbsp;&nbsp;&nbsp; </span><a href="http://canyouseeme.org"><span lang=EN>http://canyouseeme.org</span></a><span
 lang=EN> on port 8002<br>
 <br>
-This test must pass.&nbsp;&nbsp; If it does not the problem another firewall is
-blocking you.&nbsp; Usually this is when people realize they have their router
-plugged into another router that needs to port forward, too.   Or that they are
-running 3 different Antiviruses.<br>
-<br>
-Go read the manual on Port Forwards again.</span></p>
+This test must pass.&nbsp;&nbsp; If it does not the problem can be another
+firewall is blocking you.&nbsp; Usually this is when people realize they have
+their router plugged into another router that needs to port forward, too.   Or
+that they are running 3 different Antiviruses. Or that their ISP is terrible
+and is blocking you.  Call them on the phone and ask if you are double NAT’ed,</span></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:.5in;margin-bottom:
+10.0pt;margin-left:.5in'><span lang=EN>Go read the manual on Port Forwards
+again.</span></p>
 
 <p class=MsoNormal style='margin-top:5.0pt;margin-right:.5in;margin-bottom:
 10.0pt;margin-left:.5in'><span lang=EN>Look up your router manual.  Go to http://portforward.com
 and look it up.<br>
 <br>
-If this still fails, it is still likely to be your anti-virus. The grid was running
-back in Step 4.   AV can detect if it’s a local IP or a remote IP, so go shut them
-all down.</span></p>
+If this still fails, it is still likely to be your anti-virus. The grid was
+running back in Step 4.   AV can detect if it’s a local IP or a remote IP, so
+go shut them all down.</span></p>
 
 <p class=MsoNormal style='margin-top:5.0pt;margin-right:.5in;margin-bottom:
 10.0pt;margin-left:.5in'><span lang=EN>It can also be the Windows Defender
@@ -340,8 +341,8 @@ grid or restarting it</u>.<br>
 <b>Do not go to the next step until the above is working</b>.&nbsp; There is no
 point until the above works.&nbsp; <br>
 <br>
-Go to the next step only when this test passes.  If you can’t get it working, it
-is likely your ISP is blocking the port. Call them.<br>
+If you still can’t get it working, it is likely your ISP is blocking the port.
+Call them.<br>
 <br>
 6.&nbsp; If you added Loopback, go to the network settings and click the
 properties of the Microsoft Driver for the Loopback Adapter.&nbsp;&nbsp; You
@@ -359,10 +360,16 @@ You should see the web page.  If not, recheck the Loopback settings.  <br>
 <b>Go to the next step only when this test passes.</b><br>
 <br>
 8. Right click the Loopback Network Adapter and disable it, if you have
-installed it.  Navigate to http://(The Ip address reported by CanyouSeeme.org):8002.&nbsp;&nbsp;
-It may or may not work.&nbsp; If not, you need to re-enable the adapter.&nbsp;
-If it gives a web page,&nbsp;congratulations, your router supports loopback.
-Leave it disabled.<br>
+installed it.  </span></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:.5in;margin-bottom:
+10.0pt;margin-left:.5in'><span lang=EN>Navigate to http://(The Ip address
+reported by CanyouSeeme.org):8002.&nbsp;&nbsp; It may or may not work.&nbsp; If
+not, you need to re-enable the adapter.&nbsp; </span></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:.5in;margin-bottom:
+10.0pt;margin-left:.5in'><span lang=EN>If it gives a web page,&nbsp;<b>congratulations,
+your router supports loopback. </b>Leave it disabled.<br>
 <br>
 9. Go to DreamGrid Settings-&gt; Hypergrid DNS name.&nbsp; Add your desired
 name, such as in ‘somename.outworldz.net’.&nbsp; The allowed characters are
@@ -378,7 +385,7 @@ Canyouseeme.org.</span></p>
 10.0pt;margin-left:.5in'><span lang=EN>11. Add the ‘somename.outworldz.net:8002’
 to the viewer’s grid selection, and log in. Both the robust and welcome region
 should show you logging in.  If you only see Robust, then you forgot to port
-forward or unblock Ports 8004 upwards.   You should unlock 10 to 15 ports for
+forward or unblock Ports 8004 upwards.   You should unlock 10 to 100 ports for
 expansion, as any extras are harmless. </span></p>
 
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
@@ -433,17 +440,17 @@ system, no matter what. There are multiple ways to connect to a LAN, by the WAN
 IP with or without a DNS name, and as a LAN IP, and localhost.   In a complex
 network environment, there can be multiple ways and more than one IP in use to
 connect to the outside.   Both Wifi and Ethernet adapters, for example. 
-Opensim can only listen to one IP, thus return traffic on the wrong IP can be lost.  
-This is flaky, at best, and is a major cause of teleport problems. </span></p>
+Opensim can only listen to one IP, thus return traffic on the wrong IP can be
+lost.   This is flaky, at best, and is a major cause of teleport problems. </span></p>
 
 <p class=MsoNormal style='margin-top:5.0pt;margin-right:.5in;margin-bottom:
 10.0pt;margin-left:.5in'><span lang=EN>Opensim needs to listen and broadcast
 only on the &quot;proper&quot; IP.  But which is it?  I do this by connecting
-to Googles 8.8.8.8 DNS server, then asking Windows what the Endpoint address is.  
-Typically, this is a number in the 192.168 range, or the 10. * range, which are
-typical LAN IP's.   But it can be anything.     If I cannot reach it, I use
-localhost.   DG will thus always come up in a working configuration on first
-boot.  </span></p>
+to Googles 8.8.8.8 DNS server, then asking Windows what the Endpoint address
+is.   Typically, this is a number in the 192.168 range, or the 10. * range,
+which are typical LAN IP's.   But it can be anything.     If I cannot reach it,
+I use localhost.   DG will thus always come up in a working configuration on
+first boot.  </span></p>
 
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:.5in;margin-right:0in'>
@@ -455,11 +462,11 @@ on the same network.</span></h2>
 
 <p class=MsoNormal style='margin-left:.5in;text-indent:-.5in'><a name=bugnotes><br>
 (1) on the server: add the public IP address as a secondary IP address on the
-server's network interface with the 255.255.255.255 mask (web service or
-whatever you want on the server should listen on this IP address too); all
-modern operating systems will permit you to do this (or a loopback interface
-with the public IP address assigned to it can be used instead of adding a
-secondary IP to the primary interface).<br>
+server's network interface with the 255.255.255.255 mask (web service or whatever
+you want on the server should listen on this IP address too); all modern
+operating systems will permit you to do this (or a loopback interface with the
+public IP address assigned to it can be used instead of adding a secondary IP
+to the primary interface).<br>
 <br>
 (2) on the LAN hosts: add a host route for the public IP address, for example,
 for Windows hosts use the following command: route -p add &lt;WANIP&gt; mask
@@ -745,11 +752,11 @@ allow access from known IP addresses running approved regions.</span></p>
 
 <p class=MsoNormal style='margin-top:5.0pt;margin-right:.5in;margin-bottom:
 10.0pt;margin-left:.5in'><span lang=EN>The region ports (8004-upward) run both
-TCP and UDP.   UDP is used for the viewer. UDP cuts the load on the server dramatically
-as there is no need to automatically always ACK every packet. As one example,
-no one cares if an audio stream gets briefly interrupted as you cannot hear it
-anyway, and it is too late to use it if it comes later in a retry. It just gets
-discarded.</span></p>
+TCP and UDP.   UDP is used for the viewer. UDP cuts the load on the server
+dramatically as there is no need to automatically always ACK every packet. As
+one example, no one cares if an audio stream gets briefly interrupted as you
+cannot hear it anyway, and it is too late to use it if it comes later in a
+retry. It just gets discarded.</span></p>
 
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3;
 margin-left:.5in;margin-right:0in'>
@@ -808,11 +815,11 @@ start MySQL.</span></p>
 
 <p class=MsoNormal style='margin-top:5.0pt;margin-right:.5in;margin-bottom:
 10.0pt;margin-left:.5in'><span lang=EN>You should also set the service to
-restart so MySQL restarts on any crash. Windows knows about services and will send
-signals to MySQL to shut itself off gracefully. The only danger is that power
-fails and you corrupt the database.  I have set this MySQL to always flush data
-to the disk without saving it in RAM, which helps.  If you are serious about
-running a grid, then a UPS is necessary.</span></p>
+restart so MySQL restarts on any crash. Windows knows about services and will
+send signals to MySQL to shut itself off gracefully. The only danger is that
+power fails and you corrupt the database.  I have set this MySQL to always
+flush data to the disk without saving it in RAM, which helps.  If you are
+serious about running a grid, then a UPS is necessary.</span></p>
 
 <p class=MsoNormal style='margin-top:5.0pt;margin-right:.5in;margin-bottom:
 10.0pt;margin-left:.5in'><span lang=EN>You can start Robust manually, too.
@@ -856,9 +863,9 @@ just Opensimulator and MySQL with edits in the INI files to allow
 auto-configuration by XML and INI editing.</span></p>
 
 <p class=MsoNormal style='margin-top:5.0pt;margin-right:.5in;margin-bottom:
-10.0pt;margin-left:.5in'><span lang=EN>The source code package &quot;How_to_Compile.txt&quot;
-explains how it is compiled, and what changes are made.  You need Visual Studio
-2015 or higher, and preferably 2019.</span></p>
+10.0pt;margin-left:.5in'><span lang=EN>The source code package
+&quot;How_to_Compile.txt&quot; explains how it is compiled, and what changes
+are made.  You need Visual Studio 2015 or higher, and preferably 2019.</span></p>
 
 <p class=MsoNormal style='margin-top:5.0pt;margin-right:.5in;margin-bottom:
 10.0pt;margin-left:.5in'><span lang=EN>&nbsp;</span></p>

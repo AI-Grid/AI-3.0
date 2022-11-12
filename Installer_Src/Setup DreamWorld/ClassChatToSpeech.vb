@@ -50,6 +50,7 @@ Public Class ChatToSpeech
         Dim HttpPathInfo As String = ""
         If Settings.VoiceName = "No Speech" Then Return ""
         If Settings.VoiceName = "No Speech" Then Return ""
+        If Params.TTS Is Nothing Then Return ""
         If Params.TTS.Length = 0 Then Return ""
 
         SyncLock Interlock
@@ -61,9 +62,9 @@ Public Class ChatToSpeech
             Dim fname As String = ""
             Try
 
-                Dim DiskFilepath = IO.Path.Combine(Settings.CurrentDirectory, $"Outworldzfiles\Apache\htdocs\TTS\Audio")
+                Dim DiskFilepath = IO.Path.Combine(Settings.CurrentDirectory, $"OutworldzFiles\Apache\htdocs\TTS\Audio")
 
-                ' Numbers if from form, else MD5 for security
+                ' Numbers if from form, else counter for security
                 If Params.FileName IsNot Nothing Then
                     fname = $"TTS_{Params.FileName}.wav"
                 Else
@@ -82,6 +83,8 @@ Public Class ChatToSpeech
                 End If
 
                 DiskFilepath = IO.Path.Combine(DiskFilepath, fname)
+                If DiskFilepath Is Nothing Then Return ""
+                If fname Is Nothing Then Return ""
                 Debug.Print(DiskFilepath)
 
                 ' check if it is in cache
@@ -133,7 +136,7 @@ Public Class ChatToSpeech
                 SpeechBusyFlag = True
                 Speaker.SpeakAsync(Params.TTS)
             Catch ex As Exception
-                BreakPoint.Dump(ex)
+
             End Try
 
             While SpeechBusyFlag

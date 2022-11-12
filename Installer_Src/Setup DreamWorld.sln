@@ -23,13 +23,14 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		RESX_PrefixTranslations = False
-		RESX_ExcelExportMode = SingleSheet
+		RESX_ExcelExportMode = MultipleSheets
 		SolutionGuid = {8A3689AC-C2EC-4C3F-9BD8-815842380D9F}
 		RESX_AutoCreateNewLanguageFiles = False
-		RESX_ConfirmAddLanguageFile = False
+		RESX_ConfirmAddLanguageFile = True
 		RESX_DuplicateKeyHandling = Fail
 		RESX_ShowPerformanceTraces = False
 		RESX_TaskErrorCategory = Message
 		RESX_Rules = {"EnabledRules":[]}
+		RESX_TranslatorConfiguration = {"Azure":"{\"AutoDetectHtml\":true,\"MaxCharactersPerMinute\":33300,\"AuthenticationKey\":null,\"Region\":null,\"IsEnabled\":false,\"SaveCredentials\":false,\"Ranking\":1.0}","Baidu":"{\"AppId\":null,\"SecretKey\":null,\"ApiUrl\":null,\"Domain\":null,\"IsEnabled\":false,\"SaveCredentials\":false,\"Ranking\":1.0}","DeepL":"{\"ApiKey\":\"03aa3281-c6b3-e845-d92f-c479dc6d1cbd\",\"ApiUrl\":\"https://api.deepl.com/v2/translate\",\"IsEnabled\":false,\"SaveCredentials\":true,\"Ranking\":1.0}","Google":"{\"ApiKey\":\"AIzaSyCMfdvhQ_xd9fP288DMmGd7p_HPw-IPuVg\",\"IsEnabled\":true,\"SaveCredentials\":true,\"Ranking\":1.0}","MSTerm":"{\"IsEnabled\":false,\"SaveCredentials\":false,\"Ranking\":1.0}","MyMemory":"{\"Key\":null,\"Mail\":null,\"IsEnabled\":false,\"SaveCredentials\":false,\"Ranking\":1.0}"}
 	EndGlobalSection
 EndGlobal

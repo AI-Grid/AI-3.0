@@ -850,7 +850,7 @@ namespace OpenSim.Region.Framework.Scenes
                     return UUID.Zero;
                 }
 
-                webRequest.Timeout = 30000; //30 Second Timeout
+                webRequest.Timeout = 5000; //5 Second Timeout
                 webRequest.AllowWriteStreamBuffering = false;
 
                 try
@@ -1921,6 +1921,8 @@ namespace OpenSim.Region.Framework.Scenes
                             {
                                 m_log.InfoFormat("[REGION]: Enabling logins for {0}", RegionInfo.RegionName);
                                 LoginsEnabled = true;
+                                IRegionReadyModule rrm = RequestModuleInterface<IRegionReadyModule>();
+                                rrm.TriggerRegionReady(this);                                
                             }
 
                             m_sceneGridService.InformNeighborsThatRegionisUp(
@@ -3053,6 +3055,7 @@ namespace OpenSim.Region.Framework.Scenes
         // This test is mostly used to see if a region crossing is necessary.
         // Assuming the position is relative to the region so anything outside its bounds.
         // Return 'true' if position inside region.
+
         public bool PositionIsInCurrentRegion(Vector3 pos)
         {
             float t = pos.X;
@@ -5380,12 +5383,13 @@ Label_GroupsDone:
         /// <remarks>
         /// This method will return both root and child scene presences.
         ///
-        /// Consider using ForEachScenePresence() or ForEachRootScenePresence() if possible since these will not
+        /// Consider using only on ForEachScenePresence() or ForEachRootScenePresence() if possible since these will not
         /// involving creating a new List object.
         /// </remarks>
         /// <returns>
-        /// A list of the scene presences.  Adding or removing from the list will not affect the presences in the scene.
+        /// The shared list of the scene presences.
         /// </returns>
+        /// WARNING DO NOT MODIFY RETURNED VALUE
         public List<ScenePresence> GetScenePresences()
         {
             //return new List<ScenePresence>(m_sceneGraph.GetScenePresences());
@@ -5709,8 +5713,6 @@ Environment.Exit(1);
             return health;
         }
 
-        // This callback allows the PhysicsScene to call back to its caller (the SceneGraph) and
-        // update non-physical objects like the joint proxy objects that represent the position
         public Scene ConsoleScene()
         {
             if (MainConsole.Instance == null)
@@ -5726,44 +5728,65 @@ Environment.Exit(1);
         //    does a linear approximation of the height at this intermediate point.
         public float GetGroundHeight(float x, float y)
         {
+            int ix;
+            int iy;
+            float dx;
+            float dy;
+
+            // make position fit into array
             if (x < 0)
-                x = 0;
-            if (x >= Heightmap.Width)
-                x = Heightmap.Width - 1;
+            {
+                ix = 0;
+                dx = 0;
+            }
+            else if (x < Heightmap.Width - 1)
+            {
+                ix = (int)x;
+                dx = x - ix;
+            }
+            else // out world use external height
+            {
+                ix = Heightmap.Width - 2;
+                dx = 0;
+            }
             if (y < 0)
-                y = 0;
-            if (y >= Heightmap.Height)
-                y = Heightmap.Height - 1;
+            {
+                iy = 0;
+                dy = 0;
+            }
+            else if (y < Heightmap.Height - 1)
+            {
+                iy = (int)y;
+                dy = y - iy;
+            }
+            else
+            {
+                iy = Heightmap.Height - 2;
+                dy = 0;
+            }
 
-            Vector3 p0 = new Vector3(x, y, (float)Heightmap[(int)x, (int)y]);
-            Vector3 p1 = p0;
-            Vector3 p2 = p0;
+            float h1;
+            float h2;
+            float h0 = Heightmap[ix, iy]; // 0,0 vertice
 
-            p1.X += 1.0f;
-            if (p1.X < Heightmap.Width)
-                p1.Z = (float)Heightmap[(int)p1.X, (int)p1.Y];
-
-            p2.Y += 1.0f;
-            if (p2.Y < Heightmap.Height)
-                p2.Z = (float)Heightmap[(int)p2.X, (int)p2.Y];
-
-            Vector3 v0 = new Vector3(p1.X - p0.X, p1.Y - p0.Y, p1.Z - p0.Z);
-            Vector3 v1 = new Vector3(p2.X - p0.X, p2.Y - p0.Y, p2.Z - p0.Z);
-
-            v0.Normalize();
-            v1.Normalize();
-
-            Vector3 vsn = new Vector3(
-                (v0.Y * v1.Z) - (v0.Z * v1.Y),
-                (v0.Z * v1.X) - (v0.X * v1.Z),
-                (v0.X * v1.Y) - (v0.Y * v1.X)
-            );
-            vsn.Normalize();
-
-            float xdiff = x - (float)((int)x);
-            float ydiff = y - (float)((int)y);
-
-            return (((vsn.X * xdiff) + (vsn.Y * ydiff)) / (-1 * vsn.Z)) + p0.Z;
+            if (dy > dx)
+            {
+                ++iy;
+                h2 = Heightmap[ix, iy]; // 0,1 vertice
+                h1 = (h2 - h0) * dy; // 0,1 vertice minus 0,0
+                ++ix;
+                h2 = (Heightmap[ix, iy] - h2) * dx; // 1,1 vertice minus 0,1
+            }
+            else
+            {
+                ++ix;
+                h2 = Heightmap[ix, iy]; // vertice 1,0
+                h1 = (h2 - h0) * dx; // 1,0 vertice minus 0,0
+                ++iy;
+                h2 = (Heightmap[ix, iy] - h2) * dy; // 1,1 vertice minus 1,0
+            }
+         
+            return h0 + h1 + h2;
         }
 
         private void CheckHeartbeat()
@@ -6057,40 +6080,40 @@ Environment.Exit(1);
                 mapModule.GenerateMaptile();
         }
 
-//        public void CleanDroppedAttachments()
-//        {
-//            List<SceneObjectGroup> objectsToDelete =
-//                    new List<SceneObjectGroup>();
-//
-//            lock (m_cleaningAttachments)
-//            {
-//                ForEachSOG(delegate (SceneObjectGroup grp)
-//                        {
-//                            if (grp.RootPart.Shape.PCode == 0 && grp.RootPart.Shape.State != 0 && (!objectsToDelete.Contains(grp)))
-//                            {
-//                                UUID agentID = grp.OwnerID;
-//                                if (agentID == UUID.Zero)
-//                                {
-//                                    objectsToDelete.Add(grp);
-//                                    return;
-//                                }
-//
-//                                ScenePresence sp = GetScenePresence(agentID);
-//                                if (sp == null)
-//                                {
-//                                    objectsToDelete.Add(grp);
-//                                    return;
-//                                }
-//                            }
-//                        });
-//            }
-//
-//            foreach (SceneObjectGroup grp in objectsToDelete)
-//            {
-//                m_log.InfoFormat("[SCENE]: Deleting dropped attachment {0} of user {1}", grp.UUID, grp.OwnerID);
-//                DeleteSceneObject(grp, true);
-//            }
-//        }
+        //        public void CleanDroppedAttachments()
+        //        {
+        //            List<SceneObjectGroup> objectsToDelete =
+        //                    new List<SceneObjectGroup>();
+        //
+        //            lock (m_cleaningAttachments)
+        //            {
+        //                ForEachSOG(delegate (SceneObjectGroup grp)
+        //                        {
+        //                            if (grp.RootPart.Shape.PCode == 0 && grp.RootPart.Shape.State != 0 && (!objectsToDelete.Contains(grp)))
+        //                            {
+        //                                UUID agentID = grp.OwnerID;
+        //                                if (agentID.IsZero())
+        //                                {
+        //                                    objectsToDelete.Add(grp);
+        //                                    return;
+        //                                }
+        //
+        //                                ScenePresence sp = GetScenePresence(agentID);
+        //                                if (sp == null)
+        //                                {
+        //                                    objectsToDelete.Add(grp);
+        //                                    return;
+        //                                }
+        //                            }
+        //                        });
+        //            }
+        //
+        //            foreach (SceneObjectGroup grp in objectsToDelete)
+        //            {
+        //                m_log.InfoFormat("[SCENE]: Deleting dropped attachment {0} of user {1}", grp.UUID, grp.OwnerID);
+        //                DeleteSceneObject(grp, true);
+        //            }
+        //        }
 
         public void ThreadAlive(int threadCode)
         {
@@ -6444,5 +6467,7 @@ Environment.Exit(1);
                 return lastSource == sourceID;
             return false;
         }
+
+
     }
 }

@@ -4,11 +4,11 @@ Imports System.Threading
 Module Disk
 
 #Region "Disk"
+
     Private ReadOnly Sleeping As New List(Of String)
 
-
-
 #Region "Freeze"
+
     Public Sub FreezeAll()
 
         Dim running As Boolean
@@ -34,6 +34,8 @@ Module Disk
                         PauseRegion(RegionUUID)
                         running = True
                     Case SIMSTATUSENUM.RestartPending
+                        PauseRegion(RegionUUID)
+                        running = True
                     Case SIMSTATUSENUM.RestartStage2
                         PauseRegion(RegionUUID)
                         running = True
@@ -58,24 +60,19 @@ Module Disk
         End While
 
         For Each RegionUUID In Sleeping
-            Dim RegionName = Region_Name(RegionUUID)
-
-            If ProcessID(RegionUUID) > 0 Then
-                ResumeRegion(RegionUUID)
-            End If
-
+            ResumeRegion(RegionUUID)
             RegionStatus(RegionUUID) = SIMSTATUSENUM.Booted
         Next
 
         Sleeping.Clear()
         Busy = False
 
-        PropUpdateView = True ' make form refresh
-        'Application.ExitThread()
+        PropUpdateView = True ' make form refresh        
 
     End Sub
 
 #End Region
+
     Public Function CalcDiskFree() As Long
 
         Dim d = DriveInfo.GetDrives()
@@ -103,7 +100,7 @@ Module Disk
                     Dim tt = My.Resources.Available
                     Dim Text = $"{Percent:P1} {tt}"
 
-                    FormSetup.DiskSize.Text = $"Disk {x}: {Text} "
+                    FormSetup.DiskSize.Text = $"{x}: {Text} "
                     Exit For
                 End If
 
@@ -114,6 +111,7 @@ Module Disk
         Return Free
 
     End Function
+
 #End Region
 
 End Module

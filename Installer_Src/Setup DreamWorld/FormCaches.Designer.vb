@@ -30,28 +30,25 @@ Partial Class FormCaches
         Me.ImageCheckBox4 = New System.Windows.Forms.CheckBox()
         Me.MeshCheckBox5 = New System.Windows.Forms.CheckBox()
         Me.GridUsers = New System.Windows.Forms.GroupBox()
+        Me.PictureBox = New System.Windows.Forms.PictureBox()
+        Me.GridCacheCheckbox = New System.Windows.Forms.CheckBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.CacheTimeout = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.CacheEnabledBox = New System.Windows.Forms.CheckBox()
         Me.CacheFolder = New System.Windows.Forms.TextBox()
         Me.LogLevelBox = New System.Windows.Forms.ComboBox()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.ViewerCacheCheckbox = New System.Windows.Forms.CheckBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.GridCacheCheckbox = New System.Windows.Forms.CheckBox()
         Me.GridUsers.SuspendLayout()
+        CType(Me.PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
         'ScriptCheckBox1
@@ -106,6 +103,7 @@ Partial Class FormCaches
         '
         'GridUsers
         '
+        Me.GridUsers.Controls.Add(Me.PictureBox)
         Me.GridUsers.Controls.Add(Me.GridCacheCheckbox)
         Me.GridUsers.Controls.Add(Me.Button1)
         Me.GridUsers.Controls.Add(Me.AvatarCheckBox2)
@@ -119,6 +117,28 @@ Partial Class FormCaches
         Me.GridUsers.TabIndex = 1
         Me.GridUsers.TabStop = False
         Me.GridUsers.Text = "Choose which cache to empty"
+        '
+        'PictureBox
+        '
+        Me.PictureBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox.Image = Global.Outworldz.My.Resources.Resources.loader
+        Me.PictureBox.Location = New System.Drawing.Point(161, 164)
+        Me.PictureBox.Name = "PictureBox"
+        Me.PictureBox.Size = New System.Drawing.Size(38, 34)
+        Me.PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox.TabIndex = 18620
+        Me.PictureBox.TabStop = False
+        '
+        'GridCacheCheckbox
+        '
+        Me.GridCacheCheckbox.AutoSize = True
+        Me.GridCacheCheckbox.Location = New System.Drawing.Point(31, 148)
+        Me.GridCacheCheckbox.Name = "GridCacheCheckbox"
+        Me.GridCacheCheckbox.Size = New System.Drawing.Size(53, 17)
+        Me.GridCacheCheckbox.TabIndex = 6
+        Me.GridCacheCheckbox.Text = "Users"
+        Me.GridCacheCheckbox.UseVisualStyleBackColor = True
         '
         'Button1
         '
@@ -149,15 +169,13 @@ Partial Class FormCaches
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.PictureBox1)
-        Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.Controls.Add(Me.Label1)
         Me.GroupBox2.Controls.Add(Me.Label2)
         Me.GroupBox2.Controls.Add(Me.CacheTimeout)
         Me.GroupBox2.Controls.Add(Me.Label5)
-        Me.GroupBox2.Controls.Add(Me.CacheEnabledBox)
         Me.GroupBox2.Controls.Add(Me.CacheFolder)
         Me.GroupBox2.Controls.Add(Me.LogLevelBox)
-        Me.GroupBox2.Location = New System.Drawing.Point(239, 84)
+        Me.GroupBox2.Location = New System.Drawing.Point(239, 45)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(349, 153)
         Me.GroupBox2.TabIndex = 3
@@ -168,25 +186,16 @@ Partial Class FormCaches
         '
         Me.PictureBox1.BackgroundImage = Global.Outworldz.My.Resources.Resources.folder
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureBox1.Location = New System.Drawing.Point(256, 69)
+        Me.PictureBox1.Location = New System.Drawing.Point(250, 39)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(33, 23)
         Me.PictureBox1.TabIndex = 1872
         Me.PictureBox1.TabStop = False
         '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(47, 23)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(80, 13)
-        Me.Label4.TabIndex = 1
-        Me.Label4.Text = "Cache Enabled"
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(43, 53)
+        Me.Label1.Location = New System.Drawing.Point(21, 25)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(83, 13)
         Me.Label1.TabIndex = 2
@@ -195,7 +204,7 @@ Partial Class FormCaches
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(253, 105)
+        Me.Label2.Location = New System.Drawing.Point(247, 77)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(54, 13)
         Me.Label2.TabIndex = 7
@@ -203,7 +212,7 @@ Partial Class FormCaches
         '
         'CacheTimeout
         '
-        Me.CacheTimeout.Location = New System.Drawing.Point(21, 127)
+        Me.CacheTimeout.Location = New System.Drawing.Point(15, 99)
         Me.CacheTimeout.Name = "CacheTimeout"
         Me.CacheTimeout.Size = New System.Drawing.Size(45, 20)
         Me.CacheTimeout.TabIndex = 5
@@ -212,25 +221,15 @@ Partial Class FormCaches
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(77, 129)
+        Me.Label5.Location = New System.Drawing.Point(66, 106)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(85, 13)
         Me.Label5.TabIndex = 6
         Me.Label5.Text = "Timeout in hours"
         '
-        'CacheEnabledBox
-        '
-        Me.CacheEnabledBox.AutoSize = True
-        Me.CacheEnabledBox.Location = New System.Drawing.Point(21, 23)
-        Me.CacheEnabledBox.Name = "CacheEnabledBox"
-        Me.CacheEnabledBox.Size = New System.Drawing.Size(15, 14)
-        Me.CacheEnabledBox.TabIndex = 0
-        Me.ToolTip1.SetToolTip(Me.CacheEnabledBox, Global.Outworldz.My.Resources.Resources.Default_Checked_word)
-        Me.CacheEnabledBox.UseVisualStyleBackColor = True
-        '
         'CacheFolder
         '
-        Me.CacheFolder.Location = New System.Drawing.Point(21, 71)
+        Me.CacheFolder.Location = New System.Drawing.Point(15, 43)
         Me.CacheFolder.Name = "CacheFolder"
         Me.CacheFolder.Size = New System.Drawing.Size(229, 20)
         Me.CacheFolder.TabIndex = 3
@@ -238,41 +237,10 @@ Partial Class FormCaches
         'LogLevelBox
         '
         Me.LogLevelBox.FormattingEnabled = True
-        Me.LogLevelBox.Location = New System.Drawing.Point(21, 97)
+        Me.LogLevelBox.Location = New System.Drawing.Point(15, 69)
         Me.LogLevelBox.Name = "LogLevelBox"
         Me.LogLevelBox.Size = New System.Drawing.Size(227, 21)
         Me.LogLevelBox.TabIndex = 4
-        '
-        'GroupBox3
-        '
-        Me.GroupBox3.Controls.Add(Me.ViewerCacheCheckbox)
-        Me.GroupBox3.Location = New System.Drawing.Point(239, 24)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(162, 51)
-        Me.GroupBox3.TabIndex = 2
-        Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "Viewer Cache"
-        '
-        'ViewerCacheCheckbox
-        '
-        Me.ViewerCacheCheckbox.AutoSize = True
-        Me.ViewerCacheCheckbox.Location = New System.Drawing.Point(19, 23)
-        Me.ViewerCacheCheckbox.Name = "ViewerCacheCheckbox"
-        Me.ViewerCacheCheckbox.Size = New System.Drawing.Size(65, 17)
-        Me.ViewerCacheCheckbox.TabIndex = 0
-        Me.ViewerCacheCheckbox.Text = Global.Outworldz.My.Resources.Resources.Enabled_word
-        Me.ToolTip1.SetToolTip(Me.ViewerCacheCheckbox, Global.Outworldz.My.Resources.Resources.Viewer_Cache_text)
-        Me.ViewerCacheCheckbox.UseVisualStyleBackColor = True
-        '
-        'GridCacheCheckbox
-        '
-        Me.GridCacheCheckbox.AutoSize = True
-        Me.GridCacheCheckbox.Location = New System.Drawing.Point(31, 148)
-        Me.GridCacheCheckbox.Name = "GridCacheCheckbox"
-        Me.GridCacheCheckbox.Size = New System.Drawing.Size(53, 17)
-        Me.GridCacheCheckbox.TabIndex = 6
-        Me.GridCacheCheckbox.Text = "Users"
-        Me.GridCacheCheckbox.UseVisualStyleBackColor = True
         '
         'FormCaches
         '
@@ -280,7 +248,6 @@ Partial Class FormCaches
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(600, 247)
-        Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.GridUsers)
@@ -290,13 +257,12 @@ Partial Class FormCaches
         Me.Text = "Cache Control"
         Me.GridUsers.ResumeLayout(False)
         Me.GridUsers.PerformLayout()
+        CType(Me.PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox3.ResumeLayout(False)
-        Me.GroupBox3.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -313,16 +279,13 @@ Partial Class FormCaches
     Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents CacheTimeout As TextBox
-    Friend WithEvents CacheEnabledBox As CheckBox
     Friend WithEvents Label5 As Label
-    Friend WithEvents Label4 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents CacheFolder As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents LogLevelBox As ComboBox
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents GroupBox3 As GroupBox
-    Friend WithEvents ViewerCacheCheckbox As CheckBox
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents GridCacheCheckbox As CheckBox
+    Friend WithEvents PictureBox As PictureBox
 End Class

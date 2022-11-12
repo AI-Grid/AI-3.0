@@ -17,9 +17,7 @@ Public Class NetServer
     Private Shared singleWebserver As NetServer
     Dim listen As Boolean = True
     Private MyPort As String
-
     Private running As Boolean
-    Dim Setting As MySettings
     Private WebThread As Thread
 
 #End Region
@@ -30,7 +28,7 @@ Public Class NetServer
 
         If settings Is Nothing Then Return
         ' stash some globs
-        Setting = settings
+
         MyPort = CStr(settings.DiagnosticPort)
         settings.CurrentDirectory = pathinfo
 

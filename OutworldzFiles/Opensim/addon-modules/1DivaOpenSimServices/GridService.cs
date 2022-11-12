@@ -61,7 +61,8 @@ namespace Diva.OpenSimServices
         {
             try
             {
-                const RegionFlags flags = RegionFlags.RegionOnline;
+                // fkb DreamGrid SmartStart mod to show smart boot regions on home page
+                const RegionFlags flags = RegionFlags.RegionOnline | RegionFlags.Persistent;
                 const RegionFlags excludeFlags = RegionFlags.Hyperlink;
                 return ((Diva.Data.IRegionData)m_Database).GetCount(scopeID, (int)flags, (int)excludeFlags);
             }

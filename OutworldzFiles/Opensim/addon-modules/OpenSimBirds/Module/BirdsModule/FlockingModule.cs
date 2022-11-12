@@ -444,7 +444,7 @@ namespace Flocking
 
         private void SendSimChat(string msg, int channel)
         {
-            m_scene.SimChatBroadcast(Utils.StringToBytes(msg), ChatTypeEnum.Region, channel, m_shoutPos, m_name, UUID.Zero, false);
+            m_scene.SimChatBroadcast(msg, ChatTypeEnum.Region, channel, m_shoutPos, m_name, UUID.Zero, false);
         }
 
         public void HandleDisableCmd(string module, string[] args)

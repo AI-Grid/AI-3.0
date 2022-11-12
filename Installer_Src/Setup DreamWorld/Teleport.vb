@@ -5,12 +5,14 @@
 
 #End Region
 
+Imports System.Collections.Concurrent
+
 Module Teleport
 
     Public Fin As New List(Of String)
-    Public TeleportAvatarDict As New Dictionary(Of String, String)
+    Public TeleportAvatarDict As New ConcurrentDictionary(Of String, String)
 
-    ''' <summary>Check if region is ready for l;ogin</summary>
+    ''' <summary>Check if region is ready for login</summary>
     ''' <returns>true if up</returns>
     Public Function IsRegionReady(Port As Integer) As Boolean
 
@@ -20,6 +22,7 @@ Module Teleport
 
     Public Sub TeleportAgents()
 
+        Bench.Start("TeleportAgents")
         Try
             For Each Keypair In TeleportAvatarDict
                 Dim AgentID = Keypair.Key
@@ -31,18 +34,15 @@ Module Teleport
                     Fin.Add(AgentID) ' cancel this, the region went away
 
                 ElseIf status = SIMSTATUSENUM.Booted Then
-
+                    ShowDOSWindow(RegionToUUID, MaybeShowWindow())
                     If IsRegionReady(Port) And RegionIsRegisteredOnline(RegionToUUID) Then
                         Dim DestinationName = Region_Name(RegionToUUID)
-                        Dim FromRegionUUID As String = GetRegionFromAgentID(AgentID)
+                        Dim FromRegionUUID As String = GetRegionFromAgentId(AgentID)
                         Dim fromName = Region_Name(FromRegionUUID)
                         If fromName Is Nothing Then Fin.Add(AgentID)
                         If fromName.Length > 0 Then
-                            Bench.Print("Teleport Initiated")
-
-                            ' min 1000 sleep on suspend minimum
                             If Settings.TeleportSleepTime = 0 And Not Settings.BootOrSuspend Then
-                                'Sleep(500)
+                                'nothing
                             ElseIf Settings.TeleportSleepTime > 0 And Not Settings.BootOrSuspend Then
                                 RPC_admin_dialog(AgentID, $"{ Region_Name(RegionToUUID)} will be ready in {CStr(Settings.TeleportSleepTime)} seconds.")
                                 Sleep(Settings.TeleportSleepTime * 1000)
@@ -61,6 +61,7 @@ Module Teleport
                             Fin.Add(AgentID) ' cancel this, the agent is not anywhere  we can get to
                         End If
                     End If
+                    ShowDOSWindow(RegionToUUID, MaybeHideWindow())
                 End If
             Next
         Catch
@@ -68,10 +69,12 @@ Module Teleport
         ' rem from the to list as they have moved on
         For Each str As String In Fin
             Logger("Teleport Done", str, "Teleport")
-            TeleportAvatarDict.Remove(str)
-            Bench.Print("Teleport Finished")
+            If TeleportAvatarDict.ContainsKey(str) Then
+                TeleportAvatarDict.TryRemove(str, "")
+            End If
         Next
         Fin.Clear()
+        Bench.Print("TeleportAgents")
 
     End Sub
 

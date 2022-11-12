@@ -15,7 +15,7 @@ Public Class ListViewColumnSorter
     Public Sub New(ByVal col As Integer, o As SortOrder)
         ColumnToSort = col
         Order = o
-        ObjectCompare = New CaseInsensitiveComparer()
+        ObjectCompare = New CaseInsensitiveComparer(Globalization.CultureInfo.InvariantCulture)
     End Sub
 
     Public Property Order As SortOrder

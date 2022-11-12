@@ -5,10 +5,18 @@
 
 #End Region
 
+Imports System.Collections.Concurrent
 Imports System.Threading
-Imports System.Runtime.InteropServices
 
 Module WindowHandlers
+
+    Private _exitList As New ConcurrentDictionary(Of String, String)
+
+    Public ReadOnly Property ExitList As ConcurrentDictionary(Of String, String)
+        Get
+            Return _exitList
+        End Get
+    End Property
 
 #Region "Enum"
 
@@ -30,8 +38,6 @@ Module WindowHandlers
 
 #End Region
 
-    Private AllProcesses() As Process
-
     Public Function CachedProcess(PID As Integer) As Process
 
         If Not ProcessIdDict.ContainsKey(PID) Then
@@ -48,7 +54,7 @@ Module WindowHandlers
 
     End Function
 
-    Public Function ConsoleCommand(RegionUUID As String, command As String, Optional noChange As Boolean = False) As Boolean
+    Public Function ConsoleCommand(RegionUUID As String, command As String) As Boolean
 
         ''' <summary>Sends keystrokes to Opensim. Always sends and enter button before to clear and use keys</summary>
         ''' <param name="ProcessID">PID of the DOS box</param>
@@ -59,37 +65,28 @@ Module WindowHandlers
             command = ToLowercaseKeys(command)
             Dim PID As Integer
             If RegionUUID <> RobustName() Then
-
+                ShowDOSWindow(RegionUUID, MaybeShowWindow())
                 PID = ProcessID(RegionUUID)
-
                 If PID > 0 Then
-                    ResumeRegion(RegionUUID)
-
-                    Try
-                        If Not noChange Then ShowDOSWindow(Process.GetProcessById(PID).MainWindowHandle, MaybeShowWindow())
-                    Catch ex As Exception
-                        ' may not be able to find the window
-                        Return RPC_Region_Command(RegionUUID, command)
-                    End Try
+                    Thaw(RegionUUID)
                 Else
-                    Return RPC_Region_Command(RegionUUID, command)
+                    PID = GetPIDofWindow(Group_Name(RegionUUID))
+                    If PID = 0 Then
+                        Return RPC_Region_Command(RegionUUID, command)
+                    Else
+                        ProcessID(RegionUUID) = PID
+                    End If
                 End If
 
                 DoType(RegionUUID, command)
-
-                Try
-                    If Not noChange Then ShowDOSWindow(CachedProcess(PID).MainWindowHandle, MaybeHideWindow())
-                Catch ex As Exception
-                End Try
+                ShowDOSWindow(RegionUUID, MaybeHideWindow())
             Else ' Robust
-                Try
-                    If Not noChange Then ShowDOSWindow(Process.GetProcessById(PropRobustProcID).MainWindowHandle, MaybeShowWindow())
-                Catch ex As Exception
-                    Return True
-                End Try
+                ShowDOSWindow(RobustName, MaybeShowWindow())
                 DoType("Robust", command)
+                ShowDOSWindow(RobustName, MaybeHideWindow())
             End If
         End If
+
         Return False
 
     End Function
@@ -118,14 +115,10 @@ Module WindowHandlers
             End If
             Try
                 AppActivate(PID)
-                Sleep(100)
-                SendKeys.SendWait("{ENTER}")
-                SendKeys.SendWait(command)
-                SendKeys.SendWait("{ENTER}")
+                SendKeys.Send("{ENTER}" & command & "{ENTER}")  ' DO NOT make a interpolated string, will break!!
                 SendKeys.Flush()
             Catch
             End Try
-
             Return
         End If
 
@@ -137,11 +130,11 @@ Module WindowHandlers
         Else
             Try
                 AppActivate(PID)
-                Sleep(100)
-                SendKeys.SendWait("{ENTER}")
-                SendKeys.SendWait(command)
-                SendKeys.SendWait("{ENTER}")
-                SendKeys.Flush()
+                If (FocusWindow(PID)) Then
+                    SendKeys.Send("{ENTER}" & command & "{ENTER}")  ' DO NOT make a interpolated string, will break due to {}
+                    SendKeys.Flush()
+                End If
+
             Catch ex As Exception
                 RPC_Region_Command(RegionUUID, command)
             End Try
@@ -149,43 +142,45 @@ Module WindowHandlers
 
     End Sub
 
-    ''' <summary>
-    ''' Returns a handle to the window, by process list, or by reading the PID file.
-    ''' </summary>
-    ''' <param name="Groupname">Name of the DOS box</param>
-    ''' <returns>Handle to a window to Intptr.zero</returns>
+    Public Function FocusWindow(ByVal PID As Integer) As Boolean
+
+        Dim p As System.Diagnostics.Process = CachedProcess(PID)
+        If p IsNot Nothing Then
+            Return SetForegroundWindow(p.MainWindowHandle)
+        End If
+        Return False
+
+    End Function
 
     Public Function GetHwnd(Groupname As String) As IntPtr
 
         If Groupname <> RobustName() Then
-            AllProcesses = Process.GetProcessesByName("Opensim") ' cache of processes
             Try
-                ' file may be gone or locked so as a last resort, so look at window name which is somewhat unreliable
-                For Each p As Process In AllProcesses
-                    If p.MainWindowTitle = Groupname Then
-                        Return p.MainWindowHandle
+                For Each p In PropInstanceHandles
+                    If p.Value = Groupname Then
+                        Return CachedProcess(p.Key).MainWindowHandle
                     End If
                 Next
             Catch ex As Exception
-                BreakPoint.Print(ex.Message)
+                'BreakPoint.Print(ex.Message)
             End Try
         Else
-            For Each pList As Process In Process.GetProcessesByName("Robust")
-                If pList.ProcessName = "Robust" Then
-                    Try
-                        pList.Refresh()
-                        Return pList.MainWindowHandle
-                    Catch
-                    End Try
-                End If
-            Next
-            Return IntPtr.Zero
+            Try
+                Return CachedProcess(PropRobustProcID).MainWindowHandle
+            Catch
+            End Try
+
         End If
 
         Return IntPtr.Zero
 
     End Function
 
+    ''' <summary>
+    ''' Returns a handle to the window, by process list, or by reading the PID file.
+    ''' </summary>
+    ''' <param name="Groupname">Name of the DOS box</param>
+    ''' <returns>Handle to a window to Intptr.zero</returns>
     Public Function GetPIDofRobust() As Integer
 
         For Each pList As Process In Process.GetProcessesByName("Robust")
@@ -201,15 +196,14 @@ Module WindowHandlers
     End Function
 
     Public Function GetPIDofWindow(GroupName As String) As Integer
-
-        For Each pList As Process In AllProcesses
-            Try
-                If pList.MainWindowTitle = GroupName Then
-                    Return pList.Id
+        Try
+            For Each pList In PropInstanceHandles
+                If pList.Value = GroupName Then
+                    Return pList.Key
                 End If
-            Catch
-            End Try
-        Next
+            Next
+        Catch
+        End Try
         Return 0
 
     End Function
@@ -246,11 +240,25 @@ Module WindowHandlers
 
     End Function
 
+    Public Sub OpensimExited(ByVal sender As Object, ByVal e As System.EventArgs)
+
+        Dim S As System.Diagnostics.Process = CType(sender, Process)
+        Dim RegionUUID = FindRegionUUIDByPID(S.Id)
+        Dim GroupName = Group_Name(RegionUUID)
+        Debug.Print($"{GroupName} Exited")
+        If RegionUUID.Length = 0 Then
+            Return
+        End If
+
+        ExitList.TryAdd(GroupName, "Exit")
+
+    End Sub
+
     Public Sub SendMsg(msg As String)
 
         Dim l As New List(Of String)
         If PropOpensimIsRunning() Then
-            For Each RegionUUID As String In RegionUuids()
+            For Each RegionUUID In RegionUuids()
 
                 If Not l.Contains(Group_Name(RegionUUID)) Then
                     l.Add(Group_Name(RegionUUID))
@@ -260,12 +268,12 @@ Module WindowHandlers
                 End If
 
             Next
-            ConsoleCommand(RobustName, "set log level " & msg, True)
+            ConsoleCommand(RobustName, "set log level " & msg)
         End If
 
     End Sub
 
-    Public Sub SendScriptCmd(cmd As String)
+    Public Sub SendScriptCmd(command As String)
         If Not PropOpensimIsRunning() Then
             TextPrint(My.Resources.Not_Running)
             Return
@@ -273,7 +281,7 @@ Module WindowHandlers
         Dim rname = ChooseRegion(False)
         Dim RegionUUID As String = FindRegionByName(rname)
         If RegionUUID.Length > 0 Then
-            ConsoleCommand(RegionUUID, "change region ""{Region_Name(RegionUUID)}""{vbCrLf}{cmd}")
+            ConsoleCommand(RegionUUID, "change region ""{Region_Name(RegionUUID)}""{vbCrLf}{command}")
         End If
 
     End Sub
@@ -284,7 +292,7 @@ Module WindowHandlers
     ''' <param name="myProcess">PID</param>
     ''' <param name="windowName">WindowName</param>
     ''' <returns>True if window is set</returns>
-    Public Function SetWindowTextCall(myProcess As Process, windowName As String) As Boolean
+    Public Sub SetWindowTextCall(myProcess As Process, windowName As String)
         ''' <summary>
         ''' SetWindowTextCall is here to wrap the SetWindowtext API call. This call fails when there is no hwnd as Windows takes its sweet time to get that. Also, may fail to write the title. It has a
         ''' timer to make sure we do not get stuck
@@ -293,7 +301,7 @@ Module WindowHandlers
         ''' <param name="windowName">the name of the Window</param>
 
         If myProcess Is Nothing Then
-            Return False
+            Return
         End If
 
         Dim WindowCounter As Integer = 0
@@ -305,15 +313,15 @@ Module WindowHandlers
                 WindowCounter += 1
                 If WindowCounter > 600 Then '  60 seconds for process to start
                     ErrorLog("Cannot get MainWindowHandle for " & windowName)
-                    Return False
+                    Return
                 End If
                 Thread.Sleep(100)
                 myProcess.Refresh()
                 myhandle = myProcess.MainWindowHandle
             End While
         Catch ex As Exception
-            ErrorLog(windowName & ":" & ex.Message)
-            Return False
+            BreakPoint.Print(windowName & ":" & ex.Message)
+            Return
         End Try
 
         Dim status As Boolean
@@ -327,41 +335,49 @@ Module WindowHandlers
                 If myProcess.MainWindowTitle = windowName Then
                     isthere += 1
                     If isthere > 3 Then
-                        Return True
+                        Return
                     End If
                 Else
                     isthere = 0
                     status = SetWindowText(myhandle, windowName)
                 End If
             Catch ex As Exception ' can fail to be a valid window handle
-                BreakPoint.Dump(ex)
-                Return False
+                BreakPoint.Print(ex.Message)
+                Return
             End Try
 
             WindowCounter += 1
             If WindowCounter > 1200 Then '  2 minutes
                 ErrorLog(windowName & " timeout setting title")
-                Return False
+                Return
             End If
 
         End While
 
-        Return False
+        Return
 
-    End Function
+    End Sub
 
-    Public Function ShowDOSWindow(handle As IntPtr, command As SHOWWINDOWENUM) As Boolean
+    Public Function ShowDOSWindow(RegionUUID As String, command As SHOWWINDOWENUM) As Boolean
 
         If Settings.ConsoleShow = "None" AndAlso command <> SHOWWINDOWENUM.SWMINIMIZE Then
             Return True
         End If
 
-        Dim ctr = 50    ' 5 seconds
+        Dim handle As IntPtr
+        If RegionUUID = RobustName() Then
+            handle = GetHwnd(RegionUUID)
+        Else
+            handle = GetHwnd(Group_Name(RegionUUID))
+        End If
+
+        Dim ctr = 20    ' 2 seconds
         If handle <> IntPtr.Zero Then
             Dim HandleValid As Boolean = False
 
             While Not HandleValid AndAlso ctr > 0
                 Try
+                    Dim r = SetForegroundWindow(handle)
                     HandleValid = ShowWindow(handle, command)
                     If HandleValid Then Return True
                 Catch ex As Exception
@@ -384,21 +400,17 @@ Module WindowHandlers
         End If
 
         Dim TooMany As Integer = 0
-        Dim p As Process = Nothing
+
         ' 2 minutes for old hardware and it to build DB
-        Do While TooMany < 60
+        Do While TooMany < 600
             Try
-                p = Process.GetProcessById(myProcess.Id)
+                If myProcess.Id > 0 Then
+                    Return myProcess.Id
+                End If
             Catch ex As Exception
             End Try
 
-            If p IsNot Nothing Then
-                If p.ProcessName.Length > 0 Then
-                    Return myProcess.Id
-                End If
-            End If
-
-            Sleep(1000)
+            Sleep(100)
             TooMany += 1
         Loop
         BreakPoint.Print("No Pid")

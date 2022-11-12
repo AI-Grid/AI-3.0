@@ -97,7 +97,7 @@ Public Class FormFSAssets
 
         HelpOnce("FSAssets")
 
-        EnableFsAssetsCheckbox.Checked = Settings.FsAssetsEnabled
+        EnableFsAssetsCheckbox.Checked = Settings.FSAssetsEnabled
         DataFolder.Text = Settings.BaseDirectory
         ShowStatsCheckBox.Checked = CType(Settings.ShowConsoleStats, Boolean)
         SetScreen()
@@ -111,7 +111,7 @@ Public Class FormFSAssets
 
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles EnableFsAssetsCheckbox.CheckedChanged
         If Not initted Then Return
-        Settings.FsAssetsEnabled = EnableFsAssetsCheckbox.Checked
+        Settings.FSAssetsEnabled = EnableFsAssetsCheckbox.Checked
         Changed = True
     End Sub
 

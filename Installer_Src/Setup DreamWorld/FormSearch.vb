@@ -34,7 +34,7 @@
 
     Private Sub FormSearch_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        HypericaRadioButton.Text = Global.Outworldz.My.Resources.HypericaSearch_word
+        OutworldzRadioButton.Text = Global.Outworldz.My.Resources.HypericaSearch_word
         JOpensimRadioButton.Text = Global.Outworldz.My.Resources.JOpensimSearch_word
         SearchBox.Text = Global.Outworldz.My.Resources.SearchOptions_word
         LocalButton.Text = Global.Outworldz.My.Resources.Local_Search
@@ -47,17 +47,17 @@
             JOpensimRadioButton.Checked = False
         End If
 
-        HelpOnce("Search")
+        HelpOnce("Search Help")
 
         Select Case Settings.SearchOptions
             Case "None"
                 NoneButton.Checked = True
             Case JOpensim
-                JOpensimRadioButton.Checked = True
+                LocalButton.Checked = True
             Case "Local"
                 LocalButton.Checked = True
-            Case "Hyperica"
-                HypericaRadioButton.Checked = True
+            Case Outworldz
+                OutworldzRadioButton.Checked = True
         End Select
         SetScreen()
 
@@ -65,7 +65,7 @@
 
     Private Sub HelpToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ToolStripLabel1.Click
 
-        HelpManual("Search")
+        HelpManual("Search Help")
 
     End Sub
 
@@ -78,10 +78,10 @@
 
     End Sub
 
-    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles HypericaRadioButton.CheckedChanged
+    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles OutworldzRadioButton.CheckedChanged
 
-        If HypericaRadioButton.Checked Then
-            Settings.SearchOptions = Hyperica
+        If OutworldzRadioButton.Checked Then
+            Settings.SearchOptions = Outworldz
             Settings.SaveSettings()
         End If
 

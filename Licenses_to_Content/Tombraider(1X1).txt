@@ -1,6 +1,0 @@
-TombRaider;
-A sim to explore with caves, underwaterarea's, grotto's, hidden spots, and inspired by
-the Tomb Raider movie, with Lara Croft and some other "heavy' figures.
-Designed by Avia Bonne.
-
-The meshmodels are from tf3dm.com, and the Airplane is from Arcadia Asylum.

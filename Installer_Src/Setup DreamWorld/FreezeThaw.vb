@@ -1,9 +1,22 @@
 ﻿Module FreezeThaw
 
-
-
-
 #Region "FreezeThaw"
+
+    ''' <summary>
+    ''' Freeze a region
+    ''' </summary>
+    ''' <param name="RegionUUID">Region UUID</param>
+
+    Public Sub Freeze(RegionUUID As String)
+
+        If Smart_Start(RegionUUID) And RegionEnabled(RegionUUID) And Settings.Smart_Start And Settings.BootOrSuspend = False Then
+            Dim PID = ProcessID(RegionUUID)
+            ShowDOSWindow(RegionUUID, MaybeHideWindow())
+            RegionStatus(RegionUUID) = SIMSTATUSENUM.Suspended
+            NtSuspendProcess(CachedProcess(PID).Handle)
+        End If
+
+    End Sub
 
     ''' <summary>
     ''' Suspends region
@@ -11,87 +24,30 @@
     ''' <param name="RegionUUID">RegionUUID</param>
     Public Sub PauseRegion(RegionUUID As String)
 
-        BreakPoint.Print($"Pausing {Region_Name(RegionUUID)}")
-        FreezeThaw(RegionUUID, "-pid " & ProcessID(RegionUUID))
+        If Settings.Smart_Start And Smart_Start(RegionUUID) And Settings.Smart_Start And Settings.BootOrSuspend = False Then
+            Dim Groupname = Group_Name(RegionUUID)
+            For Each UUID As String In RegionUuidListByName(Groupname)
+                BreakPoint.Print($"Pausing {Region_Name(UUID)}")
+                Freeze(UUID)
+            Next
+
+        End If
 
     End Sub
 
-    Function GetPIDOfRegionWindow(RegionUUID As String) As Integer
-        Debug.Print($"GetPID {Region_Name(RegionUUID)}")
-
-
-
-
-
-        Return 0
-
-
-
-    End Function
-
     ''' <summary>
-    ''' Resumes Region from frozen state
+    ''' Thaw a region
     ''' </summary>
-    ''' <param name="RegionUUID">RegionUUID</param>
-    ''' <returns>0 if success</returns>
-    Public Function ResumeRegion(RegionUUID As String) As Boolean
+    ''' <param name="RegionUUID">Region UUID</param>
+    Public Sub Thaw(RegionUUID As String)
 
-        BreakPoint.Print($"Resume {Region_Name(RegionUUID)}")
-        If ProcessID(RegionUUID) = 0 Then
-            ProcessID(RegionUUID) = GetPIDofWindow(Group_Name(RegionUUID))
-            If ProcessID(RegionUUID) = 0 Then
-                Return True
-            End If
-        End If
+        Dim PID = ProcessID(RegionUUID)
+        Try
+            NtResumeProcess(CachedProcess(PID).Handle)
+        Catch
+        End Try
 
-        BreakPoint.Print($"Resume {Region_Name(RegionUUID)}")
-        ' SuUspend mode and there is a DOS box then...
-        If Settings.BootOrSuspend = False And CBool(GetHwnd(Group_Name(RegionUUID))) Then
-            FreezeThaw(RegionUUID, "-rpid " & ProcessID(RegionUUID))
-            TeleportAgents()
-            Return False ' no need to boot as we are up.
-        End If
-        ReBoot(RegionUUID)
-        Return True
-
-    End Function
-
-    Private Function FreezeThaw(RegionUUID As String, Arg As String) As Boolean
-
-        ShowDOSWindow(GetHwnd(Group_Name(RegionUUID)), MaybeHideWindow())
-        Dim result As Boolean
-        Using SuspendProcess As New Process()
-            Dim pi = New ProcessStartInfo With {
-                .Arguments = Arg,
-                .FileName = """" & IO.Path.Combine(Settings.CurrentDirectory, "NtSuspendProcess64.exe") & """"
-            }
-
-            pi.CreateNoWindow = True
-            pi.WindowStyle = ProcessWindowStyle.Hidden
-
-            SuspendProcess.StartInfo = pi
-
-            Try
-                SuspendProcess.Start()
-            Catch ex As Exception
-                result = True
-            End Try
-        End Using
-
-        PokeRegionTimer(RegionUUID)
-        PropUpdateView = True ' make form refresh
-
-        If Arg.Contains("-rpid") Then
-            TextPrint($"{Region_Name(RegionUUID)} Resumed")
-            RegionStatus(RegionUUID) = SIMSTATUSENUM.Booted
-        Else
-            TextPrint($"{Region_Name(RegionUUID)} Suspended")
-            RegionStatus(RegionUUID) = SIMSTATUSENUM.Suspended
-        End If
-
-        Return result
-
-    End Function
+    End Sub
 
 #End Region
 

@@ -12,9 +12,6 @@
 @font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Calibri Light";
-	panose-1:2 15 3 2 2 2 4 3 2 4;}
  /* Style Definitions */
  p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin-top:5.0pt;
@@ -90,62 +87,37 @@ div.WordSection1
 -->
 </style>
 
-
 </head>
 
-<body lang=EN-US link=blue vlink="#954F72" style='word-wrap:break-word'>
-
-
+<body lang=EN-US style='word-wrap:break-word'>
 
 <div class=WordSection1>
 
-<p class=MsoNormal align=center style='margin:0in;text-align:center'><a
-name="OLE_LINK31"><span style='font-size:26.0pt;line-height:115%;font-family:
-"Calibri Light",sans-serif;color:#5B9BD5;text-transform:uppercase;letter-spacing:
-.5pt'>Smart Start</span></a></p>
+<div style='border:solid #4472C4 3.0pt;padding:0in 0in 0in 0in;background:#4472C4'>
+
+<h1><a name="_Hlk96513368"></a><a name="OLE_LINK31">Smart Start</a></h1>
+
+</div>
 
 <p class=MsoNormal>&nbsp;</p>
 
 <p class=MsoNormal>Smart Start regions shut down when no one is in
 them.&nbsp;&nbsp; A Smart Start region appears as a dual blue arrow ’recycle’
-icon in the Regions panel:</p>
+icon in the Regions panel. This means they boot once., then power off and wait
+for a teleport before they start again. The icon is a Pause symbol.</p>
 
-<p class=MsoNormal><img width=618 height=343 id="Picture 4"
+<p class=MsoNormal><img width=624 height=218 id="Picture 12"
 src="SmartStart_files/image001.jpg"
-alt="Graphical user interface, application, table&#10;&#10;Description automatically generated"></p>
-
-<p class=MsoNormal>Smart start detects teleports.&nbsp; When someone teleports
-into the system, or logs in, the system decides if their destination is already
-bootet.&nbsp; If so, the teleport happens normally. But If the region is not
-ready, the system sends the avatar to a waiting area while the region is
-booted. When the original destination region is ready for logins, the avatar is
-teleported to the original destination.</p>
-
-<span style='font-size:10.0pt;line-height:115%;font-family:"Calibri",sans-serif'><br
-clear=all style='page-break-before:always'>
-</span>
-
-<p class=MsoNormal>&nbsp;</p>
-
-<p class=MsoNormal>&nbsp;</p>
-
-<div style='border:solid #4472C4 3.0pt;padding:0in 0in 0in 0in;background:#4472C4'>
-
-<h1>Enable Smart Start</h1>
-
-</div>
-
-<p class=MsoNormal>Smart Start is disabled by default. You must first enable it
-in Setup-&gt;Settings-&gt;Smart Start:</p>
-
-<p class=MsoNormal><span style='position:absolute;z-index:251659264;margin-left:
-85px;margin-top:141px;width:229px;height:167px'><img width=229 height=167
-src="SmartStart_files/image002.png" alt="Enable Smart Start"></span>&nbsp;<img
-width=421 height=484 id="Picture 5" src="SmartStart_files/image003.png"
 alt="Graphical user interface, text, application&#10;&#10;Description automatically generated"></p>
 
-<p class=MsoNormal>The system can be set to power down the region when no one
-is in it. This length of time is from 15 seconds upward.</p>
+<p class=MsoNormal>It can also appear as a ‘frozen’ ice cube.  This type is
+frozen in RAM. All the treads it was executing are put to sleep, but it remains
+in RAM.    Windows will see this as inactive RAM and will swap the region to
+disk when RAM is needed for another process.    When a teleport occurs, the
+region is thawed out, and runs again.</p>
+
+<p class=MsoNormal><img width=625 height=218 id="Picture 2"
+src="SmartStart_files/image002.png"></p>
 
 <span style='font-size:10.0pt;line-height:115%;font-family:"Calibri",sans-serif'><br
 clear=all style='page-break-before:always'>
@@ -155,58 +127,55 @@ clear=all style='page-break-before:always'>
 
 <div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3'>
 
-<h2 style='background:#D9E2F3'><span style='color:black'>Details</span></h2>
+<h2><span style='color:black'>Teleports</span></h2>
 
 </div>
 
-<p><span style='font-size:10.0pt;font-family:"Calibri",sans-serif'>Smart Boot
-for any region is indicated by a blue pause icon on the Regions report
-:&nbsp;&nbsp; || </span></p>
+<p class=MsoNormal>Smart start detects teleports.&nbsp; When someone teleports
+into the system, or logs in, the system decides if their destination is already
+bootet.&nbsp; If so, the teleport happens normally. But If the region is not
+ready, the system sends the avatar to a waiting area while the region is
+booted. When the original destination region is ready for logins, the avatar is
+teleported to the original destination.</p>
 
-<p><span style='font-size:10.0pt;font-family:"Calibri",sans-serif'>These
-regions will always boot once to register themselves.&nbsp; The Smart Settings
-only go into effect when the entire grid restart, or Robust restarts and the
-Region restarts.</span></p>
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3'>
 
-<p><span style='font-size:10.0pt;font-family:"Calibri",sans-serif'>On all
-teleport requests such as a map search, a landmark, or Hypergrid teleport, the
-request is first intercepted in Opensim, and sent to DreamGrid.&nbsp;&nbsp;
-&nbsp; It is sent Region UUID = &quot;000-A&quot; and DreamGrid returns&nbsp;
-&quot;UUID -000A&quot; if the region is ready, or UUID = 000B, or other region
-UUID, if not ready.&nbsp; </span></p>
+<h2><span style='color:black'>Enable Smart Start</span></h2>
 
-<p><span style='font-size:10.0pt;font-family:"Calibri",sans-serif'>You get a
-message in the viewer saying your region will be available in so many seconds.
-This is the recorded time it took to previously boot the sim.&nbsp;&nbsp; There
-is a different time saved in a Map TIme variable if maps are enabled.&nbsp;
-Ideally, maps are off for fastest boot time.</span></p>
+</div>
 
-<p><span style='font-size:10.0pt;font-family:"Calibri",sans-serif'>There is one
-missing teleport I have not yet coded for.&nbsp; When you log in the first
-time, you cannot log into a offline Smart Boot enabled region.&nbsp; If the
-region is online, the teleport is allowed to continue.&nbsp; </span></p>
+<p class=MsoNormal>Smart Start is disabled by default. You must first enable it
+in Setup-&gt;Settings-&gt;Smart Start:</p>
 
-<p><span style='font-size:10.0pt;font-family:"Calibri",sans-serif'>The region
-must be a) enabled to boot b) Smart Start is enabled globally, c) the region
-must be Smart Boot-enabled in its Modules section of the region setting for
-this region.&nbsp; It then shows the Pause icon of || in the regions
-listings.&nbsp;&nbsp; If this is set, the region will power up.&nbsp;&nbsp; All
-3 conditions must be met. </span></p>
+<p class=MsoNormal>&nbsp;<img width=624 height=312 id="Picture 3"
+src="SmartStart_files/image003.jpg"
+alt="Graphical user interface, application&#10;&#10;Description automatically generated"></p>
 
-<p><span style='font-size:10.0pt;font-family:"Calibri",sans-serif'>After the
-region reports it is ready, there needs to be a pause so&nbsp; some internal
-things can finish up that cannot be detected before the teleport can
-occur.&nbsp; The default delay is 15 seconds.&nbsp; It depends on the PC speed,
-and other unknown factors, so you may be able to reduce this or may have to
-increase it. If you get a region booting up and then after it boots your viewer
-tells you it cannot connect, you need a larger timer in Setting-Smart Start.</span></p>
+<p class=MsoNormal>There are two modes:  Suspend or Shut Down.</p>
 
-<p><span style='font-size:10.0pt;font-family:"Calibri",sans-serif'>Once
-DreamGrid determines the timer is finished, you will be located wherever you
-are (if still on the grid) and teleported to the destination. If you leave, the
-system will shut off the region.&nbsp; The last teleport&nbsp; always overrides
-the earlier on.&nbsp; So if you try three different landmarks in a few
-seconds,&nbsp; you will end up in the 3rd.</span></p>
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3'>
+
+<h2><span style='color:black'>Shutdown Mode</span></h2>
+
+</div>
+
+<p class=MsoNormal>When set to Shutdown Mode, the system will boot all regions
+and then power it off  ‘quit’ after the “shutdown In Seconds” passes. This
+registers the region as “Persistent” in Robust, so you can teleport to it.  If
+the region is shutdown, or offline, DreamGrid will move you to a temporary
+parking area, or it may cancel the teleport. DreamGrid will announce how long
+it takes to wait for the region while it is booted.  When the region is ready,
+you will be sent there.  </p>
+
+<p class=MsoNormal>The system can be set to power down the region when no one
+is in it. This length of time is from 15 seconds upward.  If no one is in the
+region, it will power down after the timer expires.</p>
+
+<p class=MsoNormal>There is a Region Ready Delay that is adjustable. DreamGrid
+cannot know when a region will accept teleports due to the way regions are
+coded.  A delay of from 5 to 30 seconds may be required.  Regions with more
+data and/or scripts will take more time.    If you get teleport fails yet the
+region is running, increase this time.</p>
 
 <span style='font-size:10.0pt;line-height:115%;font-family:"Calibri",sans-serif'><br
 clear=all style='page-break-before:always'>
@@ -215,6 +184,92 @@ clear=all style='page-break-before:always'>
 <p class=MsoNormal>&nbsp;</p>
 
 <p class=MsoNormal>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3'>
+
+<h2><span style='color:black'>Suspend Mode</span></h2>
+
+</div>
+
+<p class=MsoNormal>When set to suspend, the system will boot all regions and
+then power it off after the “shutdown In Seconds” passes.   It works the same
+way as Shutdown in the way teleports work.  However, after the region has run
+long enough for the timer to expire. It is not powered off.  It is frozen.  It
+remains in RAM.   The icon is an ice cube.</p>
+
+<p class=MsoNormal>You will not be able to type or interact with a frozen
+region.   You can thaw the region by clicking on the region name in the region
+panel. Then click “Console”.  The region will be unfrozen.</p>
+
+<p class=MsoNormal>The power-on Region Ready delay should be zero for Suspend
+Mode.</p>
+
+<p class=MsoNormal> The Shutdown in Seconds should usually be about 30 seconds
+or it can shut off before anyone arrives.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3'>
+
+<h2><span style='color:black'>Surrounding Sims</span></h2>
+
+</div>
+
+<p class=MsoNormal>Smart Boots can boot surrounding sims when a visitor
+arrives. The default is to not do this (Fill Size = 0).  In any Smart Start Mode,
+you need it to be a 1 or larger to be able to walk across boundaries.  If zero,
+you can only teleport into a sim.</p>
+
+<p class=MsoNormal>If you set the fill size to 1, and an avatar lands in a sim,
+then any Smart Start regions that touch the region will be booted.   If the
+avatar moves to one of those, then additional regions surrounding that region will
+boot.  </p>
+
+<p class=MsoNormal><img width=188 height=122 id="Picture 15"
+src="SmartStart_files/image004.png"
+alt="Chart&#10;&#10;Description automatically generated"> <img width=185
+height=125 id="Picture 17" src="SmartStart_files/image005.png"
+alt="Chart, box and whisker chart&#10;&#10;Description automatically generated"> <img
+width=187 height=132 id="Picture 18" src="SmartStart_files/image006.png"
+alt="Chart, box and whisker chart&#10;&#10;Description automatically generated"></p>
+
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3'>
+
+<h2><span style='color:black'>Details</span></h2>
+
+</div>
+
+<p><span style='font-size:10.0pt;font-family:"Calibri",sans-serif'>These
+regions will always boot once to register themselves.&nbsp; The Smart Settings
+only go into effect when the entire grid restart, or Robust restarts and the
+Region restarts. If you change a region to Smart Start while robust is running,
+Robust will restart.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Calibri",sans-serif'>Any teleport
+request is intercepted in Opensim and sent to DreamGrid.&nbsp;The desired Region
+UUID is sent, such as  &quot;000-A…&quot; and DreamGrid returns &quot;UUID
+-000A…&quot; if the region is ready, or UUID = 000-B…, or a Parking other
+region UUID, if not ready.&nbsp; </span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Calibri",sans-serif'>You get a
+message in the viewer saying your region will be available in so many seconds.
+This is the recorded time it took to previously boot the sim.&nbsp;&nbsp; There
+is a different time saved in a Map Time variable if maps are enabled.&nbsp;
+Ideally, maps are off for fastest boot time.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Calibri",sans-serif'>The region
+must be a) enabled to boot b) Smart Start is enabled globally, c) the region
+must be Smart Boot-enabled in its Modules section of the region setting for
+this region.&nbsp; It then shows the Pause icon of || in the region
+listings.&nbsp;&nbsp; If this is set, the region will power up.&nbsp;&nbsp; All
+3 conditions must be met. </span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Calibri",sans-serif'>Once
+DreamGrid determines the timer is finished, you will be located wherever you
+are (if still on the grid) and teleported to the destination. If you leave, the
+system will shut off the region.&nbsp; The last teleport&nbsp;always overrides
+the earlier one.&nbsp; If you try three different landmarks in a few
+seconds,&nbsp;then you will end up in the 3rd.</span></p>
 
 <div style='border:solid #4472C4 3.0pt;padding:0in 0in 0in 0in;background:#4472C4'>
 
@@ -227,28 +282,17 @@ region will be booted. This may take more time than the viewer allows.  The
 avatar is teleported to a waiting region, aka, a “Parking Region”. You may choose
 any Always-On region, such as your Welcome region, which is the Default.</p>
 
-<p class=MsoNormal><img width=234 height=330 id="Picture 8"
-src="SmartStart_files/image004.png"
-alt="A picture containing graphical user interface&#10;&#10;Description automatically generated"></p>
+<p class=MsoNormal><img width=232 height=340 id="Picture 13"
+src="SmartStart_files/image007.png"
+alt="Text, timeline&#10;&#10;Description automatically generated"></p>
 
-<span style='font-size:10.0pt;line-height:115%;font-family:"Calibri",sans-serif'><br
-clear=all style='page-break-before:always'>
-</span>
+<div style='border:solid #D9E2F3 3.0pt;padding:0in 0in 0in 0in;background:#D9E2F3'>
 
-<p class=MsoNormal>&nbsp;</p>
-
-<p class=MsoNormal>&nbsp;</p>
-
-<div style='border:solid #4472C4 3.0pt;padding:0in 0in 0in 0in;background:#4472C4'>
-
-<h1>Region Setup</h1>
+<h2><span style='color:black'>Region Setup</span></h2>
 
 </div>
 
-<p class=MsoNormal>&nbsp;</p>
-
-<p class=MsoNormal>You must enable Smart Start in the regions you want to
-remain powered down when no one needs them.  </p>
+<p class=MsoNormal>You must enable Smart Start in the region panel.  </p>
 
 <p class=MsoNormal>This can be enabled or disabled for any region.&nbsp; Edit
 any region and set the Smart Start Checkbox to True. This goes into effect
@@ -257,44 +301,40 @@ immediately.</p>
 <p class=MsoNormal>If the region is running and no avatar&nbsp;in it, it will
 shut down within the time period you set.</p>
 
-<p class=MsoNormal><span style='position:absolute;z-index:251661312;margin-left:
-88px;margin-top:76px;width:418px;height:135px'><img width=418 height=135
-src="SmartStart_files/image005.png" alt="Enable Smart Start"></span><img
-width=310 height=258 id="Picture 1" src="SmartStart_files/image006.png"
-alt="Graphical user interface, application&#10;&#10;Description automatically generated"></p>
-
-<span style='font-size:10.0pt;line-height:115%;font-family:"Calibri",sans-serif'><br
-clear=all style='page-break-before:always'>
-</span>
-
-<p class=MsoNormal>&nbsp;</p>
+<p class=MsoNormal><b><img width=494 height=254 id="Picture 1"
+src="SmartStart_files/image008.png"
+alt="Graphical user interface&#10;&#10;Description automatically generated"></b></p>
 
 <p class=MsoNormal>&nbsp;</p>
 
 <div style='border:solid #4472C4 3.0pt;padding:0in 0in 0in 0in;background:#4472C4'>
 
-<h1>Automatic Fill</h1>
+<h1>EnDless Land and Sea</h1>
 
 </div>
 
-<p class=MsoNormal>&nbsp;</p>
-
-<p class=MsoNormal>Automatic Fill is an optional Feature for Smart Start. If
-enabled, anyone moving into a region will trigger an automatic fill of
-surrounding regions with the Landscaping and Trees/Plants modules.</p>
-
-<p class=MsoNormal>In those screens you can choose water regions, as just one example.  
-If set to water, your avatar can walk, fly, or boat across the entire expanse
-of your grid. Its literally an “Endless Sea”.</p>
+<p class=MsoNormal>This optional feature  will trigger an automatic fill of
+surrounding regions with the Landscaping and Trees/Plants modules if an avatar
+arrives.   In those screens you can choose water regions, as just one
+example.   If set to water, your avatar can walk, fly, or boat across the
+entire expanse of your grid. Its literally an “Endless Sea”.</p>
 
 <p class=MsoNormal>You should select an avatar that will own the Estate named
 “SimSurround”, which is the owner of these Regions.</p>
 
-<p class=MsoNormal><img width=225 height=324 id="Picture 9"
-src="SmartStart_files/image007.png"
-alt="Chart, box and whisker chart&#10;&#10;Description automatically generated"></p>
+<p class=MsoNormal><img width=263 height=285 id="Picture 4"
+src="SmartStart_files/image009.png"
+alt="Graphical user interface, application&#10;&#10;Description automatically generated"></p>
 
-<p class=MsoNormal>&nbsp;</p>
+<p class=MsoNormal>When enabled, and the Fill size is set to 1, then any avatar
+arrival in the center will generate a new set of regions surrounding that
+region.  These regions may be Temporary or Permanent.  If set to Temporary,  when
+the avatar leaves, the regions will be deleted, and all traces of the region deleted. 
+There is also a button to delete all these regions on demand.</p>
+
+<p class=MsoNormal>This setting shows Temporary regions are Enabled,   if the Enabled
+switch is set,  when an avatar arrives in a region a new DOS box will be
+generated with surrounding the center region.</p>
 
 </div>
 

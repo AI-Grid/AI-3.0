@@ -87,9 +87,9 @@ Public Class FormRestart
 
         If Settings.SequentialMode = 0 Then
             NoDelayRadioButton.Checked = True
-        ElseIf Settings.SequentialMode = 1 Then
-            SequentialRadioButton.Checked = True
         ElseIf Settings.SequentialMode = 2 Then
+            SequentialRadioButton.Checked = True
+        ElseIf Settings.SequentialMode = 1 Then
             ConcurrentRadioButton.Checked = True
         Else
             NoDelayRadioButton.Checked = True
@@ -190,22 +190,22 @@ Public Class FormRestart
     Private Sub ConcurrentRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles ConcurrentRadioButton.CheckedChanged
 
         If Not initted Then Return
-        Settings.SequentialMode = 2
-
+        Settings.SequentialMode = 1
+        Settings.SaveSettings()
     End Sub
 
     Private Sub NoDelayRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles NoDelayRadioButton.CheckedChanged
 
         If Not initted Then Return
         Settings.SequentialMode = 0
-
+        Settings.SaveSettings()
     End Sub
 
     Private Sub SequentialRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles SequentialRadioButton.CheckedChanged
 
         If Not initted Then Return
-        Settings.SequentialMode = 1
-
+        Settings.SequentialMode = 2
+        Settings.SaveSettings()
     End Sub
 
 #End Region

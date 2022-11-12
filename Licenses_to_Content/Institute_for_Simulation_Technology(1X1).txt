@@ -1,5 +1,0 @@
-From http://militarymetaverse.org/content/
-
-ARL/STTC, in cooperation with UCF/Institute for Simulation Technology, developed a content ingestion method to allow for actual operational areas to be scanned using LIDAR and then produce scenario output for use in a virtual world. The initial proof of concept of this workflow was to use the UCF Partnership II and Partnership III buildings and surrounding areas
-
-All OAR file are provided under the Creative Commons Attribution-ShareAlike 4.0 International license. More information on the license can be found here: http://creativecommons.org/licenses/by-sa/4.0/deed.en_US

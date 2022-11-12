@@ -53,10 +53,14 @@ Partial Class FormDatabase
         Me.StopToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ConsoleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.RootPassword = New System.Windows.Forms.TextBox()
         Me.RunasaServiceCheckBox = New System.Windows.Forms.CheckBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.StandaloneGroup.SuspendLayout()
         Me.GridGroup.SuspendLayout()
         Me.MenuStrip2.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'StandaloneGroup
@@ -71,7 +75,7 @@ Partial Class FormDatabase
         Me.StandaloneGroup.Controls.Add(Me.RegionDBUsername)
         Me.StandaloneGroup.Controls.Add(Me.Label21)
         Me.StandaloneGroup.Controls.Add(Me.RegionMySqlPassword)
-        Me.StandaloneGroup.Location = New System.Drawing.Point(315, 75)
+        Me.StandaloneGroup.Location = New System.Drawing.Point(315, 152)
         Me.StandaloneGroup.Name = "StandaloneGroup"
         Me.StandaloneGroup.Size = New System.Drawing.Size(277, 177)
         Me.StandaloneGroup.TabIndex = 2
@@ -176,7 +180,7 @@ Partial Class FormDatabase
         Me.GridGroup.Controls.Add(Me.Label8)
         Me.GridGroup.Controls.Add(Me.RobustDBPassword)
         Me.GridGroup.Controls.Add(Me.RobustDBUsername)
-        Me.GridGroup.Location = New System.Drawing.Point(22, 75)
+        Me.GridGroup.Location = New System.Drawing.Point(22, 152)
         Me.GridGroup.Name = "GridGroup"
         Me.GridGroup.Size = New System.Drawing.Size(287, 177)
         Me.GridGroup.TabIndex = 1
@@ -316,6 +320,15 @@ Partial Class FormDatabase
         Me.ConsoleToolStripMenuItem.Size = New System.Drawing.Size(117, 22)
         Me.ConsoleToolStripMenuItem.Text = "Console"
         '
+        'RootPassword
+        '
+        Me.RootPassword.Location = New System.Drawing.Point(20, 23)
+        Me.RootPassword.Name = "RootPassword"
+        Me.RootPassword.Size = New System.Drawing.Size(165, 20)
+        Me.RootPassword.TabIndex = 10
+        Me.ToolTip1.SetToolTip(Me.RootPassword, Global.Outworldz.My.Resources.Resources.Do_NotChange)
+        Me.RootPassword.UseSystemPasswordChar = True
+        '
         'RunasaServiceCheckBox
         '
         Me.RunasaServiceCheckBox.AutoSize = True
@@ -326,12 +339,33 @@ Partial Class FormDatabase
         Me.RunasaServiceCheckBox.Text = "Run as a Service"
         Me.RunasaServiceCheckBox.UseVisualStyleBackColor = True
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.Label3)
+        Me.GroupBox1.Controls.Add(Me.RootPassword)
+        Me.GroupBox1.Location = New System.Drawing.Point(22, 85)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(564, 49)
+        Me.GroupBox1.TabIndex = 4
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Root User"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(201, 26)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(53, 13)
+        Me.Label3.TabIndex = 9
+        Me.Label3.Text = "Password"
+        '
         'FormDatabase
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.AutoSize = True
-        Me.ClientSize = New System.Drawing.Size(613, 276)
+        Me.ClientSize = New System.Drawing.Size(613, 341)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.RunasaServiceCheckBox)
         Me.Controls.Add(Me.MenuStrip2)
         Me.Controls.Add(Me.StandaloneGroup)
@@ -346,6 +380,8 @@ Partial Class FormDatabase
         Me.GridGroup.PerformLayout()
         Me.MenuStrip2.ResumeLayout(False)
         Me.MenuStrip2.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -381,4 +417,7 @@ Partial Class FormDatabase
     Friend WithEvents StopToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ConsoleToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RunasaServiceCheckBox As CheckBox
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents RootPassword As TextBox
 End Class

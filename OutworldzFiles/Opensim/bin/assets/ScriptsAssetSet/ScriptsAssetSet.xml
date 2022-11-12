@@ -253,6 +253,13 @@
     <Key Name="assetType" Value="10" />
     <Key Name="fileName" Value="DefaultSay.lsl" />
   </Section>
+
+  <Section Name="DefaultScript">
+    <Key Name="assetID" Value="2074003b-8d5f-40e5-8b20-581c1c50aedb" />
+    <Key Name="name" Value="DefaultScript" />
+    <Key Name="assetType" Value="10" />
+    <Key Name="fileName" Value="DefaultScript.lsl" />
+  </Section>
   
   <Section Name="DefaultSayAndTouch">
     <Key Name="assetID" Value="9267e689-4f37-4ce5-b2c2-455ee2e1ab12" />
@@ -1567,5 +1574,11 @@
     <Key Name="name" Value="osVecMagSquare" />
     <Key Name="assetType" Value="10" />
     <Key Name="fileName" Value="osVecMagSquare.lsl" />
+  </Section>
+  <Section Name="osListSortInPlace">
+    <Key Name="assetID" Value="81305554-2415-9e0a-69a4-76ed57df0c8f" />
+    <Key Name="name" Value="osListSortInPlace" />
+    <Key Name="assetType" Value="10" />
+    <Key Name="fileName" Value="osListSortInPlace.lsl" />
   </Section>
 </Nini>

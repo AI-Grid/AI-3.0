@@ -28,15 +28,15 @@ Partial Class FormTide
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TideInfoDebugCheckBox = New System.Windows.Forms.CheckBox()
         Me.BroadcastTideInfo = New System.Windows.Forms.CheckBox()
-        Me.Label5 = New System.Windows.Forms.Label()
+        Me.TideHiLoChannelLabel = New System.Windows.Forms.Label()
         Me.TideHiLoChannelTextBox = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.TideInfoChannelLabel = New System.Windows.Forms.Label()
         Me.TideInfoChannelTextBox = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.CycleTimeInSecondsLabel = New System.Windows.Forms.Label()
         Me.CycleTimeTextBox = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.LowWaterLevelLabel = New System.Windows.Forms.Label()
         Me.TideLowLevelTextBox = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.HighwaterLabel = New System.Windows.Forms.Label()
         Me.TideHighLevelTextBox = New System.Windows.Forms.TextBox()
         Me.TideEnabledCheckbox = New System.Windows.Forms.CheckBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
@@ -50,15 +50,15 @@ Partial Class FormTide
         '
         Me.GroupBox1.Controls.Add(Me.TideInfoDebugCheckBox)
         Me.GroupBox1.Controls.Add(Me.BroadcastTideInfo)
-        Me.GroupBox1.Controls.Add(Me.Label5)
+        Me.GroupBox1.Controls.Add(Me.TideHiLoChannelLabel)
         Me.GroupBox1.Controls.Add(Me.TideHiLoChannelTextBox)
-        Me.GroupBox1.Controls.Add(Me.Label4)
+        Me.GroupBox1.Controls.Add(Me.TideInfoChannelLabel)
         Me.GroupBox1.Controls.Add(Me.TideInfoChannelTextBox)
-        Me.GroupBox1.Controls.Add(Me.Label3)
+        Me.GroupBox1.Controls.Add(Me.CycleTimeInSecondsLabel)
         Me.GroupBox1.Controls.Add(Me.CycleTimeTextBox)
-        Me.GroupBox1.Controls.Add(Me.Label2)
+        Me.GroupBox1.Controls.Add(Me.LowWaterLevelLabel)
         Me.GroupBox1.Controls.Add(Me.TideLowLevelTextBox)
-        Me.GroupBox1.Controls.Add(Me.Label1)
+        Me.GroupBox1.Controls.Add(Me.HighwaterLabel)
         Me.GroupBox1.Controls.Add(Me.TideHighLevelTextBox)
         Me.GroupBox1.Controls.Add(Me.TideEnabledCheckbox)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 37)
@@ -90,84 +90,84 @@ Partial Class FormTide
         Me.ToolTip1.SetToolTip(Me.BroadcastTideInfo, Global.Outworldz.My.Resources.Resources.Broadcast_Tide_Chat)
         Me.BroadcastTideInfo.UseVisualStyleBackColor = True
         '
-        'Label5
+        'TideHiLoChannelLabel
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(21, 177)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(100, 13)
-        Me.Label5.TabIndex = 5
-        Me.Label5.Text = "Tide Hi/Lo Channel"
+        Me.TideHiLoChannelLabel.AutoSize = True
+        Me.TideHiLoChannelLabel.Location = New System.Drawing.Point(77, 170)
+        Me.TideHiLoChannelLabel.Name = "TideHiLoChannelLabel"
+        Me.TideHiLoChannelLabel.Size = New System.Drawing.Size(100, 13)
+        Me.TideHiLoChannelLabel.TabIndex = 5
+        Me.TideHiLoChannelLabel.Text = "Tide Hi/Lo Channel"
         '
         'TideHiLoChannelTextBox
         '
-        Me.TideHiLoChannelTextBox.Location = New System.Drawing.Point(141, 173)
+        Me.TideHiLoChannelTextBox.Location = New System.Drawing.Point(26, 166)
         Me.TideHiLoChannelTextBox.Name = "TideHiLoChannelTextBox"
         Me.TideHiLoChannelTextBox.Size = New System.Drawing.Size(48, 20)
         Me.TideHiLoChannelTextBox.TabIndex = 12
         '
-        'Label4
+        'TideInfoChannelLabel
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(24, 150)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(91, 13)
-        Me.Label4.TabIndex = 4
-        Me.Label4.Text = "Tide Info Channel"
+        Me.TideInfoChannelLabel.AutoSize = True
+        Me.TideInfoChannelLabel.Location = New System.Drawing.Point(80, 143)
+        Me.TideInfoChannelLabel.Name = "TideInfoChannelLabel"
+        Me.TideInfoChannelLabel.Size = New System.Drawing.Size(91, 13)
+        Me.TideInfoChannelLabel.TabIndex = 4
+        Me.TideInfoChannelLabel.Text = "Tide Info Channel"
         '
         'TideInfoChannelTextBox
         '
-        Me.TideInfoChannelTextBox.Location = New System.Drawing.Point(141, 147)
+        Me.TideInfoChannelTextBox.Location = New System.Drawing.Point(26, 140)
         Me.TideInfoChannelTextBox.Name = "TideInfoChannelTextBox"
         Me.TideInfoChannelTextBox.Size = New System.Drawing.Size(48, 20)
         Me.TideInfoChannelTextBox.TabIndex = 11
         '
-        'Label3
+        'CycleTimeInSecondsLabel
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(24, 121)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(113, 13)
-        Me.Label3.TabIndex = 3
-        Me.Label3.Text = "Cycle Time in seconds"
+        Me.CycleTimeInSecondsLabel.AutoSize = True
+        Me.CycleTimeInSecondsLabel.Location = New System.Drawing.Point(80, 114)
+        Me.CycleTimeInSecondsLabel.Name = "CycleTimeInSecondsLabel"
+        Me.CycleTimeInSecondsLabel.Size = New System.Drawing.Size(113, 13)
+        Me.CycleTimeInSecondsLabel.TabIndex = 3
+        Me.CycleTimeInSecondsLabel.Text = "Cycle Time in seconds"
         '
         'CycleTimeTextBox
         '
-        Me.CycleTimeTextBox.Location = New System.Drawing.Point(141, 118)
+        Me.CycleTimeTextBox.Location = New System.Drawing.Point(26, 111)
         Me.CycleTimeTextBox.Name = "CycleTimeTextBox"
         Me.CycleTimeTextBox.Size = New System.Drawing.Size(48, 20)
         Me.CycleTimeTextBox.TabIndex = 10
         Me.ToolTip1.SetToolTip(Me.CycleTimeTextBox, Global.Outworldz.My.Resources.Resources.Cycle_time_text)
         '
-        'Label2
+        'LowWaterLevelLabel
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(24, 95)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(88, 13)
-        Me.Label2.TabIndex = 2
-        Me.Label2.Text = "Low Water Level"
+        Me.LowWaterLevelLabel.AutoSize = True
+        Me.LowWaterLevelLabel.Location = New System.Drawing.Point(80, 88)
+        Me.LowWaterLevelLabel.Name = "LowWaterLevelLabel"
+        Me.LowWaterLevelLabel.Size = New System.Drawing.Size(88, 13)
+        Me.LowWaterLevelLabel.TabIndex = 2
+        Me.LowWaterLevelLabel.Text = "Low Water Level"
         '
         'TideLowLevelTextBox
         '
-        Me.TideLowLevelTextBox.Location = New System.Drawing.Point(141, 92)
+        Me.TideLowLevelTextBox.Location = New System.Drawing.Point(26, 85)
         Me.TideLowLevelTextBox.Name = "TideLowLevelTextBox"
         Me.TideLowLevelTextBox.Size = New System.Drawing.Size(48, 20)
         Me.TideLowLevelTextBox.TabIndex = 9
         Me.ToolTip1.SetToolTip(Me.TideLowLevelTextBox, Global.Outworldz.My.Resources.Resources.Low_High)
         '
-        'Label1
+        'HighwaterLabel
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(24, 68)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(90, 13)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "High Water Level"
+        Me.HighwaterLabel.AutoSize = True
+        Me.HighwaterLabel.Location = New System.Drawing.Point(80, 61)
+        Me.HighwaterLabel.Name = "HighwaterLabel"
+        Me.HighwaterLabel.Size = New System.Drawing.Size(90, 13)
+        Me.HighwaterLabel.TabIndex = 1
+        Me.HighwaterLabel.Text = "High Water Level"
         '
         'TideHighLevelTextBox
         '
-        Me.TideHighLevelTextBox.Location = New System.Drawing.Point(141, 65)
+        Me.TideHighLevelTextBox.Location = New System.Drawing.Point(26, 58)
         Me.TideHighLevelTextBox.Name = "TideHighLevelTextBox"
         Me.TideHighLevelTextBox.Size = New System.Drawing.Size(48, 20)
         Me.TideHighLevelTextBox.TabIndex = 8
@@ -231,15 +231,15 @@ Partial Class FormTide
 
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents TideEnabledCheckbox As CheckBox
-    Friend WithEvents Label2 As Label
+    Friend WithEvents LowWaterLevelLabel As Label
     Friend WithEvents TideLowLevelTextBox As TextBox
-    Friend WithEvents Label1 As Label
+    Friend WithEvents HighwaterLabel As Label
     Friend WithEvents TideHighLevelTextBox As TextBox
-    Friend WithEvents Label3 As Label
+    Friend WithEvents CycleTimeInSecondsLabel As Label
     Friend WithEvents CycleTimeTextBox As TextBox
-    Friend WithEvents Label4 As Label
+    Friend WithEvents TideInfoChannelLabel As Label
     Friend WithEvents TideInfoChannelTextBox As TextBox
-    Friend WithEvents Label5 As Label
+    Friend WithEvents TideHiLoChannelLabel As Label
     Friend WithEvents TideHiLoChannelTextBox As TextBox
     Friend WithEvents BroadcastTideInfo As CheckBox
     Friend WithEvents ToolTip1 As ToolTip

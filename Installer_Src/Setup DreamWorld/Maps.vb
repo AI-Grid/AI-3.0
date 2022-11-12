@@ -1,4 +1,5 @@
-﻿Imports System.Threading
+﻿
+Imports System.Threading
 
 Module Maps
     Public ReadOnly Map As New Dictionary(Of String, String)
@@ -33,7 +34,7 @@ Module Maps
 
     Public Sub Make_Region_Map(regionUUID As String)
 
-        Dim SavePath = IO.Path.Combine(Settings.CurrentDirectory, "Outworldzfiles\Apache\htdocs\Stats\Maps")
+        Dim SavePath = IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\Apache\htdocs\Stats\Maps")
         Try
             FileIO.FileSystem.CreateDirectory(SavePath)
         Catch ex As Exception
@@ -76,8 +77,8 @@ Module Maps
                     Y = CInt(SimSize - (SimSize / XS))
                     For Ystep = 0 To XS - 1
                         Dim MapImage = $"map-1-{Coord_X(regionUUID) + Xstep }-{Coord_Y(regionUUID) + Ystep  }-objects.jpg"
-                        BreakPoint.Print(Name)
-                        BreakPoint.Print(MapImage)
+                        '  BreakPoint.Print(Name)
+                        '  BreakPoint.Print(MapImage)
 
                         ' images plot at up[per left, Opensim is lower left
                         ' for a 2X2 this is the value
@@ -114,7 +115,7 @@ Module Maps
 
     Public Sub Delete_all_visitor_maps()
 
-        Dim SavePath = IO.Path.Combine(Settings.CurrentDirectory, "Outworldzfiles\Apache\htdocs\Stats\Maps")
+        Dim SavePath = IO.Path.Combine(Settings.CurrentDirectory, "OutworldzFiles\Apache\htdocs\Stats\Maps")
         DeleteDirectory(SavePath, FileIO.DeleteDirectoryOption.DeleteAllContents)
 
     End Sub

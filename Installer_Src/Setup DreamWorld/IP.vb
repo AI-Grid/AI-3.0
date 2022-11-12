@@ -25,7 +25,7 @@ Public Module IPCheck
         End Using
     End Function
 
-    Public Function GetMacByIp(IPIN As String) As String
+    Public Function GetMacByIP(IPIN As String) As String
 
         Try
             If IPIN = "localhost" Then IPIN = "127.0.0.1"

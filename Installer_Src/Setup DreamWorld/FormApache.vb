@@ -161,7 +161,11 @@ Public Class FormApache
         If ApachePort.Text.Length > 0 Then
             Settings.ApachePort = CType(ApachePort.Text, Integer)
         End If
-
+        If Settings.ApachePort <> 80 Then
+            SSLButton.Enabled = False
+        Else
+            SSLButton.Enabled = True
+        End If
     End Sub
 
     Private Sub EnableDiva_CheckedChanged(sender As Object, e As EventArgs) Handles EnableDiva.CheckedChanged

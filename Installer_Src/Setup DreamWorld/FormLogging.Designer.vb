@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormLogging
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class FormLogging
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormLogging))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
@@ -40,14 +40,10 @@ Partial Class FormLogging
         Me.AnalyzeButton = New System.Windows.Forms.Button()
         Me.ViewLogButton = New System.Windows.Forms.Button()
         Me.BaretailButton = New System.Windows.Forms.RadioButton()
-        Me.OutputViewerButton = New System.Windows.Forms.RadioButton()
-        Me.QuickmanagerPictureBox = New System.Windows.Forms.PictureBox()
-        Me.BaretailPictureBox = New System.Windows.Forms.PictureBox()
+        Me.NotePadButton = New System.Windows.Forms.RadioButton()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.DeletebyAge.SuspendLayout()
-        CType(Me.QuickmanagerPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BaretailPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -239,35 +235,15 @@ Partial Class FormLogging
         Me.BaretailButton.Text = "Baretail"
         Me.BaretailButton.UseVisualStyleBackColor = True
         '
-        'OutputViewerButton
+        'NotePadButton
         '
-        Me.OutputViewerButton.AutoSize = True
-        Me.OutputViewerButton.Location = New System.Drawing.Point(134, 48)
-        Me.OutputViewerButton.Name = "OutputViewerButton"
-        Me.OutputViewerButton.Size = New System.Drawing.Size(89, 17)
-        Me.OutputViewerButton.TabIndex = 5
-        Me.OutputViewerButton.Text = "OutputViewer"
-        Me.OutputViewerButton.UseVisualStyleBackColor = True
-        Me.OutputViewerButton.Visible = False
-        '
-        'QuickmanagerPictureBox
-        '
-        Me.QuickmanagerPictureBox.Image = Global.Outworldz.My.Resources.Resources.edge
-        Me.QuickmanagerPictureBox.Location = New System.Drawing.Point(236, 38)
-        Me.QuickmanagerPictureBox.Name = "QuickmanagerPictureBox"
-        Me.QuickmanagerPictureBox.Size = New System.Drawing.Size(33, 27)
-        Me.QuickmanagerPictureBox.TabIndex = 6
-        Me.QuickmanagerPictureBox.TabStop = False
-        Me.QuickmanagerPictureBox.Visible = False
-        '
-        'BaretailPictureBox
-        '
-        Me.BaretailPictureBox.Image = Global.Outworldz.My.Resources.Resources.edge
-        Me.BaretailPictureBox.Location = New System.Drawing.Point(91, 37)
-        Me.BaretailPictureBox.Name = "BaretailPictureBox"
-        Me.BaretailPictureBox.Size = New System.Drawing.Size(33, 27)
-        Me.BaretailPictureBox.TabIndex = 7
-        Me.BaretailPictureBox.TabStop = False
+        Me.NotePadButton.AutoSize = True
+        Me.NotePadButton.Location = New System.Drawing.Point(134, 48)
+        Me.NotePadButton.Name = "NotePadButton"
+        Me.NotePadButton.Size = New System.Drawing.Size(67, 17)
+        Me.NotePadButton.TabIndex = 5
+        Me.NotePadButton.Text = "NotePad"
+        Me.NotePadButton.UseVisualStyleBackColor = True
         '
         'FormLogging
         '
@@ -275,9 +251,7 @@ Partial Class FormLogging
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(317, 315)
-        Me.Controls.Add(Me.BaretailPictureBox)
-        Me.Controls.Add(Me.QuickmanagerPictureBox)
-        Me.Controls.Add(Me.OutputViewerButton)
+        Me.Controls.Add(Me.NotePadButton)
         Me.Controls.Add(Me.BaretailButton)
         Me.Controls.Add(Me.DeletebyAge)
         Me.Controls.Add(Me.GroupBox1)
@@ -290,8 +264,6 @@ Partial Class FormLogging
         Me.GroupBox1.PerformLayout()
         Me.DeletebyAge.ResumeLayout(False)
         Me.DeletebyAge.PerformLayout()
-        CType(Me.QuickmanagerPictureBox, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BaretailPictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -314,7 +286,5 @@ Partial Class FormLogging
     Friend WithEvents Date_Time_Checkbox As CheckBox
     Friend WithEvents LogBenchmarks As CheckBox
     Friend WithEvents BaretailButton As RadioButton
-    Friend WithEvents OutputViewerButton As RadioButton
-    Friend WithEvents QuickmanagerPictureBox As PictureBox
-    Friend WithEvents BaretailPictureBox As PictureBox
+    Friend WithEvents NotePadButton As RadioButton
 End Class

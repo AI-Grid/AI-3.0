@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class FormDNSName
+Partial Class FormDnsName
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -23,7 +23,7 @@ Partial Class FormDNSName
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormDNSName))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormDnsName))
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.SuitcaseCheckbox = New System.Windows.Forms.CheckBox()
         Me.EnableHypergrid = New System.Windows.Forms.CheckBox()
@@ -39,13 +39,11 @@ Partial Class FormDNSName
         Me.Label1 = New System.Windows.Forms.Label()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PictureBox = New System.Windows.Forms.PictureBox()
         Me.OsGridButton.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
+        CType(Me.PictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'ToolTip1
-        '
-        Me.ToolTip1.ToolTipTitle = ""
         '
         'SuitcaseCheckbox
         '
@@ -125,6 +123,7 @@ Partial Class FormDNSName
         '
         'OsGridButton
         '
+        Me.OsGridButton.Controls.Add(Me.PictureBox)
         Me.OsGridButton.Controls.Add(Me.Label3)
         Me.OsGridButton.Controls.Add(Me.DNSAliasTextBox)
         Me.OsGridButton.Controls.Add(Me.SaveButton1)
@@ -186,7 +185,19 @@ Partial Class FormDNSName
         Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(72, 32)
         Me.HelpToolStripMenuItem.Text = Global.Outworldz.My.Resources.Resources.Help_word
         '
-        'FormDNSName
+        'PictureBox
+        '
+        Me.PictureBox.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox.Image = Global.Outworldz.My.Resources.Resources.loader
+        Me.PictureBox.Location = New System.Drawing.Point(174, 192)
+        Me.PictureBox.Name = "PictureBox"
+        Me.PictureBox.Size = New System.Drawing.Size(38, 34)
+        Me.PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox.TabIndex = 18621
+        Me.PictureBox.TabStop = False
+        '
+        'FormDnsName
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
@@ -196,13 +207,14 @@ Partial Class FormDNSName
         Me.Controls.Add(Me.OsGridButton)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "FormDNSName"
+        Me.Name = "FormDnsName"
         Me.Text = "DNS Name & Hypergrid"
         Me.ToolTip1.SetToolTip(Me, Global.Outworldz.My.Resources.Resources.Help_word)
         Me.OsGridButton.ResumeLayout(False)
         Me.OsGridButton.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        CType(Me.PictureBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -223,4 +235,5 @@ Partial Class FormDNSName
     Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Label3 As Label
     Friend WithEvents DNSAliasTextBox As TextBox
+    Friend WithEvents PictureBox As PictureBox
 End Class

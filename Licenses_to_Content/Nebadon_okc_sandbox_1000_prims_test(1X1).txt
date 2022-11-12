@@ -1,1 +1,0 @@
-Nebadons test for Physics - just select all the balls and cubes, make them physical, and let go!

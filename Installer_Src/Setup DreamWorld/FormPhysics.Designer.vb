@@ -30,19 +30,21 @@ Partial Class FormPhysics
         Me.Physics0_None = New System.Windows.Forms.RadioButton()
         Me.MenuStrip2 = New System.Windows.Forms.MenuStrip()
         Me.ToolStripMenuItem30 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Physics5_Hybrid = New System.Windows.Forms.RadioButton()
         Me.GroupBox1.SuspendLayout()
         Me.MenuStrip2.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Physics5_Hybrid)
         Me.GroupBox1.Controls.Add(Me.Physics4_UbODE)
         Me.GroupBox1.Controls.Add(Me.Physics2_Bullet)
         Me.GroupBox1.Controls.Add(Me.Physics3_Separate)
         Me.GroupBox1.Controls.Add(Me.Physics0_None)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 33)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(215, 120)
+        Me.GroupBox1.Size = New System.Drawing.Size(215, 138)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Physics Engine"
@@ -61,7 +63,7 @@ Partial Class FormPhysics
         'Physics2_Bullet
         '
         Me.Physics2_Bullet.AutoSize = True
-        Me.Physics2_Bullet.Location = New System.Drawing.Point(6, 64)
+        Me.Physics2_Bullet.Location = New System.Drawing.Point(6, 88)
         Me.Physics2_Bullet.Name = "Physics2_Bullet"
         Me.Physics2_Bullet.Size = New System.Drawing.Size(92, 17)
         Me.Physics2_Bullet.TabIndex = 3
@@ -72,7 +74,7 @@ Partial Class FormPhysics
         'Physics3_Separate
         '
         Me.Physics3_Separate.AutoSize = True
-        Me.Physics3_Separate.Location = New System.Drawing.Point(6, 85)
+        Me.Physics3_Separate.Location = New System.Drawing.Point(6, 109)
         Me.Physics3_Separate.Name = "Physics3_Separate"
         Me.Physics3_Separate.Size = New System.Drawing.Size(177, 17)
         Me.Physics3_Separate.TabIndex = 4
@@ -109,12 +111,23 @@ Partial Class FormPhysics
         Me.ToolStripMenuItem30.Size = New System.Drawing.Size(68, 28)
         Me.ToolStripMenuItem30.Text = Global.Outworldz.My.Resources.Resources.Help_word
         '
+        'Physics5_Hybrid
+        '
+        Me.Physics5_Hybrid.AutoSize = True
+        Me.Physics5_Hybrid.Location = New System.Drawing.Point(6, 66)
+        Me.Physics5_Hybrid.Name = "Physics5_Hybrid"
+        Me.Physics5_Hybrid.Size = New System.Drawing.Size(55, 17)
+        Me.Physics5_Hybrid.TabIndex = 5
+        Me.Physics5_Hybrid.TabStop = True
+        Me.Physics5_Hybrid.Text = "Hybrid"
+        Me.Physics5_Hybrid.UseVisualStyleBackColor = True
+        '
         'FormPhysics
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.AutoSize = True
-        Me.ClientSize = New System.Drawing.Size(236, 165)
+        Me.ClientSize = New System.Drawing.Size(236, 189)
         Me.Controls.Add(Me.MenuStrip2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -137,4 +150,5 @@ Partial Class FormPhysics
     Friend WithEvents ToolStripMenuItem30 As ToolStripMenuItem
     Friend WithEvents Physics2_Bullet As RadioButton
     Friend WithEvents Physics4_UbODE As RadioButton
+    Friend WithEvents Physics5_Hybrid As RadioButton
 End Class

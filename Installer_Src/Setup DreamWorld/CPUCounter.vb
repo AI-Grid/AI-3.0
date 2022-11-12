@@ -1,5 +1,4 @@
 Imports System.Collections.Concurrent
-Imports System.Threading
 
 Module CPUCounter
 
@@ -8,12 +7,6 @@ Module CPUCounter
     Private ReadOnly _CPUValues As New Dictionary(Of String, Double)
 
     Private ReadOnly _regionHandles As New ConcurrentDictionary(Of Integer, String)
-
-    Private ReadOnly O As New CPUStuff With {
-            .CounterList = CounterList,
-            .CPUValues = CPUValues,
-            .PropInstanceHandles = PropInstanceHandles
-        }
 
     Private _PCList As Dictionary(Of Integer, PerformanceCounter)
     Private CalcCPUIsBusy As Boolean
@@ -70,19 +63,19 @@ Module CPUCounter
 
             For Each RegionUUID In RegionUuids()
                 Application.DoEvents()
-                Dim RegionName = Region_Name(RegionUUID)
+
                 Dim PID = ProcessID(RegionUUID)
                 If PID = 0 Then
                     Continue For
                 End If
 
-                Dim c As PerformanceCounter = Nothing
-
+                'Dim c As PerformanceCounter = Nothing
+                Dim RegionName = Region_Name(RegionUUID)
                 If Not CounterList.ContainsKey(RegionName) Then
                     Try
                         Using counter As PerformanceCounter = GetPerfCounterForProcessId(PID)
                             If counter IsNot Nothing Then
-                                Debug.Print($"> CounterList {CStr(CounterList.Count)}")
+                                Debug.Print($"> Creating new CPU counter for {RegionName}")
                                 CounterList.Add(RegionName, counter)
                                 counter.NextValue() ' start the counter
                             End If
@@ -96,19 +89,20 @@ Module CPUCounter
                 End If
 
                 If Not CPUValues.ContainsKey(RegionName) Then
-                    Debug.Print($"> CPUValues {CStr(CPUValues.Count)}")
                     CPUValues.Add(RegionName, 0)
                 Else
                     Dim a As Double
                     Try
                         a = Convert.ToDouble(CounterList.Item(RegionName).NextValue(), Globalization.CultureInfo.InvariantCulture)
                     Catch ex As Exception
-                        ' CounterList.Item(RegionName).Close()
+                        If CounterList.ContainsKey(RegionName) Then
+                            CounterList.Remove(RegionName)
+                        End If
                     End Try
 
                     Dim b = (a / Environment.ProcessorCount)
                     CPUValues.Item(RegionName) = Math.Round(b, 3)
-                    Debug.Print($"> CPU {RegionName} = {CStr(Math.Round(b, 3))}")
+                    ' Debug.Print($"> CPU {RegionName} = {CStr(Math.Round(b, 3))}")
                 End If
             Next
 
@@ -121,11 +115,8 @@ Module CPUCounter
     Private Function GetInstanceNameForProcessId(ByVal processId As Integer) As String
 
         Try
-            Dim process = CachedProcess(processId)
-
-            Dim processName As String = IO.Path.GetFileNameWithoutExtension(process.ProcessName)
             Dim cat As New PerformanceCounterCategory("Process")
-            Dim instances As String() = cat.GetInstanceNames().Where(Function(inst) inst.StartsWith(processName, System.StringComparison.OrdinalIgnoreCase)).ToArray()
+            Dim instances As String() = cat.GetInstanceNames().Where(Function(inst) inst.StartsWith("opensim", System.StringComparison.OrdinalIgnoreCase)).ToArray()
 
             For Each instance As String In instances
                 Using cnt = New PerformanceCounter("Process", "ID Process", instance, True)
@@ -134,6 +125,7 @@ Module CPUCounter
                         Return instance
                     End If
                 End Using
+                Application.DoEvents()
             Next
         Catch
         End Try
@@ -156,11 +148,5 @@ Module CPUCounter
         Return PC
 
     End Function
-
-    Public Class CPUStuff
-        Public CounterList As Dictionary(Of String, PerformanceCounter)
-        Public CPUValues As Dictionary(Of String, Double)
-        Public PropInstanceHandles As ConcurrentDictionary(Of Integer, String)
-    End Class
 
 End Module

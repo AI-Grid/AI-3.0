@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -492,9 +492,6 @@
   <data name="Category_word" xml:space="preserve">
     <value>Flokkur</value>
   </data>
-  <data name="CautionOAR" xml:space="preserve">
-    <value>Varúð! Þetta mun hlaða 150+ OARS og svæðum inn í kerfið þitt. Þetta mun taka langan tíma.</value>
-  </data>
   <data name="Caution_word" xml:space="preserve">
     <value>Varúð!</value>
   </data>
@@ -723,9 +720,6 @@
   <data name="Configger" xml:space="preserve">
     <value>Stilla Allar Svæði</value>
   </data>
-  <data name="Confirm" xml:space="preserve">
-    <value>Þarf að staðfesta til að skrá þig inn?</value>
-  </data>
   <data name="Consoles_word" xml:space="preserve">
     <value>leikjatölvur</value>
   </data>
@@ -857,9 +851,6 @@
   </data>
   <data name="DelayAfterRegionReady" xml:space="preserve">
     <value>Svæði tilbúin töf</value>
-  </data>
-  <data name="DelayBeforeExit" xml:space="preserve">
-    <value>Sekúndur áður en beðið er</value>
   </data>
   <data name="DeletebyAge" xml:space="preserve">
     <value>Eyða eftir aldri</value>
@@ -1220,9 +1211,6 @@
   </data>
   <data name="FSA" xml:space="preserve">
     <value>Eignir sem skrá</value>
-  </data>
-  <data name="FSassets" xml:space="preserve">
-    <value>File System Eignir Database</value>
   </data>
   <data name="FSassets_Server_word" xml:space="preserve">
     <value>FsAssets Server</value>
@@ -2109,16 +2097,10 @@
   <data name="Parcels" xml:space="preserve">
     <value>bögglar</value>
   </data>
-  <data name="ParkingRegion" xml:space="preserve">
-    <value>BílastæðiSvæði</value>
-  </data>
   <data name="ParkingRegion1" xml:space="preserve">
     <value>Bílastæðasvæði</value>
   </data>
   <data name="Parking_Spot" xml:space="preserve">
-    <value>Bílastæði Sim</value>
-  </data>
-  <data name="Parking_Spot1" xml:space="preserve">
     <value>Bílastæði Sim</value>
   </data>
   <data name="Passed_LAN" xml:space="preserve">
@@ -2138,9 +2120,6 @@
   </data>
   <data name="Pending_word" xml:space="preserve">
     <value>Í bið</value>
-  </data>
-  <data name="people_are_in" xml:space="preserve">
-    <value>fólk er í</value>
   </data>
   <data name="Permissions_word" xml:space="preserve">
     <value>heimildir</value>
@@ -2519,9 +2498,6 @@
   </data>
   <data name="Robust_word" xml:space="preserve">
     <value>sterkur</value>
-  </data>
-  <data name="Row" xml:space="preserve">
-    <value>Smelltu á virkjað röð til að hefja eða stöðva á svæðinu. Smelltu fatlaður röð til að breyta svæðinu.</value>
   </data>
   <data name="Row_note" xml:space="preserve">
     <value>Smelltu á röð til að stjórna svæðinu. Merktu við reitinn til að virkja / slökkva.</value>
@@ -3336,15 +3312,6 @@
   <data name="XEngine_word" xml:space="preserve">
     <value>X Engine</value>
   </data>
-  <data name="XMLRPC" xml:space="preserve">
-    <value>xmlrpc</value>
-  </data>
-  <data name="XMLRPC_TCP_is_set_word" xml:space="preserve">
-    <value>Xmlrpc Region Port</value>
-  </data>
-  <data name="XMLRP_start" xml:space="preserve">
-    <value>Xmlrpc Port Start #</value>
-  </data>
   <data name="Y" xml:space="preserve">
     <value>Y</value>
   </data>
@@ -3653,5 +3620,194 @@
   </data>
   <data name="ViewGoogleMap" xml:space="preserve">
     <value>Skoða Google kort</value>
+  </data>
+  <data name="BulkLoadRegions" xml:space="preserve">
+    <value>Magn álagssvæði</value>
+  </data>
+  <data name="AccountConfirm" xml:space="preserve">
+    <value>Staðfesting Diva Manager fyrir nýja notendur þörf?</value>
+  </data>
+  <data name="FSasset_word" xml:space="preserve">
+    <value>FS eignagagnagrunnur</value>
+  </data>
+  <data name="rezzableParcels" xml:space="preserve">
+    <value>Pakkastillingar</value>
+  </data>
+  <data name="DefaultLandingSpot" xml:space="preserve">
+    <value>Sjálfgefinn lendingarstaður</value>
+  </data>
+  <data name="LandingSpotTooltip" xml:space="preserve">
+    <value>Stilla sjálfgefinn lendingarstað (sjálfgefið á &lt;128,128,30&gt;)</value>
+  </data>
+  <data name="NotValidVector" xml:space="preserve">
+    <value>Ekki gildur vektor! &lt;X, Y, Z&gt;, þar sem gildin eru &gt; 0</value>
+  </data>
+  <data name="DeletingTempRegion" xml:space="preserve">
+    <value>Eyðir Temp svæði</value>
+  </data>
+  <data name="_20" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="CautionMoving" xml:space="preserve">
+    <value>Varúð! Þetta mun færa öll svæði í Square blokk.</value>
+  </data>
+  <data name="BackingUp" xml:space="preserve">
+    <value>Afritaðu öll svæði í sjálfvirka afritunarmöppu</value>
+  </data>
+  <data name="OpensimNeedstoStop" xml:space="preserve">
+    <value>Opensimulator verður að stöðva</value>
+  </data>
+  <data name="Packing" xml:space="preserve">
+    <value>Pökkun á öllum svæðum</value>
+  </data>
+  <data name="Packregions" xml:space="preserve">
+    <value>Pakkaðu öll svæði</value>
+  </data>
+  <data name="PackRegionTT" xml:space="preserve">
+    <value>Pakkar öllum svæðum í stafrófsröð frá neðst til vinstri til efra hægra</value>
+  </data>
+  <data name="RearrangeRegions" xml:space="preserve">
+    <value>Endurraða svæðum</value>
+  </data>
+  <data name="RowSizeTT" xml:space="preserve">
+    <value>Hversu margar raðir þvert á? 1 = 1 staðall 256X256 svæði.</value>
+  </data>
+  <data name="Spacing" xml:space="preserve">
+    <value>Bil</value>
+  </data>
+  <data name="SpacingTT" xml:space="preserve">
+    <value>Hversu mikið bil á milli svæða. 0 = snerta. Sjálfgefið = 4 þannig að þú getur ekki séð næsta svæði.</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Breidd</value>
+  </data>
+  <data name="Abort" xml:space="preserve">
+    <value>Hætta</value>
+  </data>
+  <data name="Aborting" xml:space="preserve">
+    <value>Að hætta</value>
+  </data>
+  <data name="OwnerofNewRegions" xml:space="preserve">
+    <value>Eigandi New Regions</value>
+  </data>
+  <data name="Pack_Word" xml:space="preserve">
+    <value>Pakki</value>
+  </data>
+  <data name="TryAgain" xml:space="preserve">
+    <value>Stilltu eiganda og reyndu aftur</value>
+  </data>
+  <data name="HighwaterLevel" xml:space="preserve">
+    <value>High vatn Level</value>
+  </data>
+  <data name="LowWaterLevel" xml:space="preserve">
+    <value>Low vatn Level</value>
+  </data>
+  <data name="TideInfoChannel" xml:space="preserve">
+    <value>Fjöru Info Channel</value>
+  </data>
+  <data name="GlobalTideSettings" xml:space="preserve">
+    <value>Global Tide stillingar</value>
+  </data>
+  <data name="ShowUponStart" xml:space="preserve">
+    <value>Show On Startup!</value>
+  </data>
+  <data name="CleanSatyrFarm" xml:space="preserve">
+    <value>Hreinn Satýr Bóndi!</value>
+  </data>
+  <data name="LogBenchmarks" xml:space="preserve">
+    <value>Annáll Benchmarks!</value>
+  </data>
+  <data name="NotePadButton" xml:space="preserve">
+    <value>Athugsemd</value>
+  </data>
+  <data name="TideHiLoChannelLabel" xml:space="preserve">
+    <value>Tide High/Low Channel!</value>
+  </data>
+  <data name="EndlessLandAndSea" xml:space="preserve">
+    <value>Endalaust Land Og Sjór!</value>
+  </data>
+  <data name="Speech" xml:space="preserve">
+    <value>Tal</value>
+  </data>
+  <data name="Ascending" xml:space="preserve">
+    <value>Hækkandi</value>
+  </data>
+  <data name="Descending" xml:space="preserve">
+    <value>Lækkandi</value>
+  </data>
+  <data name="exclusive" xml:space="preserve">
+    <value>til einkanota í DreamGrid hugbúnaði!</value>
+  </data>
+  <data name="islicensedas" xml:space="preserve">
+    <value>er með leyfi eins og!</value>
+  </data>
+  <data name="SortbyDate" xml:space="preserve">
+    <value>Raða eftir dagssetningu</value>
+  </data>
+  <data name="SortbyName" xml:space="preserve">
+    <value>Raða eftir nafni</value>
+  </data>
+  <data name="Terms" xml:space="preserve">
+    <value>Samþykkir þú þessa skilmála ?!</value>
+  </data>
+  <data name="Minimize_all" xml:space="preserve">
+    <value>Lágmarka öll svæði!</value>
+  </data>
+  <data name="EmailDisabled" xml:space="preserve">
+    <value>Tölvupóstur er ekki virkur!</value>
+  </data>
+  <data name="NoBody" xml:space="preserve">
+    <value>Enginn tölvupóstur texti!</value>
+  </data>
+  <data name="NoFromEmail" xml:space="preserve">
+    <value>Frá netfangi</value>
+  </data>
+  <data name="NoToEmail" xml:space="preserve">
+    <value>Nei í tölvupósti!</value>
+  </data>
+  <data name="SMTPDisabled" xml:space="preserve">
+    <value>Tölvupóstur til SMTP er ekki virkur!</value>
+  </data>
+  <data name="Test_word" xml:space="preserve">
+    <value>Próf</value>
+  </data>
+  <data name="CautionOARs2" xml:space="preserve">
+    <value>Varúð! Þetta mun búa til mörg svæði og hlaða OARs þeirra inn í kerfið þitt. Þetta mun taka langan tíma. Smart Start Shutdown Mode verður virkjuð. Talning:</value>
+  </data>
+  <data name="BusyWith" xml:space="preserve">
+    <value>Upptekinn af!</value>
+  </data>
+  <data name="Backup_IAR" xml:space="preserve">
+    <value>Afritun IAR!</value>
+  </data>
+  <data name="Backup_Region_INI" xml:space="preserve">
+    <value>Varasvæði INI!</value>
+  </data>
+  <data name="Backup_Settings" xml:space="preserve">
+    <value>Backup Settings</value>
+  </data>
+  <data name="Backup_Wifi" xml:space="preserve">
+    <value>Afritun WiFi!</value>
+  </data>
+  <data name="Saving_Zip" xml:space="preserve">
+    <value>Vista...</value>
+  </data>
+  <data name="rezrights" xml:space="preserve">
+    <value>Með því er horfið frá rez-réttindum syrgjenda á öllum svæðum. Halda áfram?!</value>
+  </data>
+  <data name="Failpassword" xml:space="preserve">
+    <value>Mistókst að vista nýtt lykilorð!</value>
+  </data>
+  <data name="FreezeAllRegions" xml:space="preserve">
+    <value>Frystu öll svæði!</value>
+  </data>
+  <data name="ThawAllRegions" xml:space="preserve">
+    <value>Öll landsvæði</value>
+  </data>
+  <data name="OneMinute" xml:space="preserve">
+    <value>1 mínúta</value>
+  </data>
+  <data name="ApacheMustBe80" xml:space="preserve">
+    <value>Apache verður  að nota port 80. Get ekki haldið áfram.!</value>
   </data>
 </root>

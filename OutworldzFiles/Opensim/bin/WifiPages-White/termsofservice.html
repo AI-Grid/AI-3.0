@@ -16,45 +16,12 @@
   <p id="slogan"><!-- #get var=GridName--> </p>
 </div>
 <div id="page">  <!-- wraps and defines overall page width, centers it -->
-  <div id="content"> <!-- content area of page -->
-  
-    <div style="text-align:left; color:white;">
-    <!-- #include file=tos.html -->
+    <div id="content">
+        <!-- content area of page -->
+
+        <div style="text-align:left; color:white;">
+            <!-- #include file=tos.html -->
+        </div>
+        <p>&nbsp;</p>
     </div>
-    <p>&nbsp;</p>
-  
-    <!-- But don't change this form! 
-    <form action="[ACTION]" method="POST">
-        <input type="submit" name="action-accept" value="Accept" class="button" />
-        <input type="submit" name="action-decline" value="Decline" class="button" />
-        <input type="text" name="uid" id="thisuid" value="<!-- #get field=UserID -->"/>
-        <input type="text" name="sid" id="thissid" value="<!-- #get field=SessionID -->"/>
-    </form>
--->
-  </div>
 </div>
-
-
-<script type="text/javascript">
-
-function gup( name ){
-	 name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
-	 var regexS = "[\\?&]"+name+"=([^&#]*)";
-	 var regex = new RegExp( regexS );
-	 var results = regex.exec( window.location.href );
-
-	 if( results == null )
-		return "";
-else
-   results[1] = results[1].replace(/\+/g," ");
- 	return results[1];
-}
-
-var sid = gup("sid");
-var uid = gup("uid");
-
-document.getElementById("thisuid").value = uid;
-document.getElementById("thissid").value = sid;
-
-
-</script>

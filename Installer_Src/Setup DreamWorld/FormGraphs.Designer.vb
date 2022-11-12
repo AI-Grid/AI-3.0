@@ -56,7 +56,7 @@ Partial Class FormGraphs
         Me.ChartWrapper1.AddMarkers = True
         Me.ChartWrapper1.AutoSize = True
         Me.ChartWrapper1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ChartWrapper1.AxisXTitle = "10 minutes"
+        Me.ChartWrapper1.AxisXTitle = "1 minute"
         Me.ChartWrapper1.AxisYTitle = "% CPU"
         Me.ChartWrapper1.BackColor = System.Drawing.SystemColors.Control
         Me.ChartWrapper1.Dock = System.Windows.Forms.DockStyle.Fill

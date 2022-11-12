@@ -13,7 +13,6 @@ Public Class FormRegion
 
 #Region "Declarations"
 
-    Private _LastSmartSetting As Boolean  ' flag to remember of SmartStart was enabled and has changed
     Dim _RegionUUID As String = ""
     Dim BoxSize As Integer = 256
     Dim changed As Boolean
@@ -181,7 +180,6 @@ Public Class FormRegion
 
         LandingSpotLabel.Text = Global.Outworldz.My.Resources.DefaultLandingSpot
 
-
         MapBest.Text = Global.Outworldz.My.Resources.Best_Prims
         MapBetter.Text = Global.Outworldz.My.Resources.Better_Prims
         MapGroupBox.Text = Global.Outworldz.My.Resources.Maps_word
@@ -200,10 +198,12 @@ Public Class FormRegion
         Physics_Default.Text = Global.Outworldz.My.Resources.Use_Default_word
         Physics_Separate.Text = Global.Outworldz.My.Resources.BP
         Physics_ubODE.Text = Global.Outworldz.My.Resources.UBODE_words
+        Physics_Hybrid.Text = Global.Outworldz.My.Resources.UbitHybrid
         PhysPrimLabel.Text = Global.Outworldz.My.Resources.Physical_Prim
 
         Publish.Text = Global.Outworldz.My.Resources.Publish_Items
         PublishDefault.Text = Global.Outworldz.My.Resources.Use_Default_word
+        SearchLabel.Text = Global.Outworldz.My.Resources.Search_word
 
         SaveButton.Text = Global.Outworldz.My.Resources.Save_word
         ScriptDefaultButton.Text = Global.Outworldz.My.Resources.Use_Default_word
@@ -476,7 +476,7 @@ Public Class FormRegion
         If SkipAutobackup(RegionUUID) = "True" Then
             SkipAutoCheckBox.Checked = True
         End If
-        If Smart_Start(RegionUUID) = "True" Then
+        If Smart_Start(RegionUUID) Then
             SmartStartCheckBox.Checked = True
         End If
 
@@ -522,9 +522,11 @@ Public Class FormRegion
             Case "" : Physics_Default.Checked = True
             Case "-1" : Physics_Default.Checked = True
             Case "0" : Physics_Default.Checked = True
+            Case "1" : Physics_Default.Checked = True   ' ODE is gone
             Case "2" : Physics_Bullet.Checked = True
             Case "3" : Physics_Separate.Checked = True
             Case "4" : Physics_ubODE.Checked = True
+            Case "5" : Physics_Hybrid.Checked = True
             Case Else : Physics_Default.Checked = True
         End Select
 
@@ -609,14 +611,7 @@ Public Class FormRegion
                 TidesCheckbox.Checked = True
         End Select
 
-        Select Case Teleport_Sign(RegionUUID)
-            Case ""
-                TPCheckBox1.Checked = False
-            Case "False"
-                TPCheckBox1.Checked = False
-            Case "True"
-                TPCheckBox1.Checked = True
-        End Select
+        TPCheckBox1.Checked = Teleport_Sign(RegionUUID)
 
         Select Case Disallow_Foreigners(RegionUUID)
             Case ""
@@ -703,7 +698,7 @@ Public Class FormRegion
 
                 WriteRegion(RegionUUID)
                 PropChangedRegionSettings = True
-                GetAllRegions(False)
+                'GetAllRegions(False)
                 Firewall.SetFirewall()
 
                 PropUpdateView() = True
@@ -741,7 +736,7 @@ Public Class FormRegion
             DeregisterRegionUUID(RegionUUID)
             WriteRegion(RegionUUID)
             PropChangedRegionSettings = True
-            GetAllRegions(False)
+            'GetAllRegions(False)
             Firewall.SetFirewall()
 
             PropUpdateView() = True
@@ -824,13 +819,6 @@ Public Class FormRegion
 
         Dim msg = MsgBox(My.Resources.Are_you_Sure_Delete_Region, MsgBoxStyle.YesNo Or MsgBoxStyle.MsgBoxSetForeground, Global.Outworldz.My.Resources.Info_word)
         If msg = vbYes Then
-
-            Dim loopctr = 120 ' wait 2 minutes
-            While IsRegionReady(GroupPort(RegionUUID)) And loopctr > 0
-                Sleep(1000)
-                loopctr -= 1
-            End While
-
             DeleteAllRegionData(RegionUUID)
             PropChangedRegionSettings = True
             Changed1 = False
@@ -843,6 +831,7 @@ Public Class FormRegion
 
     Private Sub EnabledCheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles EnabledCheckBox.CheckedChanged
         If Initted1 Then Changed1 = True
+        If Not EnabledCheckBox.Checked Then DeregisterRegionUUID(RegionUUID)
     End Sub
 
     Private Sub EnableMaxPrims_text(sender As Object, e As EventArgs) Handles MaxPrims.TextChanged
@@ -1265,6 +1254,8 @@ Public Class FormRegion
                 Phys = "3"
             ElseIf Physics_ubODE.Checked Then
                 Phys = "4"
+            ElseIf Physics_Hybrid.Checked Then
+                Phys = "5"
             Else
                 Phys = "2"
             End If
@@ -1314,9 +1305,9 @@ Public Class FormRegion
             End If
 
             If TPCheckBox1.Checked Then
-                Teleport_Sign(RegionUUID) = "True"
+                Teleport_Sign(RegionUUID) = True
             Else
-                Teleport_Sign(RegionUUID) = ""
+                Teleport_Sign(RegionUUID) = False
             End If
 
             If DisableGBCheckBox.Checked Then
@@ -1338,9 +1329,9 @@ Public Class FormRegion
             End If
 
             If SmartStartCheckBox.Checked Then
-                Smart_Start(RegionUUID) = "True"
+                Smart_Start(RegionUUID) = True
             Else
-                Smart_Start(RegionUUID) = ""
+                Smart_Start(RegionUUID) = False
             End If
 
             ScriptEngine(RegionUUID) = "" ' default is blank
@@ -1351,6 +1342,13 @@ Public Class FormRegion
             ElseIf YEngineButton.Checked = True Then
                 ScriptEngine(RegionUUID) = "YEngine"
             End If
+
+            ' Get Next Port
+            If GroupPort(RegionUUID) = 0 Or Region_Port(RegionUUID) = 0 Then
+                GroupPort(RegionUUID) = GetPort(RegionUUID)
+                Region_Port(RegionUUID) = GroupPort(RegionUUID)
+            End If
+
 
             FileStuff.CopyFileFast(RegionIniFilePath(RegionUUID), RegionIniFilePath(RegionUUID) & ".bak")
 
@@ -1391,7 +1389,7 @@ Public Class FormRegion
                                 "ManagerGod=" & ManagerGod(RegionUUID) & vbCrLf &
                                 "Birds=" & Birds(RegionUUID) & vbCrLf &
                                 "Tides=" & Tides(RegionUUID) & vbCrLf &
-                                "Teleport=" & Teleport_Sign(RegionUUID) & vbCrLf &
+                                "Teleport=" & CStr(Teleport_Sign(RegionUUID)) & vbCrLf &
                                 "DisableGloebits=" & DisableGloebits(RegionUUID) & vbCrLf &
                                 "DisallowForeigners=" & Disallow_Foreigners(RegionUUID) & vbCrLf &
                                 "DisallowResidents=" & Disallow_Residents(RegionUUID) & vbCrLf &
@@ -1401,7 +1399,7 @@ Public Class FormRegion
                                 "OpensimWorldAPIKey=" & OpensimWorldAPIKey(RegionUUID) & vbCrLf &
                                 "Priority=" & Priority(RegionUUID) & vbCrLf &
                                 "Cores=" & CStr(Cores(RegionUUID)) & vbCrLf &
-                                "SmartStart=" & Smart_Start(RegionUUID) & vbCrLf
+                                "SmartStart=" & CStr(Smart_Start(RegionUUID)) & vbCrLf
 
                     Try
                         Using outputFile As New StreamWriter(RegionIniFilePath(RegionUUID), False)
@@ -1553,13 +1551,8 @@ Public Class FormRegion
         If Initted1 Then Changed1 = True
     End Sub
 
-    Private Sub Hyperica_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles Hyperica.LinkClicked
-        Dim webAddress As String = "https://hyperica.com"
-        Try
-            Process.Start(webAddress)
-        Catch ex As Exception
-            BreakPoint.Dump(ex)
-        End Try
+    Private Sub HybridRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles Physics_Hybrid.CheckedChanged
+        If Initted1 Then Changed1 = True
     End Sub
 
     Private Sub LandingSpotTextBox_lostfocus(sender As Object, e As EventArgs) Handles LandingSpotTextBox.LostFocus
@@ -1579,6 +1572,15 @@ Public Class FormRegion
     Private Sub LandingSpotTextBox_TextChanged(sender As Object, e As EventArgs) Handles LandingSpotTextBox.TextChanged
         If LandingSpotTextBox.Text.Length = 0 Then Return
         If Initted1 Then Changed1 = True
+    End Sub
+
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        Dim webAddress As String = "https://outworldz.com/search"
+        Try
+            Process.Start(webAddress)
+        Catch ex As Exception
+            BreakPoint.Dump(ex)
+        End Try
     End Sub
 
     Private Sub MapBest_CheckedChanged(sender As Object, e As EventArgs) Handles MapBest.CheckedChanged

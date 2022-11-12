@@ -1015,7 +1015,7 @@ namespace OpenSim.Framework
                 }
                 catch (Exception e)
                 {
-                    m_log.InfoFormat("[FORMS]: Error sending {0} request to: {1}. {2}", verb,requestUrl, e.Message);
+                    m_log.DebugFormat("[FORMS]: Error sending {0} request to: {1}. {2}", verb,requestUrl, e.Message);
                     throw e;
                 }
             }
@@ -1036,7 +1036,7 @@ namespace OpenSim.Framework
             }
             catch (Exception e)
             {
-                m_log.InfoFormat("[FORMS]: Error receiving response from {0}: {1}.", requestUrl, e.Message);
+                m_log.DebugFormat("[FORMS]: Error receiving response from {0}: {1}.", requestUrl, e.Message);
                 throw e;
             }
 
@@ -1092,7 +1092,7 @@ namespace OpenSim.Framework
             catch (Exception e)
             {
                 m_log.InfoFormat("[FORMS]: Error creating POST request to {0}: {1}", requestUrl, e.Message);
-                throw e;
+                throw;
             }
 
             byte[] data = Util.UTF8NBGetbytes(obj);
@@ -1110,7 +1110,7 @@ namespace OpenSim.Framework
             }
             catch (Exception e)
             {
-                m_log.InfoFormat("[FORMS]: Error sending POST request to {0}: {1}", requestUrl, e.Message);
+                m_log.DebugFormat("[FORMS]: Error sending POST request to {0}: {1}", requestUrl, e.Message);
                 throw e;
             }
 
@@ -1129,14 +1129,14 @@ namespace OpenSim.Framework
             }
             catch (Exception e)
             {
-                m_log.InfoFormat("[FORMS]: Error receiving response from {0}: {1}", requestUrl, e.Message);
+                m_log.DebugFormat("[FORMS]: Error receiving response from {0}: {1}", requestUrl, e.Message);
                 throw e;
             }
 
             int tickdiff = Util.EnvironmentTickCountSubtract(tickstart);
             if (tickdiff > WebUtil.LongCallTime)
             {
-                m_log.InfoFormat("[FORMS]: request {0} POST {1} took {2}ms {3}/{4}bytes",
+                m_log.DebugFormat("[FORMS]: request {0} POST {1} took {2}ms {3}/{4}bytes",
                     reqnum, requestUrl, tickdiff, sendlen, rcvlen);
             }
             else if (WebUtil.DebugLevel >= 4)

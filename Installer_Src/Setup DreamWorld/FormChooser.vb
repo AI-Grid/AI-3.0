@@ -74,7 +74,7 @@ Public Class FormChooser
             DataGridView.Rows.Add("! Add New Name")
         End If
 
-        For Each RegionUUID As String In RegionUuids()
+        For Each RegionUUID In RegionUuids()
             Dim name As String
             If type = "Group" Then
                 name = Group_Name(RegionUUID)
